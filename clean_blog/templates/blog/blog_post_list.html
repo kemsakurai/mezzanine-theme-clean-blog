@@ -19,7 +19,9 @@
 {% if page %}
 {% editable page.title %}{{ page.title }}{% endeditable %}
 {% else %}
+
 {% trans "Blog" %}
+
 {% endif %}
 {% endblock %}
 
@@ -47,7 +49,8 @@
 		
 		
 		{% block right_panel %}
-		<aside class="col-sm-4 col-sm-push-8">
+		
+		<aside class="col-sm-4 col-sm-push-9">
 		{% include "blog/includes/filter_panel.html" %}
 		</aside>
 		{% endblock %}
@@ -70,6 +73,8 @@
     {% endblock %}
     </p>
 {% else %}
+
+{% comment %}
     {% if page %}
     {% block blog_post_list_pagecontent %}
     {% if page.get_content_model.content %}
@@ -79,17 +84,19 @@
     {% endif %}
     {% endblock %}
     {% endif %}
+{% endcomment %}
+
 {% endif %}
 
-
-		
 	{% for blog_post in blog_posts.object_list %}
 	 <div class="blog-item">
 		 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
 			{% block blog_post_list_post_featured_image %}
+			
 			<a href="{{ blog_post.get_absolute_url }}">
 				<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ blog_post.featured_image }}">
 			</a>
+
 			{% endblock %}
 			{% endif %}
 		<div class="blog-content">
@@ -136,7 +143,7 @@
 									{% endif %}
 																
                                 </span>
-                            </div>
+                    </div>
 
 {% endeditable %}
 {% endblock %}
@@ -144,12 +151,16 @@
 
 
 {% block blog_post_list_post_content %}
+<div class="post-preview">
 {% editable blog_post.content %}
 {{ blog_post.description_from_content|safe }}
 {% endeditable %}
 {% endblock %}
 
- <a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
+{% comment "read more button is unnecessary" %}
+ 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
+{% endcomment %}
+
 {% block blog_post_list_post_links %}
 {% keywords_for blog_post as tags %}
     {% if tags %}
@@ -157,7 +168,6 @@
   <i class="icon-tags"></i> {% trans "Tags" %}:
     {% spaceless %}
     {% for tag in tags %} 
-
   <a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a> &nbsp;
   {% endfor %}
     {% endspaceless %}
@@ -168,6 +178,8 @@
 </div>
 </div>
 {% endblock %}
+</div>
+<hr>
 {% endfor %}
 
 </div>
