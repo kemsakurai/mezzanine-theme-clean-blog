@@ -1,5 +1,7 @@
 # mezzanine-theme-clean-blog
 
+[Start Bootstrap](http://startbootstrap.com/) - [Clean Blog](http://startbootstrap.com/template-overviews/clean-blog/) based theme for [Mezzanine CMS](http://mezzanine.jupo.org/)
+
 # Getting started
 To use this as a theme for your Mezzanine-based site:
 
@@ -26,3 +28,7 @@ INSTALLED_APPS = (
     "clean_blog",
     "xxxxx"
 ```
+
+# Another Project
+[clean_blog_mezzanine](https://github.com/vskh/clean_blog_mezzanine#clean-blog-mezzanine)
+Clean Blog based Mezzanine theme
