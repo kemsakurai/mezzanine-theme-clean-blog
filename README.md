@@ -29,6 +29,17 @@ INSTALLED_APPS = (
     "xxxxx"
 ```
 
+###5. Add "clean_blog/templates", to the TEMPLATE_DIRS setting in settings.py
+```python
+# Put strings here, like "/home/html/django_templates"
+# or "C:/www/django/templates".
+# Always use forward slashes, even on Windows.
+# Don't forget to use absolute paths, not relative paths.
+TEMPLATE_DIRS = (
+	os.path.join(PROJECT_ROOT, "clean_blog/templates"),
+    os.path.join(PROJECT_ROOT, "templates"),)
+```
+
 # Another Project
 [clean_blog_mezzanine](https://github.com/vskh/clean_blog_mezzanine#clean-blog-mezzanine)
 Clean Blog based Mezzanine theme

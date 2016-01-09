@@ -82,7 +82,7 @@
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
-		
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 		{% block right_panel %}
 		{% comment "ページ右バナー部は出力しないためコメントアウト" %}
 			<aside class="col-sm-4 col-sm-push-9">
@@ -90,9 +90,7 @@
 			</aside>
 		{% endcomment %}
 		{% endblock %}
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<div class="blog">
-
 	{% if tag or category or year or month or author %}
 	    {% block blog_post_list_filterinfo %}
 		    <p>
@@ -214,13 +212,12 @@
 	{% endfor %}
 
 </div>
-</div>
-
 {% pagination_for blog_posts %}
 
 {% if settings.COMMENTS_DISQUS_SHORTNAME %}
 {% include "generic/includes/disqus_counts.html" %}
 {% endif %}
+</div>
 </div>
 </section>
 {% endblock %}

@@ -18,19 +18,19 @@ register_setting(
     name="TWITTER_ACCOUNT_NAME",
     description="Twitter account name SNS link of footer",
     editable=True,
-    default="monotalk_xyz",
+    default="",
 )
 
 register_setting(
     name="FACEBOOK_USER_NAME",
     description="Facebook user name SNS link of footer",
     editable=True,
-    default="kem.sakurai",
+    default="",
 )
 
 register_setting(
     name="GITHUB_USER_NAME",
     description="Github user name SNS link of footer",
     editable=True,
-    default="kemsakurai",
+    default="",
 )
