@@ -123,12 +123,9 @@
                                 {% if page %}{{ page.meta_title }}{% endif %}
                             {% endblock %}
                             </h2>                            
-                            {% comment "サイトサブタイトル_コメントアウト" %}
-                                <hr class="small">
-                                {% if settings.SITE_TAGLINE %}
-                                    <span class="subheading">{{ settings.SITE_TAGLINE }}</span>
-                                {% endif %}
-                            {% endcomment %}
+                            {# サイトサブタイトル #}
+                            {% block subheading-text %}
+                            {% endblock %}
                         </div>
                     </div>
                 </div>

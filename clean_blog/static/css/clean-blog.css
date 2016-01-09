@@ -42,6 +42,20 @@ a img:focus {
   color: #F5F5F5;
 }
 
+.entry-meta-subheading a {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    padding: 0;
+    margin-bottom: 0;
+    text-align: center
+}
+.entry-meta-subheading .divider {
+    padding: 0 3px;
+}
+
 .breadcrumb a {
   color: #D3D3D3;
 }
@@ -402,3 +416,4 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #0085a1;
 }
+

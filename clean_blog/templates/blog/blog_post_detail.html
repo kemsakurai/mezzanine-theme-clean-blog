@@ -1,4 +1,4 @@
-{% extends "blog/blog_post_list.html" %}
+{% extends "base.html" %}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
 
 {% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
@@ -16,39 +16,90 @@
 {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
 {% endblock %}
 
+{# base.html のheading-textの処理を上書き #}
+{% block heading-text %}
+	{% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
+{% endblock %}
+
+{% block subheading-text %}
+	{% editable blog_post.publish_date %}
+	<div class="entry-meta-subheading">
+        <span class="author">{% with blog_post.user as author %}
+		<a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+		{% endwith %}
+		</span>
+		{% with blog_post.categories.all as categories %}
+		    {% if categories %}
+	        <span class="divider">/</span>
+	        <span>
+				{% trans "in" %}
+				{% for category in categories %}
+				<a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+				{% endfor %}
+			</span>
+	        {% endif %}
+        {% endwith %}
+        <span class="divider">/</span>
+        <span> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+        <span class="divider">/</span>
+        <span class="comment">
+        {% if blog_post.allow_comments %}
+			
+			{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+			<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
+				data-disqus-identifier="{% disqus_id_for blog_post %}">
+				{% trans "Comments" %}
+			</a>
+			{% else %}
+			<a href="{{ blog_post.get_absolute_url }}#comments">
+				{% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
+			</a>
+			{% endif %}
+		{% endif %}										
+        </span>
+	</div>
+	{% endeditable %}
+{% endblock %}
+
 {% block breadcrumb_menu %}
 {{ block.super }}
-<li class="active">{{ blog_post.title }}</li>
+	<li class="active">{{ blog_post.title }}</li>
 {% endblock %}
 
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
-		<div class="col-sm-8">
+		{% block right_panel %}
+		<aside class="col-sm-4 col-sm-push-9">
+			{% include "blog/includes/filter_panel.html" %}
+		</aside>
+		{% endblock %}
+
+		<div class="col-sm-8 col-sm-pull-4">
 			<div class="blog">
-			<div class="blog-item">
-		 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-			{% block blog_post_list_post_featured_image %}
-			<a href="{{ blog_post.get_absolute_url }}">
-				<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{blog_post.featured_image }}">
-			</a>
-			{% endblock %}
-			{% endif %}
-		<div class="blog-content">
-			
-	{% block blog_post_list_post_title %}
-		
-	
-	{% endblock %}
-{% block blog_post_list_post_metainfo %}
-{% editable blog_post.publish_date %}
-                   <div class="entry-meta">
-                                <span><i class="icon-user"></i> {% with blog_post.user as author %}
+				<div class="blog-item">
+				 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+					{% block blog_post_list_post_featured_image %}
+					<a href="{{ blog_post.get_absolute_url }}">
+						<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{blog_post.featured_image }}">
+					</a>
+					{% endblock %}
+				 {% endif %}
+					<div class="blog-content">
+						{# ブログタイトルの出力箇所 #}
+						{% block blog_post_list_post_title %}
+						{% endblock %}
+
+						{% block blog_post_list_post_metainfo %}
+						{% comment "最近の投稿_コメントアウト" %}		
+							{% editable blog_post.publish_date %}
+							<div class="entry-meta">
+								<span><i class="icon-user"></i> {% with blog_post.user as author %}
 								<a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
 								{% endwith %}
 								</span>
-                                <span><i class="icon-folder-close"></i>
-                                {% with blog_post.categories.all as categories %}
+								<span><i class="icon-folder-close"></i>
+								{% with blog_post.categories.all as categories %}
 								{% if categories %}
 								{% trans "in" %}
 								{% for category in categories %}
@@ -56,11 +107,11 @@
 								{% endfor %}
 								{% endif %}
 								{% endwith %}
-                                
-                                </span>
-                                <span><i class="icon-calendar"></i> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
-                                <span><i class="icon-comment"></i> 
-                                {% if blog_post.allow_comments %}
+
+								</span>
+								<span><i class="icon-calendar"></i> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+								<span><i class="icon-comment"></i> 
+								{% if blog_post.allow_comments %}
 									
 									{% if settings.COMMENTS_DISQUS_SHORTNAME %}
 									<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
@@ -73,46 +124,41 @@
 									</a>
 									{% endif %}
 									{% endif %}
-																
-                                </span>
-                            </div>
+								</span>
+							</div>
+							{% endeditable %}
+						{% endcomment %}
+						{% endblock %}
 
-{% endeditable %}
-{% endblock %}
-
-
-
-{% block blog_post_list_post_content %}
-{% editable blog_post.content %}
-{{ blog_post.description_from_content|safe }}
-{% endeditable %}
-{% endblock %}
-
- <a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
-{% block blog_post_list_post_links %}
-{% keywords_for blog_post as tags %}
-    {% if tags %}
-<div class="tags">
-  <i class="icon-tags"></i> {% trans "Tags" %}:
-    {% spaceless %}
-    {% for tag in tags %} 
-
-  <a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a>
-  {% endfor %}
-    {% endspaceless %}
-</div>
-{% endif %}
-{% block blog_post_detail_comments %}
-{% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
-{% endblock %}
-
-{% endblock %}
-
-</div>
-</div>
-</div>
-</div>
-</div>
+						{% block blog_post_list_post_content %}
+						{% editable blog_post.content %}
+							{{ blog_post.content|richtext_filters|safe }}
+						{% endeditable %}
+						{% endblock %}
+						
+						{% block blog_post_list_post_links %}
+							{% keywords_for blog_post as tags %}
+						    {% if tags %}
+								<div class="tags">
+								  <i class="icon-tags"></i> {% trans "Tags" %}:
+								    {% spaceless %}
+								    {% for tag in tags %} 
+								  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a>
+									{% endfor %}
+								    {% endspaceless %}
+								</div>
+							{% endif %}
+							{% block blog_post_detail_comments %}
+								{% if blog_post.allow_comments %}
+									{% comments_for blog_post %}
+								{% endif %}
+							{% endblock %}
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 {% endblock %}
 {% block blog_post_detail_rating %}
