@@ -417,3 +417,21 @@ body {
   webkit-tap-highlight-color: #0085a1;
 }
 
+.form-group > input[type="text"], .form-group > input[type="password"], .form-group > input[type="datetime"], .form-group > input[type="datetime-local"], .form-group > input[type="date"], .form-group > input[type="month"], .form-group > input[type="time"], .form-group > input[type="week"], .form-group > input[type="number"], .form-group > input[type="email"], .form-group > input[type="url"], .form-group > input[type="search"], .form-group > input[type="tel"], .form-group > input[type="color"], .form-group > select, .form-group > textarea {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}

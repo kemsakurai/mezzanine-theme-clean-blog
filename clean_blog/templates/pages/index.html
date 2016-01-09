@@ -9,7 +9,6 @@ when it is configured as an editable page in the navigation tree. Feel
 free to modify it.
 -->
 {{ block.super }}
-
 {% if page.homepage.slides.all %}
 
 
@@ -28,7 +27,7 @@ free to modify it.
                         {% if slide.video %}   
 					<div class="col-sm-6">
                                 <div class="carousel-content centered center" >
-                                    <h2 class="animation animated-item-1 boxed">	   {{slide.heading}}</h2>
+                                    <h2 class="animation animated-item-1 boxed">{{slide.heading}}</h2>
                                     <p class="animation animated-item-2 boxed">{{slide.subheading}}</p>
                                     <br>
                                     <a href="#" class="btn btn-md animation animated-item-3">Learn More</a>

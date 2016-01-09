@@ -4,8 +4,12 @@
 
 {% block main %}{{ block.super }}
 <section  class="container">
-{% editable page.richtextpage.content %}
-{{ page.richtextpage.content|richtext_filters|safe }}
-{% endeditable %}
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		{% editable page.richtextpage.content %}
+		{{ page.richtextpage.content|richtext_filters|safe }}
+		{% endeditable %}
+		</div>
+	</div>
 </section>
 {% endblock %}
