@@ -1,0 +1,45 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% if settings.TWITTER_ACCOUNT_NAME or settings.FACEBOOK_USER_NAME or settings.GITHUB_USER_NAME %}
+                <ul class="list-inline text-center">
+                    {% if settings.TWITTER_ACCOUNT_NAME %}
+                    <li>
+                        <a href="https://twitter.com/{{ settings.TWITTER_ACCOUNT_NAME }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if settings.FACEBOOK_USER_NAME %}
+                    <li>
+                        <a href="https://www.facebook.com/{{ settings.FACEBOOK_USER_NAME }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if settings.GITHUB_USER_NAME %}
+                    <li>
+                        <a href="https://github.com/{{ settings.GITHUB_USER_NAME }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if settings.SITE_TITLE %}
+                    <p class="copyright text-muted">Copyright &copy; {{ settings.SITE_TITLE }} All Rights Reserved.</p>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

@@ -28,6 +28,7 @@ h6 {
 a {
   color: #404040;
 }
+
 a:hover,
 a:focus {
   color: #0085a1;
@@ -36,6 +37,11 @@ a img:hover,
 a img:focus {
   cursor: zoom-in;
 }
+.post-preview>a:hover,
+.post-preview>a:focus {
+  color: #F5F5F5;
+}
+
 .breadcrumb a {
   color: #D3D3D3;
 }

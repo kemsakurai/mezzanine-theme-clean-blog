@@ -72,7 +72,7 @@
     {% endblock %}
     </head>
 
-    <body>
+    <body id="{% block body_id %}body{% endblock %}">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
             <div class="container-fluid">
@@ -93,17 +93,20 @@
                         {% page_menu "pages/menus/dropdown.html" %}
                     </ul>
                 </div>
-                {% block top %}
-                <div class="row">
-                    <div class="col-sm-12">
-                        <ul class="breadcrumb">
-                            {% spaceless %}
-                                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-                            {% endspaceless %}
-                        </ul>
+
+                {% comment "パンくずリスト_コメントアウト" %}
+                    {% block top %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="breadcrumb">
+                                {% spaceless %}
+                                    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+                                {% endspaceless %}
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endblock %}
+                    {% endblock %}
+                {% endcomment %}
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
@@ -115,14 +118,22 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="site-heading">
-                            <h1>Clean Blog</h1>
-                            <hr class="small">
-                            <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                            <h2>
+                            {% block heading-text %}
+                                {% if page %}{{ page.meta_title }}{% endif %}
+                            {% endblock %}
+                            </h2>                            
+                            {% comment "サイトサブタイトル_コメントアウト" %}
+                                <hr class="small">
+                                {% if settings.SITE_TAGLINE %}
+                                    <span class="subheading">{{ settings.SITE_TAGLINE }}</span>
+                                {% endif %}
+                            {% endcomment %}
                         </div>
                     </div>
                 </div>
             </div>
-        </header>    
+        </header>
         <!-- Main Content -->
         <div class="container">
             <div class="row">
@@ -148,40 +159,14 @@
                 {% endif %}
             {% endnevercache %}
         </div>
-    
-        <section id="bottom" class="wet-asphalt">
-        	<div class="container">
-        	   {% page_menu "pages/menus/footer.html" %}
+
+        {% comment "最近の投稿_コメントアウト" %}
+            <section id="bottom" class="wet-asphalt">
+            <div class="container">
+            	{% page_menu "pages/menus/footer.html" %}
             </div>
-        </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Monotalk.xyz 2015</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+            </section>
+        {% endcomment %}
+        {% page_menu "pages/menus/footer_sns_link.html" %}
 </body>
 </html>

@@ -3,27 +3,64 @@
 
 {% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
 
-{% block meta_keywords %}{% metablock %}
-{% keywords_for page as keywords %}
-{% for keyword in keywords %}
-    {% if not forloop.first %}, {% endif %}
-    {{ keyword }}
-{% endfor %}
-{% endmetablock %}{% endblock %}
+{% block meta_keywords %}
+	{% metablock %}
+	{% keywords_for page as keywords %}
+	{% for keyword in keywords %}
+	    {% if not forloop.first %}, {% endif %}
+	    {{ keyword }}
+	{% endfor %}
+	{% endmetablock %}
+{% endblock %}
 
-{% block meta_description %}{% metablock %}
-{{ page.description }}
-{% endmetablock %}{% endblock %}
+
+{% block meta_description %}
+	{% metablock %}
+		{{ page.description }}
+	{% endmetablock %}
+{% endblock %}
 
 {% block title %}
 {% if page %}
 {% editable page.title %}{{ page.title }}{% endeditable %}
 {% else %}
-
 {% trans "Blog" %}
-
 {% endif %}
 {% endblock %}
+
+{# base.html のheading-textの処理を上書き #}
+{% block heading-text %}
+	{# サイトタイトルを出力する #}
+	{% if tag or category or year or month or author %}
+	    <p>
+	    {% if tag %}
+	        {% trans "Viewing posts tagged" %} {{ tag }}
+	    {% else %}{% if category %}
+	        {% trans "Viewing posts for the category" %} {{ category }}
+	    {% else %}{% if year or month %}
+	        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
+	        {{ year }}
+	    {% else %}{% if author %}
+	        {% trans "Viewing posts by" %}
+	        {{ author.get_full_name|default:author.username }}
+	    {% endif %}{% endif %}{% endif %}{% endif %}
+	    </p>
+	{% else %}
+	    {% if page %}
+		    {% block blog_post_list_pagecontent %}
+		    {% if page.get_content_model.content %}
+		        {% editable page.get_content_model.content %}
+		        {{ page.get_content_model.content|richtext_filters|safe }}
+		        {% endeditable %}
+		    {% endif %}
+		    {% endblock %}
+	    {% else %}
+	    	{{ page.title }}
+			{% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
+	    {% endif %}
+	{% endif %}
+{% endblock %}
+
 
 {% block breadcrumb_menu %}
 {{ block.super }}
@@ -58,22 +95,21 @@
 			<div class="blog">
 {% if tag or category or year or month or author %}
     {% block blog_post_list_filterinfo %}
-    <p>
-    {% if tag %}
-        {% trans "Viewing posts tagged" %} {{ tag }}
-    {% else %}{% if category %}
-        {% trans "Viewing posts for the category" %} {{ category }}
-    {% else %}{% if year or month %}
-        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
-        {{ year }}
-    {% else %}{% if author %}
-        {% trans "Viewing posts by" %}
-        {{ author.get_full_name|default:author.username }}
-    {% endif %}{% endif %}{% endif %}{% endif %}
+	    <p>
+	    {% if tag %}
+	        {% trans "Viewing posts tagged" %} {{ tag }}
+	    {% else %}{% if category %}
+	        {% trans "Viewing posts for the category" %} {{ category }}
+	    {% else %}{% if year or month %}
+	        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
+	        {{ year }}
+	    {% else %}{% if author %}
+	        {% trans "Viewing posts by" %}
+	        {{ author.get_full_name|default:author.username }}
+	    {% endif %}{% endif %}{% endif %}{% endif %}
     {% endblock %}
     </p>
 {% else %}
-
 {% comment %}
     {% if page %}
     {% block blog_post_list_pagecontent %}
@@ -158,8 +194,9 @@
 {% endblock %}
 
 {% comment "read more button is unnecessary" %}
- 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
 {% endcomment %}
+ 	
+ 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
 
 {% block blog_post_list_post_links %}
 {% keywords_for blog_post as tags %}
@@ -193,6 +230,5 @@
 </div>
 </section>
 {% endblock %}
-
 
 
