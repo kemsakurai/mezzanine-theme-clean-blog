@@ -16,28 +16,30 @@
 {% endblock %}
 
 {% block main %}
-
-{% if results.paginator.count == 0 %}
-<p>
-{% blocktrans %}
-No results were found in {{ search_type }} matching your query: {{ query }}
-{% endblocktrans %}
-{% else %}
-{% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
-{% endblocktrans %}
-{% endif %}
-</p>
-
-<div id="search-results">
-    {% for result in results.object_list %}
-    <h5>{{ forloop.counter0|add:results.start_index }})
-        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h5>
-    <p>{{ result.description|truncatewords_html:20|safe }}</p>
-    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
-    {% endfor %}
+<div class="row">		
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	{% if results.paginator.count == 0 %}
+	<p>
+	{% blocktrans %}
+	No results were found in {{ search_type }} matching your query: {{ query }}
+	{% endblocktrans %}
+	{% else %}
+	{% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
+	Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+	{% endblocktrans %}
+	{% endif %}
+	<hr>
+	</p>
+	<div id="search-results">
+	    {% for result in results.object_list %}
+	    <h5>{{ forloop.counter0|add:results.start_index }})
+	        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h5>
+	    <p>{{ result.description|truncatewords_html:20|safe }}</p>
+	    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+		<hr>
+	    {% endfor %}
+	</div>
+	{% pagination_for results %}
+	</div>
 </div>
-
-{% pagination_for results %}
-
 {% endblock %}
