@@ -54,14 +54,11 @@
 		    {% endif %}
 		    {% endblock %}
 	    {% else %}
-	    	<p>
 		    	{{ page.title }}
-				{% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}{% endif %}
-			</p>
+				{% if settings.SITE_TITLE %}<p>{{ settings.SITE_TITLE }}</p>{% endif %}			
 	    {% endif %}
 	{% endif %}
 {% endblock %}
-
 
 {% block breadcrumb_menu %}
 {{ block.super }}

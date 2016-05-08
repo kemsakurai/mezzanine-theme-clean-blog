@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{# タグのload #}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
 
 {% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
@@ -15,6 +16,8 @@
 {% block title %}
 {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
 {% endblock %}
+
+{% endifequal %}
 
 {# base.html のheading-textの処理を上書き #}
 {% block heading-text %}
@@ -66,6 +69,9 @@
 	<li class="active">{{ blog_post.title }}</li>
 {% endblock %}
 
+{# ----------------------------------------------------------------------------------#}
+{# MAINBLOCK START#}
+{# ------#}
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
@@ -91,6 +97,7 @@
 						{% endblock %}
 
 						{% block blog_post_list_post_metainfo %}
+						
 						{% comment "最近の投稿_コメントアウト" %}		
 							{% editable blog_post.publish_date %}
 							<div class="entry-meta">
@@ -161,6 +168,10 @@
 	</div>
 </section>
 {% endblock %}
+{# ----------------------------------------------------------------------------------#}
+{# MAINBLOCK END#}
+{# ------#}
+
 {% block blog_post_detail_rating %}
 <div class="panel panel-default rating">
     <div class="panel-body">
@@ -205,9 +216,4 @@
 </ul>
 </div>
 {% endif %}
-
 {% endblock %}
-
-
-
-
