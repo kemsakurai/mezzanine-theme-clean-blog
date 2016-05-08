@@ -120,7 +120,7 @@
                         <div class="site-heading">
                             <h2>
                             {% block heading-text %}
-                                {% if page %}{{ page.meta_title }}{% endif %}
+                                {% if page %}<p>{{ page.meta_title }}</p>{% endif %}
                             {% endblock %}
                             </h2>                            
                             {# サイトサブタイトル #}
