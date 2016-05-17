@@ -20,11 +20,11 @@
 {% endblock %}
 
 {% block title %}
-{% if page %}
-{% editable page.title %}{{ page.title }}{% endeditable %}
-{% else %}
-{% trans "Blog" %}
-{% endif %}
+	{% if page %}
+		{% editable page.title %}{{ page.title }}{% endeditable %}
+	{% else %}
+		{% trans "Blog" %}
+	{% endif %}
 {% endblock %}
 
 {# base.html のheading-textの処理を上書き #}
