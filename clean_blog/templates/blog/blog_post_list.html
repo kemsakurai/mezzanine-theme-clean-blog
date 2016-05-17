@@ -1,4 +1,6 @@
+{# 親template クラスの読み込み #}
 {% extends "base.html" %}
+{# tagのロード #}
 {% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
 {# base.html のmeta_titleの処理の上書き #}
@@ -28,6 +30,7 @@
 	{% endif %}
 {% endblock %}
 
+{# キーワード出力 #}
 {% block meta_keywords %}
 	{% metablock %}
 	{% keywords_for page as keywords %}
@@ -38,6 +41,7 @@
 	{% endmetablock %}
 {% endblock %}
 
+{# descriptionの上書き #}
 {% block meta_description %}
 	{% metablock %}
 		{{ page.description }}
@@ -85,6 +89,7 @@
 	{% endif %}
 {% endblock %}
 
+{# パンくずリスト #}
 {% block breadcrumb_menu %}
 {{ block.super }}
 {% if tag or category or year or month or author %}
@@ -103,48 +108,31 @@
 {% endif %}
 {% endblock %}
 
+{# ---------------------------------------------------------- #}
+{# MAINブロック #}
+{# --------------- #}
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-		{% block right_panel %}
-		{% comment "ページ右バナー部は出力しないためコメントアウト" %}
-			<aside class="col-sm-4 col-sm-push-9">
-			{% include "blog/includes/filter_panel.html" %}
-			</aside>
-		{% endcomment %}
-		{% endblock %}
 			<div class="blog">
-	{% if tag or category or year or month or author %}
-	    {% block blog_post_list_filterinfo %}
-		    <p>
-		    {% if tag %}
-		        {% trans "Viewing posts tagged" %} {{ tag }}
-		    {% else %}{% if category %}
-		        {% trans "Viewing posts for the category" %} {{ category }}
-		    {% else %}{% if year or month %}
-		        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
-		        {{ year }}
-		    {% else %}{% if author %}
-		        {% trans "Viewing posts by" %}
-		        {{ author.get_full_name|default:author.username }}
-		    {% endif %}{% endif %}{% endif %}{% endif %}
-	    {% endblock %}
-	    </p>
-	{% else %}
-	{% comment "ページのタイトル類は出力しないためコメントアウト" %}
-	    {% if page %}
-	    {% block blog_post_list_pagecontent %}
-	    {% if page.get_content_model.content %}
-	        {% editable page.get_content_model.content %}
-	        {{ page.get_content_model.content|richtext_filters|safe }}
-	        {% endeditable %}
-	    {% endif %}
-	    {% endblock %}
-	    {% endif %}
-	{% endcomment %}
-
-	{% endif %}
+				{% if tag or category or year or month or author %}
+				    {% block blog_post_list_filterinfo %}
+					    <p>
+					    {% if tag %}
+					        {% trans "Viewing posts tagged" %} {{ tag }}
+					    {% else %}{% if category %}
+					        {% trans "Viewing posts for the category" %} {{ category }}
+					    {% else %}{% if year or month %}
+					        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
+					        {{ year }}
+					    {% else %}{% if author %}
+					        {% trans "Viewing posts by" %}
+					        {{ author.get_full_name|default:author.username }}
+					    {% endif %}{% endif %}{% endif %}{% endif %}
+				    {% endblock %}
+				    </p>
+				{% endif %}
 
 	{% for blog_post in blog_posts.object_list %}
 		 <div class="blog-item">
@@ -234,10 +222,9 @@
 	</div>
 	<hr>
 	{% endfor %}
-
 </div>
-{% pagination_for blog_posts %}
 
+{% pagination_for blog_posts %}
 {% if settings.COMMENTS_DISQUS_SHORTNAME %}
 {% include "generic/includes/disqus_counts.html" %}
 {% endif %}
@@ -245,3 +232,6 @@
 </div>
 </section>
 {% endblock %}
+{# ---------------------------------------------------------- #}
+{# MAINブロック END#}
+{# --------------- #}

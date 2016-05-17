@@ -26,8 +26,6 @@
 {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
 {% endblock %}
 
-{% endifequal %}
-
 {# base.html のheading-textの処理を上書き #}
 {% block heading-text %}
 	{% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
@@ -106,7 +104,7 @@
 						{% endblock %}
 
 						{% block blog_post_list_post_metainfo %}
-						
+
 						{% comment "最近の投稿_コメントアウト" %}		
 							{% editable blog_post.publish_date %}
 							<div class="entry-meta">
