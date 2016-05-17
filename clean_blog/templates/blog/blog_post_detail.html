@@ -82,13 +82,7 @@
 {% block main %}
 <section id="blog" class="container">
 	<div class="row">
-		{% block right_panel %}
-		<aside class="col-sm-4 col-sm-push-9">
-		    {% include "blog/includes/filter_panel.html" %}
-		</aside>
-		{% endblock %}
-		
-		<div class="col-sm-8 col-sm-pull-4">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<div class="blog">
 				<div class="blog-item">
 				 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -104,44 +98,6 @@
 						{% endblock %}
 
 						{% block blog_post_list_post_metainfo %}
-
-						{% comment "最近の投稿_コメントアウト" %}		
-							{% editable blog_post.publish_date %}
-							<div class="entry-meta">
-								<span><i class="icon-user"></i> {% with blog_post.user as author %}
-								<a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
-								{% endwith %}
-								</span>
-								<span><i class="icon-folder-close"></i>
-								{% with blog_post.categories.all as categories %}
-								{% if categories %}
-								{% trans "in" %}
-								{% for category in categories %}
-								<a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
-								{% endfor %}
-								{% endif %}
-								{% endwith %}
-
-								</span>
-								<span><i class="icon-calendar"></i> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
-								<span><i class="icon-comment"></i> 
-								{% if blog_post.allow_comments %}
-									
-									{% if settings.COMMENTS_DISQUS_SHORTNAME %}
-									<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-										data-disqus-identifier="{% disqus_id_for blog_post %}">
-										{% trans "Comments" %}
-									</a>
-									{% else %}
-									<a href="{{ blog_post.get_absolute_url }}#comments">
-										{% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
-									</a>
-									{% endif %}
-									{% endif %}
-								</span>
-							</div>
-							{% endeditable %}
-						{% endcomment %}
 						{% endblock %}
 
 						{% block blog_post_list_post_content %}
@@ -169,6 +125,71 @@
 							{% endblock %}
 						{% endblock %}
 					</div>
+				</div>
+				{% include "blog/includes/google_adsense_blog_bottom.html" %}
+				
+				<div class="blog-item">
+					{% load blog_tags keyword_tags mezzanine_tags i18n %}
+					{% block blog_recent_posts %}
+					{% blog_recent_posts 5 as recent_posts %}
+					{% if recent_posts %}
+					<h3>{% trans "Recent Posts" %}</h3>
+					<ul class="recent-posts">
+					{% for recent_post in recent_posts %}
+					<li>
+					    {% spaceless %}
+					    <a href="{{ recent_post.get_absolute_url }}">
+					        {% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
+					        <img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 24 24 %}">
+					        {% endif %}
+					    {{ recent_post.title }}
+					    </a>
+					    {% endspaceless %}
+					</li>
+					{% endfor %}
+					</ul>
+					{% endif %}
+					{% endblock %}
+
+					{% block blog_months %}
+					{% blog_months as months %}
+					{% if months %}
+					<h3>{% trans "Archive" %}</h3>
+					{% for month in months %}
+					    {% ifchanged month.date.year %}
+					        {% if not forloop.first %}</ul>{% endif %}
+					        <h4>{{ month.date.year }}</h4><ul>
+					    {% endifchanged %}
+					    <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
+					        >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
+					{% endfor %}
+					</ul>
+					{% endif %}
+					{% endblock %}
+
+					{% block blog_feeds %}
+					<h3>{% trans "Feeds" %}</h3>
+					<ul>
+					<li>
+					{% if tag %}
+					    <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
+					    <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
+					{% endif %}
+					{% if category %}
+					    <a href="{% url "blog_post_feed_category" category.slug "rss" %}">{% trans "RSS" %}</a> /
+					    <a href="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
+					{% endif %}
+					{% if author %}
+					    <a href="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a> /
+					    <a href="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
+					{% endif %}
+					{% if not tag and not category and not author %}
+					    <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
+					    <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
+					{% endif %}
+					</li>
+					</ul>
+					{% endblock %}
 				</div>
 			</div>
 		</div>
