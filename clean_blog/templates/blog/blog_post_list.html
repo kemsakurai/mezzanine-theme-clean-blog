@@ -1,7 +1,32 @@
 {% extends "base.html" %}
 {% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{# base.html のmeta_titleの処理の上書き #}
+{% block meta_title %}
+	{# サイトタイトルを出力する #}
+	{% if tag or category or year or month or author %}
+	    {% if tag %}
+	        {% trans "Viewing posts tagged" %} {{ tag }}
+	    {% else %}
+	    	{% if category %}
+	        	{% trans "Viewing posts for the category" %} {{ category }}
+	    	{% else %}
+	    		{% if year or month %}
+	        		{% trans "Viewing posts from" %} {% if month %} {{ month }}, {% endif %}
+	        		{{ year }}
+	    		{% else %}
+	    			{% if author %}{% trans "Viewing posts by" %}{{ author.get_full_name|default:author.username }}{% endif %}
+	    		{% endif %}
+	    	{% endif %}
+	    {% endif %}
+	{% else %}
+		{% if page %}
+			{{ page.meta_title }}    
+	    {% else %}
+			{% trans "Blog" %}    
+	    {% endif %}
+	{% endif %}
+{% endblock %}
 
 {% block meta_keywords %}
 	{% metablock %}
@@ -220,5 +245,3 @@
 </div>
 </section>
 {% endblock %}
-
-
