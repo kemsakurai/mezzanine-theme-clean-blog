@@ -68,7 +68,8 @@
 		{% endif %}										
         </span>
 	</div>
-	{% endeditable %}
+    {% endeditable %}
+    {% include "blog/includes/share_button.html" %} 
 {% endblock %}
 
 {% block breadcrumb_menu %}
@@ -84,7 +85,10 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<div class="blog">
-				<div class="blog-item">
+				{# Google Adsense #}
+                {% include "blog/includes/google_adsense_blog_bottom.html" %}
+                
+                <div class="blog-item">
 				 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
 					{% block blog_post_list_post_featured_image %}
 					<a href="{{ blog_post.get_absolute_url }}">
@@ -125,15 +129,18 @@
 							{% endblock %}
 						{% endblock %}
 					</div>
-				</div>
-				{% include "blog/includes/google_adsense_blog_bottom.html" %}
-				
+                    
+                </div>
+			     
+                {% include "blog/includes/google_adsense_blog_bottom.html" %}
+                
 				<div class="blog-item">
 					{% load blog_tags keyword_tags mezzanine_tags i18n %}
 					{% block blog_recent_posts %}
 					{% blog_recent_posts 5 as recent_posts %}
 					{% if recent_posts %}
-					<h3>{% trans "Recent Posts" %}</h3>
+					
+                    <h3>{% trans "Recent Posts" %}</h3>
 					<ul class="recent-posts">
 					{% for recent_post in recent_posts %}
 					<li>

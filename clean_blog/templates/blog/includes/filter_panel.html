@@ -98,4 +98,6 @@
     <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
     <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
+{% include "blog/includes/google_adsense_right_bottom.html" %}
 {% endblock %}
+
