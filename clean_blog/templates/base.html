@@ -38,7 +38,6 @@
     {% block extra_css %}
     {% endblock %}
     {% endcompress %}
-
        <!-- Custom Fonts -->    
        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -55,14 +54,13 @@
         <!-- Custom Theme JavaScript -->
         <script src="{% static "js/clean-blog.min.js" %}"></script>
         <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+        {% block extra_js %}{% endblock %}
+        {% include "includes/footer_scripts.html" %}
+    {% endcompress %}
         <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
-
-        {% block extra_js %}{% endblock %}
-        {% include "includes/footer_scripts.html" %}
-    {% endcompress %}
     {% block extra_head %}{% endblock %}
     </head>
     <body id="{% block body_id %}body{% endblock %}">
