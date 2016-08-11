@@ -60,15 +60,11 @@
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
 
-    {% block extra_js %}
-    {% endblock %}
-    {% include "includes/footer_scripts.html" %}
+        {% block extra_js %}{% endblock %}
+        {% include "includes/footer_scripts.html" %}
     {% endcompress %}
-    
-    {% block extra_head %}
-    {% endblock %}
+    {% block extra_head %}{% endblock %}
     </head>
-
     <body id="{% block body_id %}body{% endblock %}">
         <!-- Navigation -->
         <div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
@@ -91,19 +87,6 @@
                         {% search_form "all" %}
                     </ul>
                 </div>
-                {% comment "パンくずリスト_コメントアウト" %}
-                    {% block top %}
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="breadcrumb">
-                                {% spaceless %}
-                                    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-                                {% endspaceless %}
-                            </ul>
-                        </div>
-                    </div>
-                    {% endblock %}
-                {% endcomment %}
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
@@ -121,8 +104,7 @@
                             {% endblock %}
                             </h2>                            
                             {# サイトサブタイトル #}
-                            {% block subheading-text %}
-                            {% endblock %}
+                            {% block subheading-text %}{% endblock %}
                         </div>
                     </div>
                 </div>
@@ -131,14 +113,10 @@
         <!-- Main Content -->
         <div class="container">
             <div class="row">
-                {% block left_panel %}    
-                {% endblock %}
-
-                {% block main %}    
-                {% endblock %}
+                {% block left_panel %}{% endblock %}
+                {% block main %}{% endblock %}
            </div>
         </div>
-
         <div class="container">
             {% nevercache %}
                 {% if messages %}
@@ -153,14 +131,7 @@
                 {% endif %}
             {% endnevercache %}
         </div>
-
-        {% comment "最近の投稿_コメントアウト" %}
-            <section id="bottom" class="wet-asphalt">
-            <div class="container">
-            	{% page_menu "pages/menus/footer.html" %}
-            </div>
-            </section>
-        {% endcomment %}
+        {# footerのsnsリンク #}
         {% page_menu "pages/menus/footer_sns_link.html" %}
 </body>
 </html>
