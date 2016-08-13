@@ -2,16 +2,17 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n future staticfiles %}
 {% load compress %}
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="author" content="Kem">
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-        <meta name="description" content="{% block meta_description %}{% endblock %}">
-        <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Kem">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <title>
+        {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
     {% ifinstalled mezzanine.blog %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
@@ -25,30 +26,32 @@
         <!-- Code Hilite -->
         <link rel="stylesheet" href="{% static "css/codehilite.css" %}">
         {% if LANGUAGE_BIDI %}
-         <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+            <link rel="stylesheet" href="{% static "css/rtl.css" %}">
         {% endif %}
 
         {% ifinstalled cartridge.shop %}
-        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
-        {% if LANGUAGE_BIDI %}
-        <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
-        {% endif %}
+            <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+            {% if LANGUAGE_BIDI %}
+                <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+            {% endif %}
         {% endifinstalled %}
-    
-    {% block extra_css %}
-    {% endblock %}
+
+        {% block extra_css %}{% endblock %}
     {% endcompress %}
-       <!-- Custom Fonts -->    
-       <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-       <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-       <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
 
     {% compress js %}
         {% comment "Error of jquery avoided" %}
             <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
         {% endcomment %}
         <!-- jQuery -->
-        <script src="{% static "js/jquery.js" %}"></script>        
+        <script src="{% static "js/jquery.min.js" %}"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <!-- Custom Theme JavaScript -->
@@ -57,79 +60,80 @@
         {% block extra_js %}{% endblock %}
         {% include "includes/footer_scripts.html" %}
     {% endcompress %}
-        <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
     {% block extra_head %}{% endblock %}
-    </head>
-    <body id="{% block body_id %}body{% endblock %}">
-        <!-- Navigation -->
-        <div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
-                    {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->                
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% page_menu "pages/menus/dropdown.html" %}
-                        {% search_form "all" %}
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
+</head>
+<body id="{% block body_id %}body{% endblock %}">
+<!-- Navigation -->
+<div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
+            {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
         </div>
-        <!-- Page Header -->
-        <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        <div class="site-heading">
-                            <h2>
-                            {% block heading-text %}
-                                {% if page %}<p>{{ page.meta_title }}</p>{% endif %}
-                            {% endblock %}
-                            </h2>                            
-                            {# サイトサブタイトル #}
-                            {% block subheading-text %}{% endblock %}
-                        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% page_menu "pages/menus/dropdown.html" %}
+                {% search_form "all" %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h2>
+                        {% block heading-text %}
+                            {% if page %}<p>{{ page.meta_title }}</p>{% endif %}
+                        {% endblock %}
+                    </h2>
+                    {# サイトサブタイトル #}
+                    {% block subheading-text %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        {% block left_panel %}{% endblock %}
+        {% block main %}{% endblock %}
+    </div>
+</div>
+<div class="container">
+    {% nevercache %}
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        </header>
-        <!-- Main Content -->
-        <div class="container">
-            <div class="row">
-                {% block left_panel %}{% endblock %}
-                {% block main %}{% endblock %}
-           </div>
-        </div>
-        <div class="container">
-            {% nevercache %}
-                {% if messages %}
-                <div class="messages">
-                    {% for message in messages %}
-                        <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            {% endnevercache %}
-        </div>
-        {# footerのsnsリンク #}
-        {% page_menu "pages/menus/footer_sns_link.html" %}
+        {% endif %}
+    {% endnevercache %}
+</div>
+{# footerのsnsリンク #}
+{% page_menu "pages/menus/footer_sns_link.html" %}
 </body>
 </html>
