@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n future staticfiles %}
+{% load pages_tags mezzanine_tags i18n staticfiles %}
 {% load compress %}
 <head>
     <meta charset="utf-8">
@@ -45,21 +45,6 @@
           type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
           rel='stylesheet' type='text/css'>
-
-    {% compress js %}
-        {% comment "Error of jquery avoided" %}
-            <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-        {% endcomment %}
-        <!-- jQuery -->
-        <script src="{% static "js/jquery.min.js" %}"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{% static "js/bootstrap.min.js" %}"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="{% static "js/clean-blog.min.js" %}"></script>
-        <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-        {% block extra_js %}{% endblock %}
-        {% include "includes/footer_scripts.html" %}
-    {% endcompress %}
     <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
@@ -135,5 +120,20 @@
 </div>
 {# footerのsnsリンク #}
 {% page_menu "pages/menus/footer_sns_link.html" %}
+{% compress js %}
+    {% comment "Error of jquery avoided" %}
+        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+    {% endcomment %}
+    <!-- jQuery -->
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+    <script src="{% static "js/contact_me.js" %}"></script>
+    <script src="{% static "js/clean-blog.min.js" %}"></script>
+    {% block extra_js %}{% endblock %}
+    {% include "includes/footer_scripts.html" %}
+{% endcompress %}
 </body>
 </html>
