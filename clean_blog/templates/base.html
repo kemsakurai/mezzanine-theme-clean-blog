@@ -35,7 +35,6 @@
                 <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
             {% endif %}
         {% endifinstalled %}
-
         {% block extra_css %}{% endblock %}
     {% endcompress %}
     <!-- Custom Fonts -->
@@ -48,7 +47,18 @@
     <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
-        <![endif]-->
+    <![endif]-->
+
+    {% compress js %}
+        <!-- jQuery -->
+        <script src="{% static "js/jquery.min.js" %}"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "js/contact_me.js" %}"></script>
+        <script src="{% static "js/clean-blog.min.js" %}"></script>
+    {% endcompress %}
     {% block extra_head %}{% endblock %}
 </head>
 <body id="{% block body_id %}body{% endblock %}">
@@ -120,20 +130,9 @@
 </div>
 {# footerのsnsリンク #}
 {% page_menu "pages/menus/footer_sns_link.html" %}
-{% compress js %}
-    {% comment "Error of jquery avoided" %}
-        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-    {% endcomment %}
-    <!-- jQuery -->
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-    <script src="{% static "js/contact_me.js" %}"></script>
-    <script src="{% static "js/clean-blog.min.js" %}"></script>
-    {% block extra_js %}{% endblock %}
-    {% include "includes/footer_scripts.html" %}
-{% endcompress %}
+{# footerのjavascriptリンク 圧縮なし #}
+{% block footer_js %}
+{% include "includes/footer_scripts.html" %}
+{% endblock %}
 </body>
 </html>
