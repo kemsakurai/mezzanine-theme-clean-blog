@@ -1,0 +1,8 @@
+{% if current_page.has_previous %}
+    <link rel=”prev” href="?{{ page_var }}=
+            {{ current_page.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"/>
+{% endif %}
+{% if current_page.has_next %}
+    <link rel=”next”
+          href="?{{ page_var }}={{ current_page.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"/>
+{% endif %}

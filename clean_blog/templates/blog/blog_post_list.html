@@ -1,5 +1,9 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags %}
+
+{% block extra_head%}
+    {% pagination_prev_next_for blog_posts %}
+{% endblock %}
 
 {# base.html のmeta_titleの処理の上書き #}
 {% block meta_title %}
