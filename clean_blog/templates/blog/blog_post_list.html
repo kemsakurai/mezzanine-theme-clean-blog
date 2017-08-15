@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags %}
 
-{% block extra_head%}
+{% block extra_head %}
     {% pagination_prev_next_for blog_posts %}
 {% endblock %}
 
@@ -116,11 +116,7 @@
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 		
         {% block right_panel %}
-		    {% comment "ページ右バナー部は出力しないためコメントアウト" %}
-			<aside class="col-sm-4 col-sm-push-9">
-			    {% include "blog/includes/filter_panel.html" %}
-			</aside>
-		    {% endcomment %}
+        	{# Do Nothing... #}
 		{% endblock %}
 	<div class="blog">
 	{% if tag or category or year or month or author %}
@@ -142,9 +138,9 @@
 	{% else %}
 	{% endif %}
         
- <div class="blog-item">
-     {% include "blog/includes/google_adsense_blog_bottom.html" %}
- </div>
+    <div class="blog-item">
+        {% include "blog/includes/google_adsense_blog_bottom.html" %}
+    </div>
 	{% for blog_post in blog_posts.object_list %}
 		 <div class="blog-item">
 			 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -188,11 +184,11 @@
 							
 							{% if settings.COMMENTS_DISQUS_SHORTNAME %}
 							<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-								data-disqus-identifier="{% disqus_id_for blog_post %}">
+								data-disqus-identifier="{% disqus_id_for blog_post %}" data-ga-event-category="discus_comment" data-ga-event-label="{{ blog_post.get_absolute_url }}">
 								{% trans "Comments" %}
 							</a>
 							{% else %}
-							<a href="{{ blog_post.get_absolute_url }}#comments">
+							<a href="{{ blog_post.get_absolute_url }}#comments" data-ga-event-category="comment" data-ga-event-label="{{ blog_post.get_absolute_url }}">
 								{% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
 							</a>
 							{% endif %}
@@ -245,8 +241,12 @@
 {% include "blog/includes/google_adsense_blog_bottom.html" %}
 </div>
 
+{% block blog_post_list_bottom %}
+<div class="blog-item">
+{% include "blog/includes/filter_panel_bottom.html" with blog_posts=blog_posts year=year month=month tag=tag category=category author=author flavour=flavour %}
 </div>
+{% endblock %}
+
 </div>
 </section>
 {% endblock %}
-

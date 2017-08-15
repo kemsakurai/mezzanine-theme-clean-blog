@@ -1,8 +1,10 @@
+
 from __future__ import absolute_import, division, unicode_literals
 
 from mezzanine import template
 
 register = template.Library()
+
 
 @register.inclusion_tag("includes/pagination_prev_next.html", takes_context=True)
 def pagination_prev_next_for(context, current_page, page_var="page", exclude_vars=""):

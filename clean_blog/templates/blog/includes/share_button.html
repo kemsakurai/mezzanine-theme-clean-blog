@@ -1,33 +1,20 @@
 {% load mezzanine_tags %}
-<div class="bottom20">                                                                                                                   
-    <div class="btn-group">
-    {% set_short_url_for blog_post %}
-        <!-- twitter -->
-        <div class="btn">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ blog_post.short_url }}" data-via="monotalk_xyz" data-size="large">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <!-- facebook -->
-        <div class="btn">
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.7";
-                      fjs.parentNode.insertBefore(js, fjs);
-                      }(document, 'script', 'facebook-jssdk'));
-            </script>
-            <div class="fb-share-button" data-href="{{ blog_post.short_url }}" data-layout="button" data-size="large" data-mobile-iframe="true">
-                <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ blog_post.short_url|escape }}%2F&amp;src=sdkpreparse">シェア</a>
-            </div>
-        </div>
-    
-        <!-- hatena -->
-        <div class="btn">
-            <a href="http://b.hatena.ne.jp/entry/{{ blog_post.short_url|urlencode }}" class="hatena-bookmark-button" data-hatena-bookmark-title="{{ blog_post.title }}" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加">
-                <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
-            </a>
-            <script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        </div>
+<div class="bottom20">
+    <div id="share">
+        {% set_short_url_for blog_post %}
+        <ul class="center-block">
+        <!-- Twitter -->
+        <li class="share-twitter">
+            <a href="http://twitter.com/home?status={{ blog_post.title }}%20{{ blog_post.short_url }}%20by%20" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="twitter" target="_blank">Twitter</a>
+        </li>
+        <!-- Facebook -->   
+        <li class="share-facebook">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ blog_post.short_url|escape }}&src=sdkpreparse" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="facebook" target="_blank">Facebook</a>
+        </li>
+        <!-- はてなブックマーク -->
+        <li class="share-hatena">
+            <a href="http://b.hatena.ne.jp/add?mode=confirm&url={{ blog_post.short_url|urlencode }}&title={{ blog_post.title }}" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="hatena" target="_blank">はてブ</a>
+        </li>
+        </ul>
     </div>
 </div>

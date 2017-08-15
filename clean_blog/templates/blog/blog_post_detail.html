@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {# タグのload #}
-{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta %}
+
+{% block extra_ogp %}
+
+{% spaceless %}
+{% autoescape off %}
+    {% og_prop 'title' blog_post.title %}
+    {% og_prop 'url' blog_post.get_absolute_url %}
+    {% og_prop 'description' blog_post.description %}
+    {% og_prop 'type' "article" %}
+    {% if settings.SITE_TITLE %}{% og_prop 'site_name' settings.SITE_TITLE %}{% endif %}
+    {% if settings.CLEAN_BLOG_FACEBOOK_APP_ID %}{% facebook_prop 'app_id' settings.CLEAN_BLOG_FACEBOOK_APP_ID %}{% endif %}
+    {% twitter_prop 'card' "summary" %}
+{% endautoescape %}
+{% endspaceless %}
+{% endblock %}
 
 {# ヘッダータイトル #}
 {% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
@@ -57,11 +72,11 @@
 			
 			{% if settings.COMMENTS_DISQUS_SHORTNAME %}
 			<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-				data-disqus-identifier="{% disqus_id_for blog_post %}">
+				data-disqus-identifier="{% disqus_id_for blog_post %}" data-ga-event-action="click" data-ga-event-category="discus_comment" data-ga-event-label="{{ blog_post.get_absolute_url }}">
 				{% trans "Comments" %}
 			</a>
 			{% else %}
-			<a href="{{ blog_post.get_absolute_url }}#comments">
+			<a href="{{ blog_post.get_absolute_url }}#comments" data-ga-event-action="click" data-ga-event-category="comment" data-ga-event-label="{{ blog_post.get_absolute_url }}">
 				{% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
 			</a>
 			{% endif %}
@@ -97,7 +112,19 @@
 					{% endblock %}
 				 {% endif %}
 					<div class="blog-content">
-						{# ブログタイトルの出力箇所 #}
+                        {% block blog_post_json_ld %}
+                        {% load i18n mezzanine_tags mezzanine_extentions_tags %}
+                        {% conv_blog_post_to_json_ld blog=blog_post as json_ld %}
+                        {% if json_ld %}
+                        <script type="application/ld+json">
+                        {% autoescape off %}
+                        {{ json_ld }}
+                        {% endautoescape %}
+                        </script>
+                        {% endif %}
+                        {% endblock %}
+
+                        {# ブログタイトルの出力箇所 #}
 						{% block blog_post_list_post_title %}
 						{% endblock %}
 
@@ -131,73 +158,33 @@
 					</div>
                     
                 </div>
-			     
-                {% include "blog/includes/google_adsense_blog_bottom.html" %}
                 
+                {% include "blog/includes/google_adsense_blog_bottom.html" %}
 				<div class="blog-item">
-					{% load blog_tags keyword_tags mezzanine_tags i18n %}
-					{% block blog_recent_posts %}
-					{% blog_recent_posts 5 as recent_posts %}
-					{% if recent_posts %}
-					
-                    <h3>{% trans "Recent Posts" %}</h3>
-					<ul class="recent-posts">
-					{% for recent_post in recent_posts %}
-					<li>
-					    {% spaceless %}
-					    <a href="{{ recent_post.get_absolute_url }}">
-					        {% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
-					        <img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 24 24 %}">
-					        {% endif %}
-					    {{ recent_post.title }}
-					    </a>
-					    {% endspaceless %}
-					</li>
-					{% endfor %}
-					</ul>
-					{% endif %}
-					{% endblock %}
-
-					{% block blog_months %}
-					{% blog_months as months %}
-					{% if months %}
-					<h3>{% trans "Archive" %}</h3>
-					{% for month in months %}
-					    {% ifchanged month.date.year %}
-					        {% if not forloop.first %}</ul>{% endif %}
-					        <h4>{{ month.date.year }}</h4><ul>
-					    {% endifchanged %}
-					    <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
-					        >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
-					{% endfor %}
-					</ul>
-					{% endif %}
-					{% endblock %}
-
-					{% block blog_feeds %}
-					<h3>{% trans "Feeds" %}</h3>
-					<ul>
-					<li>
-					{% if tag %}
-					    <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
-					    <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
-					{% endif %}
-					{% if category %}
-					    <a href="{% url "blog_post_feed_category" category.slug "rss" %}">{% trans "RSS" %}</a> /
-					    <a href="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
-					{% endif %}
-					{% if author %}
-					    <a href="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a> /
-					    <a href="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
-					{% endif %}
-					{% if not tag and not category and not author %}
-					    <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
-					    <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
-					{% endif %}
-					</li>
-					</ul>
-					{% endblock %}
-				</div>
+                    {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
+                </div>
+                
+                {% block blog_post_previous_next %}
+                <div class="blog-item">
+                    <ul class="pager">
+                    {% with blog_post.get_previous_by_publish_date as previous %}
+                    {% if previous %}
+                    <li class="previous">
+                        <a href="{{ previous.get_absolute_url }}">&lt; {{ previous|truncatechars:25 }}</a>
+                    </li>
+                    {% endif %}
+                    {% endwith %}
+                    {% with blog_post.get_next_by_publish_date as next %}
+                    {% if next %}
+                    <li class="next">
+                        <a href="{{ next.get_absolute_url }}">{{ next|truncatechars:25 }} &gt;</a>
+                    </li>
+                    {% endif %}
+                    {% endwith %}
+                    </ul>
+                    {% endblock %}                  
+                </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -206,7 +193,6 @@
 {# ----------------------------------------------------------------------------------#}
 {# MAINBLOCK END#}
 {# ------#}
-
 {% block blog_post_detail_rating %}
 <div class="panel panel-default rating">
     <div class="panel-body">
@@ -219,36 +205,4 @@
 {% set_short_url_for blog_post %}
 <a class="btn btn-sm share-twitter" target="_blank" href="http://twitter.com/home?status={{ blog_post.short_url|urlencode }}%20{{ blog_post.title|urlencode }}">{% trans "Share on Twitter" %}</a>
 <a class="btn btn-sm share-facebook" target="_blank" href="http://facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ blog_post.title|urlencode }}">{% trans "Share on Facebook" %}</a>
-{% endblock %}
-
-{% block blog_post_previous_next %}
-<ul class="pager">
-{% with blog_post.get_previous_by_publish_date as previous %}
-{% if previous %}
-<li class="previous">
-    <a href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
-</li>
-{% endif %}
-{% endwith %}
-{% with blog_post.get_next_by_publish_date as next %}
-{% if next %}
-<li class="next">
-    <a href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
-</li>
-{% endif %}
-{% endwith %}
-</ul>
-{% endblock %}
-
-{% block blog_post_detail_related_posts %}
-{% if blog_post.related_posts.all %}
-<div id="related-posts">
-<h3>{% trans 'Related posts' %}</h3>
-<ul class="list-unstyled">
-{% for post in blog_post.related_posts.all %}
-     <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-{% endfor %}
-</ul>
-</div>
-{% endif %}
 {% endblock %}

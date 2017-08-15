@@ -2,17 +2,18 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 {% load compress %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Kem">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-    <meta name="description" content="{% block meta_description %}{% endblock %}">
-    <title>
-        {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="Kem">
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+        <link rel="amphtml" href="{{ request.get_full_path }}">
+        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+        {% block extra_ogp %}{% endblock %}
     {% ifinstalled mezzanine.blog %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
@@ -22,117 +23,137 @@
         <!-- Bootstrap Core CSS -->
         <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
         <link href="{% static "css/clean-blog.min.css" %}" rel="stylesheet">
-
+        
+        <!-- Custom Fonts -->
+        <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">  
+        <link href="{% static "css/fonts.css" %}" rel="stylesheet">
+    
         <!-- Code Hilite -->
+        {% ifinstalled mezzanine_pagedown %}
         <link rel="stylesheet" href="{% static "css/codehilite.css" %}">
-        {% if LANGUAGE_BIDI %}
-            <link rel="stylesheet" href="{% static "css/rtl.css" %}">
-        {% endif %}
+        {% endifinstalled %}        
 
+        {% if LANGUAGE_BIDI %}
+         <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+        {% endif %}
         {% ifinstalled cartridge.shop %}
-            <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
-            {% if LANGUAGE_BIDI %}
-                <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
-            {% endif %}
+        <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+        {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+        {% endif %}
         {% endifinstalled %}
         {% block extra_css %}{% endblock %}
+
     {% endcompress %}
-    <!-- Custom Fonts -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
-          type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-          rel='stylesheet' type='text/css'>
-    <!--[if lt IE 9]>
+    {% compress js %}
+        <!-- jQuery -->                                                                                                                                                           
+        <script src="{% static "js/jquery.min.js" %}"></script>
+        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
+        <!-- End Google Tag Manager -->
+        {% endif %}
+        {% block extra_js %}{% endblock %}
+    {% endcompress %}
+        <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
-    <![endif]-->
+        <![endif]-->
+        {% block extra_head %}{% endblock %}
+    </head>
+    <body id="{% block body_id %}body{% endblock %}">
+        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.GOOGLE_TAG_MANAGER_ID }}"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% endif %}
 
-    {% compress js %}
-        <!-- jQuery -->
-        <script src="{% static "js/jquery.min.js" %}"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{% static "js/bootstrap.min.js" %}"></script>
-        <script src="{% static "js/contact_me.js" %}"></script>
-        <script src="{% static "js/clean-blog.min.js" %}"></script>
-    {% endcompress %}
-    {% block extra_head %}{% endblock %}
-</head>
-<body id="{% block body_id %}body{% endblock %}">
-<!-- Navigation -->
-<div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
-            {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+        <!-- Navigation -->
+        <div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/" data-ga-event-category="home" data--event-action="click">{{ settings.SITE_TITLE }}</a>{% endif %}
+                    {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->                
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% page_menu "pages/menus/dropdown.html" %}
+                        {% search_form "all" %}
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                {% page_menu "pages/menus/dropdown.html" %}
-                {% search_form "all" %}
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</div>
-<!-- Page Header -->
-<!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h2>
-                        {% block heading-text %}
-                            {% if page %}<p>{{ page.meta_title }}</p>{% endif %}
-                        {% endblock %}
-                    </h2>
-                    {# サイトサブタイトル #}
-                    {% block subheading-text %}{% endblock %}
+        <!-- Page Header -->
+        <!-- Set your background image for this header on the line below. -->
+        <header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <div class="site-heading">
+                            <h1>
+                            {% block heading-text %}
+                                {% if page %}<p>{{ page.meta_title }}</p>{% endif %}
+                            {% endblock %}
+                            </h1>                            
+                            {# サイトサブタイトル #}
+                            {% block subheading-text %}
+                            {% endblock %}
+                        </div>
+                    </div>
                 </div>
             </div>
+        </header>
+        <!-- Main Content -->
+        <div class="container">
+            <div class="row">
+                {% block left_panel %}    
+                {% endblock %}
+                {% block main %}    
+                {% endblock %}
+           </div>
         </div>
-    </div>
-</header>
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        {% block left_panel %}{% endblock %}
-        {% block main %}{% endblock %}
-    </div>
-</div>
-<div class="container">
-    {% nevercache %}
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endnevercache %}
-</div>
-{# footerのsnsリンク #}
-{% page_menu "pages/menus/footer_sns_link.html" %}
+
+        <div class="container">
+            {% nevercache %}
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endnevercache %}
+        </div>
+        {% page_menu "pages/menus/footer_sns_link.html" %}
 {# footerのjavascriptリンク 圧縮なし #}
 {% block footer_js %}
 {% include "includes/footer_scripts.html" %}
 {% endblock %}
+{% compress js %}
+<!-- Custom Theme JavaScript -->
+<script src="{% static "js/jqBootstrapValidation.js"%}" async defer></script>                                                                                               
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static "js/bootstrap.min.js" %}" async defer></script>
+<script src="{% static "js/contact_me.js" %}" async defer></script>
+<script src="{% static "js/clean-blog.min.js" %}" async defer></script>
+{% endcompress %}
 </body>
 </html>

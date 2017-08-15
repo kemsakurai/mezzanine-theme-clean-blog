@@ -8,14 +8,28 @@
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">
-        <a href="{% url "home" %}">{% trans "Home" %}</a>
+        <a href="{% url "home" %}" data-category="navi">{% trans "Home" %}</a>
     </li>
+    {% if on_home %} 
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ request.scheme }}://{{ request.get_host }}{% url "search" %}?q={search_term}"
+        "query-input": "required name=search_term"
+        }
+    }
+    </script>
+    {% endif %}
     {% endif %}
     {% if page.in_menu %}
     <li class="{% if page.has_children_in_menu %}dropdown{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
         id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}"
+        <a href="{{ page.get_absolute_url }}" data-category="navi" 
         {% if page.has_children_in_menu %}
         class="dropdown-toggle disabled" data-toggle="dropdown"
         {% endif %}>
@@ -27,10 +41,10 @@
     {% endif %}
     {% endfor %}
     {% ifinstalled mezzanine.accounts %}
-    <li class="dropdown"><a href="" class="dropdown-toggle disabled" data-toggle="dropdown"><i class="icon-user"></i></a>
+    <li class="dropdown"><a href="" class="dropdown-toggle disabled" data-toggle="dropdown" data-category="navi"><i class="icon-user"></i></a>
 		<ul class="dropdown-menu">
 			 {% nevercache %}
-			{% include "accounts/includes/user_panel.html" %}
+			 {% include "accounts/includes/user_panel.html" %}
 			 {% endnevercache %}
 		</ul>
 	</li>
@@ -44,7 +58,7 @@
     <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
         id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        <a href="{{ page.get_absolute_url }}" data-category="navi">{{ page.title }}</a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
     </li>
     {% endif %}

@@ -1,4 +1,15 @@
-<div class="blog-item bottom30">
-<!-- add your ads code...-->
-</div>
 
+{% if settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_BOTTOM and settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_BOTTOM %}
+<div class="blog-item bottom30">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- blog本文下の広告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_BOTTOM}}"
+     data-ad-slot="{{settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_BOTTOM}}"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+{% endif %}
