@@ -50,7 +50,7 @@
 	{% editable blog_post.publish_date %}
 	<div class="entry-meta-subheading">
         <span class="author">{% with blog_post.user as author %}
-		<a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
+		<a href="{% url "blog_post_list_author" author %}" data-ga-event-category="author" data-ga-event-action="click" data-ga-event-label="{{author.get_full_name}}">{{ author.get_full_name|default:author.username }}</a>
 		{% endwith %}
 		</span>
 		{% with blog_post.categories.all as categories %}
@@ -59,7 +59,7 @@
 	        <span>
 				{% trans "in" %}
 				{% for category in categories %}
-				<a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+				<a href="{% url "blog_post_list_category" category.slug %}" data-ga-event-category="category" data-ga-event-action="click" data-ga-event-label="{{ category }}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
 				{% endfor %}
 			</span>
 	        {% endif %}
@@ -106,7 +106,7 @@
                 <div class="blog-item">
 				 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
 					{% block blog_post_list_post_featured_image %}
-					<a href="{{ blog_post.get_absolute_url }}">
+					<a href="{{ blog_post.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ blog_post.get_absolute_url }}">
 						<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{blog_post.featured_image }}">
 					</a>
 					{% endblock %}
@@ -144,7 +144,7 @@
 								  <i class="icon-tags"></i> {% trans "Tags" %}:
 								    {% spaceless %}
 								    {% for tag in tags %} 
-								  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a>
+								  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary" data-ga-event-category="tag" data-ga-event-action="click" data-ga-event-label="{{ tag }}">{{ tag }}</a>
 									{% endfor %}
 								    {% endspaceless %}
 								</div>
@@ -170,14 +170,14 @@
                     {% with blog_post.get_previous_by_publish_date as previous %}
                     {% if previous %}
                     <li class="previous">
-                        <a href="{{ previous.get_absolute_url }}">&lt; {{ previous|truncatechars:25 }}</a>
+                        <a href="{{ previous.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">&lt; {{ previous|truncatechars:25 }}</a>
                     </li>
                     {% endif %}
                     {% endwith %}
                     {% with blog_post.get_next_by_publish_date as next %}
                     {% if next %}
                     <li class="next">
-                        <a href="{{ next.get_absolute_url }}">{{ next|truncatechars:25 }} &gt;</a>
+                        <a href="{{ next.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">{{ next|truncatechars:25 }} &gt;</a>
                     </li>
                     {% endif %}
                     {% endwith %}

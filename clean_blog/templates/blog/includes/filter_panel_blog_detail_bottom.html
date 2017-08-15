@@ -6,7 +6,7 @@
         <div id="related-posts">
     　                  <h3>{% trans 'Related posts' %}</h3><ul>
         {% for post in blog_post.related_posts.all %}
-            <li><a href="{{ post.get_absolute_url }}" data-category="related_post">{{ post.title }}</a></li>                                                                                                     
+            <li><a href="{{ post.get_absolute_url }}" data-ga-event-category="related_post" data-ga-event-action="click" data-ga-event-label="{{ post.get_absolute_url }}">{{ post.title }}</a></li>                                                                                                     
         {% endfor %}
         </ul>
         </div>

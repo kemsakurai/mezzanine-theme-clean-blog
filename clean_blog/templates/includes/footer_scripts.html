@@ -24,7 +24,7 @@ $(window).load(function () {
             category = "unknown_link";
             href = $(this).text();
         }
-        var dataCategory = $(this).attr('data-category');
+        var dataCategory = $(this).attr('data-ga-event-category');
         if (dataCategory && dataCategory != "") {
             category = dataCategory;
         }
