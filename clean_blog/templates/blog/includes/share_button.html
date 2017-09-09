@@ -5,15 +5,15 @@
         <ul class="center-block">
         <!-- Twitter -->
         <li class="share-twitter">
-            <a href="http://twitter.com/home?status={{ blog_post.title }}%20{{ blog_post.short_url }}%20by%20" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="twitter" target="_blank">Twitter</a>
+            <a href="https://twitter.com/intent/tweet?url={{ blog_post.short_url|urlencode }}&amp;text={{ blog_post.title|urlencode }}" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="twitter" target="_blank">Twitter</a>
         </li>
         <!-- Facebook -->   
         <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{ blog_post.short_url|escape }}&src=sdkpreparse" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="facebook" target="_blank">Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="facebook" target="_blank">Facebook</a>
         </li>
         <!-- はてなブックマーク -->
         <li class="share-hatena">
-            <a href="http://b.hatena.ne.jp/add?mode=confirm&url={{ blog_post.short_url|urlencode }}&title={{ blog_post.title }}" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="hatena" target="_blank">はてブ</a>
+            <a href="http://b.hatena.ne.jp/add?mode=confirm&url={{ blog_post.short_url|urlencode }}&title={{ blog_post.title|urlencode }}" data-ga-event-category="sns" data-ga-event-action="click" data-ga-event-label="hatena" target="_blank">はてブ</a>
         </li>
         </ul>
     </div>
