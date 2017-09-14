@@ -112,6 +112,25 @@
 					{% endblock %}
 				 {% endif %}
 					<div class="blog-content">
+                        {# dataLayerの設定 #}
+                        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+                            {% block blog_post_json_ld %}
+                            <script>
+                        	{% autoescape off %}
+                        		window.dataLayer = window.dataLayer || [];
+                        		dataLayer.push([{
+                        			'blogPostUserName':'{{ blog_post.user.username|escapejs }}',
+                        			'blogPostDescription':'{{ blog_post.description|escapejs }}',
+                        			'blogPostCreated':'{{ blog_post.created|escapejs }}',
+                        			'blogPostUpdated':'{{ blog_post.updated|escapejs }}',
+                        			'blogPostCategories':'{% for category in categories %}{{ category|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}'
+                        		}]);
+                        	{% endautoescape %}	       
+                            </script>
+                           {% endblock %}
+                        {% endif %}
+
+                        {# JSON-LDの出力 #}
                         {% block blog_post_json_ld %}
                         {% load i18n mezzanine_tags mezzanine_extentions_tags %}
                         {% conv_blog_post_to_json_ld blog=blog_post as json_ld %}
