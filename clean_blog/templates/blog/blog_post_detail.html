@@ -118,13 +118,13 @@
                             <script>
                         	{% autoescape off %}
                         		window.dataLayer = window.dataLayer || [];
-                        		dataLayer.push([{
+                        		dataLayer.push({
                         			'blogPostUserName':'{{ blog_post.user.username|escapejs }}',
                         			'blogPostDescription':'{{ blog_post.description|escapejs }}',
                         			'blogPostCreated':'{{ blog_post.created|escapejs }}',
                         			'blogPostUpdated':'{{ blog_post.updated|escapejs }}',
                         			'blogPostCategories':'{% for category in categories %}{{ category|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}'
-                        		}]);
+                        		});
                         	{% endautoescape %}	       
                             </script>
                            {% endblock %}
