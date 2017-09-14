@@ -38,7 +38,6 @@
 {% block extra_js_top %}
 {# dataLayerの設定 #}
 {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
-    {% block blog_post_json_ld %}
     <script>
 	{% autoescape off %}
 		window.dataLayer = window.dataLayer || [];
@@ -51,7 +50,6 @@
 		});
 	{% endautoescape %}	       
     </script>
-   {% endblock %}
 {% endif %}
 {% endblock %}
 
