@@ -204,6 +204,7 @@
 	{{ blog_post.description_from_content|safe }}
 	{% endeditable %}
 	{% endblock %}
+
 	{% comment "read more button is unnecessary" %}
 	{% endcomment %}
 	 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
