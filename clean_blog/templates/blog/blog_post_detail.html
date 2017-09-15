@@ -133,7 +133,7 @@
 					<div class="blog-content">
                         {# JSON-LDの出力 #}
                         {% block blog_post_json_ld %}
-                        {% load i18n mezzanine_tags mezzanine_extentions_tags %}
+                        {% load i18n mezzanine_tags clean_blog_tags %}
                         {% conv_blog_post_to_json_ld blog=blog_post as json_ld %}
                         {% if json_ld %}
                         <script type="application/ld+json">
