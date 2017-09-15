@@ -48,18 +48,18 @@
     {% compress js %}
         <!-- jQuery -->                                                                                                               
         <script src="{% static "js/jquery.min.js" %}"></script>
-        {% block extra_js_top %}{% endblock %}
-        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
-        <!-- End Google Tag Manager -->
-        {% endif %}
         {% block extra_js %}{% endblock %}
     {% endcompress %}
+        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+            {% block extra_js_top %}{% endblock %}
+            <!-- Google Tag Manager -->
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
+            <!-- End Google Tag Manager -->
+        {% endif %}
         <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
