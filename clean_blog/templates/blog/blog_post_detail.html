@@ -37,9 +37,8 @@
 
 {# dataLayerの設定 #}
 {% block gtn_dataLayer %}
-{% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
-    {% autoescape off %}
-    <script type="text/javascript">
+{% autoescape off %}
+	<script type="text/javascript">
 		window.dataLayer = window.dataLayer || [];
 		dataLayer.push({
 			'blogPostId':'{{ blog_post.id|escapejs }}',
@@ -51,9 +50,8 @@
 			'blogPostCategories':'{% for category in categories %}{{ category|escapejs }}{% if not forloop.last %};{% endif %}{% endfor %}'
 			{% endwith %}
 		});
-    </script>
-    {% endautoescape %}
-{% endif %}
+	</script>
+{% endautoescape %}
 {% endblock %}
 
 {% block title %}
