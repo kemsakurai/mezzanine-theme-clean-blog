@@ -553,3 +553,68 @@ thead>tr>td {
 .bottom150 {
     margin-bottom: 150px
 }
+#share ul{
+    height:auto;
+}
+#share li{
+    font-size:14px;
+    text-align:center;
+    width:200px;
+    margin-right:1%;
+    margin-bottom:8px;
+    border-radius:3px;
+    list-style:none;
+}
+#share li.share-twitter{
+    background:#55acee;
+    box-shadow:0 2px #2795e9;
+}
+#share li.share-twitter:hover{
+    background:#83c3f3;
+}
+#share li.share-facebook{
+    background:#3b5998;
+    box-shadow:0 2px #2d4373;
+}
+#share li.share-facebook:hover{
+    background:#4c70ba;
+}
+#share li.share-google{
+    background:#dd4b39;
+    box-shadow:0 2px #c23321;
+}
+#share li.share-google:hover{
+    background:#e47365;
+}
+#share li.share-hatena{
+    background:#2c6ebd;
+    box-shadow:0 2px #225694;
+}
+#share li.share-hatena:hover{
+    background:#4888d4;
+}
+#share li.share-pocket{
+    background:#f13d53;
+    box-shadow:0 2px #e6152f;
+}
+#share li.share-pocket:hover{
+    background:#f26f7f;
+}
+#share li.share-line{
+    background:#00C300;
+    box-shadow:0 2px #009d00;
+}
+#share li.share-line:hover{
+    background:#2bd92b;
+}
+#share a{
+    display:block;
+    height:27px;
+    padding-top:6px;
+    color:#ffffff;
+    text-decoration:none;
+}
+#share a:hover{
+    text-decoration:none;
+    color:#ffffff;
+}
