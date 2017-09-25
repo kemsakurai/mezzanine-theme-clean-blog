@@ -10,7 +10,7 @@ body {
 }
 p {
     line-height: 1.5;
-    margin: 30px 0
+    margin: 15px 0
 }
 p a {
     text-decoration: underline
@@ -559,6 +559,7 @@ thead>tr>td {
 #share li{
     font-size:14px;
     text-align:center;
+    float:left;
     width:200px;
     margin-right:1%;
     margin-bottom:8px;
