@@ -114,97 +114,94 @@
 {# ------#}
 {% block main %}
 <section id="blog" class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<div class="blog">
-				{# Google Adsense #}
-                {% include "blog/includes/google_adsense_blog_bottom.html" %}
-                
-                <div class="blog-item">
-				 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-					{% block blog_post_list_post_featured_image %}
-					<a href="{{ blog_post.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ blog_post.get_absolute_url }}">
-						<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{blog_post.featured_image }}">
-					</a>
+	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+	<div class="blog">
+		{# Google Adsense #}
+        {% include "blog/includes/google_adsense_blog_bottom.html" %}
+        
+        <div class="blog-item">
+		 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+			{% block blog_post_list_post_featured_image %}
+			<a href="{{ blog_post.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ blog_post.get_absolute_url }}">
+				<img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{blog_post.featured_image }}">
+			</a>
+			{% endblock %}
+		 {% endif %}
+			<div class="blog-content">
+                {# JSON-LDの出力 #}
+                {% block blog_post_json_ld %}
+                {% load i18n mezzanine_tags clean_blog_tags %}
+                {% conv_blog_post_to_json_ld blog=blog_post as json_ld %}
+                {% if json_ld %}
+                <script type="application/ld+json">
+                {% autoescape off %}
+                {{ json_ld }}
+                {% endautoescape %}
+                </script>
+                {% endif %}
+                {% endblock %}
+
+                {# ブログタイトルの出力箇所 #}
+				{% block blog_post_list_post_title %}
+				{% endblock %}
+
+				{% block blog_post_list_post_metainfo %}
+				{% endblock %}
+
+				{% block blog_post_list_post_content %}
+				{% editable blog_post.content %}
+					{{ blog_post.content|richtext_filters|safe }}
+				{% endeditable %}
+				{% endblock %}
+				
+				{% block blog_post_list_post_links %}
+					{% keywords_for blog_post as tags %}
+				    {% if tags %}
+						<div class="tags">
+						  <i class="icon-tags"></i> {% trans "Tags" %}:
+						    {% spaceless %}
+						    {% for tag in tags %} 
+						  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary" data-ga-event-category="tag" data-ga-event-action="click" data-ga-event-label="{{ tag }}">{{ tag }}</a>
+							{% endfor %}
+						    {% endspaceless %}
+						</div>
+					{% endif %}
+					{% block blog_post_detail_comments %}
+						{% if blog_post.allow_comments %}
+							{% comments_for blog_post %}
+						{% endif %}
 					{% endblock %}
-				 {% endif %}
-					<div class="blog-content">
-                        {# JSON-LDの出力 #}
-                        {% block blog_post_json_ld %}
-                        {% load i18n mezzanine_tags clean_blog_tags %}
-                        {% conv_blog_post_to_json_ld blog=blog_post as json_ld %}
-                        {% if json_ld %}
-                        <script type="application/ld+json">
-                        {% autoescape off %}
-                        {{ json_ld }}
-                        {% endautoescape %}
-                        </script>
-                        {% endif %}
-                        {% endblock %}
-
-                        {# ブログタイトルの出力箇所 #}
-						{% block blog_post_list_post_title %}
-						{% endblock %}
-
-						{% block blog_post_list_post_metainfo %}
-						{% endblock %}
-
-						{% block blog_post_list_post_content %}
-						{% editable blog_post.content %}
-							{{ blog_post.content|richtext_filters|safe }}
-						{% endeditable %}
-						{% endblock %}
-						
-						{% block blog_post_list_post_links %}
-							{% keywords_for blog_post as tags %}
-						    {% if tags %}
-								<div class="tags">
-								  <i class="icon-tags"></i> {% trans "Tags" %}:
-								    {% spaceless %}
-								    {% for tag in tags %} 
-								  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary" data-ga-event-category="tag" data-ga-event-action="click" data-ga-event-label="{{ tag }}">{{ tag }}</a>
-									{% endfor %}
-								    {% endspaceless %}
-								</div>
-							{% endif %}
-							{% block blog_post_detail_comments %}
-								{% if blog_post.allow_comments %}
-									{% comments_for blog_post %}
-								{% endif %}
-							{% endblock %}
-						{% endblock %}
-					</div>
-                    
-                </div>
-                
-                {% include "blog/includes/google_adsense_blog_bottom.html" %}
-				<div class="blog-item">
-                    {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
-                </div>
-                
-                {% block blog_post_previous_next %}
-                <div class="blog-item">
-                    <ul class="pager">
-                    {% with blog_post.get_previous_by_publish_date as previous %}
-                    {% if previous %}
-                    <li class="previous">
-                        <a href="{{ previous.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">&lt; {{ previous|truncatechars:25 }}</a>
-                    </li>
-                    {% endif %}
-                    {% endwith %}
-                    {% with blog_post.get_next_by_publish_date as next %}
-                    {% if next %}
-                    <li class="next">
-                        <a href="{{ next.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">{{ next|truncatechars:25 }} &gt;</a>
-                    </li>
-                    {% endif %}
-                    {% endwith %}
-                    </ul>
-                    {% endblock %}                  
-                </div>
-                </div>
+				{% endblock %}
 			</div>
-		</div>
+            
+        </div>
+        
+        {% include "blog/includes/google_adsense_blog_bottom.html" %}
+		<div class="blog-item">
+            {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
+        </div>
+        
+        {% block blog_post_previous_next %}
+        <div class="blog-item">
+            <ul class="pager">
+            {% with blog_post.get_previous_by_publish_date as previous %}
+            {% if previous %}
+            <li class="previous">
+                <a href="{{ previous.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">&lt; {{ previous|truncatechars:25 }}</a>
+            </li>
+            {% endif %}
+            {% endwith %}
+            {% with blog_post.get_next_by_publish_date as next %}
+            {% if next %}
+            <li class="next">
+                <a href="{{ next.get_absolute_url }}" data-ga-event-category="blog_post" data-ga-event-action="click" data-ga-event-label="{{ previous.get_absolute_url }}">{{ next|truncatechars:25 }} &gt;</a>
+            </li>
+            {% endif %}
+            {% endwith %}
+            </ul>
+            {% endblock %}                  
+        </div>
+    </div>
 	</div>
 </section>
 {% endblock %}
