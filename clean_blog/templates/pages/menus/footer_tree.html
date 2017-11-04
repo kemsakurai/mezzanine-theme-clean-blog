@@ -11,7 +11,6 @@
 	    <a href="{% url "home" %}">{% trans "Home" %}</a>
 	</li>
 	{% endif %}
-
 	{% if page.in_menu %}
 	<li class="{% if page.is_current_or_ascendant %}active{% endif %}
         {% if not top_level and forloop.first %} first{% endif %}
