@@ -188,8 +188,8 @@
         	<div class="col-md-12">
         	<h3>{% trans "Categories" %}</h3>
         	<ul>
-        	{% for category, post_count in categories %}
-         	<li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a> ({{ post_count }})</li>
+        	{% for category in categories %}
+         	<li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a></li>
         	{% endfor %}
         	</ul>
         	</div>
