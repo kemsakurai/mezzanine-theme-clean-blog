@@ -1,4 +1,4 @@
-{% load blog_tags keyword_tags mezzanine_tags clean_blog_tags i18n %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta %}
 {% block blog_post_detail_related_posts %}
     {% if blog_post.related_posts.all %}
     <div class="row">                                                                                                              

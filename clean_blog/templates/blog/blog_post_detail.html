@@ -173,15 +173,14 @@
 					{% endblock %}
 				{% endblock %}
 			</div>
-            
         </div>
         
         {% include "blog/includes/google_adsense_blog_bottom.html" %}
 		
 		<div class="blog-item">
-            {% include "blog/includes/filter_panel_blog_detail_bottom.html" with blog_recent_posts=blog_recent_posts blog_post=blog_post blog_categories=blog_categories %}
+            {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
         </div>
-        
+                
         {% block blog_post_previous_next %}
         <div class="blog-item">
             <ul class="pager">
