@@ -14,22 +14,6 @@
     {% endif %}
 {% endblock %}
 
-{% block ex_blog_categories %}
-    {% blog_post.categories as categories %}
-    {% if categories %}
-    <div class="row">
-        <div class="col-md-12">
-        <h3>{% trans "Categories" %}</h3>
-        <ul>
-        {% for category, post_count in categories %}
-         <li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a> ({{ post_count }})</li>
-        {% endfor %}
-        </ul>
-        </div>
-    </div>
-    {% endif %}
-{% endblock %}    
-
 {% block blog_recent_posts %}
     {% blog_recent_posts 5 as recent_posts %}
     {% if recent_posts %}

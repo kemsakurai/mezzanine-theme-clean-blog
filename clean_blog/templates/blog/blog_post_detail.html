@@ -180,7 +180,24 @@
 		<div class="blog-item">
             {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
         </div>
-                
+        {% block ex_blog_categories %}
+    	{% blog_post.categories as categories %}
+    	{% if categories %}
+    	<div class="blog-item">
+    	<div class="row">
+        	<div class="col-md-12">
+        	<h3>{% trans "Categories" %}</h3>
+        	<ul>
+        	{% for category, post_count in categories %}
+         	<li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a> ({{ post_count }})</li>
+        	{% endfor %}
+        	</ul>
+        	</div>
+    	</div>
+    	</div>
+    	{% endif %}
+		{% endblock %}    
+    
         {% block blog_post_previous_next %}
         <div class="blog-item">
             <ul class="pager">
