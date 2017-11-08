@@ -1,4 +1,21 @@
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta %}
+{% block ex_blog_categories %}
+    {% with blog_post.categories.all as categories %}
+    {% if categories %}
+    <div class="row">
+        <div class="col-md-12">
+        <h3>{% trans "Categories" %}</h3>
+        <ul>
+        {% for category in categories %}
+        <li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a></li>
+        {% endfor %}
+        </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+{% endblock %}
+
 {% block blog_post_detail_related_posts %}
     {% if blog_post.related_posts.all %}
     <div class="row">                                                                                             
@@ -13,7 +30,6 @@
     </div>
     {% endif %}
 {% endblock %}
-
 {% block blog_recent_posts %}
     {% blog_recent_posts 5 as recent_posts %}
     {% if recent_posts %}
