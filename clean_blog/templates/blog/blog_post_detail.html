@@ -181,7 +181,7 @@
             {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
         </div>
         {% block ex_blog_categories %}
-    	{% blog_post.categories as categories %}
+    	{% with blog_post.categories as categories %}
     	{% if categories %}
     	<div class="blog-item">
     	<div class="row">
@@ -216,7 +216,7 @@
             {% endif %}
             {% endwith %}
             </ul>
-            {% endblock %}                  
+         {% endblock %}                  
         </div>
     </div>
 	</div>
