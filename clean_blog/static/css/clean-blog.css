@@ -567,11 +567,11 @@ thead>tr>td {
     list-style:none;
 }
 #share li.share-twitter{
-    background:#55acee;
-    box-shadow:0 2px #2795e9;
+    background:#285b7d;
+    box-shadow:0 2px #204765;
 }
 #share li.share-twitter:hover{
-    background:#83c3f3;
+    background:#398dc5;
 }
 #share li.share-facebook{
     background:#3b5998;
