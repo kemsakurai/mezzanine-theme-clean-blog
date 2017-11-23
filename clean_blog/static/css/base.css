@@ -1268,6 +1268,61 @@ img::-moz-selection {
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
 }
 
+table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    min-height: .01%;
+    overflow-x: auto
+}
+thead {
+    border: 1px solid #ddd
+}
+tbody {
+    border: 1px solid #ddd
+}
+tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+    border: 3px solid #ddd
+}
+tbody>tr>th,
+tbody>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom-width: 4px;
+    border: 3px solid #ddd
+}
+thead>tr>th,
+thead>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-bottom-width: 4px;
+    border: 3px solid #ddd
+}
+@media screen and (max-width: 767px) {
+    table {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd
+    }
+    thead>tr>th,
+    tbody>tr>th,
+    tfoot>tr>th,
+    thead>tr>td,
+    tbody>tr>td,
+    tfoot>tr>td {
+        white-space: nowrap
+    }
+}
 #share a,#share a:hover {
     text-decoration: none;
     color: #fff
