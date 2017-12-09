@@ -158,7 +158,8 @@
 						{% endwith %}
 			            
 			            </span>
-			            <span><i class="icon-calendar"></i> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+			            <span><i class="icon-calendar"></i> 
+<time datetime="{{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time> ({% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %})</span>
 			            <span><i class="icon-comment"></i> 
 			            {% if blog_post.allow_comments %}
 							
