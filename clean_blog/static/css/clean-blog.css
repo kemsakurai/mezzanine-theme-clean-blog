@@ -212,7 +212,7 @@ hr.small {
 .post-preview>a:hover,
 .post-preview>a:focus {
     text-decoration: none;
-    color: #f5f5f5
+    color: #0085a1
 }
 .post-preview>a>.post-title {
     font-size: 25px;

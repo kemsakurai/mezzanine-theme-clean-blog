@@ -1155,7 +1155,7 @@ a:focus,a:hover {
 
 .post-preview>a:focus,.post-preview>a:hover {
     text-decoration: none;
-    color: #337ab7
+    color: #0085a1
 }
 .post-preview>a>.post-title {
     font-size: 25px;
