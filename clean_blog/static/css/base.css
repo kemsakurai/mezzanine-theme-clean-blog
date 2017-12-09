@@ -1494,3 +1494,37 @@ thead>tr>td {
 @font-face {
     font-family:'Open Sans';font-weight:800;font-style:italic;src:url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Extrabold Italic'),local('Open-Sans-800italic'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
+.post-preview>a {
+    color: #404040
+}
+.post-preview>a:hover,
+.post-preview>a:focus {
+    text-decoration: none;
+    color: #f5f5f5
+}
+.post-preview>a>.post-title {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px
+}
+.post-preview>a>.post-subtitle {
+    margin: 0;
+    font-weight: 300;
+    margin-bottom: 10px
+}
+.post-preview>.post-meta {
+    color: gray;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0
+}
+.post-preview>.post-meta>a {
+    text-decoration: none;
+    color: #404040
+}
+.post-preview>.post-meta>a:hover,
+.post-preview>.post-meta>a:focus {
+    color: #0085a1;
+    text-decoration: underline
+}
+

@@ -132,11 +132,11 @@
 
 				{% endblock %}
 				{% endif %}
-		<div class="blog-content">
+		<div class="blog-content post-preview">
 				
 		{% block blog_post_list_post_title %}
 			{% editable blog_post.title %}
-			<a href="{{ blog_post.get_absolute_url }}"><h2>{{ blog_post.title }}</h2></a>
+			<a href="{{ blog_post.get_absolute_url }}"><h2 class="">{{ blog_post.title }}</h2></a>
 			{% endeditable %}
 		{% endblock %}
 
@@ -181,7 +181,7 @@
 	
 			{% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
 			{% block blog_post_list_post_content %}
-			<div class="post-preview">
+			<div>
 					{% editable blog_post.content %}
 					{{ blog_post.description_from_content|safe }}
 					{% endeditable %}
