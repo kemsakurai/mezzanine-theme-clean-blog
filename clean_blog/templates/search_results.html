@@ -34,8 +34,10 @@
 	    {% for result in results.object_list %}
 	    <h3>{{ forloop.counter0|add:results.start_index }})
 	        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h3>
-	    <p>{{ result.description|truncatewords_html:20|safe }}</p>
-	    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+	    {% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
+	    	<p>{{ result.description|truncatewords_html:20|safe }}</p>
+	    	<a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+	    {% endif %}
 		<hr>
 	    {% endfor %}
 	</div>

@@ -33,7 +33,6 @@ def blog_categories_ex():
     counter = Counter(categories)
     return counter.most_common()
 
-
 @register.as_tag
 def conv_blog_post_to_json_ld(blog=None):
     """
