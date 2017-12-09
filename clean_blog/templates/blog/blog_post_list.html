@@ -205,22 +205,16 @@
 	</div>
 	<hr>
 	{% endfor %}
-</div>
-{% pagination_for blog_posts %}
+	</div>
+	
+	{% pagination_for blog_posts %}
 
-{% if settings.COMMENTS_DISQUS_SHORTNAME %}
-{% include "generic/includes/disqus_counts.html" %}
-{% endif %}
-
-<div class="blog-item">
-{% include "blog/includes/google_adsense_blog_bottom.html" %}
-</div>
-
-{% block blog_post_list_bottom %}
-<div class="blog-item">
-{% include "blog/includes/filter_panel_bottom.html" with blog_posts=blog_posts year=year month=month tag=tag category=category author=author flavour=flavour %}
-</div>
-{% endblock %}
-</div>
+	{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+	{% include "generic/includes/disqus_counts.html" %}
+	{% endif %}
+	<div class="blog-item">
+	{% include "blog/includes/google_adsense_blog_bottom.html" %}
+	</div>
+	</div>
 </section>
 {% endblock %}
