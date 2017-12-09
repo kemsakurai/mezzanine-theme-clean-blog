@@ -17,7 +17,7 @@
                     </div>
                     <div class="media-body">
                         <span class="media-heading"><a href="{{ recent_post.get_absolute_url }}">{{ recent_post.title }}</a></span>
-                        <small class="muted">{% blocktrans with sometime=recent_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</small>
+                        <small class="muted"><time datetime="{{ recent_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time> ({% blocktrans with sometime=recent_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %})</small>
                     </div>
                 </div>
             </div>  

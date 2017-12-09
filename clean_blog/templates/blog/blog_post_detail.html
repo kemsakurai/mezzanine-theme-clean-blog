@@ -82,7 +82,7 @@
 	        {% endif %}
         {% endwith %}
         <span class="divider">/</span>
-        <span> {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+        <span><time datetime="{{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time>({% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %})</span>
         <span class="divider">/</span>
         <span class="comment">
         {% if blog_post.allow_comments %}

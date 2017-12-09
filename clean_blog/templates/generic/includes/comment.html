@@ -20,7 +20,7 @@
         
         <div class="media-heading">
                 <strong><a href="{{ comment.url }}">{{ comment.user_name }}</a></strong>&nbsp; 
-                <small>{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</small>
+                <small><time datetime="{{ comment.submit_date|date:"c"}}">{{ comment.submit_date|date:'Y-m-d' }}</time>({% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %})</small>
                      {% if not comment.is_removed and comment.is_public %}
                       <a href="#reply-{{ comment.id }}" class="pull-right reply"><i class="icon-repeat"></i> {% trans "Reply" %}</a>
                      
@@ -40,7 +40,7 @@
                 <strong><a href="{{ comment.url }}">{{ comment.user_name }}</a></strong>&nbsp; 
                 
     {% endif %}
-           <small>{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</small>
+           <small><time datetime="{{ comment.submit_date|date:"c"}}">{{ comment.submit_date|date:'Y-m-d' }}</time>({% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %})</small>
                      {% if not comment.is_removed and comment.is_public %}
                       <a href="#reply-{{ comment.id }}" class="pull-right reply"><i class="icon-repeat"></i> {% trans "Reply" %}</a>
                      
@@ -79,7 +79,7 @@
         {% else %}
         <span class="glyphicon glyphicon-warning-sign"></span> {% trans "Comment awaiting approval" %}
         {% endif %}
-        <small class="timespan">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</small>
+        <small class="timespan"><time datetime="{{ comment.submit_date|date:"c"}}">{{ comment.submit_date|date:'Y-m-d' }}</time>({% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %})</small>
     </p>
     {% endif %}
 
