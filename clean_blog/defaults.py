@@ -16,6 +16,7 @@ register_setting(
              "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_BOTTOM",
              "CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_BOTTOM",
              "CLEAN_BLOG_FACEBOOK_APP_ID",
+             "CLEAN_BLOG_IS_VISIBLE_DESCRIPTION"
              ),
     append=True,
 )
@@ -82,3 +83,10 @@ register_setting(
     editable=True,
     default="",
 )
+register_setting(
+    name="CLEAN_BLOG_IS_VISIBLE_DESCRIPTION",
+    description="flag for CLEAN_BLOG's blog list",
+    editable=True,
+    default=False,
+)
+

@@ -178,31 +178,34 @@
 			</div>
 			{% endeditable %}
 		{% endblock %}
-	{% block blog_post_list_post_content %}
-	<div class="post-preview">
-	{% editable blog_post.content %}
-	{{ blog_post.description_from_content|safe }}
-	{% endeditable %}
-	{% endblock %}
-
-	{% comment "read more button is unnecessary" %}
-	{% endcomment %}
-	 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
-	{% block blog_post_list_post_links %}
-	{% keywords_for blog_post as tags %}
-	    {% if tags %}
-	<div class="tags">
-	  <i class="icon-tags"></i> {% trans "Tags" %}:
-	    {% spaceless %}
-	    {% for tag in tags %} 
-	  <a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a> &nbsp;
-	  {% endfor %}
-	    {% endspaceless %}
-	</div>
-	{% endif %}
-	</div>
-	</div>
-	{% endblock %}
+	
+		{% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
+			{% block blog_post_list_post_content %}
+					<div class="post-preview">
+					{% editable blog_post.content %}
+					{{ blog_post.description_from_content|safe }}
+					{% endeditable %}
+			{% endblock %}
+			{% comment "read more button is unnecessary" %}
+			{% endcomment %}
+			 	<a href="{{ blog_post.get_absolute_url }}"  class="btn btn-default">{% trans "read more" %} <i class="icon-angle-right"> </i></a>
+		{% endif %}
+		
+		{% block blog_post_list_post_links %}
+		{% keywords_for blog_post as tags %}
+		    {% if tags %}
+				<div class="tags">
+				  <i class="icon-tags"></i> {% trans "Tags" %}:
+				    {% spaceless %}
+				    {% for tag in tags %} 
+				  	<a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a> &nbsp;
+				  	{% endfor %}
+				    {% endspaceless %}
+				</div>
+			{% endif %}
+				</div>
+			</div>
+		{% endblock %}
 	</div>
 	<hr>
 	{% endfor %}
