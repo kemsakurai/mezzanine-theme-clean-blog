@@ -66,7 +66,7 @@
 {% block subheading-text %}
 	{% editable blog_post.publish_date %}
 	<div class="entry-meta-subheading">
-        <span class="author">{% with blog_post.user as author %}
+        <span class="author">{% trans "Posted by" %}:{% with blog_post.user as author %}
 		<a href="{% url "blog_post_list_author" author %}" data-ga-event-category="author" data-ga-event-action="click" data-ga-event-label="{{author.get_full_name}}">{{ author.get_full_name|default:author.username }}</a>
 		{% endwith %}
 		</span>
@@ -82,7 +82,7 @@
 	        {% endif %}
         {% endwith %}
         <span class="divider">/</span>
-        <span><time datetime="{{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time>({% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %})</span>
+        <span><time datetime="{{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time> ({% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %})</span>
         <span class="divider">/</span>
         <span class="comment">
         {% if blog_post.allow_comments %}
