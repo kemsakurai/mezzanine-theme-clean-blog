@@ -34,14 +34,14 @@
 				<div id="search-results">
 			{% for result in results.object_list %}
 			{% with result.get_absolute_url as result_url %}
-			    <h3>
+			    <h4>
 			        {{ forloop.counter0|add:results.start_index }})
 			        {% if result_url %}
 			            <a href="{{ result_url }}">{{ result }}</a>
 			        {% else %}
 			            {{ result }}
 			        {% endif %}
-			    </h3>
+			    </h4>
 			    {% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
 				    {% if result.description != result|stringformat:"s" %}
 				        <p>{{ result.description|truncatewords_html:20|safe }}</p>
