@@ -42,13 +42,14 @@
 			            {{ result }}
 			        {% endif %}
 			    </h3>
-			    {% if result.description != result|stringformat:"s" %}
-			        <p>{{ result.description|truncatewords_html:20|safe }}</p>
-			    {% endif %}
 			    {% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
-			    {% if result_url %}
-			        <a href="{{ result_url }}">{% trans "read more" %}</a>
-			    {% endif %}
+				    {% if result.description != result|stringformat:"s" %}
+				        <p>{{ result.description|truncatewords_html:20|safe }}</p>
+				    {% endif %}
+				    
+				    {% if result_url %}
+				        <a href="{{ result_url }}">{% trans "read more" %}</a>
+				    {% endif %}
 			    {% endif %}
 			    <hr>
 			{% endwith %}
