@@ -16,32 +16,41 @@
 {% endblock %}
 
 {% block main %}
-<div class="row">		
-	<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	{% if results.paginator.count == 0 %}
-	<p>
-	{% blocktrans %}
-	No results were found in {{ search_type }} matching your query: {{ query }}
-	{% endblocktrans %}
-	{% else %}
-	{% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-	Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
-	{% endblocktrans %}
-	{% endif %}
-	<hr>
-	</p>
-	<div id="search-results">
-	    {% for result in results.object_list %}
-	    <h3>{{ forloop.counter0|add:results.start_index }})
-	        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h3>
-	    {% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
-	    	<p>{{ result.description|truncatewords_html:20|safe }}</p>
-	    	<a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
-	    {% endif %}
-		<hr>
-	    {% endfor %}
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<p>
+		    {% if results.paginator.count == 0 %}
+		    {% blocktrans %}
+		    No results were found in {{ search_type }} matching your query: {{ query }}
+		    {% endblocktrans %}
+		    {% else %}
+		    {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
+		    Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+		    {% endblocktrans %}
+		    {% endif %}
+		    </p>
+				<div id="search-results">
+			{% for result in results.object_list %}
+			{% with result.get_absolute_url as result_url %}
+			    <h5>
+			        {{ forloop.counter0|add:results.start_index }})
+			        {% if result_url %}
+			            <a href="{{ result_url }}">{{ result }}</a>
+			        {% else %}
+			            {{ result }}
+			        {% endif %}
+			    </h5>
+			    {% if result.description != result|stringformat:"s" %}
+			        <p>{{ result.description|truncatewords_html:20|safe }}</p>
+			    {% endif %}
+			    {% if settings.CLEAN_BLOG_IS_VISIBLE_DESCRIPTION %}
+			    {% if result_url %}
+			        <a href="{{ result_url }}">{% trans "read more" %}</a>
+			    {% endif %}
+			    {% endif %}
+			{% endwith %}
+			{% endfor %}
+			</div>
+		</div>
 	</div>
-	{% pagination_for results %}
-	</div>
-</div>
 {% endblock %}
