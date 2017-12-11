@@ -19,6 +19,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<p>
+		    <h2>
 		    {% if results.paginator.count == 0 %}
 		    {% blocktrans %}
 		    No results were found in {{ search_type }} matching your query: {{ query }}
@@ -28,18 +29,19 @@
 		    Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
 		    {% endblocktrans %}
 		    {% endif %}
+			</h2>
 		    </p>
 				<div id="search-results">
 			{% for result in results.object_list %}
 			{% with result.get_absolute_url as result_url %}
-			    <h5>
+			    <h3>
 			        {{ forloop.counter0|add:results.start_index }})
 			        {% if result_url %}
 			            <a href="{{ result_url }}">{{ result }}</a>
 			        {% else %}
 			            {{ result }}
 			        {% endif %}
-			    </h5>
+			    </h3>
 			    {% if result.description != result|stringformat:"s" %}
 			        <p>{{ result.description|truncatewords_html:20|safe }}</p>
 			    {% endif %}
@@ -48,9 +50,11 @@
 			        <a href="{{ result_url }}">{% trans "read more" %}</a>
 			    {% endif %}
 			    {% endif %}
+			    <hr>
 			{% endwith %}
 			{% endfor %}
 			</div>
+			{% pagination_for results %}
 		</div>
 	</div>
 {% endblock %}
