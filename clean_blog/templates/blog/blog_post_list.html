@@ -143,7 +143,7 @@
 		{% block blog_post_list_post_metainfo %}
 			{% editable blog_post.publish_date %}
 	        <div class="entry-meta">
-			            <span><i class="icon-user"></i> {% with blog_post.user as author %}
+			            <span><i class="icon-user"></i> {% trans "Posted by" %}:{% with blog_post.user as author %}
 						<a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
 						{% endwith %}
 						</span>
