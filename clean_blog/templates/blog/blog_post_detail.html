@@ -2,6 +2,11 @@
 {# タグのload #}
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta ads_tags %}
 
+{% block extra_head %}
+    {% load sekizai_tags %}
+    {% render_block "js" %}
+{% endblock %}
+
 {% block extra_ogp %}
 {% spaceless %}
 {% autoescape off %}
