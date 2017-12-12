@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {# タグのload #}
-{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta ads_tags sekizai_tags %}
+{% load pages_tags mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta ads_tags sekizai_tags %}
 
 {% block extra_head %}
-{% render_block "js" %}
+	{% render_block "js" %}
 {% endblock %}
 
 {% block extra_ogp %}
