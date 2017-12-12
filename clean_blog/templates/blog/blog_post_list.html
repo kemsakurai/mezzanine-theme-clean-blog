@@ -2,9 +2,6 @@
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags ads_tags %}
 {% block extra_head %}
     {% pagination_prev_next_for blog_posts %}
-    {% autoescape off %}
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	{% endautoescape %}	
 {% endblock %}
 
 {# base.html のmeta_titleの処理の上書き #}
