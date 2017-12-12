@@ -63,9 +63,10 @@
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
         {% block extra_head %}{% endblock %}
+        
         {% load sekizai_tags %}
         {% autoescape off %}
-        {% render_block "js" %}
+            {% render_block "js" %}
         {% endautoescape %}
     </head>
     <body id="{% block body_id %}body{% endblock %}">
