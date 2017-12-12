@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n staticfiles compress critical sekizai_tags %}
+{% load pages_tags mezzanine_tags i18n staticfiles compress critical %}
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Kem">
@@ -62,6 +62,9 @@
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
+
+        {% load sekizai_tags %}
+        {% render_block "js" %}
         {% block extra_head %}{% endblock %}
     </head>
     <body id="{% block body_id %}body{% endblock %}">
