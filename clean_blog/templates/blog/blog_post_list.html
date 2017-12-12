@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags ads_tags sekizai_tags %}
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags ads_tags %}
 {% block extra_head %}
     {% pagination_prev_next_for blog_posts %}
 {% endblock %}
@@ -208,15 +208,14 @@
 			{% endif %}
 	</div>
 	<hr>
-	{% endfor %}
 	</div>
-	
+	{% endfor %}
 	<div class="blog-item">
 		{% render_ads_zone 'blog_ads_top_and_bottom' %}
 	<hr>
 	</div>
 	<div class="blog-item">
-	{% pagination_for blog_posts %}
+		{% pagination_for blog_posts %}
 	</div>
 
 	</div>
