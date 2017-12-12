@@ -3,7 +3,9 @@
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta ads_tags %}
 
 {% block extra_head %}
+	{% autoescape off %}
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	{% endautoescape %}	
 {% endblock %}
 
 {% block extra_ogp %}
