@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n staticfiles %}
-{% load compress %}
-{% load critical %}
+{% load pages_tags mezzanine_tags i18n staticfiles compress critical sekizai_tags %}
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Kem">
@@ -60,6 +58,7 @@
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
         <!-- End Google Tag Manager -->
         {% endif %}
+        {% render_block "js" %}
         <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
