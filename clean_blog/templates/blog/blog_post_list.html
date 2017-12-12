@@ -117,7 +117,7 @@
 		{% endblock %}
 	<div class="blog">
     <div class="blog-item">
-        {% render_ads_zone 'blog_ads_top_and_bottom' %}
+        {% include "blog/includes/google_adsense_blog_bottom.html" %}
     </div>
 	{% for blog_post in blog_posts.object_list %}
 		 <div class="blog-item">
