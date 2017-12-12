@@ -118,7 +118,6 @@
 	<div class="blog">
     <div class="blog-item">
         {% render_ads_zone 'blog_ads_top_and_bottom' %}
-        <hr>
     </div>
 	{% for blog_post in blog_posts.object_list %}
 		 <div class="blog-item">
@@ -210,10 +209,9 @@
 	<hr>
 	</div>
 	{% endfor %}
-	<div class="blog-item">
-		{% render_ads_zone 'blog_ads_top_and_bottom' %}
-	<hr>
-	</div>
+    <div class="blog-item">
+        {% render_ads_zone 'blog_ads_top_and_bottom' %}
+    </div>
 	<div class="blog-item">
 		{% pagination_for blog_posts %}
 	</div>
