@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags %}
-
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags clean_blog_tags ads_tags %}
 {% block extra_head %}
     {% pagination_prev_next_for blog_posts %}
 {% endblock %}
@@ -118,7 +117,7 @@
 		{% endblock %}
 	<div class="blog">
     <div class="blog-item">
-        {% include "blog/includes/google_adsense_blog_bottom.html" %}
+        {% render_ads_zone 'blog_ads_top_and_bottom' %}
         <hr>
     </div>
 	{% for blog_post in blog_posts.object_list %}
@@ -213,10 +212,9 @@
 	</div>
 	
 	<div class="blog-item">
-	{% include "blog/includes/google_adsense_blog_bottom.html" %}
+		{% render_ads_zone 'blog_ads_top_and_bottom' %}
 	<hr>
 	</div>
-
 	<div class="blog-item">
 	{% pagination_for blog_posts %}
 	</div>
