@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n staticfiles compress critical %}
-{% load blog_tags %}
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Kem">
@@ -64,12 +63,8 @@
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
         {% block extra_head %}{% endblock %}
-        
-        {% autoescape off %}
-            {% load sekizai_tags %}
-            {% render_block "js" %}
-        {% endautoescape %}
-
+        {% load sekizai_tags %}
+        {% render_block "js" %}
     </head>
     <body id="{% block body_id %}body{% endblock %}">
         {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
