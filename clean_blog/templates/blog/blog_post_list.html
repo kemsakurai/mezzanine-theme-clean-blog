@@ -3,6 +3,7 @@
 
 {% block extra_head %}
     {% pagination_prev_next_for blog_posts %}
+	{% include "blog/includes/google_adsense_script.html" %}
 {% endblock %}
 
 {# base.html のmeta_titleの処理の上書き #}
@@ -117,9 +118,7 @@
         	{# Do Nothing... #}
 		{% endblock %}
 	<div class="blog">
-    <div class="blog-item bottom30">
-        {% render_ads_zone 'blog_ads_top_and_bottom' %}
-    </div>
+	{% include "blog/includes/google_adsense.html" %}
 	{% for blog_post in blog_posts.object_list %}
 		 <div class="blog-item">
 			 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -210,9 +209,8 @@
 	<hr>
 	</div>
 	{% endfor %}
-    <div class="blog-item bottom30">
-        {% render_ads_zone 'blog_ads_top_and_bottom' %}
-    </div>
+	{% include "blog/includes/google_adsense.html" %}
+
 	<div class="blog-item">
 		{% pagination_for blog_posts %}
 	</div>

@@ -63,8 +63,6 @@
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
         {% block extra_head %}{% endblock %}
-        {% load sekizai_tags %}
-        {% render_block "js" %}
     </head>
     <body id="{% block body_id %}body{% endblock %}">
         {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
