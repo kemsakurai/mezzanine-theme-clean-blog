@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {# タグのload #}
-{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags meta %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags %}
 
 {% block extra_head %}
 	{% include "blog/includes/google_adsense_script.html" %}
@@ -9,13 +9,17 @@
 {% block extra_ogp %}
 {% spaceless %}
 {% autoescape off %}
-    {% og_prop 'title' blog_post.title %}
-    {% og_prop 'url' blog_post.get_absolute_url %}
-    {% og_prop 'description' blog_post.description %}
-    {% og_prop 'type' "article" %}
-    {% if settings.SITE_TITLE %}{% og_prop 'site_name' settings.SITE_TITLE %}{% endif %}
-    {% if settings.CLEAN_BLOG_FACEBOOK_APP_ID %}{% facebook_prop 'app_id' settings.CLEAN_BLOG_FACEBOOK_APP_ID %}{% endif %}
-    {% twitter_prop 'card' "summary" %}
+    <meta property="og:title" content="{{blog_post.title}}"/>
+    <meta property="og:url" content="{{blog_post.get_absolute_url}}" />
+    <meta property="og:description" content="{{blog_post.description}}" />
+    <meta property="og:type" content="article" />
+    {% if settings.SITE_TITLE %}
+    <meta property="og:site_name" content="{{settings.SITE_TITLE}}" />
+    {% endif %}
+    {% if settings.CLEAN_BLOG_FACEBOOK_APP_ID %}
+    <meta property="fb:app_id" content="{{settings.CLEAN_BLOG_FACEBOOK_APP_ID}}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary" />
 {% endautoescape %}
 {% endspaceless %}
 {% endblock %}
