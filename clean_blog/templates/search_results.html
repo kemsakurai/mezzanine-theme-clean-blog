@@ -19,6 +19,7 @@
 {% block main %}
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			{% include "blog/includes/google_adsense.html" %}
 			<p>
 		    <h2>
 		    {% if results.paginator.count == 0 %}
@@ -33,7 +34,6 @@
 			</h2>
 		    </p>
 		    <hr>
-			{% include "blog/includes/google_adsense.html" %}
 			<div id="search-results">
 			{% for result in results.object_list %}
 			{% with result.get_absolute_url as result_url %}
