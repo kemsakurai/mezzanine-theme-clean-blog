@@ -11,10 +11,8 @@ register_setting(
              "TWITTER_ACCOUNT_NAME",
              "FACEBOOK_USER_NAME",
              "GITHUB_USER_NAME",
-             "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_TOP",
-             "CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_TOP",
-             "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_BOTTOM",
-             "CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_BOTTOM",
+             "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID",
+             "CLEAN_BLOG_GOOGLE_ADS_SLOT_ID",
              "CLEAN_BLOG_FACEBOOK_APP_ID",
              "CLEAN_BLOG_IS_VISIBLE_DESCRIPTION"
              ),
@@ -50,28 +48,14 @@ register_setting(
 )
 
 register_setting(
-    name="CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_BOTTOM",
+    name="CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID",
     description="GOOGLE ADS CLIENT ID for CLEAN_BLOG",
     editable=True,
     default="",
 )
 
 register_setting(
-    name="CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_BOTTOM",
-    description="GOOGLE ADS SLOT ID for CLEAN_BLOG",
-    editable=True,
-    default="",
-)
-
-register_setting(
-    name="CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID_TOP",
-    description="GOOGLE ADS CLIENT ID for CLEAN_BLOG",
-    editable=True,
-    default="",
-)
-
-register_setting(
-    name="CLEAN_BLOG_GOOGLE_ADS_SLOT_ID_TOP",
+    name="CLEAN_BLOG_GOOGLE_ADS_SLOT_ID",
     description="GOOGLE ADS SLOT ID for CLEAN_BLOG",
     editable=True,
     default="",
@@ -89,4 +73,3 @@ register_setting(
     editable=True,
     default=False,
 )
-
