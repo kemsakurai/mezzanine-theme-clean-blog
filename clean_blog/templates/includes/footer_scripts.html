@@ -9,7 +9,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
 ga('send', 'pageview');
-$(window).load(function () {                                                                                                                                                    
+$(window).load(function () {                    
     $("a").click(function(e) {   
         var href = $(this).attr('href');
         if ( !href || href == "") {
