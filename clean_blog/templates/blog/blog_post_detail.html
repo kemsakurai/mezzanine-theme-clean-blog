@@ -182,11 +182,11 @@
         </div>
         
 	    {% include "blog/includes/google_adsense.html" %}
-		
+
 		<div class="blog-item">
-            {% include "blog/includes/filter_panel_blog_detail_bottom.html" %}
+            {% include "blog/includes/filter_panel_blog_detail_bottom.html" with blog_post=blog_post %}
         </div>
-    
+
         {% block blog_post_previous_next %}
         <div class="blog-item">
             <ul class="pager">
