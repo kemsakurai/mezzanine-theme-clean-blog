@@ -48,8 +48,6 @@
     {% endcompress %}
     {% endcritical %}
     {% compress js %}
-        <!-- jQuery -->
-        <script src="{% static "js/jquery.min.js" %}"></script>
         {% block extra_js %}{% endblock %}
     {% endcompress %}
         {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
@@ -138,6 +136,8 @@
 {% include "includes/footer_scripts.html" %}
 {% endblock %}
 {% compress js %}
+<!-- jQuery -->
+<script src="{% static "js/jquery.min.js" %}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{% static "js/jqBootstrapValidation.js"%}" async defer></script>
 <!-- Bootstrap Core JavaScript -->
