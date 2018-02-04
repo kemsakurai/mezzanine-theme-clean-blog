@@ -48,6 +48,9 @@
     {% endcompress %}
     {% endcritical %}
     {% compress js %}
+        {% if request.user.is_staff %}
+        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+        {% endif %}
         {% block extra_js %}{% endblock %}
     {% endcompress %}
         {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
