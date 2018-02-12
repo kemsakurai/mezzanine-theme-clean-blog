@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n staticfiles compress critical %}
+{% load pages_tags mezzanine_tags i18n staticfiles compress critical clean_blog_tags %}
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Kem">
@@ -9,7 +9,7 @@
         <meta name="description" content="{% block meta_description %}{% endblock %}">
         <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
         <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}" />
-        <link rel="amphtml" href="{{ request.get_full_path }}">
+        <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
         <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
         {% block extra_ogp %}{% endblock %}
     {% ifinstalled mezzanine.blog %}

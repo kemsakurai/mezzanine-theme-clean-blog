@@ -2,11 +2,18 @@ from __future__ import absolute_import, division, unicode_literals
 
 from mezzanine import template
 from mezzanine.blog.models import BlogPost, BlogCategory
+from django.conf import settings as django_settings
 import json
 
 register = template.Library()
 
-
+@register.filter
+def to_amp_url(url):
+    if django_settings.USE_AMP:
+        return url.replace("/blog/","/amp/blog/")
+    else:
+        return url
+    
 @register.inclusion_tag("includes/pagination_prev_next.html", takes_context=True)
 def pagination_prev_next_for(context, current_page, page_var="page", exclude_vars=""):
     querystring = context["request"].GET.copy()
