@@ -12,7 +12,7 @@ module.exports = {
 
   entry : {
       // ページごとに異なるエントリポイントを設ける
-      "bundle"   : "./js/index.js"
+      bundle   : ["babel-loader!uglify-loader!./js/index.js"]
   },
   output: {
     path: cleanBlogRoot + "/static/webpack_bundles",

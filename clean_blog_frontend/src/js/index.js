@@ -4,7 +4,7 @@ import "../css/clean-blog.css";
 import "../css/codehilite.css";
 import "../css/font-awesome.min.css";
 import "../css/fonts.css";
-import "./jquery.js";
+import $ from './jquery.js';
 import "./bootstrap.js";
 import "./clean-blog.js";
 import "./jqBootstrapValidation.js";
