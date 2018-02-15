@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n staticfiles critical clean_blog_tags render_bundle from webpack_loader %}
+{% load pages_tags mezzanine_tags i18n staticfiles critical clean_blog_tags %}
+{% load render_bundle from webpack_loader %}
     <head>
         <meta charset="utf-8">
         <meta name="author" content="Kem">
