@@ -6,3 +6,4 @@
 .idea/*
 local_settings.py
 /static
+clean_blog_frontend/node_modules
