@@ -12,13 +12,12 @@ module.exports = {
 
   entry : {
       // ページごとに異なるエントリポイントを設ける
-      bundle   : ["babel-loader!uglify-loader!./js/index.js"]
+      bundle   : ["./js/index.js"]
   },
   output: {
     path: cleanBlogRoot + "/static/webpack_bundles",
     filename: "[name]-[hash].js"
   },
-
   module: {
     loaders: [
       {
@@ -41,6 +40,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new Webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+    }),
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
     new Webpack.optimize.UglifyJsPlugin(),
     new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
