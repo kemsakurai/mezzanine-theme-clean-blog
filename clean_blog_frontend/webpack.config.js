@@ -55,7 +55,7 @@ module.exports = {
       filename: '[name]-[hash].css',
     }),
     new WebpackPwaManifest({
-        filename: cleanBlogRoot + "/templates/" + "manifest.json",
+        filename: "manifest.json",
         name: 'www.monotalk.xyz',
         short_name: 'monotalk',
         description: '日々の書き込み',
@@ -68,8 +68,7 @@ module.exports = {
                   src: path.resolve('src/icon/icon.png'),
                   sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
                 }
-        ],
-        includeDirectory: true
+        ]
     })
   ]
 }
