@@ -19,7 +19,7 @@
     {% endifinstalled %}
 
     {% critical %}
-        {% render_bundle 'main' 'css' %}
+        {% render_bundle 'bundle' 'css' %}
     {% endcritical %}
         {% if request.user.is_staff %}
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
@@ -110,7 +110,7 @@
 {% block footer_js %}
 {% include "includes/footer_scripts.html" %}
 {% endblock %}
-{% render_bundle 'main' 'js' attrs='async defer chatset="UTF-8"'%}
+{% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"'%}
 {% autoescape off %}
 {% critical_async %}
 {% endautoescape %}
