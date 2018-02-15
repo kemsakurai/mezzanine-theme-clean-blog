@@ -43,7 +43,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
     new Webpack.optimize.UglifyJsPlugin(),
-    new BundleTracker({filename: "./webpack-stats.json"}),
+    new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
     new WorkboxPlugin({
         globDirectory : cleanBlogRoot + "/static",
         globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2}'],
