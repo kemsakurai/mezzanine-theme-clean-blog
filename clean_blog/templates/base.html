@@ -10,7 +10,6 @@
         <meta name="description" content="{% block meta_description %}{% endblock %}">
         <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
         <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}" />
-        <link rel="serviceworker" href="/serviceWorker.js" scope="/">
         <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}" />
         <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
         <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
