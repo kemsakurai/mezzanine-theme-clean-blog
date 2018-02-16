@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "./node_modules/.bin/webpack --watch --progress --config webpack.config.js",
-    "build": "./node_modules/.bin/webpack --config webpack.config.js -p",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
     "eslint": "./node_modules/.bin/eslint"
   },
   "keywords": [

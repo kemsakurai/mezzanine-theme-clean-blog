@@ -24,7 +24,7 @@ workboxSW.precache([
   },
   {
     "url": "webpack_bundles/bundle-111e627256ee5029af51.js",
-    "revision": "fd2690ea29bfe10bda7c9b4ecacf5e81"
+    "revision": "7f72cb62b1e8001112f24382c0c12e63"
   },
   {
     "url": "webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
