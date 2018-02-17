@@ -3,47 +3,47 @@ importScripts("static/js/workbox-sw.prod.v2.1.2.js");
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
   {
-    "url": "js/workbox-sw.prod.v2.1.2.js",
+    "url": "static/js/workbox-sw.prod.v2.1.2.js",
     "revision": "685d1ceb6b9a9f94aacf71d6aeef8b51"
   },
   {
-    "url": "webpack_bundles/448c34a56d699c29117adc64c43affeb.woff2",
+    "url": "static/webpack_bundles/448c34a56d699c29117adc64c43affeb.woff2",
     "revision": "448c34a56d699c29117adc64c43affeb"
   },
   {
-    "url": "webpack_bundles/65bcbc899f379216109acd0b6c494618.svg",
+    "url": "static/webpack_bundles/65bcbc899f379216109acd0b6c494618.svg",
     "revision": "65bcbc899f379216109acd0b6c494618"
   },
   {
-    "url": "webpack_bundles/7149833697a959306ec3012a8588dcfa.eot",
+    "url": "static/webpack_bundles/7149833697a959306ec3012a8588dcfa.eot",
     "revision": "7149833697a959306ec3012a8588dcfa"
   },
   {
-    "url": "webpack_bundles/89889688147bd7575d6327160d64e760.svg",
+    "url": "static/webpack_bundles/89889688147bd7575d6327160d64e760.svg",
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "webpack_bundles/bundle-6814ae3b2bbe462aee66.css",
+    "url": "static/webpack_bundles/bundle-6814ae3b2bbe462aee66.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "webpack_bundles/bundle-6814ae3b2bbe462aee66.js",
+    "url": "static/webpack_bundles/bundle-6814ae3b2bbe462aee66.js",
     "revision": "92c3f02ec246464f7313e8f5de805344"
   },
   {
-    "url": "webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
+    "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
     "revision": "c4668ed2440df82d3fd2f8be9d31d07d"
   },
   {
-    "url": "webpack_bundles/e18bbf611f2a2e43afc071aa2f4e1512.ttf",
+    "url": "static/webpack_bundles/e18bbf611f2a2e43afc071aa2f4e1512.ttf",
     "revision": "e18bbf611f2a2e43afc071aa2f4e1512"
   },
   {
-    "url": "webpack_bundles/f4769f9bdb7466be65088239c12046d1.eot",
+    "url": "static/webpack_bundles/f4769f9bdb7466be65088239c12046d1.eot",
     "revision": "f4769f9bdb7466be65088239c12046d1"
   },
   {
-    "url": "webpack_bundles/messageSender-6814ae3b2bbe462aee66.js",
+    "url": "static/webpack_bundles/messageSender-6814ae3b2bbe462aee66.js",
     "revision": "1fd944d7077c40442c7972bd9f10f207"
   }
 ]);
@@ -225,3 +225,4 @@ self.addEventListener("notificationclick", function (event) {
         })
     );
 });
+

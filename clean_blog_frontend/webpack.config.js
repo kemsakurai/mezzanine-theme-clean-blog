@@ -50,7 +50,11 @@ module.exports = {
     new WorkboxPlugin({
         globDirectory : cleanBlogRoot + "/static",
         globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2}'],
-        globIgnores: ['**/*.min.{js,css}'],
+        globIgnores: ['**/*.min.{js,css}',"**/workboc-sw*.{js}"],
+         modifyUrlPrefix: {
+          'webpack_bundles': 'static/webpack_bundles',
+          'js': 'static/js',
+        },
         swSrc:  __dirname + '/src/js/serviceWorker.js',
         swDest: cleanBlogRoot + "/templates/serviceWorker.js"
     }),
