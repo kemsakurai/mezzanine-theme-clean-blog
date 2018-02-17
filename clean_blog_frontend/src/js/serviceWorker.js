@@ -6,12 +6,12 @@ workboxSW.precache([]);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-// workboxSW.router.registerRoute(/\/api\/v2\/.+/, workboxSW.strategies.staleWhileRevalidate({
-//     "cacheName": "api",
-//     "cacheExpiration": {
-//         "maxAgeSeconds": 60 * 60 * 24, "maxEntries": 20
-//     }
-// }), "GET");
+workboxSW.router.registerRoute(/\/$|\/\?utm_source.+/, workboxSW.strategies.staleWhileRevalidate({
+    "cacheName": "urlRoot",
+    "cacheExpiration": {
+        "maxAgeSeconds": 60 * 60 * 24, "maxEntries": 1
+    }
+}), "GET");
 // Utils functions:
 function urlBase64ToUint8Array(base64String) {
     var padding = "=".repeat((4 - base64String.length % 4) % 4);

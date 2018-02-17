@@ -40,7 +40,7 @@
   "short_name": "monotalk",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "https://www.monotalk.xyz",
+  "start_url": "https://www.monotalk.xyz/",
   "description": "日々の書き込み",
   "background_color": "#ffffff",
   "theme_color": "#808080"
