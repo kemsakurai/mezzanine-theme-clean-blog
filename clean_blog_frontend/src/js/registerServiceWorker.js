@@ -64,6 +64,7 @@ export function registerValidSW(swUrl) {
                             console.log("Content is cached for offline use.");
                             /* eslint-enable no-console */
                         }
+                        
                     }
                 };
             };

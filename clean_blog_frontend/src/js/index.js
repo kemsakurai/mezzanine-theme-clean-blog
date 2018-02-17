@@ -12,3 +12,6 @@ import "./contact_me.js";
 
 import registerServiceWorker from "./registerServiceWorker.js";
 registerServiceWorker();
+
+import configure from "./pageConfigurator.js";
+configure();
