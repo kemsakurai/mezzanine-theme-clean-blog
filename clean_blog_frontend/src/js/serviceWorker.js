@@ -191,13 +191,6 @@ self.addEventListener("push", function (event) {
     });
 });
 
-// activate
-self.addEventListener('activate', (e) => {
-  if (navigator.serviceWorker.controller == null) {
-    e.waitUntil(self.clients.claim());
-  }
-});
-
 // Optional: Added to that the browser opens when you click on the notification push web.
 // 通知クリック時の動作を定義
 self.addEventListener("notificationclick", function (event) {
