@@ -35,12 +35,20 @@ workboxSW.precache([
     "revision": "c4668ed2440df82d3fd2f8be9d31d07d"
   },
   {
+    "url": "static/webpack_bundles/d95d6f5d5ab7cfefd09651800b69bd54.woff",
+    "revision": "d95d6f5d5ab7cfefd09651800b69bd54"
+  },
+  {
     "url": "static/webpack_bundles/e18bbf611f2a2e43afc071aa2f4e1512.ttf",
     "revision": "e18bbf611f2a2e43afc071aa2f4e1512"
   },
   {
     "url": "static/webpack_bundles/f4769f9bdb7466be65088239c12046d1.eot",
     "revision": "f4769f9bdb7466be65088239c12046d1"
+  },
+  {
+    "url": "static/webpack_bundles/fa2772327f55d8198301fdb8bcfc8158.woff",
+    "revision": "fa2772327f55d8198301fdb8bcfc8158"
   },
   {
     "url": "static/webpack_bundles/messageSender-cf7678b98156e8c9863c.js",

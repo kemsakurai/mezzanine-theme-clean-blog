@@ -36,7 +36,8 @@ module.exports = {
         })
       },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: ["url-loader?limit=10000&mimetype=application/font-woff","file-loader"] },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: ["file-loader"] }
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: ["file-loader"] },
+      { test: /\.(ttf|eot|svg)(\?#.+)$/, loader: ["file-loader"] }
     ]
   },
   plugins: [
@@ -49,7 +50,7 @@ module.exports = {
     new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
     new WorkboxPlugin({
         globDirectory : cleanBlogRoot + "/static",
-        globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2}'],
+        globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2,woff}'],
         globIgnores: ['**/*.min.{js,css}',"**/workboc-sw*.{js}"],
          modifyUrlPrefix: {
           'webpack_bundles': 'static/webpack_bundles',
@@ -67,7 +68,7 @@ module.exports = {
         short_name: 'monotalk',
         description: '日々の書き込み',
         background_color: '#ffffff',
-        start_url: "/?utm_source=homescreen",
+        start_url: "/?utm_source=pwa&utm_medium=home_screen",
         display: "standalone",
         theme_color: "#808080",
         icons: [
