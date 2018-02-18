@@ -4,7 +4,13 @@ export default function configure() {
 	    window.addEventListener('beforeinstallprompt', e => {
           e.userChoice.then(choiceResult => {
             if (typeof ga !== "undefined") {
-                ga('send', 'event', 'A2H', choiceResult.outcome, document.title);
+	          ga('send', {
+	    		hitType: 'event',
+	    		eventCategory: 'A2H',
+	    		eventAction: choiceResult.outcome,
+	    		eventLabel: document.title,
+	    		nonInteraction: true
+	  			});
             }
           });
 	    });
