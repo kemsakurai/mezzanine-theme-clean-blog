@@ -55,7 +55,7 @@ workboxSW.precache([
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workboxSW.router.registerRoute(/^\/$|^\/\/\?utm_source=pwa&utm_medium=home_screen$|^\/\?page=.+$/, workboxSW.strategies.networkFirst({
+workboxSW.router.registerRoute(/^\/$|^\/\?utm_source=pwa&utm_medium=home_screen$|^\/\?page=.+$/, workboxSW.strategies.networkFirst({
     "cacheName": "root",
     "cacheExpiration": {
         "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 1
