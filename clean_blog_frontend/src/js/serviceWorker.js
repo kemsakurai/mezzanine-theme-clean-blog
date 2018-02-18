@@ -9,7 +9,7 @@ workboxSW.precache([]);
 workboxSW.router.registerRoute(/^\/$|^\/\?utm_source.*$|^\/\?page=.+$/, workboxSW.strategies.networkFirst({
     "cacheName": "root",
     "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 1
+        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
     }
 }), "GET");
 workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networkFirst({
