@@ -67,7 +67,7 @@ module.exports = {
         short_name: 'monotalk',
         description: '日々の書き込み',
         background_color: '#ffffff',
-        start_url: "/?utm_source=pwa&utm_medium=home_screen",
+        start_url: "/?utm_source=home_screen",
         display: "standalone",
         theme_color: "#808080",
         icons: [
