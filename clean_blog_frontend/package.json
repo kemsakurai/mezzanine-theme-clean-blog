@@ -30,6 +30,7 @@
     "webpack": "^3.11.0",
     "webpack-bundle-tracker": "^0.2.1",
     "webpack-pwa-manifest": "^3.5.0",
+    "workbox-broadcast-cache-update": "^2.0.3",
     "workbox-webpack-plugin": "^2.1.2"
   },
   "dependencies": {

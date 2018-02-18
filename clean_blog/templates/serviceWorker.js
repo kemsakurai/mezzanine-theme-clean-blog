@@ -23,12 +23,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-c4ef61bf50254f8ce16b.css",
+    "url": "static/webpack_bundles/bundle-10d196d7d56fabf474b6.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-c4ef61bf50254f8ce16b.js",
-    "revision": "e80017df4be9fb9a948c28f9c1683cac"
+    "url": "static/webpack_bundles/bundle-10d196d7d56fabf474b6.js",
+    "revision": "de5c23a51525c682c0583318ac828a36"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -73,7 +73,7 @@ workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networ
         "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
     }
 }), "GET");
-workboxSW.router.registerRoute(/^\/blog\/category\/.*$/, workboxSW.strategies.networkFirst({
+workboxSW.router.registerRoute(/^\/blog\/category\/.+$/, workboxSW.strategies.networkFirst({
     "cacheName": "category",
     "cacheExpiration": {
         "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
@@ -148,7 +148,7 @@ var getNotificationOptions = function (message, message_tag) {
 };
 // WebPush通知許可を求める
 var requestNotification = function (userAgent) {
-// 許可された場合の処理
+    // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
     const serverPublicKey = "BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k";

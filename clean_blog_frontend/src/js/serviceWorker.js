@@ -24,7 +24,7 @@ workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networ
         "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
     }
 }), "GET");
-workboxSW.router.registerRoute(/^\/blog\/category\/.*$/, workboxSW.strategies.networkFirst({
+workboxSW.router.registerRoute(/^\/blog\/category\/.+$/, workboxSW.strategies.networkFirst({
     "cacheName": "category",
     "cacheExpiration": {
         "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
@@ -99,7 +99,7 @@ var getNotificationOptions = function (message, message_tag) {
 };
 // WebPush通知許可を求める
 var requestNotification = function (userAgent) {
-// 許可された場合の処理
+    // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
     const serverPublicKey = "BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k";

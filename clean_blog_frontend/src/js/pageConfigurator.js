@@ -35,24 +35,23 @@ export default function configure() {
         window.addEventListener('_sendRequestNotification', () => {
         	// WebPush API の承認要求を求める
 		    var args = {"userAgent": window.navigator.userAgent};
-		    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
-		    // if ("Notification" in window) {
-		    //     //許可を求める
-		    //     Notification.requestPermission()
-		    //         .then((permission) => {
-		    //             if (permission === "denied" || permission === "default") {
-		    //                 // 拒否 // 無視
-		    //                 return;
-		    //             } else if (permission === "granted") {
-		    //                 var args = {"userAgent": window.navigator.userAgent};
-		    //                 sendMessage({"command": "requestNotification", "args": args});
-		    //             } else {
-		    //                 /* eslint-disable no-console */
-		    //                 console.log("permission is illegal : %s", permission);
-		    //             }
-		    //         });
-		    // }        	
+		    if ("Notification" in window) {
+		        //許可を求める
+		        Notification.requestPermission()
+		            .then((permission) => {
+		                if (permission === "denied" || permission === "default") {
+		                    // 拒否 // 無視
+		                    return;
+		                } else if (permission === "granted") {
+		                    var args = {"userAgent": window.navigator.userAgent};
+		                    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
+		                } else {
+		                    /* eslint-disable no-console */
+		                    console.log("permission is illegal : %s", permission);
+		                }
+		            });
+		    }
 	    });
 	    /* eslint-enable no-unused-vars */
-		}   
+	}   
 }
