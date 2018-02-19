@@ -9,7 +9,10 @@ function sendMessage2ServiceWorker(message) {
                 resolve(e.data);
             }
         };
-        navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
+        // 登録時は、activateしないため、controller は nullになる
+        if(navigator.serviceWorker.controller) {
+        	navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
+        }
     });
 }
 
