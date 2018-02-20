@@ -5,9 +5,16 @@ from push_notifications.models import WebPushDevice
 from mezzanine.blog.models import BlogCategory
 from django.utils.translation import ugettext_lazy as _
 
+class WebPushDeviceEx(WebPushDevice):
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        return '%s - %S' % (self.browser, self.registration_id) 
+
 class WebPushCategory(models.Model):	 
     
-	web_push_device = models.ForeignKey(WebPushDevice)
+	web_push_device = models.ForeignKey(WebPushDeviceEx)
     
 	blog_categories = models.ManyToManyField(BlogCategory, verbose_name=_("WebPushCategories"), blank=True)
 
