@@ -11,5 +11,9 @@ class WebPushCategory(models.Model):
     
 	blog_categories = models.ManyToManyField(BlogCategory, verbose_name=_("Categories"), blank=True)
 
+	first_name = models.CharField(max_length=30)
+
+	last_name = models.CharField(max_length=30)
+
 	class Meta:
 		verbose_name = _("WebPush Categories")
