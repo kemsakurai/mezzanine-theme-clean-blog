@@ -13,4 +13,3 @@ class WebPushCategory(models.Model):
 
 	class Meta:
 		verbose_name = _("WebPush Categories")
-

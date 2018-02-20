@@ -11,10 +11,13 @@ class WebPushDeviceCategoriesSerializer(UniqueRegistrationSerializerMixin, Model
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WebPushCategory
 		fields = (
-			"id", "name", "registration_id", "active", "date_created",
-			"p256dh", "auth", "browser", "application_id", "categories",
+			"web_push_device","blog_categories",
 		)
-
+		#fields = (
+		#   "id", "name", "registration_id", "active", "date_created",
+		#   "p256dh", "auth", "browser", "application_id", "categories",
+		#)
+		
 class WebPushDeviceCategoriesViewSet(WebPushDeviceViewSet):
 	queryset = WebPushCategory.objects.all()
 	serializer_class = WebPushDeviceCategoriesSerializer
