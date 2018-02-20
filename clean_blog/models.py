@@ -9,10 +9,8 @@ class WebPushCategory(models.Model):
 
 	web_push_device = models.ForeignKey(WebPushDevice)
 
-	categories = models.ManyToManyField(BlogCategory,verbose_name=_("Categories"), blank=True, related_name="blogposts")
+	categories = models.ManyToManyField(BlogCategory,verbose_name=_("Categories"), blank=True, related_name="blogpost_categories")
 
 	class Meta:
-		verbose_name = _("WebPush Categories")
-		verbose_name_plural = _("Blog posts")
-		ordering = ("-publish_date",)
+		verbose_name = _("WebPush Categories");
 
