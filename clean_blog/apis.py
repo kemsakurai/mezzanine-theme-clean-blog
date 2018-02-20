@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 
-from rest_framework.viewsets import 
 from push_notifications.api.rest_framework import WebPushDeviceViewSet
 from push_notifications.api.rest_framework import DeviceSerializerMixin
 from push_notifications.api.rest_framework import UniqueRegistrationSerializerMixin
