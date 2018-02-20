@@ -9,11 +9,8 @@ class WebPushCategory(models.Model):
     
 	web_push_device = models.ForeignKey(WebPushDevice)
     
-	blog_categories = models.ManyToManyField(BlogCategory, verbose_name=_("Categories"), blank=True)
-
-	first_name = models.CharField(max_length=30)
-
-	last_name = models.CharField(max_length=30)
+	blog_categories = models.ManyToManyField(BlogCategory, verbose_name=_("WebPushCategories"), blank=True)
 
 	class Meta:
 		verbose_name = _("WebPush Categories")
+
