@@ -6,9 +6,9 @@ from mezzanine.blog.models import BlogCategory
 from django.utils.translation import ugettext_lazy as _
 
 class WebPushCategory(models.Model):	 
-    
+
 	web_push_device = models.ForeignKey(WebPushDevice)
-    
+
 	blog_categories = models.ManyToManyField(BlogCategory, verbose_name=_("WebPushCategories"), blank=True)
 
 	class Meta:
