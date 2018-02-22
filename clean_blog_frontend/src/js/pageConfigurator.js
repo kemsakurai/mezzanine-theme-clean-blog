@@ -36,8 +36,10 @@ export default function configure() {
 
         /* eslint-disable no-unused-vars */
         window.addEventListener('_sendRequestNotification', () => {
-        	// WebPush API の承認要求を求める
-		    var args = {"userAgent": window.navigator.userAgent};
+        	// dataLayer変数が設定されていない場合、処理を中断する
+        	if ( typeof windows.dataLayer === "undefined" || typeof windows.dataLayer.get("blogPostId") === "undefined") {
+        		return;
+        	}
 		    if ("Notification" in window) {
 		        //許可を求める
 		        Notification.requestPermission()
@@ -46,7 +48,13 @@ export default function configure() {
 		                    // 拒否 // 無視
 		                    return;
 		                } else if (permission === "granted") {
-		                    var args = {"userAgent": window.navigator.userAgent};
+		                	// 画面表示しているカテゴリの情報を取得     
+							let elements = document.querySelectorAll('[data-category="category"]');
+							let blogPostId = windows.dataLayer.get("blogPostId");
+							let args = {
+								"userAgent": window.navigator.userAgent, 
+								"categories" : elements ,
+								"blogPostId" : blogPostId };
 		                    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
 		                } else {
 		                    /* eslint-disable no-console */

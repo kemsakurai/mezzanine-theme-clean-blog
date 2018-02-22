@@ -97,8 +97,9 @@ var getNotificationOptions = function (message, message_tag) {
     };
     return options;
 };
+
 // WebPush通知許可を求める
-var requestNotification = function (userAgent) {
+var requestNotification = function (userAgent, categories, blogPostId) {
     // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
@@ -118,32 +119,47 @@ var requestNotification = function (userAgent) {
         } else {
             contentEncoding = "aesgcm";
         }
-        const data = {
+        const web_push_device = {
             "browser": browser.name.toUpperCase(),
             "p256dh": btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey("p256dh")))),
             "auth": btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey("auth")))),
-            "name": browser.name.toUpperCase(),
+            "name": userAgent,
             "active": true,
             "registration_id": registration_id,
             "contentEncoding": contentEncoding,
-            "cloud_message_type": "FCM"
+            "cloud_message_type": "FCM",
+            "application_id" : blogPostId
         };
         const method = "POST";
-        const body = JSON.stringify(data);
         const headers = {
             "Accept": "application/json",
             "Content-Type": "application/json"
         };
-        fetch("./api/v2/web_push/", {
-            method,
-            headers,
-            body
-        }).then((res) => res.json()).then(console.log).catch(console.error);
+        if (typeof categories === "undefinded" || categories.length === 0) {
+            fetch("./api/v2/web_push/", {
+                method,
+                headers,
+                JSON.stringify(web_push_device)
+            }).then((res) => res.json()).then(console.log).catch(console.error);            
+        } else {
+            let categoryNames = new Array();
+            categories.forEach(function(e) {
+                categoryNames.push(e.text);
+            });
+            let body = {
+                "web_push_device": web_push_device, 
+                "blog_categories" : categoryNames
+            };
+            fetch("./api/v2/web_push_with_categories/", {
+                method,
+                headers,
+                JSON.stringify(body)
+            }).then((res) => res.json()).then(console.log).catch(console.error);
+        }
     }).catch(error => {
         /* eslint-disable no-console */
         console.error("Error during service worker ready:", error);
     });
-
 };
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
@@ -153,7 +169,7 @@ self.addEventListener("message", e => {
     switch (command) {
         case "requestNotification":
             // 通知承認要求
-            requestNotification(args.userAgent);
+            requestNotification(args.userAgent, args.categories, args.blogPostId);
             break;
         default:
             return Promise.resolve();
