@@ -176,8 +176,7 @@ var requestNotification = function (userAgent, categories, blogPostId) {
             "active": true,
             "registration_id": registration_id,
             "contentEncoding": contentEncoding,
-            "cloud_message_type": "FCM",
-            "application_id" : blogPostId
+            "cloud_message_type": "FCM"
         };
         const method = "POST";
         const headers = {
@@ -194,7 +193,8 @@ var requestNotification = function (userAgent, categories, blogPostId) {
         } else {
             let data = {
                 "web_push_device": web_push_device, 
-                "blog_categories" : categories
+                "blog_categories" : categories,
+                "blog_post_id" : blogPostId
             };
             let body = JSON.stringify(data);
             fetch("./api/v2/web_push_with_categories/", {
