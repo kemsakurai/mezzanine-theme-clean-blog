@@ -50,7 +50,7 @@ module.exports = {
     new WorkboxPlugin({
         globDirectory : cleanBlogRoot + "/static",
         globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2,woff}'],
-        globIgnores: ['**/*.min.{js,css}',"**/workbox-sw*.{js}"],
+        globIgnores: ['**/*.min.{js,css}',"**/workbox*.{js}"],
          modifyUrlPrefix: {
           'webpack_bundles': 'static/webpack_bundles',
           'js': 'static/js',
