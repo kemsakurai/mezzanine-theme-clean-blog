@@ -18,12 +18,12 @@ class WebPushDeviceCategoriesSerializer(ModelSerializer):
 
 	def create(self, validated_data):
 		web_push_device = validated_data.pop('web_push_device')
-		result_device = WebPushDevice.object.create(**web_push_device)
+		result_device = WebPushDevice.objects.create(**web_push_device)
 
 		blog_categories = []		
 		for blog_category in validated_data.pop('blog_categories'):
 			blog_categories.append(BlogCategory.object.get(title=blog_category))
-		return WebPushCategory.object.create(web_push_device=result_device, blog_categories=blog_categories)
+		return WebPushCategory.objects.create(web_push_device=result_device, blog_categories=blog_categories)
 
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WebPushCategory
