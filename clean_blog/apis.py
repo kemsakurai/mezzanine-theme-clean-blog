@@ -7,13 +7,14 @@ from push_notifications.api.rest_framework import UniqueRegistrationSerializerMi
 from .models import WebPushCategory
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-
+from mezzanine.blog.models import BlogCategory
 
 class WebPushDeviceCategoriesSerializer(UniqueRegistrationSerializerMixin, ModelSerializer):
-	
+
 	web_push_device = WebPushDeviceSerializer()
 	
-	blog_categories = serializers.SlugRelatedField(many=True, read_only=False, slug_field="title")
+	blog_categories = serializers.SlugRelatedField(many=True, read_only=False, 
+		slug_field="title", queryset=BlogCategory.objects.all(), required=True)
 
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WebPushCategory
