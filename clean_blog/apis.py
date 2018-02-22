@@ -24,11 +24,11 @@ class WebPushDeviceCategoriesSerializer(ModelSerializer):
 
 		blog_categories = []		
 		for blog_category in validated_data.pop('blog_categories'):
-			blog_categories.append(BlogCategory.object.get(title=blog_category))
+			blog_categories.append(BlogCategory.objects.get(title=blog_category))
 
 		WebPushBlogPost.objects.create(web_push_device=result_device, 
-			blog_post=BlogPost.object.get(validated_data.pop('blog_post_id')))
-		
+			blog_post=BlogPost.objects.get(validated_data.pop('blog_post_id')))
+
 		return WebPushCategory.objects.create(web_push_device=result_device, blog_categories=blog_categories)
 
 	class Meta(DeviceSerializerMixin.Meta):
