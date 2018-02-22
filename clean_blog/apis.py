@@ -33,4 +33,4 @@ class WebPushDeviceCategoriesViewSet(WebPushDeviceViewSet):
 		blog_categories = []		
 		for blog_category in validated_data.pop('blog_categories'):
 			blog_categories.append(BlogCategory.object.get(title=blog_category))
-        return WebPushCategory.object.create(web_push_device=result_device, blog_categories=blog_categories)
+		return WebPushCategory.object.create(web_push_device=result_device, blog_categories=blog_categories)
