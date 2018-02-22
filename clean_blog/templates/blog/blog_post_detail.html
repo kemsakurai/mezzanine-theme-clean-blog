@@ -47,6 +47,11 @@
 {% block gtn_dataLayer %}
 {% autoescape off %}
 	<script type="text/javascript">
+		window.blogPostInfo = {
+		  'blogPostId':'{{ blog_post.id|escapejs }}',
+		  'blogPostCategories': [{% for category in categories %}'{{ category|escapejs }}'{% if not forloop.last %},{% endif %}{% endfor %}]
+	    };
+	    
 		window.dataLayer = window.dataLayer || [];
 		dataLayer.push({
 			'blogPostId':'{{ blog_post.id|escapejs }}',

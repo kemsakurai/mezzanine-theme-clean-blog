@@ -39,7 +39,7 @@ export default function configure() {
         // window.dispatchEvent(event);
         window.addEventListener('_sendRequestNotification', () => {
         	// dataLayer変数が設定されていない場合、処理を中断する
-        	if ( typeof window.dataLayer === "undefined" || typeof window.dataLayer.get("blogPostId") === "undefined") {
+        	if ( typeof window.blogPostInfo === "undefined") {
         		return;
         	}
 		    if ("Notification" in window) {
@@ -50,13 +50,10 @@ export default function configure() {
 		                    // 拒否 // 無視
 		                    return;
 		                } else if (permission === "granted") {
-		                	// 画面表示しているカテゴリの情報を取得     
-							let elements = document.querySelectorAll('[data-category="category"]');
-							let blogPostId = windows.dataLayer.get("blogPostId");
 							let args = {
 								"userAgent": window.navigator.userAgent, 
-								"categories" : elements ,
-								"blogPostId" : blogPostId };
+								"categories" : window.blogPostInfo.blogPostCategories ,
+								"blogPostId" : window.blogPostInfo.blogPostId };
 		                    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
 		                } else {
 		                    /* eslint-disable no-console */
@@ -66,5 +63,5 @@ export default function configure() {
 		    }
 	    });
 	    /* eslint-enable no-unused-vars */
-	}   
+	}
 }
