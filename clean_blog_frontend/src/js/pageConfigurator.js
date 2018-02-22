@@ -35,9 +35,11 @@ export default function configure() {
         });
 
         /* eslint-disable no-unused-vars */
+        // var event = new Event('_sendRequestNotification');
+        // window.dispatchEvent(event);
         window.addEventListener('_sendRequestNotification', () => {
         	// dataLayer変数が設定されていない場合、処理を中断する
-        	if ( typeof windows.dataLayer === "undefined" || typeof windows.dataLayer.get("blogPostId") === "undefined") {
+        	if ( typeof window.dataLayer === "undefined" || typeof window.dataLayer.get("blogPostId") === "undefined") {
         		return;
         	}
 		    if ("Notification" in window) {
