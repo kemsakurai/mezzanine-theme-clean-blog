@@ -16,6 +16,15 @@ class WebPushDeviceCategoriesSerializer(ModelSerializer):
 	blog_categories = serializers.SlugRelatedField(many=True, read_only=False, 
 		slug_field="title", queryset=BlogCategory.objects.all(), required=True)
 
+	def create(self, validated_data):
+		web_push_device = validated_data.pop('web_push_device')
+		result_device = WebPushDevice.object.create(**web_push_device)
+
+		blog_categories = []		
+		for blog_category in validated_data.pop('blog_categories'):
+			blog_categories.append(BlogCategory.object.get(title=blog_category))
+		return WebPushCategory.object.create(web_push_device=result_device, blog_categories=blog_categories)
+
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WebPushCategory
 		fields = (
@@ -26,11 +35,3 @@ class WebPushDeviceCategoriesViewSet(WebPushDeviceViewSet):
 	queryset = WebPushCategory.objects.all()
 	serializer_class = WebPushDeviceCategoriesSerializer
 
-	def create(self, validated_data):
-		web_push_device = validated_data.pop('web_push_device')
-		result_device = WebPushDevice.object.create(**web_push_device)
-
-		blog_categories = []		
-		for blog_category in validated_data.pop('blog_categories'):
-			blog_categories.append(BlogCategory.object.get(title=blog_category))
-		return WebPushCategory.object.create(web_push_device=result_device, blog_categories=blog_categories)
