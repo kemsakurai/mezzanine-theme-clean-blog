@@ -49,7 +49,9 @@
 	<script type="text/javascript">
 		window.blogPostInfo = {
 		  'blogPostId':'{{ blog_post.id|escapejs }}',
+		  {% with blog_post.categories.all as categories %}
 		  'blogPostCategories': [{% for category in categories %}'{{ category|escapejs }}'{% if not forloop.last %},{% endif %}{% endfor %}]
+		  {% endwith %}
 	    };
 	    
 		window.dataLayer = window.dataLayer || [];
