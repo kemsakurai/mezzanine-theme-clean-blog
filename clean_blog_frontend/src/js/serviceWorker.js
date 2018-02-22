@@ -138,9 +138,9 @@ var requestNotification = function (userAgent, categories, blogPostId) {
         if (typeof categories === "undefinded" || categories.length === 0) {
             let body = JSON.stringify(web_push_device);
             fetch("./api/v2/web_push/", {
-                method,
-                headers,
-                body
+                "method" : method,
+                "headers" : headers,
+                "body" : body
             }).then((res) => res.json()).then(console.log).catch(console.error);            
         } else {
             let data = {
@@ -149,9 +149,9 @@ var requestNotification = function (userAgent, categories, blogPostId) {
             };
             let body = JSON.stringify(data);
             fetch("./api/v2/web_push_with_categories/", {
-                method,
-                headers,
-                body
+                "method" : method,
+                "headers" : headers,
+                "body" : body
             }).then((res) => res.json()).then(console.log).catch(console.error);
         }
     }).catch(error => {
