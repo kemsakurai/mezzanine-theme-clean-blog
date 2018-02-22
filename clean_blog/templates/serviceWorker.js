@@ -185,10 +185,11 @@ var requestNotification = function (userAgent, categories, blogPostId) {
             "Content-Type": "application/json"
         };
         if (typeof categories === "undefinded" || categories.length === 0) {
+            let body = JSON.stringify(web_push_device);
             fetch("./api/v2/web_push/", {
                 method,
                 headers,
-                JSON.stringify(web_push_device)
+                body
             }).then((res) => res.json()).then(console.log).catch(console.error);            
         } else {
             let categoryNames = new Array();
