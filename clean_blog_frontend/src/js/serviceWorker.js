@@ -143,13 +143,9 @@ var requestNotification = function (userAgent, categories, blogPostId) {
                 body
             }).then((res) => res.json()).then(console.log).catch(console.error);            
         } else {
-            let categoryNames = new Array();
-            categories.forEach(function(e) {
-                categoryNames.push(e.text);
-            });
             let data = {
                 "web_push_device": web_push_device, 
-                "blog_categories" : categoryNames
+                "blog_categories" : categories
             };
             let body = JSON.stringify(data);
             fetch("./api/v2/web_push_with_categories/", {
