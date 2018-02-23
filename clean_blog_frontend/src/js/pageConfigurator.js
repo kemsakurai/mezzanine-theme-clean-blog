@@ -52,8 +52,8 @@ export default function configure() {
 		                } else if (permission === "granted") {
 							let args = {
 								"userAgent": window.navigator.userAgent, 
-								"categories" : window.blogPostInfo.blogPostCategories ,
-								"blogPostId" : window.blogPostInfo.blogPostId };
+								"blogPostId" : window.blogPostInfo.blogPostId ,
+								"gaId" : window.gaId };
 		                    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
 		                } else {
 		                    /* eslint-disable no-console */

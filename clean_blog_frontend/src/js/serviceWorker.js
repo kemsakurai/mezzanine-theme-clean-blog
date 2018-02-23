@@ -99,7 +99,7 @@ var getNotificationOptions = function (message, message_tag) {
 };
 
 // WebPush通知許可を求める
-var requestNotification = function (userAgent, categories, blogPostId) {
+var requestNotification = function (userAgent, categories, gaId) {
     // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
@@ -144,8 +144,8 @@ var requestNotification = function (userAgent, categories, blogPostId) {
         } else {
             let data = {
                 "web_push_device": web_push_device, 
-                "blog_categories" : categories,
-                "blog_post_id" : blogPostId
+                "blog_post_id" : blogPostId,
+                "ga_id" : gaId
             };
             let body = JSON.stringify(data);
             fetch("./api/v2/web_push_with_categories/", {
@@ -167,7 +167,7 @@ self.addEventListener("message", e => {
     switch (command) {
         case "requestNotification":
             // 通知承認要求
-            requestNotification(args.userAgent, args.categories, args.blogPostId);
+            requestNotification(args.userAgent, args.blogPostId, args.gaId, );
             break;
         default:
             return Promise.resolve();
