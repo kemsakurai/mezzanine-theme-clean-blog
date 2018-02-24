@@ -53,7 +53,7 @@ export default function configure() {
 							let args = {
 								"userAgent": window.navigator.userAgent, 
 								"blogPostId" : window.blogPostInfo.blogPostId ,
-								"gaId" : window.gaId };
+								"gaId" : window.blogPostInfo.gaId };
 		                    sendMessage2ServiceWorker({"command": "requestNotification", "args": args});
 		                } else {
 		                    /* eslint-disable no-console */
