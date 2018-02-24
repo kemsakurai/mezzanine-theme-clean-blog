@@ -20,7 +20,7 @@ class WebPushRequestInfoSerializer(ModelSerializer):
 		result_device = WebPushDevice.objects.create(**web_push_device)
 
 		return WebPushRequestInfo.objects.create(web_push_device=result_device, 
-			blog_post=BlogPost.objects.get(validated_data.pop('blog_post')), ga_id=validated_data.pop('ga_id'))
+			blog_post=BlogPost.objects.get(id=validated_data.pop('blog_post')), ga_id=validated_data.pop('ga_id'))
 
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WebPushRequestInfo 
