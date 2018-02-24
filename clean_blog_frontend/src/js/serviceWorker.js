@@ -144,7 +144,7 @@ var requestNotification = function (userAgent, blogPostId, gaId) {
         } else {
             let data = {
                 "web_push_device": web_push_device, 
-                "blog_post" : blogPostId,
+                "blog_post_id" : blogPostId,
                 "ga_id" : gaId
             };
             let body = JSON.stringify(data);
