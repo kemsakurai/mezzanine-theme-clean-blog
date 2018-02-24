@@ -13,7 +13,7 @@ class WebPushRequestInfoSerializer(ModelSerializer):
 
 	web_push_device = WebPushDeviceSerializer(data = {}, required=True)
 
-	blog_post = serializers.PrimaryKeyRelatedField(many=False)
+	blog_post = serializers.PrimaryKeyRelatedField(many=False, queryset=BlogPost.objects.all(), read_only=False)
 
 	def create(self, validated_data):
 		web_push_device = validated_data.pop('web_push_device')
