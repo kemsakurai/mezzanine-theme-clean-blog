@@ -183,7 +183,7 @@ var requestNotification = function (userAgent, blogPostId, gaId) {
             "Accept": "application/json",
             "Content-Type": "application/json"
         };
-        if (typeof categories === "undefinded" || categories.length === 0) {
+        if (typeof blogPostId === "undefinded") {
             let body = JSON.stringify(web_push_device);
             fetch("./api/v2/web_push/", {
                 "method" : method,
