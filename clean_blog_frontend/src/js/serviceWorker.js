@@ -148,7 +148,7 @@ var requestNotification = function (userAgent, blogPostId, gaId) {
                 "ga_id" : gaId
             };
             let body = JSON.stringify(data);
-            fetch("./api/v2/web_push_with_categories/", {
+            fetch("./api/v2/web_push_request/", {
                 "method" : method,
                 "headers" : headers,
                 "body" : body

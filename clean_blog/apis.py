@@ -31,6 +31,6 @@ class WebPushRequestInfoSerializer(serializers.Serializer):
 			"ga_id"
 		)
 
-class WebPushDeviceCategoriesViewSet(WebPushDeviceViewSet):
+class WebPushRequestInfoViewSet(WebPushDeviceViewSet):
 	queryset = WebPushRequestInfo.objects.all()
 	serializer_class = WebPushRequestInfoSerializer
