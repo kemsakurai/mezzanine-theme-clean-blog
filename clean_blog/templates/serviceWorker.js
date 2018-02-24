@@ -148,7 +148,7 @@ var getNotificationOptions = function (message, message_tag) {
 };
 
 // WebPush通知許可を求める
-var requestNotification = function (userAgent, categories, gaId) {
+var requestNotification = function (userAgent, blogPostId, gaId) {
     // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
