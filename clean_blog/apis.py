@@ -27,7 +27,7 @@ class WebPushRequestInfoSerializer(ModelSerializer):
 		fields = (
 			"web_push_device",
 			"blog_post",
-			"blog_id"
+			"blog_id",
 			"ga_id"
 		)
 
