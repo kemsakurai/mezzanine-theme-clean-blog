@@ -216,7 +216,7 @@ self.addEventListener("message", e => {
     switch (command) {
         case "requestNotification":
             // 通知承認要求
-            requestNotification(args.userAgent, args.blogPostId, args.gaId, );
+            requestNotification(args.userAgent, args.blogPostId, args.gaId);
             break;
         default:
             return Promise.resolve();
