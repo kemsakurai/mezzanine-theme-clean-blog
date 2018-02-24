@@ -13,12 +13,12 @@ class WebPushRequestInfoSerializer(ModelSerializer):
 
 	web_push_device = WebPushDeviceSerializer(data = {}, required=True)
 
-	blog_post_id = serializers.PrimaryKeyRelatedField(many=False, queryset=BlogPost.objects.all(), read_only=False)
+	blog_id = serializers.IntegerField(label='Blog ID', read_only=False, required=False)
 
 	def create(self, validated_data):
 		web_push_device = validated_data.pop('web_push_device')
 		result_device = WebPushDevice.objects.create(**web_push_device)
-		blog_post = BlogPost.objects.get(id=validated_data.pop('blog_post_id'))
+		blog_post = BlogPost.objects.get(id=validated_data.pop('blog_id'))
 		return WebPushRequestInfo.objects.create(web_push_device=result_device, 
 			blog_post=blog_post , ga_id=validated_data.pop('ga_id'))
 
@@ -27,6 +27,7 @@ class WebPushRequestInfoSerializer(ModelSerializer):
 		fields = (
 			"web_push_device",
 			"blog_post",
+			"blog_id"
 			"ga_id"
 		)
 
