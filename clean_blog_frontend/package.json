@@ -31,7 +31,8 @@
     "webpack-bundle-tracker": "^0.2.1",
     "webpack-pwa-manifest": "^3.5.0",
     "workbox-broadcast-cache-update": "^2.0.3",
-    "workbox-webpack-plugin": "^2.1.2"
+    "workbox-webpack-plugin": "^2.1.2",
+    "zopfli-webpack-plugin": "^0.1.0"
   },
   "dependencies": {
     "clean-webpack-plugin": "^0.1.18",

@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
+var ZopfliPlugin = require("zopfli-webpack-plugin");
 
 module.exports = {
   context: __dirname + '/src',
@@ -46,6 +47,9 @@ module.exports = {
     }),
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
     new Webpack.optimize.UglifyJsPlugin(),
+    new ExtractTextPlugin({
+      filename: '[name]-[hash].css',
+    }),
     new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
     new WorkboxPlugin({
         globDirectory : cleanBlogRoot + "/static",
@@ -57,9 +61,6 @@ module.exports = {
         },
         swSrc:  __dirname + '/src/js/serviceWorker.js',
         swDest: cleanBlogRoot + "/templates/serviceWorker.js"
-    }),
-    new ExtractTextPlugin({
-      filename: '[name]-[hash].css',
     }),
     new WebpackPwaManifest({
         filename: "manifest.json",
@@ -76,7 +77,16 @@ module.exports = {
                   sizes: [96, 128, 144, 192, 256, 384, 512] // multiple sizes
                 }
         ]
+    }),
+    new ZopfliPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "zopfli",
+      test: /\.(js|css|ttf|woff|eot|svg|png)$/,
+      threshold: 10240,
+      minRatio: 0.9,
+      numiterations : 50,
+      blocksplittinglast : true,
+      blocksplittingmax : 30
     })
   ]
 }
-
