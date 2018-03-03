@@ -12,7 +12,8 @@ module.exports = {
   context: __dirname + '/src',
   entry : {
       // ページごとに異なるエントリポイントを設ける
-      bundle   : ["./js/index.js"]
+      bundle   : ["./js/index.js"],
+      swLibs   : ["./js/swLibs.js"]
   },
   output: {
     path: cleanBlogRoot + "/static/webpack_bundles",
@@ -59,7 +60,7 @@ module.exports = {
           'webpack_bundles': 'static/webpack_bundles',
           'js': 'static/js',
         },
-        swSrc:  __dirname + '/src/js/serviceWorker.js',
+        swSrc:  __dirname + '/src/js/sw/workers/serviceWorker.js',
         swDest: cleanBlogRoot + "/templates/serviceWorker.js"
     }),
     new WebpackPwaManifest({

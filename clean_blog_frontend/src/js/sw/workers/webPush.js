@@ -1,47 +1,54 @@
-importScripts("static/js/workbox-sw.prod.v2.1.2.js");
-/* eslint-disable no-undef */
-const workboxSW = new WorkboxSW();
-workboxSW.precache([]);
-/* eslint-enable no-undef */
-// -------------------------------------------------------
-// runtime cache の定義
-// -------------------------------
-workboxSW.router.registerRoute(/^\/$|^\/\?utm_source.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "root",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
+// Push通知
+self.addEventListener("push", function (event) {
+    var response_json;
+    var title;
+    var message;
+    var message_tag;
+    try {
+        // Push is a JSON
+        response_json = event.data.json();
+        title = response_json.title;
+        message = response_json.message;
+        message_tag = response_json.tag;
+    } catch (err) {
+        // Push is a simple text
+        title = "";
+        message = event.data.text();
+        message_tag = "";
     }
-}), "GET");
-workboxSW.router.registerRoute(/^\/\?page=.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "pages",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
-workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networkFirst({
-    "cacheName": "search",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
-workboxSW.router.registerRoute(/^\/blog\/category\/.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "category",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
-workboxSW.router.registerRoute(/^\/blog\/.+$/, workboxSW.strategies.cacheFirst({
-    "cacheName": "entry",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 30, "maxEntries": 30
-    }
-}), "GET");
-workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
-    "cacheName": "about",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 30, "maxEntries": 1
-    }
-}), "GET");
+    self.registration.showNotification(getTitle(title), getNotificationOptions(message, message_tag));
+    // Optional: Comunicating with our js application. Send a signal
+    self.clients.matchAll({includeUncontrolled: true, type: "window"}).then(function (clients) {
+        clients.forEach(function (client) {
+            client.postMessage({
+                "data": message_tag,
+                "data_title": title,
+                "data_body": message
+            });
+        });
+    });
+});
+
+// Optional: Added to that the browser opens when you click on the notification push web.
+// 通知クリック時の動作を定義
+self.addEventListener("notificationclick", function (event) {
+    // Android doesn't close the notification when you click it
+    // See http://crbug.com/463146
+    event.notification.close();
+    // Check if there's already a tab open with this URL.
+    // If yes: focus on the tab.
+    // If no: open a tab with the URL.
+    event.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(function (windowClients) {
+            for (var i = 0; i < windowClients.length; i++) {
+                var client = windowClients[i];
+                if ("focus" in client) {
+                    return client.focus();
+                }
+            }
+        })
+    );
+});
+
 // Utils functions:
 function urlBase64ToUint8Array(base64String) {
     var padding = "=".repeat((4 - base64String.length % 4) % 4);
@@ -159,68 +166,3 @@ var requestNotification = function (userAgent, blogPostId, gaId) {
         console.error("Error during service worker ready:", error);
     });
 };
-// -----------------------------------------------------
-// Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener("message", e => {
-    let command = e.data.command;
-    let args = e.data.args;
-    switch (command) {
-        case "requestNotification":
-            // 通知承認要求
-            requestNotification(args.userAgent, args.blogPostId, args.gaId);
-            break;
-        default:
-            return Promise.resolve();
-    }
-});
-
-// Push通知
-self.addEventListener("push", function (event) {
-    var response_json;
-    var title;
-    var message;
-    var message_tag;
-    try {
-        // Push is a JSON
-        response_json = event.data.json();
-        title = response_json.title;
-        message = response_json.message;
-        message_tag = response_json.tag;
-    } catch (err) {
-        // Push is a simple text
-        title = "";
-        message = event.data.text();
-        message_tag = "";
-    }
-    self.registration.showNotification(getTitle(title), getNotificationOptions(message, message_tag));
-    // Optional: Comunicating with our js application. Send a signal
-    self.clients.matchAll({includeUncontrolled: true, type: "window"}).then(function (clients) {
-        clients.forEach(function (client) {
-            client.postMessage({
-                "data": message_tag,
-                "data_title": title,
-                "data_body": message
-            });
-        });
-    });
-});
-
-// Optional: Added to that the browser opens when you click on the notification push web.
-// 通知クリック時の動作を定義
-self.addEventListener("notificationclick", function (event) {
-    // Android doesn't close the notification when you click it
-    // See http://crbug.com/463146
-    event.notification.close();
-    // Check if there's already a tab open with this URL.
-    // If yes: focus on the tab.
-    // If no: open a tab with the URL.
-    event.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(function (windowClients) {
-            for (var i = 0; i < windowClients.length; i++) {
-                var client = windowClients[i];
-                if ("focus" in client) {
-                    return client.focus();
-                }
-            }
-        })
-    );
-});

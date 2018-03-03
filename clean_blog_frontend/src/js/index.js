@@ -4,14 +4,14 @@ import "../css/clean-blog.css";
 import "../css/codehilite.css";
 import "../css/font-awesome.min.css";
 import "../css/fonts.css";
-import './jquery.js';
-import "./bootstrap.js";
-import "./clean-blog.js";
-import "./jqBootstrapValidation.js";
-import "./contact_me.js";
+import './pageScripts/jquery.js';
+import "./pageScripts/bootstrap.js";
+import "./pageScripts/clean-blog.js";
+import "./pageScripts/jqBootstrapValidation.js";
+import "./pageScripts/contact_me.js";
 
-import registerServiceWorker from "./registerServiceWorker.js";
+import registerServiceWorker from "./sw/clients/registerServiceWorker.js";
 registerServiceWorker();
 
-import configure from "./pageConfigurator.js";
+import configure from "./sw/clients/pageConfigurator.js";
 configure();

@@ -1,21 +1,3 @@
-// メッセージ送信用
-function sendMessage2ServiceWorker(message) {
-    return new Promise((resolve, reject) => {
-        const channel = new MessageChannel();
-        channel.port1.onmessage = e => {
-            if (e.data.error) {
-                reject(e.data.error);
-            } else {
-                resolve(e.data);
-            }
-        };
-        // 登録時は、activateしないため、controller は nullになる
-        if(navigator.serviceWorker.controller) {
-        	navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
-        }
-    });
-}
-
 export default function configure() {
 	if ("serviceWorker" in navigator) {
 	    // Setup a listener to track Add to Homescreen events.
@@ -33,10 +15,9 @@ export default function configure() {
             }
           });
         });
-
         /* eslint-disable no-unused-vars */
         // var event = new Event('_sendRequestNotification');
-        // window.dispatchEvent(event);
+        // window.dispatchEvent(event); P
         window.addEventListener('_sendRequestNotification', () => {
         	// dataLayer変数が設定されていない場合、処理を中断する
         	if ( typeof window.blogPostInfo === "undefined") {
@@ -64,4 +45,21 @@ export default function configure() {
 	    });
 	    /* eslint-enable no-unused-vars */
 	}
+}
+// メッセージ送信用
+export function sendMessage2ServiceWorker(message) {
+    return new Promise((resolve, reject) => {
+        const channel = new MessageChannel();
+        channel.port1.onmessage = e => {
+            if (e.data.error) {
+                reject(e.data.error);
+            } else {
+                resolve(e.data);
+            }
+        };
+        // 登録時は、activateしないため、controller は nullになる
+        if(navigator.serviceWorker.controller) {
+        	navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
+        }
+    });
 }
