@@ -1,5 +1,5 @@
 importScripts("static/js/workbox-sw.prod.v2.1.3.js");
-importScripts("static/js/webpack_bundles/swLibs-6c07686a7f389980aebf.js");
+importScripts("static/js/webpack_bundles/swLibs-b4a26ff3dd4fd87d61ca.js");
 /* eslint-disable no-undef */
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-6c07686a7f389980aebf.css",
+    "url": "static/webpack_bundles/bundle-b4a26ff3dd4fd87d61ca.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-6c07686a7f389980aebf.js",
-    "revision": "71dd3d1a9dde1e1f99093726e17ae24e"
+    "url": "static/webpack_bundles/bundle-b4a26ff3dd4fd87d61ca.js",
+    "revision": "bbc8b44467d6ef549f0a985ea8ad9eed"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -52,8 +52,8 @@ workboxSW.precache([
     "revision": "fa2772327f55d8198301fdb8bcfc8158"
   },
   {
-    "url": "static/webpack_bundles/swLibs-6c07686a7f389980aebf.js",
-    "revision": "0f0de3e2006a4ece173833ead20d0b9f"
+    "url": "static/webpack_bundles/swLibs-b4a26ff3dd4fd87d61ca.js",
+    "revision": "4cf2cbc202d11426f9cc29071042b243"
   }
 ]);
 /* eslint-enable no-undef */

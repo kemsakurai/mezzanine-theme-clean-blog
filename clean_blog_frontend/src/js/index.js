@@ -12,6 +12,7 @@ import "./pageScripts/contact_me.js";
 
 import registerServiceWorker from "./sw/clients/registerServiceWorker.js";
 registerServiceWorker();
-
 import configure from "./sw/clients/pageConfigurator.js";
 configure();
+import storage from "./sw/clients/storage.js";
+initialize();
