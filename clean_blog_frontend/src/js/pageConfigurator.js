@@ -67,8 +67,7 @@ export default function configure() {
 			window.addEventListener('load', () => {
 				  // アクセス時刻を記録
 		          sendMessage2ServiceWorker({"command": "storeAccessDate", "args": null});
-		      });
-			}
+		    });
         }
 	}
 }
