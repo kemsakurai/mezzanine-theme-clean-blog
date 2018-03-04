@@ -57,11 +57,11 @@ module.exports = {
         jQuery: 'jquery'
     }),
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
-    // new Webpack.optimize.UglifyJsPlugin({
-    //     compress: {
-    //       dead_code: false
-    //   }
-    // }),
+    new Webpack.optimize.UglifyJsPlugin({
+        compress: {
+          dead_code: false
+      }
+    }),
     new ExtractTextPlugin({
       filename: '[name]-[hash].css',
     }),
