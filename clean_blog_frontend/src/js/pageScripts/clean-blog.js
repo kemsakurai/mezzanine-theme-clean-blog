@@ -1,5 +1,3 @@
-// Contact Form Scripts
-
 $(function() {
 
     $("#contactFrom input,#contactForm textarea").jqBootstrapValidation({

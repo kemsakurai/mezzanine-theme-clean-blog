@@ -1,30 +1,32 @@
 import idb from 'idb';
+
 const storage = idb.open('swDB', 1, upgradeDB => {
   upgradeDB.createObjectStore('accessDate');
 });
+
 const accessDate = {
   get(key) {
-    return dbPromise.then(db => {
+    return storage.then(db => {
       return db.transaction('swDB')
         .objectStore('accessDate').get(key);
     });
   },
   set(key, val) {
-    return dbPromise.then(db => {
+    return storage.then(db => {
       const tx = db.transaction('swDB', 'readwrite');
       tx.objectStore('accessDate').put(val, key);
       return tx.complete;
     });
   },
   delete(key) {
-    return dbPromise.then(db => {
+    return storage.then(db => {
       const tx = db.transaction('swDB', 'readwrite');
       tx.objectStore('accessDate').delete(key);
       return tx.complete;
     });
   },
   clear() {
-    return dbPromise.then(db => {
+    return storage.then(db => {
       const tx = db.transaction('swDB', 'readwrite');
       tx.objectStore('accessDate').clear();
       return tx.complete;
@@ -34,7 +36,7 @@ const accessDate = {
   	return this.keys()[index];
   },
   keys() {
-    return dbPromise.then(db => {
+    return storage.then(db => {
       const tx = db.transaction('swDB');
       const keys = [];
       const store = tx.objectStore('accessDate');
@@ -77,7 +79,7 @@ const dateFormat = {
   }
 }
 // アクセスした日付を記録する
-export function storeAccessDate() {
+function storeAccessDate() {
 	let date = dateFormat.format(new Date(), 'yyyyMMdd');
 	let count = accessDate.get(date);
 	if (typeof count === "undefined") {
@@ -92,13 +94,15 @@ export function storeAccessDate() {
 		accessDate.delete(key);
 	}
 }
-export function isRepeater() {
+
+function isRepeater() {
 	let length = accessDate.keys().length();
 	if (length >= 3) {
 		return true;
 	}
 	return false;	
 }
+
 export default function initialize() {
 	if ("serviceWorker" in navigator) {
         /* eslint-disable no-unused-vars */
