@@ -42,6 +42,7 @@ export default function configure() {
         		return;
         	}
 			sendMessage2ServiceWorker({"command": "isRepeater", "args": null}).then((result) => {
+				console.log("isRepeater#result", result);
 				if (result) {
 					if ("Notification" in window) {
 		        		//許可を求める
