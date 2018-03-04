@@ -79,21 +79,21 @@ const dateFormat = {
 // アクセスした日付を記録する
 export function storeAccessDate() {
 	let date = dateFormat.format(new Date(), 'yyyyMMdd');
-	let count = storage.get(date);
+	let count = accessDate.get(date);
 	if (typeof count === "undefined") {
-		storage.set(date, 1);
+		accessDate.set(date, 1);
 	} else {
-		storage.set(date, ++count);
+		accessDate.set(date, ++count);
 	}
-	let length = storage.keys().length();
+	let length = accessDate.keys().length();
 	if (length > 5) {
-		let key =storage.key(0);
+		let key =accessDate.key(0);
 		console.log(key);
-		storage.delete(key);
+		accessDate.delete(key);
 	}
 }
 export function isRepeater() {
-	let length = storage.keys().length();
+	let length = accessDate.keys().length();
 	if (length >= 3) {
 		return true;
 	}
