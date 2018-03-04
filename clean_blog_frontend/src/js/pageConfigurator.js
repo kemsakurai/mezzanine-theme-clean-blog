@@ -33,7 +33,6 @@ export default function configure() {
             }
           });
         });
-
         /* eslint-disable no-unused-vars */
         // var event = new Event('_sendRequestNotification');
         // window.dispatchEvent(event);
@@ -42,6 +41,7 @@ export default function configure() {
         	if ( typeof window.blogPostInfo === "undefined") {
         		return;
         	}
+			var isRepeaterResult = sendMessage2ServiceWorker({"command": "isRepeater", "args": null});
 		    if ("Notification" in window) {
 		        //許可を求める
 		        Notification.requestPermission()
@@ -62,6 +62,13 @@ export default function configure() {
 		            });
 		    }
 	    });
-	    /* eslint-enable no-unused-vars */
+		// 登録時は、activateしないため、controller は nullになる
+        if(navigator.serviceWorker.controller) {
+			window.addEventListener('load', () => {
+				  // アクセス時刻を記録
+		          sendMessage2ServiceWorker({"command": "storeAccessDate", "args": null});
+		      });
+			}
+        }
 	}
 }

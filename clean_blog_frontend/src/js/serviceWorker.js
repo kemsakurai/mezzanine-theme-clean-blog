@@ -1,4 +1,5 @@
-importScripts("static/js/workbox-sw.prod.v2.1.2.js");
+importScripts("static/js/workbox-sw.prod.v2.1.3.js");
+importScripts("static/js/localforage.min.js");
 /* eslint-disable no-undef */
 const workboxSW = new WorkboxSW();
 workboxSW.precache([]);
@@ -97,6 +98,148 @@ var getNotificationOptions = function (message, message_tag) {
     };
     return options;
 };
+// -----------------------------------------------------
+// Messaging.. Browser側からServiceWorkerへメッセージを送信する
+self.addEventListener("message", e => {
+    let command = e.data.command;
+    let args = e.data.args;
+    switch (command) {
+        case "requestNotification":
+            // 通知承認要求
+            requestNotification(args.userAgent, args.blogPostId, args.gaId);
+            break;
+        case "storeAccessDate":
+            storeAccessDate();
+            break;
+        case "isRepeater":
+            return isRepeater();
+        default:
+            return Promise.resolve();
+    }
+});
+
+// Push通知
+self.addEventListener("push", function (event) {
+    var response_json;
+    var title;
+    var message;
+    var message_tag;
+    try {
+        // Push is a JSON
+        response_json = event.data.json();
+        title = response_json.title;
+        message = response_json.message;
+        message_tag = response_json.tag;
+    } catch (err) {
+        // Push is a simple text
+        title = "";
+        message = event.data.text();
+        message_tag = "";
+    }
+    self.registration.showNotification(getTitle(title), getNotificationOptions(message, message_tag));
+    // Optional: Comunicating with our js application. Send a signal
+    self.clients.matchAll({includeUncontrolled: true, type: "window"}).then(function (clients) {
+        clients.forEach(function (client) {
+            client.postMessage({
+                "data": message_tag,
+                "data_title": title,
+                "data_body": message
+            });
+        });
+    });
+});
+
+// Optional: Added to that the browser opens when you click on the notification push web.
+// 通知クリック時の動作を定義
+self.addEventListener("notificationclick", function (event) {
+    // Android doesn't close the notification when you click it
+    // See http://crbug.com/463146
+    event.notification.close();
+    // Check if there's already a tab open with this URL.
+    // If yes: focus on the tab.
+    // If no: open a tab with the URL.
+    event.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(function (windowClients) {
+            for (var i = 0; i < windowClients.length; i++) {
+                var client = windowClients[i];
+                if ("focus" in client) {
+                    return client.focus();
+                }
+            }
+        })
+    );
+});
+
+const dateFormat = {
+  fmt: {
+    hh: function(date) {
+ return ('0' + date.getHours()).slice(-2);
+},
+    h: function(date) {
+ return date.getHours();
+},
+    mm: function(date) {
+ return ('0' + date.getMinutes()).slice(-2);
+},
+    m: function(date) {
+ return date.getMinutes();
+},
+    ss: function(date) {
+ return ('0' + date.getSeconds()).slice(-2);
+},
+    dd: function(date) {
+ return ('0' + date.getDate()).slice(-2);
+},
+    d: function(date) {
+ return date.getDate();
+},
+    s: function(date) {
+ return date.getSeconds();
+},
+    yyyy: function(date) {
+ return date.getFullYear() + '';
+},
+    yy: function(date) {
+ return date.getYear() + '';
+},
+    t: function(date) {
+ return date.getDate()<=3 ? ['st', 'nd', 'rd'][date.getDate()-1]: 'th';
+},
+    w: function(date) {
+return ['Sun', '$on', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+},
+    MMMM: function(date) {
+ return ['January', 'February', '$arch', 'April', '$ay', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
+},
+    MMM: function(date) {
+return ['Jan', 'Feb', '$ar', 'Apr', '@ay', 'Jun', 'Jly', 'Aug', 'Spt', 'Oct', 'Nov', 'Dec'][date.getMonth()];
+},
+    MM: function(date) {
+ return ('0' + (date.getMonth() + 1)).slice(-2);
+},
+    M: function(date) {
+ return date.getMonth() + 1;
+},
+    $: function(date) {
+return 'M';
+},
+  },
+  format: function dateFormat(date, format) {
+    let result = format;
+    for (let key in this.fmt) {
+result = result.replace(key, this.fmt[key](date));
+}
+    return result;
+  },
+};
+
+const accessDate = localforage.createInstance({
+    driver      : localforage.INDEXEDDB, // Force WebSQL; same as using setDriver()
+    name        : 'swDB',
+    version     : 1.0,
+    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName   : 'accessDate', // Should be alphanumeric, with underscores.
+    description : 'some description'
+});
 
 // WebPush通知許可を求める
 var requestNotification = function (userAgent, blogPostId, gaId) {
@@ -159,68 +302,36 @@ var requestNotification = function (userAgent, blogPostId, gaId) {
         console.error("Error during service worker ready:", error);
     });
 };
-// -----------------------------------------------------
-// Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener("message", e => {
-    let command = e.data.command;
-    let args = e.data.args;
-    switch (command) {
-        case "requestNotification":
-            // 通知承認要求
-            requestNotification(args.userAgent, args.blogPostId, args.gaId);
-            break;
-        default:
-            return Promise.resolve();
-    }
-});
-
-// Push通知
-self.addEventListener("push", function (event) {
-    var response_json;
-    var title;
-    var message;
-    var message_tag;
-    try {
-        // Push is a JSON
-        response_json = event.data.json();
-        title = response_json.title;
-        message = response_json.message;
-        message_tag = response_json.tag;
-    } catch (err) {
-        // Push is a simple text
-        title = "";
-        message = event.data.text();
-        message_tag = "";
-    }
-    self.registration.showNotification(getTitle(title), getNotificationOptions(message, message_tag));
-    // Optional: Comunicating with our js application. Send a signal
-    self.clients.matchAll({includeUncontrolled: true, type: "window"}).then(function (clients) {
-        clients.forEach(function (client) {
-            client.postMessage({
-                "data": message_tag,
-                "data_title": title,
-                "data_body": message
+// アクセスした日付を記録する
+var storeAccessDate = function () {
+    let date = dateFormat.format(new Date(), 'yyyyMMdd');
+    accessDate.getItem(date).then((value) => {
+        let count;
+        if (typeof count === 'undefined' || count === NaN) {
+            count = 1;
+        } else {
+            count = 1 + count;
+        }
+        return accessDate.setItem(date, count).then(() => {
+            return accessDate.length().then(length) => {
+                if (length > 5) {
+                    accessDate.key(0).then((key) => {
+                        console.log(key);
+                        accessDate.delete(key);  
+                    }).catch((value) => {
+                    console.log("Raise error.");
+                    });
+                }      
             });
         });
     });
-});
-
-// Optional: Added to that the browser opens when you click on the notification push web.
-// 通知クリック時の動作を定義
-self.addEventListener("notificationclick", function (event) {
-    // Android doesn't close the notification when you click it
-    // See http://crbug.com/463146
-    event.notification.close();
-    // Check if there's already a tab open with this URL.
-    // If yes: focus on the tab.
-    // If no: open a tab with the URL.
-    event.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(function (windowClients) {
-            for (var i = 0; i < windowClients.length; i++) {
-                var client = windowClients[i];
-                if ("focus" in client) {
-                    return client.focus();
-                }
-            }
-        })
-    );
-});
+}
+// Repeaterユーザーか判定して返す。
+var isRepeater = function () {
+  return accessDate.keys().then((length) => {
+    if (length >= 3) {
+        return true;
+    }
+    return false;
+  });
+}

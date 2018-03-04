@@ -16,5 +16,3 @@ registerServiceWorker();
 import pageConfigurator from "./pageConfigurator.js";
 pageConfigurator();
 
-import storage from "./storage.js"
-storage();
