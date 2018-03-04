@@ -362,7 +362,7 @@ var storeAccessDate = function () {
             count = 1 + count;
         }
         return accessDate.setItem(date, count).then(() => {
-            return accessDate.length().then(length) => {
+            return accessDate.length().then((length) => {
                 if (length > 5) {
                     accessDate.key(0).then((key) => {
                         console.log(key);
@@ -370,7 +370,7 @@ var storeAccessDate = function () {
                     }).catch((value) => {
                     console.log("Raise error.");
                     });
-                }      
+                }
             });
         });
     });
