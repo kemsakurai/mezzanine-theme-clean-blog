@@ -77,16 +77,16 @@ module.exports = {
                   sizes: [96, 128, 144, 192, 256, 384, 512] // multiple sizes
                 }
         ]
-    }),
-    new ZopfliPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "zopfli",
-      test: /\.(js|css|ttf|woff|eot|svg|png)$/,
-      threshold: 10240,
-      minRatio: 0.9,
-      numiterations : 50,
-      blocksplittinglast : true,
-      blocksplittingmax : 30
     })
+    // new ZopfliPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "zopfli",
+    //   test: /\.(js|css|ttf|woff|eot|svg|png)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.9,
+    //   numiterations : 50,
+    //   blocksplittinglast : true,
+    //   blocksplittingmax : 30
+    // })
   ]
 }
