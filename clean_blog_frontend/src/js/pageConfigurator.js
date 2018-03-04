@@ -42,14 +42,13 @@ export default function configure() {
         		return;
         	}
 			sendMessage2ServiceWorker({"command": "isRepeater", "args": null}).then((result) => {
-				console.log("isRepeater#result", result);
 				if (result) {
 					if ("Notification" in window) {
 		        		//許可を求める
 		        		Notification.requestPermission().then((permission) => {
 		                	if (permission === "denied" || permission === "default") {
-		                    // 拒否 // 無視
-		                    return;
+		                    	// 拒否 // 無視
+		                    	return;
 		                	} else if (permission === "granted") {
 								let args = {
 									"userAgent": window.navigator.userAgent, 

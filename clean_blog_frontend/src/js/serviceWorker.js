@@ -328,8 +328,9 @@ var storeAccessDate = function () {
 }
 // Repeaterユーザーか判定して返す。
 var isRepeater = function () {
-  return accessDate.keys().then((length) => {
-    if (length >= 3) {
+  return accessDate.keys().then((keys) => {
+    // 日をまたいで3回以上のアクセスがあるか判断する
+    if (keys.length >= 3) {
         return true;
     }
     return false;
