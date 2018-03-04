@@ -14,5 +14,5 @@ import registerServiceWorker from "./sw/clients/registerServiceWorker.js";
 registerServiceWorker();
 import configure from "./sw/clients/pageConfigurator.js";
 configure();
-import storage from "./sw/clients/storage.js";
-initialize();
+import storageConfigure from "./sw/clients/storage.js";
+storageConfigure();
