@@ -1,5 +1,5 @@
-importScripts("static/js/workbox-sw.prod.v2.1.3.js");
-importScripts("static/js/localforage.min.js");
+importScripts('static/js/workbox-sw.prod.v2.1.3.js');
+importScripts('static/js/localforage.min.js');
 /* eslint-disable no-undef */
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-dacfe802dd409e00aa78.css",
+    "url": "static/webpack_bundles/bundle-8d9209d62377d23f517a.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-dacfe802dd409e00aa78.js",
-    "revision": "ebba04ffc5ef95892198b1165dc37e47"
+    "url": "static/webpack_bundles/bundle-8d9209d62377d23f517a.js",
+    "revision": "901c38804a4ca2897896a5a7d3b0c2b5"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -57,117 +57,120 @@ workboxSW.precache([
 // runtime cache の定義
 // -------------------------------
 workboxSW.router.registerRoute(/^\/$|^\/\?utm_source.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "root",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
+    'cacheName': 'root',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
+    },
+}), 'GET');
 workboxSW.router.registerRoute(/^\/\?page=.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "pages",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
+    'cacheName': 'pages',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
+    },
+}), 'GET');
 workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networkFirst({
-    "cacheName": "search",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
+    'cacheName': 'search',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
+    },
+}), 'GET');
 workboxSW.router.registerRoute(/^\/blog\/category\/.+$/, workboxSW.strategies.networkFirst({
-    "cacheName": "category",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 10, "maxEntries": 10
-    }
-}), "GET");
+    'cacheName': 'category',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
+    },
+}), 'GET');
 workboxSW.router.registerRoute(/^\/blog\/.+$/, workboxSW.strategies.cacheFirst({
-    "cacheName": "entry",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 30, "maxEntries": 30
-    }
-}), "GET");
+    'cacheName': 'entry',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 30,
+    },
+}), 'GET');
 workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
-    "cacheName": "about",
-    "cacheExpiration": {
-        "maxAgeSeconds": 60 * 60 * 24 * 30, "maxEntries": 1
-    }
-}), "GET");
-// Utils functions:
-function urlBase64ToUint8Array(base64String) {
-    var padding = "=".repeat((4 - base64String.length % 4) % 4);
-    var base64 = (base64String + padding)
-        .replace(/-/g, "+")
-        .replace(/_/g, "/");
+    'cacheName': 'about',
+    'cacheExpiration': {
+        'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 1,
+    },
+}), 'GET');
+/**
+ * Utils functions:
+ * @return urlBase64ToUint8Array
+ */
+const urlBase64ToUint8Array = function(base64String) {
+    let padding = '='.repeat((4 - base64String.length % 4) % 4);
+    let base64 = (base64String + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
 
-    var rawData = self.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
+    let rawData = self.atob(base64);
+    let outputArray = new Uint8Array(rawData.length);
 
-    for (var i = 0; i < rawData.length; ++i) {
+    for (let i = 0; i < rawData.length; ++i) {
         outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
-}
+};
 
 function loadVersionBrowser(userAgent) {
-    var ua = userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    let ua = userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return {name: "IE", version: (tem[1] || "")};
+        return {name: 'IE', version: (tem[1] || '')};
     }
-    if (M[1] === "Chrome") {
+    if (M[1] === 'Chrome') {
         tem = ua.match(/\bOPR\/(\d+)/);
         if (tem != null) {
-            return {name: "Opera", version: tem[1]};
+            return {name: 'Opera', version: tem[1]};
         }
     }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, "-?"];
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
     if ((tem = ua.match(/version\/(\d+)/i)) != null) {
         M.splice(1, 1, tem[1]);
     }
     return {
         name: M[0],
-        version: M[1]
+        version: M[1],
     };
 }
 
 // navigatorPush.service.js file
-var getTitle = function (title) {
-    if (title === "") {
-        title = "TITLE DEFAULT";
+const getTitle = function(title) {
+    if (title === '') {
+        title = 'TITLE DEFAULT';
     }
     return title;
 };
 
-var getNotificationOptions = function (message, message_tag) {
-    var options = {
+const getNotificationOptions = function(message, messageTag) {
+    let options = {
         body: message,
-        icon: "/img/icon_120.png",
-        tag: message_tag,
-        vibrate: [200, 100, 200, 100, 200, 100, 200]
+        icon: '/img/icon_120.png',
+        tag: messageTag,
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
     };
     return options;
 };
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener("message", e => {
+self.addEventListener('message', (e) => {
     let command = e.data.command;
     let args = e.data.args;
     switch (command) {
-        case "requestNotification":
+        case 'requestNotification':
             // 通知承認要求
             requestNotification(args.userAgent, args.blogPostId, args.gaId);
             break;
-        case "storeAccessDate":
+        case 'storeAccessDate':
             storeAccessDate();
             break;
-        case "isRepeater":
+        case 'isRepeater':
             isRepeater().then((result) => {
                 // 呼び元にmessage を送信
                 e.source.postMessage({
-                    "command": "handleIsRepeaterResult", 
-                    "args": {"result": result}
+                    'command': 'handleIsRepeaterResult',
+                    'args': {'result': result},
                 },
-                e.origin);    
+                e.origin);
             });
             break;
         default:
@@ -176,31 +179,31 @@ self.addEventListener("message", e => {
 });
 
 // Push通知
-self.addEventListener("push", function (event) {
-    var response_json;
-    var title;
-    var message;
-    var message_tag;
+self.addEventListener('push', function(event) {
+    let responseJson;
+    let title;
+    let message;
+    let messageTag;
     try {
         // Push is a JSON
-        response_json = event.data.json();
-        title = response_json.title;
-        message = response_json.message;
-        message_tag = response_json.tag;
+        responseJson = event.data.json();
+        title = responseJson.title;
+        message = responseJson.message;
+        messageTag = responseJson.tag;
     } catch (err) {
         // Push is a simple text
-        title = "";
+        title = '';
         message = event.data.text();
-        message_tag = "";
+        messageTag = '';
     }
-    self.registration.showNotification(getTitle(title), getNotificationOptions(message, message_tag));
+    self.registration.showNotification(getTitle(title), getNotificationOptions(message, messageTag));
     // Optional: Comunicating with our js application. Send a signal
-    self.clients.matchAll({includeUncontrolled: true, type: "window"}).then(function (clients) {
-        clients.forEach(function (client) {
+    self.clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
+        clients.forEach(function(client) {
             client.postMessage({
-                "data": message_tag,
-                "data_title": title,
-                "data_body": message
+                'data': messageTag,
+                'data_title': title,
+                'data_body': message,
             });
         });
     });
@@ -208,17 +211,17 @@ self.addEventListener("push", function (event) {
 
 // Optional: Added to that the browser opens when you click on the notification push web.
 // 通知クリック時の動作を定義
-self.addEventListener("notificationclick", function (event) {
+self.addEventListener('notificationclick', function(event) {
     // Android doesn't close the notification when you click it
     // See http://crbug.com/463146
     event.notification.close();
     // Check if there's already a tab open with this URL.
     // If yes: focus on the tab.
     // If no: open a tab with the URL.
-    event.waitUntil(self.clients.matchAll({type: "window", includeUncontrolled: true}).then(function (windowClients) {
-            for (var i = 0; i < windowClients.length; i++) {
-                var client = windowClients[i];
-                if ("focus" in client) {
+    event.waitUntil(self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(function(windowClients) {
+            for (let i = 0; i < windowClients.length; i++) {
+                let client = windowClients[i];
+                if ('focus' in client) {
                     return client.focus();
                 }
             }
@@ -283,84 +286,86 @@ return 'M';
   format: function dateFormat(date, format) {
     let result = format;
     for (let key in this.fmt) {
-result = result.replace(key, this.fmt[key](date));
-}
+        if (this.fmt.hasOwnProperty(key)) {
+            result = result.replace(key, this.fmt[key](date));
+        }
+    }
     return result;
   },
 };
 
 const accessDate = localforage.createInstance({
-    driver      : localforage.INDEXEDDB, // Force WebSQL; same as using setDriver()
-    name        : 'swDB',
-    version     : 1.0,
-    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-    storeName   : 'accessDate', // Should be alphanumeric, with underscores.
-    description : 'some description'
+    driver: localforage.INDEXEDDB, // Force WebSQL; same as using setDriver()
+    name: 'swDB',
+    version: 1.0,
+    size: 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName: 'accessDate', // Should be alphanumeric, with underscores.
+    description: 'some description',
 });
 
 // WebPush通知許可を求める
-var requestNotification = function (userAgent, blogPostId, gaId) {
+const requestNotification = function(userAgent, blogPostId, gaId) {
     // 許可された場合の処理
     let browser = loadVersionBrowser(userAgent);
     // サーバーの公開鍵
-    const serverPublicKey = "BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k";
+    const serverPublicKey = 'BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k';
     // scopeを指定して、registrationを取り出す
     self.registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(serverPublicKey)
-    }).then(sub => {
-        var endpointParts = sub.endpoint.split("/");
-        var registration_id = endpointParts[endpointParts.length - 1];
+        applicationServerKey: urlBase64ToUint8Array(serverPublicKey),
+    }).then((sub) => {
+        let endpointParts = sub.endpoint.split('/');
+        let registrationId = endpointParts[endpointParts.length - 1];
         let contentEncoding; // プッシュ通知の送信時に指定するContent-Encoding
         // Chrome 50以降、Firefox 48以降のみを想定
-        if ("supportedContentEncodings" in PushManager) {
+        if ('supportedContentEncodings' in PushManager) {
             contentEncoding =
-                PushManager.supportedContentEncodings.includes("aes128gcm") ? "aes128gcm" : "aesgcm";
+                PushManager.supportedContentEncodings.includes('aes128gcm') ? 'aes128gcm' : 'aesgcm';
         } else {
-            contentEncoding = "aesgcm";
+            contentEncoding = 'aesgcm';
         }
-        const web_push_device = {
-            "browser": browser.name.toUpperCase(),
-            "p256dh": btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey("p256dh")))),
-            "auth": btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey("auth")))),
-            "name": userAgent,
-            "active": true,
-            "registration_id": registration_id,
-            "contentEncoding": contentEncoding,
-            "cloud_message_type": "FCM"
+        const webPushDevice = {
+            'browser': browser.name.toUpperCase(),
+            'p256dh': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('p256dh')))),
+            'auth': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('auth')))),
+            'name': userAgent,
+            'active': true,
+            'registration_id': registrationId,
+            'contentEncoding': contentEncoding,
+            'cloud_message_type': 'FCM',
         };
-        const method = "POST";
+        const method = 'POST';
         const headers = {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         };
-        if (typeof blogPostId === "undefinded") {
-            let body = JSON.stringify(web_push_device);
-            fetch("./api/v2/web_push/", {
-                "method" : method,
-                "headers" : headers,
-                "body" : body
-            }).then((res) => res.json()).then(console.log).catch(console.error);            
+        if (typeof blogPostId === 'undefinded') {
+            let body = JSON.stringify(webPushDevice);
+            fetch('./api/v2/web_push/', {
+                'method': method,
+                'headers': headers,
+                'body': body,
+            }).then((res) => res.json()).then(console.log).catch(console.error);
         } else {
             let data = {
-                "web_push_device": web_push_device, 
-                "blog_id" : blogPostId,
-                "ga_id" : gaId
+                'web_push_device': webPushDevice,
+                'blog_id': blogPostId,
+                'ga_id': gaId,
             };
             let body = JSON.stringify(data);
-            fetch("./api/v2/web_push_request/", {
-                "method" : method,
-                "headers" : headers,
-                "body" : body
+            fetch('./api/v2/web_push_request/', {
+                'method': method,
+                'headers': headers,
+                'body': body,
             }).then((res) => res.json()).then(console.log).catch(console.error);
         }
-    }).catch(error => {
+    }).catch((error) => {
         /* eslint-disable no-console */
-        console.error("Error during service worker ready:", error);
+        console.error('Error during service worker ready:', error);
     });
 };
 // アクセスした日付を記録する
-var storeAccessDate = function () {
+const storeAccessDate = function() {
     let date = dateFormat.format(new Date(), 'yyyyMMdd');
     accessDate.getItem(date).then((value) => {
         let count;
@@ -374,17 +379,17 @@ var storeAccessDate = function () {
                 if (length > 5) {
                     accessDate.key(0).then((key) => {
                         console.log(key);
-                        accessDate.delete(key);  
+                        accessDate.delete(key);
                     }).catch((value) => {
-                    console.log("Raise error.");
+                    console.log('Raise error.');
                     });
                 }
             });
         });
     });
-}
+};
 // Repeaterユーザーか判定して返す。
-var isRepeater = function () {
+const isRepeater = function() {
   return accessDate.keys().then((keys) => {
     // 日をまたいで3回以上のアクセスがあるか判断する
     if (keys.length >= 3) {
@@ -392,4 +397,4 @@ var isRepeater = function () {
     }
     return false;
   });
-}
+};
