@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.css",
+    "url": "static/webpack_bundles/bundle-dacfe802dd409e00aa78.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.js",
-    "revision": "06a764520b1921cf1d4aa5428c6225a4"
+    "url": "static/webpack_bundles/bundle-dacfe802dd409e00aa78.js",
+    "revision": "ebba04ffc5ef95892198b1165dc37e47"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -161,7 +161,15 @@ self.addEventListener("message", e => {
             storeAccessDate();
             break;
         case "isRepeater":
-            return isRepeater();
+            isRepeater().then((result) => {
+                // 呼び元にmessage を送信
+                e.source.postMessage({
+                    "command": "handleIsRepeaterResult", 
+                    "args": {"result": result}
+                },
+                e.origin);    
+            });
+            break;
         default:
             return Promise.resolve();
     }

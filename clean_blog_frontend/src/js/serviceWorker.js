@@ -112,7 +112,15 @@ self.addEventListener("message", e => {
             storeAccessDate();
             break;
         case "isRepeater":
-            return isRepeater();
+            isRepeater().then((result) => {
+                // 呼び元にmessage を送信
+                e.source.postMessage({
+                    "command": "handleIsRepeaterResult", 
+                    "args": {"result": result}
+                },
+                e.origin);    
+            });
+            break;
         default:
             return Promise.resolve();
     }
