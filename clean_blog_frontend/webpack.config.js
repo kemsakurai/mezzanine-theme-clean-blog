@@ -46,7 +46,12 @@ module.exports = {
         jQuery: 'jquery'
     }),
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
-    new Webpack.optimize.UglifyJsPlugin(),
+    new Webpack.optimize.UglifyJsPlugin({ 
+        compress: {
+          dead_code: false
+        }
+      }
+    ),
     new ExtractTextPlugin({
       filename: '[name]-[hash].css',
     }),
@@ -78,15 +83,5 @@ module.exports = {
                 }
         ]
     })
-    // new ZopfliPlugin({
-    //   asset: "[path].gz[query]",
-    //   algorithm: "zopfli",
-    //   test: /\.(js|css|ttf|woff|eot|svg|png)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.9,
-    //   numiterations : 50,
-    //   blocksplittinglast : true,
-    //   blocksplittingmax : 30
-    // })
   ]
 }
