@@ -12,8 +12,7 @@ module.exports = {
   context: __dirname + '/src',
   entry : {
       // ページごとに異なるエントリポイントを設ける
-      bundle   : ["./js/index.js"],
-      swLibs   : ["./js/swLibs.js"]
+      bundle   : ["./js/index.js"]
   },
   output: {
     path: cleanBlogRoot + "/static/webpack_bundles",
