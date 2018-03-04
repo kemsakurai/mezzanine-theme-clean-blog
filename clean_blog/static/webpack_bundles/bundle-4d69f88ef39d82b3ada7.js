@@ -22425,25 +22425,28 @@ function configure() {
 												if (typeof window.blogPostInfo === "undefined") {
 																return;
 												}
-												var isRepeaterResult = sendMessage2ServiceWorker({ "command": "isRepeater", "args": null });
-												if ("Notification" in window) {
-																//許可を求める
-																Notification.requestPermission().then(function (permission) {
-																				if (permission === "denied" || permission === "default") {
-																								// 拒否 // 無視
-																								return;
-																				} else if (permission === "granted") {
-																								var args = {
-																												"userAgent": window.navigator.userAgent,
-																												"blogPostId": window.blogPostInfo.blogPostId,
-																												"gaId": window.blogPostInfo.gaId };
-																								sendMessage2ServiceWorker({ "command": "requestNotification", "args": args });
-																				} else {
-																								/* eslint-disable no-console */
-																								console.log("permission is illegal : %s", permission);
+												sendMessage2ServiceWorker({ "command": "isRepeater", "args": null }).then(function (result) {
+																if (result) {
+																				if ("Notification" in window) {
+																								//許可を求める
+																								Notification.requestPermission().then(function (permission) {
+																												if (permission === "denied" || permission === "default") {
+																																// 拒否 // 無視
+																																return;
+																												} else if (permission === "granted") {
+																																var args = {
+																																				"userAgent": window.navigator.userAgent,
+																																				"blogPostId": window.blogPostInfo.blogPostId,
+																																				"gaId": window.blogPostInfo.gaId };
+																																sendMessage2ServiceWorker({ "command": "requestNotification", "args": args });
+																												} else {
+																																/* eslint-disable no-console */
+																																console.log("permission is illegal : %s", permission);
+																												}
+																								});
 																				}
-																});
-												}
+																}
+												});
 								});
 								// 登録時は、activateしないため、controller は nullになる
 								if (navigator.serviceWorker.controller) {

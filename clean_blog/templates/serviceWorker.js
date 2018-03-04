@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-8ee932d0b3d3ad185341.css",
+    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-8ee932d0b3d3ad185341.js",
-    "revision": "cab27e59fe8ba285e9caedc7c77e432a"
+    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.js",
+    "revision": "06a764520b1921cf1d4aa5428c6225a4"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -356,10 +356,10 @@ var storeAccessDate = function () {
     let date = dateFormat.format(new Date(), 'yyyyMMdd');
     accessDate.getItem(date).then((value) => {
         let count;
-        if (typeof count === 'undefined' || count === NaN) {
+        if (typeof value === 'undefined' || value === NaN) {
             count = 1;
         } else {
-            count = 1 + count;
+            count = 1 + value;
         }
         return accessDate.setItem(date, count).then(() => {
             return accessDate.length().then((length) => {
