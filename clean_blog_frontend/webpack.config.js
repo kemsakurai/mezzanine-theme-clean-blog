@@ -20,16 +20,6 @@ module.exports = {
   },
   module: {
     loaders: [
-      // {
-      //     enforce: "pre",
-      //     test: /\.js$/,
-      //     exclude: /node_modules/,
-      //     loader: "eslint-loader",
-      //     options: {
-      //         failOnError: true,
-      //         fix: true
-      //   }
-      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -56,11 +46,7 @@ module.exports = {
         jQuery: 'jquery'
     }),
     new CleanWebpackPlugin(["static/webpack_bundles"],{ root: cleanBlogRoot, verbose: true }),
-    new Webpack.optimize.UglifyJsPlugin({
-        compress: {
-          dead_code: false
-      }
-    }),
+    new Webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin({
       filename: '[name]-[hash].css',
     }),
