@@ -10,9 +10,9 @@ import './clean-blog.js';
 import './jqBootstrapValidation.js';
 import './contact_me.js';
 
-import registerServiceWorker from './sw/clients/registerServiceWorker.js';
+import registerServiceWorker from './registerServiceWorker.js';
 registerServiceWorker();
-import configure from './sw/clients/pageConfigurator.js';
+import configure from './pageConfigurator.js';
 configure();
-import storageConfigure from './sw/clients/storage.js';
+import storageConfigure from './storage.js';
 storageConfigure();

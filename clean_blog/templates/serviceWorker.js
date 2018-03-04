@@ -23,11 +23,11 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-759097d1dddff2027b3d.css",
+    "url": "static/webpack_bundles/bundle-a269c7226dea6cbf85e1.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-759097d1dddff2027b3d.js",
+    "url": "static/webpack_bundles/bundle-a269c7226dea6cbf85e1.js",
     "revision": "a23eec9b6be9f923f7cb1423fcfa6c25"
   },
   {

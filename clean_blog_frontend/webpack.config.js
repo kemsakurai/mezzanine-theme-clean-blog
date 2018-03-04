@@ -73,7 +73,7 @@ module.exports = {
           'webpack_bundles': 'static/webpack_bundles',
           'js': 'static/js',
         },
-        swSrc:  __dirname + '/src/js/sw/workers/serviceWorker.js',
+        swSrc:  __dirname + '/src/js/serviceWorker.js',
         swDest: cleanBlogRoot + "/templates/serviceWorker.js"
     }),
     new WebpackPwaManifest({
