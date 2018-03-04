@@ -1,4 +1,4 @@
-importScripts("static/js/workbox-sw.prod.v2.1.3.js");
+importScripts("static/js/workbox-sw.prod.v2.1.2.js");
 /* eslint-disable no-undef */
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
