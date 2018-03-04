@@ -1,5 +1,5 @@
 importScripts("static/js/workbox-sw.prod.v2.1.3.js");
-importScripts("static/js/webpack_bundles/swLibs-3641f482c2a90e5a2f48.js");
+importScripts("static/webpack_bundles/swLibs-3641f482c2a90e5a2f48.js");
 /* eslint-disable no-undef */
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
