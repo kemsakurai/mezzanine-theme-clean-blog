@@ -307,10 +307,10 @@ var storeAccessDate = function () {
     let date = dateFormat.format(new Date(), 'yyyyMMdd');
     accessDate.getItem(date).then((value) => {
         let count;
-        if (typeof count === 'undefined' || count === NaN) {
+        if (typeof value === 'undefined' || value === NaN) {
             count = 1;
         } else {
-            count = 1 + count;
+            count = 1 + value;
         }
         return accessDate.setItem(date, count).then(() => {
             return accessDate.length().then((length) => {
