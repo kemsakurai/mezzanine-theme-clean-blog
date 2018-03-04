@@ -22426,7 +22426,6 @@ function configure() {
 																return;
 												}
 												sendMessage2ServiceWorker({ "command": "isRepeater", "args": null }).then(function (result) {
-																console.log("isRepeater#result", result);
 																if (result) {
 																				if ("Notification" in window) {
 																								//許可を求める

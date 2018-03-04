@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-bed5fb5e8437a4a5efcc.css",
+    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-bed5fb5e8437a4a5efcc.js",
-    "revision": "0d8e56e8d8877b99ea88ae86a0f85035"
+    "url": "static/webpack_bundles/bundle-4d69f88ef39d82b3ada7.js",
+    "revision": "06a764520b1921cf1d4aa5428c6225a4"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -377,8 +377,9 @@ var storeAccessDate = function () {
 }
 // Repeaterユーザーか判定して返す。
 var isRepeater = function () {
-  return accessDate.keys().then((length) => {
-    if (length >= 3) {
+  return accessDate.keys().then((keys) => {
+    // 日をまたいで3回以上のアクセスがあるか判断する
+    if (keys.length >= 3) {
         return true;
     }
     return false;
