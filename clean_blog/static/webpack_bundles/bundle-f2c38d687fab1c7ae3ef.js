@@ -22505,7 +22505,9 @@ var accessDate = {
     });
   },
   key: function key(index) {
-    return this.keys()[index];
+    return this.keys().then(function (keys) {
+      return keys[index];
+    });
   },
   keys: function keys() {
     return storage.then(function (db) {
@@ -22591,25 +22593,30 @@ var dateFormat = {
 function storeAccessDate() {
   var date = dateFormat.format(new Date(), 'yyyyMMdd');
   var count = accessDate.get(date);
-  if (typeof count === 'undefined') {
+  if (typeof count === 'undefined' || count === "NaN") {
     accessDate.set(date, 1);
   } else {
     accessDate.set(date, ++count);
   }
-  var length = accessDate.keys().length();
-  if (length > 5) {
-    var key = accessDate.key(0);
-    console.log(key);
-    accessDate.delete(key);
-  }
+  accessDate.keys().then(function (length) {
+    if (length > 5) {
+      accessDate.key(0).then(function (key) {
+        console.log(key);
+        accessDate.delete(key);
+      }).catch(function (value) {
+        console.log("Raise error.");
+      });
+    }
+  });
 }
 
 function isRepeater() {
-  var length = accessDate.keys().length();
-  if (length >= 3) {
-    return true;
-  }
-  return false;
+  return accessDate.keys().then(function (length) {
+    if (length >= 3) {
+      return true;
+    }
+    return false;
+  });
 }
 
 function initialize() {

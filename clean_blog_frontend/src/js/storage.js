@@ -33,7 +33,9 @@ const accessDate = {
     });
   },
   key(index) {
-  	return this.keys()[index];
+  	return this.keys().then((keys) => {
+      return keys[index];
+    });
   },
   keys() {
     return storage.then((db) => {
@@ -117,25 +119,30 @@ result = result.replace(key, this.fmt[key](date));
 function storeAccessDate() {
 	let date = dateFormat.format(new Date(), 'yyyyMMdd');
 	let count = accessDate.get(date);
-	if (typeof count === 'undefined') {
+	if (typeof count === 'undefined' || count === "NaN") {
 		accessDate.set(date, 1);
 	} else {
 		accessDate.set(date, ++count);
 	}
-	let length = accessDate.keys().length();
-	if (length > 5) {
-		let key =accessDate.key(0);
-		console.log(key);
-		accessDate.delete(key);
-	}
+  accessDate.keys().then((length) => {
+    if (length > 5) {
+        accessDate.key(0).then((key) => {
+          console.log(key);
+          accessDate.delete(key);  
+        }).catch((value) => {
+          console.log("Raise error.");
+        });
+    }
+  });
 }
 
 function isRepeater() {
-	let length = accessDate.keys().length();
-	if (length >= 3) {
-		return true;
-	}
-	return false;
+  return accessDate.keys().then((length) => {
+    if (length >= 3) {
+      return true;
+    }
+    return false;
+  });
 }
 
 export default function initialize() {
