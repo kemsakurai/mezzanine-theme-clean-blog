@@ -34,9 +34,7 @@ export default function configure() {
           });
         });
         /* eslint-disable no-unused-vars */
-        // var event = new Event('_sendRequestNotification');
-        // window.dispatchEvent(event);
-         window.addEventListener('_sendRequestNotification', () => {
+        window.addEventListener('_sendRequestNotification', () => {
               // dataLayer変数が設定されていない場合、処理を中断する
               if ( typeof window.blogPostInfo === 'undefined') {
                    return;
@@ -66,10 +64,9 @@ export default function configure() {
               if ( typeof window.blogPostInfo === 'undefined') {
                    return;
               }
-               if ('Notification' in window) {
-                  console.log('sentRequest to ServiceWorker...');
+              if ('Notification' in window) {
                   sendMessage2ServiceWorker({'command': 'isRepeater', 'args': null});
-               }
+              }
          });
          // メッセージ受信イベント
           window.addEventListener('message', function(e) {

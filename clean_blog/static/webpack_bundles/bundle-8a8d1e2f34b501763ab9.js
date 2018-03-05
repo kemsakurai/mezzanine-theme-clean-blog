@@ -22418,8 +22418,6 @@ function configure() {
             });
         });
         /* eslint-disable no-unused-vars */
-        // var event = new Event('_sendRequestNotification');
-        // window.dispatchEvent(event);
         window.addEventListener('_sendRequestNotification', function () {
             // dataLayer変数が設定されていない場合、処理を中断する
             if (typeof window.blogPostInfo === 'undefined') {
@@ -22451,7 +22449,6 @@ function configure() {
                 return;
             }
             if ('Notification' in window) {
-                console.log('sentRequest to ServiceWorker...');
                 sendMessage2ServiceWorker({ 'command': 'isRepeater', 'args': null });
             }
         });
