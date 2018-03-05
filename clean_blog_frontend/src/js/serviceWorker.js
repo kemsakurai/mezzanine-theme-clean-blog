@@ -341,8 +341,7 @@ const unsubscribe = function() {
       return sub.unsubscribe();
     }
   });
-  }
-}
+};
 
 const accessDate = localforage.createInstance({
     driver: localforage.INDEXEDDB, // Force WebSQL; same as using setDriver()
