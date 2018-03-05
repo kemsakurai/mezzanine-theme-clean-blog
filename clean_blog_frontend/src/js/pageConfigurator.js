@@ -69,7 +69,7 @@ export default function configure() {
               }
          });
          // メッセージ受信イベント
-          window.addEventListener('message', function(e) {
+         window.addEventListener('message', function(e) {
               let command = e.data.command;
               let args = e.data.args;
               switch (command) {
