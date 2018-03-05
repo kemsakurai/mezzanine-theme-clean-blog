@@ -132,7 +132,7 @@ const loadVersionBrowser = function(userAgent) {
     };
 }
 const sendMessageToAllClients = function(msg) {
-    clients.matchAll().then(clients => {
+    clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
         clients.forEach(client => {
             sendMessageToClient(client, msg).then(m => console.log("SW Received Message: "+ m));
         })
