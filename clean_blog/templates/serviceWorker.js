@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-8a8d1e2f34b501763ab9.css",
+    "url": "static/webpack_bundles/bundle-891c7190ee42a20d341e.css",
     "revision": "615f0fb0672ce4fb4ce22c7a5f16969b"
   },
   {
-    "url": "static/webpack_bundles/bundle-8a8d1e2f34b501763ab9.js",
-    "revision": "3ae2e1da407f8ff6ef72da056d1f3a1f"
+    "url": "static/webpack_bundles/bundle-891c7190ee42a20d341e.js",
+    "revision": "35f5d51c7eaf59abea599f013e5adb03"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -185,9 +185,7 @@ self.addEventListener('message', (e) => {
             break;
         case 'isRepeater':
             isRepeater().then((result) => {
-                e.ports[0].postMessage({ 'command': 'handleIsRepeaterResult', 'args': {'result' : result } });
-                // 呼び元にmessage を送信
-                // sendMessageToAllClients({ 'command': 'handleIsRepeaterResult', 'args': {'result' : result } });
+                e.ports[0].postMessage({'result' : result });
             });
             break;
         default:

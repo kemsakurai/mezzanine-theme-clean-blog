@@ -136,9 +136,7 @@ self.addEventListener('message', (e) => {
             break;
         case 'isRepeater':
             isRepeater().then((result) => {
-                e.ports[0].postMessage({ 'command': 'handleIsRepeaterResult', 'args': {'result' : result } });
-                // 呼び元にmessage を送信
-                // sendMessageToAllClients({ 'command': 'handleIsRepeaterResult', 'args': {'result' : result } });
+                e.ports[0].postMessage({'result' : result });
             });
             break;
         default:

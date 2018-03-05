@@ -15,7 +15,16 @@ function sendMessage2ServiceWorker(message) {
         }
     });
 }
-
+function dispatchEvent(name) {
+    var event;
+    try {
+        event = new CustomEvent(name);
+    } catch (e) {
+        event = document.createEvent('CustomEvent');
+        event.initCustomEvent(name, false, false);
+    }
+    window.dispatchEvent(event);  
+}
 export default function configure() {
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
@@ -65,26 +74,15 @@ export default function configure() {
                    return;
               }
               if ('Notification' in window) {
-                  sendMessage2ServiceWorker({'command': 'isRepeater', 'args': null});
-              }
-         });
-         // メッセージ受信イベント
-         window.addEventListener('message', function(e) {
-              let command = e.data.command;
-              let args = e.data.args;
-              switch (command) {
-                  case 'handleIsRepeaterResult':
-                       if (e.data.args.result) {
-                            let event = new Event('_sendRequestNotification');
-                            window.dispatchEvent(event);
+                  sendMessage2ServiceWorker({'command': 'isRepeater', 'args': null}).then((data) => {
+                       if (data.result) {
+                          dispatchEvent('_sendRequestNotification');
                        } else {
                           console.log(' _sendRequestNotification event not fired..');
                        }
-                      break;
-                  default:
-                      break;
+                  });
               }
-          }, false);
+         });
 
           // 登録時は、activateしないため、controller は nullになる
         if (navigator.serviceWorker.controller) {
