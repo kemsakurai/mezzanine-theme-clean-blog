@@ -61,8 +61,7 @@ const urlBase64ToUint8Array = function(base64String) {
     }
     return outputArray;
 };
-
-function loadVersionBrowser(userAgent) {
+const loadVersionBrowser = function(userAgent) {
     let ua = userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if (/trident/i.test(M[1])) {
         tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -83,7 +82,28 @@ function loadVersionBrowser(userAgent) {
         version: M[1],
     };
 }
+const sendMessageToAllClients = function(msg) {
+    clients.matchAll().then(clients => {
+        clients.forEach(client => {
+            sendMessageToClient(client, msg).then(m => console.log("SW Received Message: "+ m));
+        })
+    })
+}
 
+const sendMessageToClient = function(client, message) {
+    return new Promise(function(resolve, reject) {
+        var msgChan = new MessageChannel();
+
+        msgChan.port1.onmessage = function(event) {
+            if(event.data.error){
+                reject(event.data.error);
+            }else{
+                resolve(event.data);
+            }
+        };
+        client.postMessage(message, [msgChan.port2]);
+    });
+}
 // navigatorPush.service.js file
 const getTitle = function(title) {
     if (title === '') {
@@ -117,8 +137,7 @@ self.addEventListener('message', (e) => {
         case 'isRepeater':
             isRepeater().then((result) => {
                 // 呼び元にmessage を送信
-                e.source.postMessage({ 'command': 'handleIsRepeaterResult',
-                    'args': {'result' : result } }, e.origin);
+                sendMessageToAllClients({ 'command': 'handleIsRepeaterResult', 'args': {'result' : result } });
             });
             break;
         default:
