@@ -291,6 +291,108 @@ return 'M';
   },
 };
 
+// -------------------------------------
+// WebPush購読処理
+// --------
+const requestNotification = function(userAgent, blogPostId, gaId) {
+    
+    self.registration.pushManager.getSubscription().then(function(existingSubscription) {
+         // ---------------------------------------
+         // 本来はここでFail した場合のリトライ処理を記載する    
+         // ----------------
+         if (existingSubscription) {
+             return existingSubscription;
+         }
+        // 許可された場合の処理
+        let browser = loadVersionBrowser(userAgent);
+        // サーバーの公開鍵
+        const serverPublicKey = 'BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k';
+        // scopeを指定して、registrationを取り出す
+        self.registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(serverPublicKey),
+        }).then((sub) => {
+            let endpointParts = sub.endpoint.split('/');
+            let registrationId = endpointParts[endpointParts.length - 1];
+            let contentEncoding; // プッシュ通知の送信時に指定するContent-Encoding
+            // Chrome 50以降、Firefox 48以降のみを想定
+            if ('supportedContentEncodings' in PushManager) {
+                contentEncoding =
+                    PushManager.supportedContentEncodings.includes('aes128gcm') ? 'aes128gcm' : 'aesgcm';
+            } else {
+                contentEncoding = 'aesgcm';
+            }
+            const webPushDevice = {
+                'browser': browser.name.toUpperCase(),
+                'p256dh': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('p256dh')))),
+                'auth': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('auth')))),
+                'name': userAgent,
+                'active': true,
+                'registration_id': registrationId,
+                'contentEncoding': contentEncoding,
+                'cloud_message_type': 'FCM',
+            };
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            };
+            if (typeof blogPostId === 'undefinded') {
+                let body = JSON.stringify(webPushDevice);
+                fetch('./api/v2/web_push/', {
+                    'method': method,
+                    'headers': headers,
+                    'body': body,
+                }).then((res) => res.json()).then(console.log).catch(console.error);
+            } else {
+                let data = {
+                    'web_push_device': webPushDevice,
+                    'blog_id': blogPostId,
+                    'ga_id': gaId,
+                };
+                let body = JSON.stringify(data);
+                fetch('./api/v2/web_push_request/', {
+                    'method': method,
+                    'headers': headers,
+                    'body': body,
+                }).then((res) => res.json()).then(console.log).catch(console.error);
+            }
+        }).catch((error) => {
+            /* eslint-disable no-console */
+            console.error('Error during service worker ready:', error);
+        });
+    });
+};
+
+// -------------------------------------
+// WebPush購読解除処理
+// --------
+const unsubscribe = function() {
+  self.registration.pushManager.getSubscription().then(function(sub) {
+    if (sub) {
+      let endpointParts = sub.endpoint.split('/');
+      let registrationId = endpointParts[endpointParts.length - 1];
+      const method = 'POST';
+      const headers = {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      };
+      const webPushDevice = {
+        'active': false,
+        'registration_id': registrationId,
+      };
+      let body = JSON.stringify(webPushDevice);
+      fetch('./api/v2/web_push/', {
+          'method': method,
+          'headers': headers,
+          'body': body,
+      }).then((res) => res.json()).then(console.log).catch(console.error);
+      return sub.unsubscribe();
+    }
+  });
+  }
+}
+
 const accessDate = localforage.createInstance({
     driver: localforage.INDEXEDDB, // Force WebSQL; same as using setDriver()
     name: 'swDB',
@@ -300,67 +402,6 @@ const accessDate = localforage.createInstance({
     description: 'some description',
 });
 
-// WebPush通知許可を求める
-const requestNotification = function(userAgent, blogPostId, gaId) {
-    // 許可された場合の処理
-    let browser = loadVersionBrowser(userAgent);
-    // サーバーの公開鍵
-    const serverPublicKey = 'BERtMZ5KH6OyFBX1sxjN0wYQlQL6jGdXOztsnjpxcUnHQS1voeJZ9qmmW7y7cvqHT0EnpdyyhZ9ijwyzjBUXx8k';
-    // scopeを指定して、registrationを取り出す
-    self.registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(serverPublicKey),
-    }).then((sub) => {
-        let endpointParts = sub.endpoint.split('/');
-        let registrationId = endpointParts[endpointParts.length - 1];
-        let contentEncoding; // プッシュ通知の送信時に指定するContent-Encoding
-        // Chrome 50以降、Firefox 48以降のみを想定
-        if ('supportedContentEncodings' in PushManager) {
-            contentEncoding =
-                PushManager.supportedContentEncodings.includes('aes128gcm') ? 'aes128gcm' : 'aesgcm';
-        } else {
-            contentEncoding = 'aesgcm';
-        }
-        const webPushDevice = {
-            'browser': browser.name.toUpperCase(),
-            'p256dh': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('p256dh')))),
-            'auth': btoa(String.fromCharCode.apply(null, new Uint8Array(sub.getKey('auth')))),
-            'name': userAgent,
-            'active': true,
-            'registration_id': registrationId,
-            'contentEncoding': contentEncoding,
-            'cloud_message_type': 'FCM',
-        };
-        const method = 'POST';
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        };
-        if (typeof blogPostId === 'undefinded') {
-            let body = JSON.stringify(webPushDevice);
-            fetch('./api/v2/web_push/', {
-                'method': method,
-                'headers': headers,
-                'body': body,
-            }).then((res) => res.json()).then(console.log).catch(console.error);
-        } else {
-            let data = {
-                'web_push_device': webPushDevice,
-                'blog_id': blogPostId,
-                'ga_id': gaId,
-            };
-            let body = JSON.stringify(data);
-            fetch('./api/v2/web_push_request/', {
-                'method': method,
-                'headers': headers,
-                'body': body,
-            }).then((res) => res.json()).then(console.log).catch(console.error);
-        }
-    }).catch((error) => {
-        /* eslint-disable no-console */
-        console.error('Error during service worker ready:', error);
-    });
-};
 // アクセスした日付を記録する
 const storeAccessDate = function() {
     let date = dateFormat.format(new Date(), 'yyyyMMdd');
