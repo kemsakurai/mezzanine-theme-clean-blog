@@ -553,12 +553,6 @@ thead>tr>td {
 .bottom150 {
     margin-bottom: 150px
 }
-@media (min-width: 480px) {
-  .container {
-    padding-right: 1px;
-    padding-left: 1px;
-  }
-}
 @media screen and (max-width: 1200px) {
     #share ul{
         height:auto;
@@ -627,8 +621,14 @@ thead>tr>td {
         color:#ffffff;
     }
 }
+@media (max-width: 480px) {
+  .container {
+    padding-right: 1px;
+    padding-left: 1px;
+  }
+}
 @media screen and (max-width: 480px) {
     #share li{
-        width:320px;
+        width:280px;
     }
 }
