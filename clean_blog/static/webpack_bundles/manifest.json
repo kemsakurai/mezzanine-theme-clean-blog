@@ -43,5 +43,7 @@
   "start_url": "https://www.monotalk.xyz/?utm_source=home_screen",
   "description": "日々の書き込み",
   "background_color": "#ffffff",
-  "theme_color": "#808080"
+  "theme_color": "#808080",
+  "gcm_sender_id": "482941778795",
+  "gcm_sender_id_comment": "Do not change the GCM Sender ID"
 }

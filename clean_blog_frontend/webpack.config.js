@@ -6,7 +6,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
-var ZopfliPlugin = require("zopfli-webpack-plugin");
 
 module.exports = {
   context: __dirname + '/src',
