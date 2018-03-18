@@ -553,69 +553,82 @@ thead>tr>td {
 .bottom150 {
     margin-bottom: 150px
 }
-#share ul{
-    height:auto;
+@media (min-width: 480px) {
+  .container {
+    padding-right: 1px;
+    padding-left: 1px;
+  }
 }
-#share li{
-    font-size:14px;
-    text-align:center;
-    float:left;
-    width:200px;
-    margin-right:1%;
-    margin-bottom:8px;
-    border-radius:3px;
-    list-style:none;
+@media screen and (max-width: 1200px) {
+    #share ul{
+        height:auto;
+    }
+    #share li{
+        font-size:14px;
+        text-align:center;
+        float:left;
+        width:200px;
+        margin-right:1%;
+        margin-bottom:8px;
+        border-radius:3px;
+        list-style:none;
+    }
+    #share li.share-twitter{
+        background:#285b7d;
+        box-shadow:0 2px #204765;
+    }
+    #share li.share-twitter:hover{
+        background:#398dc5;
+    }
+    #share li.share-facebook{
+        background:#3b5998;
+        box-shadow:0 2px #2d4373;
+    }
+    #share li.share-facebook:hover{
+        background:#4c70ba;
+    }
+    #share li.share-google{
+        background:#dd4b39;
+        box-shadow:0 2px #c23321;
+    }
+    #share li.share-google:hover{
+        background:#e47365;
+    }
+    #share li.share-hatena{
+        background:#2c6ebd;
+        box-shadow:0 2px #225694;
+    }
+    #share li.share-hatena:hover{
+        background:#4888d4;
+    }
+    #share li.share-pocket{
+        background:#f13d53;
+        box-shadow:0 2px #e6152f;
+    }
+    #share li.share-pocket:hover{
+        background:#f26f7f;
+    }
+    #share li.share-line{
+        background:#00C300;
+        box-shadow:0 2px #009d00;
+    }
+    #share li.share-line:hover{
+        background:#2bd92b;
+    }
+    #share a{
+        display:block;
+        height:27px;
+        padding-top:6px;
+        color:#ffffff;
+        text-decoration:none;
+    }
+    #share a:hover{
+        text-decoration:none;
+        color:#ffffff;
+    }
 }
-#share li.share-twitter{
-    background:#285b7d;
-    box-shadow:0 2px #204765;
-}
-#share li.share-twitter:hover{
-    background:#398dc5;
-}
-#share li.share-facebook{
-    background:#3b5998;
-    box-shadow:0 2px #2d4373;
-}
-#share li.share-facebook:hover{
-    background:#4c70ba;
-}
-#share li.share-google{
-    background:#dd4b39;
-    box-shadow:0 2px #c23321;
-}
-#share li.share-google:hover{
-    background:#e47365;
-}
-#share li.share-hatena{
-    background:#2c6ebd;
-    box-shadow:0 2px #225694;
-}
-#share li.share-hatena:hover{
-    background:#4888d4;
-}
-#share li.share-pocket{
-    background:#f13d53;
-    box-shadow:0 2px #e6152f;
-}
-#share li.share-pocket:hover{
-    background:#f26f7f;
-}
-#share li.share-line{
-    background:#00C300;
-    box-shadow:0 2px #009d00;
-}
-#share li.share-line:hover{
-    background:#2bd92b;
-}
-#share a{
-    display:block;
-    height:27px;
-    padding-top:6px;
-    color:#ffffff;
-    text-decoration:none;
-}
-#share a:hover{
-    text-decoration:none;
-    color:#ffffff;
+@media screen and (max-width: 480px) {
+    #share li{
+        width:320px;
+    }
 }
