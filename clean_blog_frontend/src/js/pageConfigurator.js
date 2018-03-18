@@ -15,6 +15,7 @@ function sendMessage2ServiceWorker(message) {
         }
     });
 }
+
 function dispatchEvent(name) {
     var event;
     try {
@@ -25,6 +26,7 @@ function dispatchEvent(name) {
     }
     window.dispatchEvent(event);  
 }
+
 export default function configure() {
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
@@ -42,31 +44,6 @@ export default function configure() {
             }
           });
         });
-        /* eslint-disable no-unused-vars */
-        window.addEventListener('_sendRequestNotification', () => {
-              // dataLayer変数が設定されていない場合、処理を中断する
-              if ( typeof window.blogPostInfo === 'undefined') {
-                   return;
-              }
-               if ('Notification' in window) {
-                  // 許可を求める
-                  Notification.requestPermission().then((permission) => {
-                     if (permission === 'denied' || permission === 'default') {
-                         // 拒否 // 無視
-                         return;
-                     } else if (permission === 'granted') {
-                              let args = {
-                                   'userAgent': window.navigator.userAgent,
-                                   'blogPostId': window.blogPostInfo.blogPostId,
-                                   'gaId': window.blogPostInfo.gaId};
-                         sendMessage2ServiceWorker({'command': 'requestNotification', 'args': args});
-                     } else {
-                         /* eslint-disable no-console */
-                         console.log('permission is illegal : %s', permission);
-                     }
-                 });
-              }
-         });
          window.addEventListener('_isRepeater', () => {
               console.log('_isRepeater fired..');
               // dataLayer変数が設定されていない場合、処理を中断する
