@@ -24,11 +24,11 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-9fd31109253dee5f9aba.css",
-    "revision": "98ace87fc89f6aee343da97c0e365eaf"
+    "url": "static/webpack_bundles/bundle-e4eb666281881bf56dac.css",
+    "revision": "ebc782158469716807ec0367673316b5"
   },
   {
-    "url": "static/webpack_bundles/bundle-9fd31109253dee5f9aba.js",
+    "url": "static/webpack_bundles/bundle-e4eb666281881bf56dac.js",
     "revision": "b07c2a0e5635737a284cba410271cdd4"
   },
   {
@@ -92,45 +92,6 @@ workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 1,
     },
 }), 'GET');
-/**
- * Utils functions:
- * @return urlBase64ToUint8Array
- */
-const urlBase64ToUint8Array = function(base64String) {
-    let padding = '='.repeat((4 - base64String.length % 4) % 4);
-    let base64 = (base64String + padding)
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
-
-    let rawData = self.atob(base64);
-    let outputArray = new Uint8Array(rawData.length);
-
-    for (let i = 0; i < rawData.length; ++i) {
-        outputArray[i] = rawData.charCodeAt(i);
-    }
-    return outputArray;
-};
-const loadVersionBrowser = function(userAgent) {
-    let ua = userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return {name: 'IE', version: (tem[1] || '')};
-    }
-    if (M[1] === 'Chrome') {
-        tem = ua.match(/\bOPR\/(\d+)/);
-        if (tem != null) {
-            return {name: 'Opera', version: tem[1]};
-        }
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    if ((tem = ua.match(/version\/(\d+)/i)) != null) {
-        M.splice(1, 1, tem[1]);
-    }
-    return {
-        name: M[0],
-        version: M[1],
-    };
-}
 const sendMessageToAllClients = function(msg) {
     clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
         clients.forEach(client => {
@@ -153,33 +114,12 @@ const sendMessageToClient = function(client, message) {
         client.postMessage(message, [msgChan.port2]);
     });
 }
-// navigatorPush.service.js file
-const getTitle = function(title) {
-    if (title === '') {
-        title = 'TITLE DEFAULT';
-    }
-    return title;
-};
-
-const getNotificationOptions = function(message, messageTag) {
-    let options = {
-        body: message,
-        icon: '/img/icon_120.png',
-        tag: messageTag,
-        vibrate: [200, 100, 200, 100, 200, 100, 200],
-    };
-    return options;
-};
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
 self.addEventListener('message', (e) => {
     let command = e.data.command;
     let args = e.data.args;
     switch (command) {
-        case 'requestNotification':
-            // 通知承認要求
-            requestNotification(args.userAgent, args.blogPostId, args.gaId);
-            break;
         case 'storeAccessDate':
             storeAccessDate();
             break;
@@ -191,57 +131,6 @@ self.addEventListener('message', (e) => {
         default:
             return Promise.resolve();
     }
-});
-
-// Push通知
-self.addEventListener('push', function(event) {
-    let responseJson;
-    let title;
-    let message;
-    let messageTag;
-    try {
-        // Push is a JSON
-        responseJson = event.data.json();
-        title = responseJson.title;
-        message = responseJson.message;
-        messageTag = responseJson.tag;
-    } catch (err) {
-        // Push is a simple text
-        title = '';
-        message = event.data.text();
-        messageTag = '';
-    }
-    self.registration.showNotification(getTitle(title), getNotificationOptions(message, messageTag));
-    // Optional: Comunicating with our js application. Send a signal
-    self.clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
-        clients.forEach(function(client) {
-            client.postMessage({
-                'data': messageTag,
-                'data_title': title,
-                'data_body': message,
-            });
-        });
-    });
-});
-
-// Optional: Added to that the browser opens when you click on the notification push web.
-// 通知クリック時の動作を定義
-self.addEventListener('notificationclick', function(event) {
-    // Android doesn't close the notification when you click it
-    // See http://crbug.com/463146
-    event.notification.close();
-    // Check if there's already a tab open with this URL.
-    // If yes: focus on the tab.
-    // If no: open a tab with the URL.
-    event.waitUntil(self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(function(windowClients) {
-            for (let i = 0; i < windowClients.length; i++) {
-                let client = windowClients[i];
-                if ('focus' in client) {
-                    return client.focus();
-                }
-            }
-        })
-    );
 });
 
 const dateFormat = {
