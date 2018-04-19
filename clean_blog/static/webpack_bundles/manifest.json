@@ -40,7 +40,7 @@
   "short_name": "monotalk",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "https://www.monotalk.xyz/?utm_source=home_screen",
+  "start_url": "https://www.monotalk.xyz/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa",
   "description": "日々の書き込み",
   "background_color": "#ffffff",
   "theme_color": "#808080",
