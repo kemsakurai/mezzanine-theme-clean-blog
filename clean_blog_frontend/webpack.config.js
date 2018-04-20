@@ -82,7 +82,11 @@ module.exports = {
                 }
         ],
         "gcm_sender_id": "482941778795",
-        "gcm_sender_id_comment": "Do not change the GCM Sender ID"
+        "gcm_sender_id_comment": "Do not change the GCM Sender ID",
+        "related_applications": [{
+                "platform": "web"
+        }],
+        "prefer_related_applications": false
     })
   ]
 }
