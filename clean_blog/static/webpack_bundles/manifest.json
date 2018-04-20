@@ -46,10 +46,6 @@
   "theme_color": "#808080",
   "gcm_sender_id": "482941778795",
   "gcm_sender_id_comment": "Do not change the GCM Sender ID",
-  "related_applications": [
-    {
-      "platform": "web"
-    }
-  ],
+  "related_applications": [],
   "prefer_related_applications": false
 }
