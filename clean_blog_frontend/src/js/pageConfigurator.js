@@ -32,16 +32,21 @@ export default function configure() {
          // Setup a listener to track Add to Homescreen events.
          window.addEventListener('beforeinstallprompt', (e) => {
           e.userChoice.then((choiceResult) => {
-            console.log('beforeinstallprompt called..', choiceResult.outcome);
-            if (typeof ga !== 'undefined') {
-               ga('send', {
-                   hitType: 'event',
-                   eventCategory: 'A2H',
-                   eventAction: choiceResult.outcome,
-                   eventLabel: document.title,
-                   nonInteraction: true,
-                      });
-            }
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "sendEvent",
+                eventName: "A2H",
+                eventData:{ category : "A2H", 
+                    action : choiceResult.outcome,
+                    label : document.title,
+                    value : "",
+                    nonInteraction : true
+                },
+                eventCustomData : {
+                    documentTitle : document.title,
+                    outcome : choiceResult.outcome
+                }
+            });
           });
         });
          window.addEventListener('_isRepeater', () => {

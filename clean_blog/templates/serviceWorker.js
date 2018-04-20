@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "89889688147bd7575d6327160d64e760"
   },
   {
-    "url": "static/webpack_bundles/bundle-e4eb666281881bf56dac.css",
+    "url": "static/webpack_bundles/bundle-2c49d72d6c228e0487f2.css",
     "revision": "ebc782158469716807ec0367673316b5"
   },
   {
-    "url": "static/webpack_bundles/bundle-e4eb666281881bf56dac.js",
-    "revision": "b07c2a0e5635737a284cba410271cdd4"
+    "url": "static/webpack_bundles/bundle-2c49d72d6c228e0487f2.js",
+    "revision": "31d8f4476691322d1813794c5dcb821c"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
