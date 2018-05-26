@@ -11,8 +11,10 @@ import "./jqBootstrapValidation.js";
 import "./contact_me.js";
 
 import registerServiceWorker from "./registerServiceWorker.js";
+
 registerServiceWorker();
 
 import pageConfigurator from "./pageConfigurator.js";
+
 pageConfigurator();
 

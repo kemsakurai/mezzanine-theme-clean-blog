@@ -1,56 +1,59 @@
 {% load mezzanine_tags comment_tags keyword_tags rating_tags i18n disqus_tags blog_tags %}
 {% block ex_blog_categories %}
     {% with blog_post.categories.all as categories %}
-    {% if categories %}
-    <div class="row">
-        <div class="col-md-12">
-        <h3>{% trans "Categories" %}</h3>
-        <ul>
-        {% for category in categories %}
-        <li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a></li>
-        {% endfor %}
-        </ul>
-        </div>
-    </div>
-    {% endif %}
+        {% if categories %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{% trans "Categories" %}</h3>
+                    <ul>
+                        {% for category in categories %}
+                            <li><a href="{% url "blog_post_list_category" category.slug %}"
+                                   data-category="category">{{ category }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
     {% endwith %}
 {% endblock %}
 
 {% block blog_post_detail_related_posts %}
     {% if blog_post.related_posts.all %}
-    <div class="row">                                                                                             
-    <div class="col-md-12" id="related-posts">
-    <h3>{% trans 'Related posts' %}</h3>
-    <ul>
-    {% for post in blog_post.related_posts.all %}
-    <li><a href="{{ post.get_absolute_url }}" data-ga-event-category="related_post" data-ga-event-action="click" data-ga-event-label="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-    {% endfor %}
-    </ul>
-    </div>
-    </div>
+        <div class="row">
+            <div class="col-md-12" id="related-posts">
+                <h3>{% trans 'Related posts' %}</h3>
+                <ul>
+                    {% for post in blog_post.related_posts.all %}
+                        <li><a href="{{ post.get_absolute_url }}" data-ga-event-category="related_post"
+                               data-ga-event-action="click"
+                               data-ga-event-label="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
 {% block blog_recent_posts %}
     {% blog_recent_posts 5 as recent_posts %}
     {% if recent_posts %}
-    <div class="row">
-    <div class="col-md-12">                                                                                        
-        <h3>{% trans "Recent Posts" %}</h3>
-        <ul class="recent-posts">
-        {% for recent_post in recent_posts %}
-        <li>
-            {% spaceless %}
-            <a href="{{ recent_post.get_absolute_url }}" data-category="recent_post">
-            {% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
-                <img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 24 24 %}">
-            {% endif %}
-            {{ recent_post.title }}
-            </a>
-            {% endspaceless %}
-        </li>
-        {% endfor %}
-        </ul>
-    </div>
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{% trans "Recent Posts" %}</h3>
+                <ul class="recent-posts">
+                    {% for recent_post in recent_posts %}
+                        <li>
+                            {% spaceless %}
+                                <a href="{{ recent_post.get_absolute_url }}" data-category="recent_post">
+                                    {% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}
+                                        <img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 24 24 %}">
+                                    {% endif %}
+                                    {{ recent_post.title }}
+                                </a>
+                            {% endspaceless %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}

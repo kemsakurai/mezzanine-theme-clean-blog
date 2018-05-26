@@ -2,9 +2,9 @@
 
 <form method="post" id="comment" action="{{ comment_url }}#comment">
     {% if not request.POST.replied_to %}
-    {% fields_for posted_comment_form %}
+        {% fields_for posted_comment_form %}
     {% else %}
-    {% fields_for unposted_comment_form %}
+        {% fields_for unposted_comment_form %}
     {% endif %}
     <div class="form-actions">
         <input class="btn btn-primary btn-md" type="submit" value="{% trans "Comment" %}">

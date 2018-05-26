@@ -43,22 +43,24 @@ workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 1,
     },
 }), 'GET');
-const sendMessageToAllClients = function(msg) {
-    clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
-        clients.forEach(client => {
-            sendMessageToClient(client, msg).then(m => console.log("SW Received Message: "+ m));
-        })
+const sendMessageToAllClients = function (msg) {
+    clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function (clients) {
+        clients.forEach(client = > {
+            sendMessageToClient(client, msg).then(m = > console.log("SW Received Message: " + m)
+    )
+        ;
+    })
     })
 }
 
-const sendMessageToClient = function(client, message) {
-    return new Promise(function(resolve, reject) {
+const sendMessageToClient = function (client, message) {
+    return new Promise(function (resolve, reject) {
         var msgChan = new MessageChannel();
 
-        msgChan.port1.onmessage = function(event) {
-            if(event.data.error){
+        msgChan.port1.onmessage = function (event) {
+            if (event.data.error) {
                 reject(event.data.error);
-            }else{
+            } else {
                 resolve(event.data);
             }
         };
@@ -67,86 +69,89 @@ const sendMessageToClient = function(client, message) {
 }
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener('message', (e) => {
+self.addEventListener('message', (e) = > {
     let command = e.data.command;
-    let args = e.data.args;
-    switch (command) {
-        case 'storeAccessDate':
-            storeAccessDate();
-            break;
-        case 'isRepeater':
-            isRepeater().then((result) => {
-                e.ports[0].postMessage({'result' : result });
-            });
-            break;
-        default:
-            return Promise.resolve();
-    }
-});
+let args = e.data.args;
+switch (command) {
+    case 'storeAccessDate':
+        storeAccessDate();
+        break;
+    case 'isRepeater':
+        isRepeater().then((result) = > {
+            e.ports[0].postMessage({'result': result});
+}
+)
+;
+break;
+default:
+return Promise.resolve();
+}
+})
+;
 
 const dateFormat = {
-  fmt: {
-    hh: function(date) {
- return ('0' + date.getHours()).slice(-2);
-},
-    h: function(date) {
- return date.getHours();
-},
-    mm: function(date) {
- return ('0' + date.getMinutes()).slice(-2);
-},
-    m: function(date) {
- return date.getMinutes();
-},
-    ss: function(date) {
- return ('0' + date.getSeconds()).slice(-2);
-},
-    dd: function(date) {
- return ('0' + date.getDate()).slice(-2);
-},
-    d: function(date) {
- return date.getDate();
-},
-    s: function(date) {
- return date.getSeconds();
-},
-    yyyy: function(date) {
- return date.getFullYear() + '';
-},
-    yy: function(date) {
- return date.getYear() + '';
-},
-    t: function(date) {
- return date.getDate()<=3 ? ['st', 'nd', 'rd'][date.getDate()-1]: 'th';
-},
-    w: function(date) {
-return ['Sun', '$on', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
-},
-    MMMM: function(date) {
- return ['January', 'February', '$arch', 'April', '$ay', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
-},
-    MMM: function(date) {
-return ['Jan', 'Feb', '$ar', 'Apr', '@ay', 'Jun', 'Jly', 'Aug', 'Spt', 'Oct', 'Nov', 'Dec'][date.getMonth()];
-},
-    MM: function(date) {
- return ('0' + (date.getMonth() + 1)).slice(-2);
-},
-    M: function(date) {
- return date.getMonth() + 1;
-},
-    $: function(date) {
-return 'M';
-},
-  },
-  format: function dateFormat(date, format) {
-    let result = format;
-    for (let key in this.fmt) {
-        if (this.fmt.hasOwnProperty(key)) {
-            result = result.replace(key, this.fmt[key](date));
+    fmt: {
+        hh: function (date) {
+            return ('0' + date.getHours()).slice(-2);
+        },
+        h: function (date) {
+            return date.getHours();
+        },
+        mm: function (date) {
+            return ('0' + date.getMinutes()).slice(-2);
+        },
+        m: function (date) {
+            return date.getMinutes();
+        },
+        ss: function (date) {
+            return ('0' + date.getSeconds()).slice(-2);
+        },
+        dd: function (date) {
+            return ('0' + date.getDate()).slice(-2);
+        },
+        d: function (date) {
+            return date.getDate();
+        },
+        s: function (date) {
+            return date.getSeconds();
+        },
+        yyyy: function (date) {
+            return date.getFullYear() + '';
+        },
+        yy: function (date) {
+            return date.getYear() + '';
+        },
+        t: function (date) {
+            return date.getDate() <= 3 ? ['st', 'nd', 'rd'][date.getDate() - 1] : 'th';
+        },
+        w: function (date) {
+            return ['Sun', '$on', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+        },
+        MMMM: function (date) {
+            return ['January', 'February', '$arch', 'April', '$ay', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
+        },
+        MMM: function (date) {
+            return ['Jan', 'Feb', '$ar', 'Apr', '@ay', 'Jun', 'Jly', 'Aug', 'Spt', 'Oct', 'Nov', 'Dec'][date.getMonth()];
+        },
+        MM: function (date) {
+            return ('0' + (date.getMonth() + 1)).slice(-2);
+        },
+        M: function (date) {
+            return date.getMonth() + 1;
+        },
+        $: function (date) {
+            return 'M';
+        },
+    },
+    format: function dateFormat(date, format) {
+        let result = format;
+        for (let key in this.fmt) {
+            if (this.fmt.hasOwnProperty(key)) {
+                result = result.replace(key, this.fmt[key](date));
+            }
         }
-    }
-    return result;
-  },
+        return result;
+    },
 };
 
 const accessDate = localforage.createInstance({
@@ -158,36 +163,46 @@ const accessDate = localforage.createInstance({
     description: 'some description',
 });
 // アクセスした日付を記録する
-const storeAccessDate = function() {
+const storeAccessDate = function () {
     let date = dateFormat.format(new Date(), 'yyyyMMdd');
-    accessDate.getItem(date).then((value) => {
+    accessDate.getItem(date).then((value) = > {
         let count;
-        if (typeof value === 'undefined' || value === NaN) {
-            count = 1;
-        } else {
-            count = 1 + value;
-        }
-        return accessDate.setItem(date, count).then(() => {
-            return accessDate.length().then((length) => {
-                if (length > 5) {
-                    accessDate.key(0).then((key) => {
-                        console.log(key);
-                        accessDate.delete(key);
-                    }).catch((value) => {
-                    console.log('Raise error.');
-                    });
-                }
-            });
-        });
-    });
+    if (typeof value === 'undefined' || value === NaN) {
+        count = 1;
+    } else {
+        count = 1 + value;
+    }
+    return accessDate.setItem(date, count).then(() = > {
+        return accessDate.length().then((length) = > {
+            if(length > 5
+)
+    {
+        accessDate.key(0).then((key) = > {
+            console.log(key);
+        accessDate.delete(key);
+    }).
+        catch((value) = > {
+            console.log('Raise error.');
+    })
+        ;
+    }
+})
+    ;
+})
+    ;
+})
+    ;
 };
 // Repeaterユーザーか判定して返す。
-const isRepeater = function() {
-  return accessDate.keys().then((keys) => {
-    // 日をまたいで3回以上のアクセスがあるか判断する
-    if (keys.length >= 3) {
+const isRepeater = function () {
+    return accessDate.keys().then((keys) = > {
+        // 日をまたいで3回以上のアクセスがあるか判断する
+        if(keys.length >= 3
+)
+    {
         return true;
     }
     return false;
-  });
+})
+    ;
 };

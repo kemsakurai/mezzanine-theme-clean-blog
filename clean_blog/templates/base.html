@@ -2,19 +2,20 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n staticfiles critical clean_blog_tags %}
 {% load render_bundle from webpack_loader %}
-    <head>
-        <meta charset="utf-8">
-        <meta name="author" content="Kem">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="#808080"/>
-        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-        <meta name="description" content="{% block meta_description %}{% endblock %}">
-        <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-        <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}" />
-        <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}" />
-        <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
-        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
-        {% block extra_ogp %}{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kem">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#808080"/>
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <title>
+        {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}"/>
+    <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}"/>
+    <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+    {% block extra_ogp %}{% endblock %}
     {% ifinstalled mezzanine.blog %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
@@ -23,96 +24,112 @@
     {% critical %}
         {% render_bundle 'bundle' 'css' %}
     {% endcritical %}
-        {% if request.user.is_staff %}
+    {% if request.user.is_staff %}
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-        {% endif %}
-        {% block extra_js %}{% endblock %}
-        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+    {% endif %}
+    {% block extra_js %}{% endblock %}
+    {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
         {% block gtn_dataLayer %}{% endblock %}
         <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
+        <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '{{ settings.GOOGLE_TAG_MANAGER_ID }}');</script>
         <!-- End Google Tag Manager -->
-        {% endif %}
-        <!--[if lt IE 9]>
+    {% endif %}
+    <!--[if lt IE 9]>
         <script src="{% static "js/html5shiv.js" %}"></script>
         <script src="{% static "js/respond.min.js" %}"></script>
         <![endif]-->
-        {% block extra_head %}{% endblock %}
-    </head>
-    <body id="{% block body_id %}body{% endblock %}">
-        {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.GOOGLE_TAG_MANAGER_ID }}"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        {% endif %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body id="{% block body_id %}body{% endblock %}">
+{% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe title="Google Tag Manager"
+                src="https://www.googletagmanager.com/ns.html?id={{ settings.GOOGLE_TAG_MANAGER_ID }}"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+{% endif %}
 
-        <!-- Navigation -->
-        <div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/" data-ga-event-category="home" data--event-action="click">{{ settings.SITE_TITLE }}</a>{% endif %}
-                    {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->                
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    {% page_menu "pages/menus/dropdown.html" %}
-                    {% search_form "all" %}
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
+<!-- Navigation -->
+<div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if settings.SITE_TITLE %}
+                <a class="navbar-brand" href="/" data-ga-event-category="home"
+                   data--event-action="click">{{ settings.SITE_TITLE }}</a>
+            {% endif %}
+            {% if settings.SITE_TAGLINE %}
+                <p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>
+            {% endif %}
         </div>
-        <!-- Page Header -->
-        <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 site-heading">
-                        <h1>
-                        {% block heading-text %}
-                            {% if page %}{{ page.meta_title }}{% endif %}
-                        {% endblock %}
-                        </h1>                            
-                        {# サイトサブタイトル #}
-                        {% block subheading-text %}
-                        {% endblock %}
-                </div>
-            </div>
-        </header>
-        <!-- Main Content -->
-        <div class="container">
-            {% block left_panel %}    
-            {% endblock %}
-            {% block main %}    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% page_menu "pages/menus/dropdown.html" %}
+            {% search_form "all" %}
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
+    <div class="container">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 site-heading">
+            <h1>
+                {% block heading-text %}
+                    {% if page %}{{ page.meta_title }}{% endif %}
+                {% endblock %}
+            </h1>
+            {# サイトサブタイトル #}
+            {% block subheading-text %}
             {% endblock %}
         </div>
-        {% nevercache %}
-        {% if messages %}
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    {% block left_panel %}
+    {% endblock %}
+    {% block main %}
+    {% endblock %}
+</div>
+{% nevercache %}
+    {% if messages %}
         <div class="container">
-                <div class="messages">
-                    {% for message in messages %}
-                        <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                </div>
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endif %}
-        {% endnevercache %}
-        {% page_menu "pages/menus/footer_sns_link.html" %}
+    {% endif %}
+{% endnevercache %}
+{% page_menu "pages/menus/footer_sns_link.html" %}
 {# footerのjavascriptリンク 圧縮なし #}
 {% block footer_js %}
-{% include "includes/footer_scripts.html" %}
+    {% include "includes/footer_scripts.html" %}
 {% endblock %}
-{% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"'%}
+{% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
 {% autoescape off %}
 {% critical_async %}
 {% endautoescape %}

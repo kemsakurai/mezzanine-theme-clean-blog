@@ -3,57 +3,81 @@
     {% block blog_categories_ex %}
         {% blog_categories_ex as categories_ex %}
         {% if categories_ex %}
-        <div class="col-md-4">
-        <h3>{% trans "Categories" %}</h3>
-        <ul>
-         {% for category, post_count in categories_ex %}
-             <li><a href="{% url "blog_post_list_category" category.slug %}" data-category="category">{{ category }}</a> ({{ post_count }})</li>
-         {% endfor %}
-        </ul>
-        </div>
+            <div class="col-md-4">
+                <h3>{% trans "Categories" %}</h3>
+                <ul>
+                    {% for category, post_count in categories_ex %}
+                        <li><a href="{% url "blog_post_list_category" category.slug %}"
+                               data-category="category">{{ category }}</a> ({{ post_count }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
-    {% endblock %}    
-                     
+    {% endblock %}
+
     {% block blog_months %}
-    {% blog_months as months %}
-    {% if months %}
-    <div class="col-md-4">
-    <h3>{% trans "Archive" %}</h3>
-    {% for month in months %}
-        {% ifchanged month.date.year %}
-            {% if not forloop.first %}</ul>{% endif %}
-            <h4>{{ month.date.year }}</h4><ul>
-        {% endifchanged %}
-        <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}" data-ga-event-category="archive" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}" >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
-    {% endfor %}
-    </ul>
-    </div>
-    {% endif %}
+        {% blog_months as months %}
+        {% if months %}
+            <div class="col-md-4">
+                <h3>{% trans "Archive" %}</h3>
+                {% for month in months %}
+                    {% ifchanged month.date.year %}
+                        {% if not forloop.first %}</ul>{% endif %}
+                        <h4>{{ month.date.year }}</h4>
+                        <ul>
+                    {% endifchanged %}
+                    <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
+                           data-ga-event-category="archive" data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}">
+                        {{ month.date|date:"F" }}</a> ({{ month.post_count }})
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     {% endblock %}
 
     {% block blog_feeds %}
-    <div class="col-md-4">
-    <h3>{% trans "Feeds" %}</h3>
-    <ul>
-    <li>
-    {% if tag %}
-        <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
-        <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
-    {% endif %}
-    {% if category %}
-        <a href="{% url "blog_post_feed_category" category.slug "rss" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed_category" category.slug "rss" %}" >{% trans "RSS" %}</a> /
-        <a href="{% url "blog_post_feed_category" category.slug "atom" %}" data-ga-event-category="feed" data-ga-event-label="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
-    {% endif %}
-    {% if author %}
-        <a href="{% url "blog_post_feed_author" author.username "rss" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a> /
-        <a href="{% url "blog_post_feed_author" author.username "atom" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
-    {% endif %}
-    {% if not tag and not category and not author %}
-        <a href="{% url "blog_post_feed" "rss" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
-        <a href="{% url "blog_post_feed" "atom" %}" data-ga-event-category="feed" data-ga-event-action="click" data-ga-event-label="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
-    {% endif %}
-    </li>
-    </ul>
-    </div>
+        <div class="col-md-4">
+            <h3>{% trans "Feeds" %}</h3>
+            <ul>
+                <li>
+                    {% if tag %}
+                        <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
+                        <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
+                    {% endif %}
+                    {% if category %}
+                        <a href="{% url "blog_post_feed_category" category.slug "rss" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed_category" category.slug "rss" %}">{% trans "RSS" %}</a>
+                        /
+                        <a href="{% url "blog_post_feed_category" category.slug "atom" %}" data-ga-event-category="feed"
+                           data-ga-event-label="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
+                    {% endif %}
+                    {% if author %}
+                        <a href="{% url "blog_post_feed_author" author.username "rss" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a>
+                        /
+                        <a href="{% url "blog_post_feed_author" author.username "atom" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
+                    {% endif %}
+                    {% if not tag and not category and not author %}
+                        <a href="{% url "blog_post_feed" "rss" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
+                        <a href="{% url "blog_post_feed" "atom" %}" data-ga-event-category="feed"
+                           data-ga-event-action="click"
+                           data-ga-event-label="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
     {% endblock %}
 </div>

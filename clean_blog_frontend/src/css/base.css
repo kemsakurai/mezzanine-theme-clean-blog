@@ -5,13 +5,15 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
+
 body {
-  margin: 0;
+    margin: 0;
 }
+
 article,
 aside,
 details,
@@ -25,167 +27,204 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+    display: block;
 }
+
 audio,
 canvas,
 progress,
 video {
-  display: inline-block;
-  vertical-align: baseline;
+    display: inline-block;
+    vertical-align: baseline;
 }
+
 audio:not([controls]) {
-  display: none;
-  height: 0;
+    display: none;
+    height: 0;
 }
+
 [hidden],
 template {
-  display: none;
+    display: none;
 }
+
 a {
-  background-color: transparent;
+    background-color: transparent;
 }
+
 a:active,
 a:hover {
-  outline: 0;
+    outline: 0;
 }
+
 abbr[title] {
-  border-bottom: 1px dotted;
+    border-bottom: 1px dotted;
 }
+
 b,
 strong {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 dfn {
-  font-style: italic;
+    font-style: italic;
 }
+
 h1 {
-  margin: .67em 0;
-  font-size: 2em;
+    margin: .67em 0;
+    font-size: 2em;
 }
+
 mark {
-  color: #000;
-  background: #ff0;
+    color: #000;
+    background: #ff0;
 }
+
 small {
-  font-size: 80%;
+    font-size: 80%;
 }
+
 sub,
 sup {
-  position: relative;
-  font-size: 75%;
-  line-height: 0;
-  vertical-align: baseline;
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
 }
+
 sup {
-  top: -.5em;
+    top: -.5em;
 }
+
 sub {
-  bottom: -.25em;
+    bottom: -.25em;
 }
+
 img {
-  border: 0;
+    border: 0;
 }
+
 svg:not(:root) {
-  overflow: hidden;
+    overflow: hidden;
 }
+
 figure {
-  margin: 1em 40px;
+    margin: 1em 40px;
 }
+
 hr {
-  height: 0;
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
+    height: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
+
 pre {
-  overflow: auto;
+    overflow: auto;
 }
+
 code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
+    font-family: monospace, monospace;
+    font-size: 1em;
 }
+
 button,
 input,
 optgroup,
 select,
 textarea {
-  margin: 0;
-  font: inherit;
-  color: inherit;
+    margin: 0;
+    font: inherit;
+    color: inherit;
 }
+
 button {
-  overflow: visible;
+    overflow: visible;
 }
+
 button,
 select {
-  text-transform: none;
+    text-transform: none;
 }
+
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
+    -webkit-appearance: button;
+    cursor: pointer;
 }
+
 button[disabled],
 html input[disabled] {
-  cursor: default;
+    cursor: default;
 }
+
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-  padding: 0;
-  border: 0;
+    padding: 0;
+    border: 0;
 }
+
 input {
-  line-height: normal;
+    line-height: normal;
 }
+
 input[type="checkbox"],
 input[type="radio"] {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
+    height: auto;
 }
+
 input[type="search"] {
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-  -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-appearance: textfield;
 }
+
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
+
 fieldset {
-  padding: .35em .625em .75em;
-  margin: 0 2px;
-  border: 1px solid #c0c0c0;
+    padding: .35em .625em .75em;
+    margin: 0 2px;
+    border: 1px solid #c0c0c0;
 }
+
 legend {
-  padding: 0;
-  border: 0;
+    padding: 0;
+    border: 0;
 }
+
 textarea {
-  overflow: auto;
+    overflow: auto;
 }
+
 optgroup {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 table {
-  border-spacing: 0;
-  border-collapse: collapse;
+    border-spacing: 0;
+    border-collapse: collapse;
 }
+
 td,
 th {
-  padding: 0;
+    padding: 0;
 }
 
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
@@ -193,16 +232,16 @@ th {
     pre {
         page-break-inside: avoid
     }
-    
-    *,:after,:before {
-        color: #000!important;
-        text-shadow: none!important;
-        background: 0 0!important;
-        -webkit-box-shadow: none!important;
-        box-shadow: none!important
+
+    *, :after, :before {
+        color: #000 !important;
+        text-shadow: none !important;
+        background: 0 0 !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important
     }
 
-    a,a:visited {
+    a, a:visited {
         text-decoration: underline
     }
 
@@ -213,20 +252,21 @@ th {
     a[href^="#"]:after {
         content: ""
     }
-    
+
     pre {
         border: 1px solid #999
     }
-    
+
     img {
-        max-width: 100%!important
+        max-width: 100% !important
     }
-    h2,h3,p {
+
+    h2, h3, p {
         orphans: 3;
         widows: 3
     }
 
-    h2,h3 {
+    h2, h3 {
         page-break-after: avoid
     }
 
@@ -235,7 +275,7 @@ th {
     }
 }
 
-.btn,.btn-default:active,.btn:active,.form-control,.navbar-toggle {
+.btn, .btn-default:active, .btn:active, .form-control, .navbar-toggle {
     background-image: none
 }
 
@@ -244,10 +284,12 @@ body {
 }
 
 @font-face {
-    font-family:'Glyphicons Halflings';src:url('/static/fonts/glyphicons-halflings-regular.eot?4fdb55b7787e');src:url('/static/fonts/glyphicons-halflings-regular.eot?&4fdb55b7787e#iefix') format('embedded-opentype'),url('/static/fonts/glyphicons-halflings-regular.woff2?4fdb55b7787e') format('woff2'),url('/static/fonts/glyphicons-halflings-regular.woff?4fdb55b7787e') format('woff'),url('/static/fonts/glyphicons-halflings-regular.ttf?4fdb55b7787e') format('truetype'),url('/static/fonts/glyphicons-halflings-regular.svg?4fdb55b7787e#glyphicons_halflingsregular') format('svg')
+    font-family: 'Glyphicons Halflings';
+    src: url('/static/fonts/glyphicons-halflings-regular.eot?4fdb55b7787e');
+    src: url('/static/fonts/glyphicons-halflings-regular.eot?&4fdb55b7787e#iefix') format('embedded-opentype'), url('/static/fonts/glyphicons-halflings-regular.woff2?4fdb55b7787e') format('woff2'), url('/static/fonts/glyphicons-halflings-regular.woff?4fdb55b7787e') format('woff'), url('/static/fonts/glyphicons-halflings-regular.ttf?4fdb55b7787e') format('truetype'), url('/static/fonts/glyphicons-halflings-regular.svg?4fdb55b7787e#glyphicons_halflingsregular') format('svg')
 }
 
-*,:after,:before {
+*, :after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box
@@ -259,13 +301,13 @@ html {
 }
 
 body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333
 }
 
-button,input,select {
+button, input, select {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit
@@ -276,7 +318,7 @@ a {
     text-decoration: none
 }
 
-a:focus,a:hover {
+a:focus, a:hover {
     color: #23527c;
     text-decoration: underline
 }
@@ -305,18 +347,18 @@ hr {
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0,0,0,0);
+    clip: rect(0, 0, 0, 0);
     border: 0
 }
 
-h1,h2,h3,h4 {
+h1, h2, h3, h4 {
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
     color: inherit
 }
 
-h1,h2,h3 {
+h1, h2, h3 {
     margin-top: 20px;
     margin-bottom: 10px
 }
@@ -367,11 +409,11 @@ small {
     color: #250505
 }
 
-ol,ul {
+ol, ul {
     margin-top: 0
 }
 
-ol,ul {
+ol, ul {
     margin-bottom: 10px
 }
 
@@ -379,13 +421,13 @@ ol,ul {
     margin-left: -5px
 }
 
-.list-inline>li {
+.list-inline > li {
     display: inline-block;
     padding-right: 5px;
     padding-left: 5px
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .container {
         width: 750px
     }
@@ -397,7 +439,7 @@ pre {
 }
 
 pre {
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace
 }
 
 code {
@@ -405,8 +447,8 @@ code {
     font-size: 90%
 }
 
-code,pre {
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace
+code, pre {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace
 }
 
 code {
@@ -426,23 +468,23 @@ pre {
     border-radius: 4px
 }
 
-.container,.container-fluid {
+.container, .container-fluid {
     margin-right: auto;
     margin-left: auto
 }
 
-.container,.container-fluid {
+.container, .container-fluid {
     padding-right: 15px;
     padding-left: 15px
 }
 
-@media (min-width:992px) {
+@media (min-width: 992px) {
     .container {
         width: 970px
     }
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
     .container {
         width: 1170px
     }
@@ -453,15 +495,15 @@ pre {
     margin-left: -15px
 }
 
-.col-lg-8,.col-md-10,.col-md-4,.col-md-12 {
+.col-lg-8, .col-md-10, .col-md-4, .col-md-12 {
     position: relative;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px
 }
 
-@media (min-width:992px) {
-    .col-md-10,.col-md-4,.col-md-12 {
+@media (min-width: 992px) {
+    .col-md-10, .col-md-4, .col-md-12 {
         float: left
     }
 
@@ -482,7 +524,7 @@ pre {
     }
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
     .col-lg-8 {
         float: left
     }
@@ -510,18 +552,18 @@ pre {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }
 
 .form-control:focus {
     border-color: #66afe9;
     outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
 }
 
 .form-control::-moz-placeholder {
@@ -567,21 +609,21 @@ pre {
     border-radius: 4px
 }
 
-.btn:active:focus,.btn:focus {
+.btn:active:focus, .btn:focus {
     outline: dotted thin;
     outline: -webkit-focus-ring-color auto 5px;
     outline-offset: -2px
 }
 
-.btn:focus,.btn:hover {
+.btn:focus, .btn:hover {
     color: #333;
     text-decoration: none
 }
 
 .btn:active {
     outline: 0;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-    box-shadow: inset 0 3px 5px rgba(0,0,0,.125)
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
 }
 
 .btn-default {
@@ -596,19 +638,19 @@ pre {
     border-color: #8c8c8c
 }
 
-.btn-default:active,.btn-default:hover {
+.btn-default:active, .btn-default:hover {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad
 }
 
-.btn-default:active:focus,.btn-default:active:hover {
+.btn-default:active:focus, .btn-default:active:hover {
     color: #333;
     background-color: #d4d4d4;
     border-color: #8c8c8c
 }
 
-.btn-group-sm>.btn {
+.btn-group-sm > .btn {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
@@ -619,7 +661,7 @@ pre {
     display: none
 }
 
-.nav>li,.nav>li>a {
+.nav > li, .nav > li > a {
     display: block;
     position: relative
 }
@@ -630,11 +672,11 @@ pre {
     list-style: none
 }
 
-.nav>li>a {
+.nav > li > a {
     padding: 10px 15px
 }
 
-.nav>li>a:focus,.nav>li>a:hover {
+.nav > li > a:focus, .nav > li > a:hover {
     text-decoration: none;
     background-color: #eee
 }
@@ -652,11 +694,11 @@ pre {
     overflow-x: visible;
     -webkit-overflow-scrolling: touch;
     border-top: 1px solid transparent;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.1)
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1)
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .navbar {
         border-radius: 4px
     }
@@ -673,10 +715,10 @@ pre {
     }
 
     .navbar-collapse.collapse {
-        display: block!important;
-        height: auto!important;
+        display: block !important;
+        height: auto !important;
         padding-bottom: 0;
-        overflow: visible!important
+        overflow: visible !important
     }
 
     .navbar-fixed-top .navbar-collapse {
@@ -689,13 +731,13 @@ pre {
     max-height: 340px
 }
 
-@media (max-device-width:480px) and (orientation:landscape) {
+@media (max-device-width: 480px) and (orientation: landscape) {
     .navbar-fixed-top .navbar-collapse {
         max-height: 200px
     }
 }
 
-.container-fluid>.navbar-collapse,.container-fluid>.navbar-header {
+.container-fluid > .navbar-collapse, .container-fluid > .navbar-header {
     margin-right: -15px;
     margin-left: -15px
 }
@@ -720,12 +762,12 @@ pre {
     line-height: 20px
 }
 
-.navbar-brand:focus,.navbar-brand:hover {
+.navbar-brand:focus, .navbar-brand:hover {
     text-decoration: none
 }
 
-@media (min-width:768px) {
-    .container-fluid>.navbar-collapse,.container-fluid>.navbar-header {
+@media (min-width: 768px) {
+    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header {
         margin-right: 0;
         margin-left: 0
     }
@@ -734,7 +776,7 @@ pre {
         border-radius: 0
     }
 
-    .navbar>.container-fluid .navbar-brand {
+    .navbar > .container-fluid .navbar-brand {
         margin-left: -15px
     }
 }
@@ -762,7 +804,7 @@ pre {
     border-radius: 1px
 }
 
-.navbar-toggle .icon-bar+.icon-bar {
+.navbar-toggle .icon-bar + .icon-bar {
     margin-top: 4px
 }
 
@@ -770,13 +812,13 @@ pre {
     margin: 7.5px -15px
 }
 
-.navbar-nav>li>a {
+.navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 20px
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .navbar-toggle {
         display: none
     }
@@ -786,11 +828,11 @@ pre {
         margin: 0
     }
 
-    .navbar-nav>li {
+    .navbar-nav > li {
         float: left
     }
 
-    .navbar-nav>li>a {
+    .navbar-nav > li > a {
         padding-top: 15px;
         padding-bottom: 15px
     }
@@ -800,12 +842,12 @@ pre {
     padding: 10px 15px;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);
     margin: 8px -15px
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .navbar-form .form-group {
         display: inline-block
     }
@@ -833,7 +875,7 @@ pre {
     }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .navbar-form .form-group {
         margin-bottom: 5px
     }
@@ -844,7 +886,7 @@ pre {
     margin-bottom: 15px
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
     .navbar-text {
         float: left;
         margin-right: 15px;
@@ -852,15 +894,16 @@ pre {
     }
 
     .navbar-right {
-        float: right!important;
+        float: right !important;
         margin-right: -15px
     }
 
-    .navbar-right~.navbar-right {
+    .navbar-right ~ .navbar-right {
         margin-right: 0
     }
 }
-.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.active>a:hover {
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
     color: #555;
     background-color: #e7e7e7
 }
@@ -874,16 +917,16 @@ pre {
     color: #777
 }
 
-.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover {
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
     color: #5e5e5e;
     background-color: transparent
 }
 
-.navbar-default .navbar-nav>li>a,.navbar-default .navbar-text {
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-text {
     color: #f5f5f5;
 }
 
-.navbar-default .navbar-nav>li>a:focus,.navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
     color: #333;
     background-color: transparent
 }
@@ -892,7 +935,7 @@ pre {
     border-color: #ddd
 }
 
-.navbar-default .navbar-toggle:focus,.navbar-default .navbar-toggle:hover {
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background-color: #ddd
 }
 
@@ -900,7 +943,7 @@ pre {
     background-color: #888
 }
 
-.navbar-default .navbar-collapse,.navbar-default .navbar-form {
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #e7e7e7
 }
 
@@ -915,7 +958,7 @@ pre {
     list-style: none
 }
 
-.pager li>a {
+.pager li > a {
     display: inline-block;
     padding: 5px 14px;
     background-color: #fff;
@@ -923,16 +966,16 @@ pre {
     border-radius: 15px
 }
 
-.pager li>a:focus,.pager li>a:hover {
+.pager li > a:focus, .pager li > a:hover {
     text-decoration: none;
     background-color: #eee
 }
 
-.pager .next>a {
+.pager .next > a {
     float: right
 }
 
-.pager .previous>a {
+.pager .previous > a {
     float: left
 }
 
@@ -942,11 +985,11 @@ pre {
     border-radius: 4px
 }
 
-.pagination>li {
+.pagination > li {
     display: inline
 }
 
-.pagination>li>a,.pagination>li>span {
+.pagination > li > a, .pagination > li > span {
     position: relative;
     float: left;
     padding: 6px 12px;
@@ -958,25 +1001,25 @@ pre {
     border: 1px solid #ddd
 }
 
-.pagination>li:first-child>span {
+.pagination > li:first-child > span {
     margin-left: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px
 }
 
-.pagination>li:last-child>a {
+.pagination > li:last-child > a {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px
 }
 
-.pagination>li>a:focus,.pagination>li>a:hover,.pagination>li>span:focus,.pagination>li>span:hover {
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
     z-index: 2;
     color: #23527c;
     background-color: #eee;
     border-color: #ddd
 }
 
-.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover {
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover {
     z-index: 3;
     color: #fff;
     cursor: default;
@@ -984,7 +1027,7 @@ pre {
     border-color: #337ab7
 }
 
-.pagination>.disabled>a,.pagination>.disabled>a:focus,.pagination>.disabled>a:hover {
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover {
     color: #545454;
     cursor: not-allowed;
     background-color: #fff;
@@ -997,49 +1040,51 @@ pre {
     margin-left: auto
 }
 
-.container-fluid:after,.container-fluid:before,.container:after,.container:before,.nav:after,.nav:before,.navbar-collapse:after,.navbar-collapse:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before,.pager:after,.pager:before,.row:after,.row:before {
+.container-fluid:after, .container-fluid:before, .container:after, .container:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .row:after, .row:before {
     display: table;
     content: " "
 }
 
-.container-fluid:after,.container:after,.nav:after,.navbar-collapse:after,.navbar-header:after,.navbar:after,.pager:after,.row:after {
+.container-fluid:after, .container:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .row:after {
     clear: both
 }
 
 .visible-lg {
-    display: none!important
+    display: none !important
 }
 
 @-ms-viewport {
-    width:device-width
+    width: device-width
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
     .visible-lg {
-        display: block!important
+        display: block !important
     }
 }
+
 /*!
  * Clean Blog v1.0.0 (http://startbootstrap.com)
  * Copyright 2014 Start Bootstrap
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
- */.navbar-custom .navbar-brand,h1,h2,h3,h4 {
+ */
+.navbar-custom .navbar-brand, h1, h2, h3, h4 {
     font-weight: 800
 }
 
-#share li,.intro-header .site-heading,footer .copyright {
+#share li, .intro-header .site-heading, footer .copyright {
     text-align: center
 }
 
 body {
-    font-family: Lora,'Times New Roman',serif;
+    font-family: Lora, 'Times New Roman', serif;
     font-size: 16px;
     color: #333;
     webkit-tap-highlight-color: #0085a1
 }
 
-.navbar-custom,h1,h2,h3,h4 {
-    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif
+.navbar-custom, h1, h2, h3, h4 {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 p {
@@ -1055,7 +1100,7 @@ a {
     color: #404040
 }
 
-a:focus,a:hover {
+a:focus, a:hover {
     color: #0085a1
 }
 
@@ -1074,7 +1119,7 @@ a:focus,a:hover {
     letter-spacing: 1px
 }
 
-@media only screen and (min-width:768px) {
+@media only screen and (min-width: 768px) {
     .navbar-custom {
         background: 0;
         border-bottom: 1px solid transparent
@@ -1085,8 +1130,8 @@ a:focus,a:hover {
         padding: 20px
     }
 
-    .navbar-custom .navbar-brand:focus,.navbar-custom .navbar-brand:hover {
-        color: rgba(255,255,255,.8)
+    .navbar-custom .navbar-brand:focus, .navbar-custom .navbar-brand:hover {
+        color: rgba(255, 255, 255, .8)
     }
 
     .navbar-custom .nav li a {
@@ -1094,21 +1139,21 @@ a:focus,a:hover {
         padding: 20px
     }
 
-    .navbar-custom .nav li a:focus,.navbar-custom .nav li a:hover {
-        color: rgba(255,255,255,.8)
+    .navbar-custom .nav li a:focus, .navbar-custom .nav li a:hover {
+        color: rgba(255, 255, 255, .8)
     }
 }
 
-@media only screen and (min-width:1170px) {
+@media only screen and (min-width: 1170px) {
     .navbar-custom {
         -webkit-transition: background-color .3s;
         -moz-transition: background-color .3s;
         transition: background-color .3s;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden
     }
@@ -1133,7 +1178,7 @@ a:focus,a:hover {
     font-size: 35px
 }
 
-@media only screen and (min-width:768px) {
+@media only screen and (min-width: 768px) {
     .intro-header .site-heading {
         padding: 150px 0
     }
@@ -1143,27 +1188,30 @@ a:focus,a:hover {
     }
 }
 
-.btn,.pager li>a {
-    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+.btn, .pager li > a {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px
 }
-.post-preview>a {
+
+.post-preview > a {
     color: #404040
 }
 
-.post-preview>a:focus,.post-preview>a:hover {
+.post-preview > a:focus, .post-preview > a:hover {
     text-decoration: none;
     color: #0085a1
 }
-.post-preview>a>.post-title {
+
+.post-preview > a > .post-title {
     font-size: 25px;
     margin-top: 30px;
     margin-bottom: 10px
 }
+
 .btn {
-    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 1px
@@ -1198,20 +1246,20 @@ footer .copyright {
     margin: 20px 0 0
 }
 
-.pager li>a {
+.pager li > a {
     font-size: 14px;
     padding: 15px 25px;
     background-color: #fff;
     border-radius: 0
 }
 
-.pager li>a:focus,.pager li>a:hover {
+.pager li > a:focus, .pager li > a:hover {
     color: #fff;
     background-color: #0085a1;
     border: 1px solid #0085a1
 }
 
-.btn-default:focus,.btn-default:hover {
+.btn-default:focus, .btn-default:hover {
     background-color: #0085a1;
     border: 1px solid #0085a1;
     color: #fff
@@ -1237,6 +1285,7 @@ footer .copyright {
 .entry-meta-subheading .divider {
     padding: 0 3px
 }
+
 ::selection {
     color: #fff;
     text-shadow: none;
@@ -1253,7 +1302,7 @@ img::-moz-selection {
     background: 0
 }
 
-.form-group>input[type=text],.form-group>select {
+.form-group > input[type=text], .form-group > select {
     display: block;
     width: 100%;
     max-width: 300px;
@@ -1266,10 +1315,10 @@ img::-moz-selection {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out.15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
 }
 
 table {
@@ -1282,18 +1331,22 @@ table {
     min-height: .01%;
     overflow-x: auto
 }
+
 thead {
     border: 1px solid #ddd
 }
+
 tbody {
     border: 1px solid #ddd
 }
-tbody>tr:nth-of-type(odd) {
+
+tbody > tr:nth-of-type(odd) {
     background-color: #f9f9f9;
     border: 3px solid #ddd
 }
-tbody>tr>th,
-tbody>tr>td {
+
+tbody > tr > th,
+tbody > tr > td {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -1301,8 +1354,9 @@ tbody>tr>td {
     border-bottom-width: 4px;
     border: 3px solid #ddd
 }
-thead>tr>th,
-thead>tr>td {
+
+thead > tr > th,
+thead > tr > td {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -1310,6 +1364,7 @@ thead>tr>td {
     border-bottom-width: 4px;
     border: 3px solid #ddd
 }
+
 @media screen and (max-width: 767px) {
     table {
         width: 100%;
@@ -1318,16 +1373,18 @@ thead>tr>td {
         -ms-overflow-style: -ms-autohiding-scrollbar;
         border: 1px solid #ddd
     }
-    thead>tr>th,
-    tbody>tr>th,
-    tfoot>tr>th,
-    thead>tr>td,
-    tbody>tr>td,
-    tfoot>tr>td {
+
+    thead > tr > th,
+    tbody > tr > th,
+    tfoot > tr > th,
+    thead > tr > td,
+    tbody > tr > td,
+    tfoot > tr > td {
         white-space: nowrap
     }
 }
-#share a,#share a:hover {
+
+#share a, #share a:hover {
     text-decoration: none;
     color: #fff
 }
@@ -1335,6 +1392,7 @@ thead>tr>td {
 .bottom30 {
     margin-bottom: 30px
 }
+
 #share ul {
     height: auto
 }
@@ -1349,13 +1407,13 @@ thead>tr>td {
     list-style: none
 }
 
-#share li.share-twitter{
-    background:#285b7d;
-    box-shadow:0 2px #204765
+#share li.share-twitter {
+    background: #285b7d;
+    box-shadow: 0 2px #204765
 }
 
-#share li.share-twitter:hover{
-    background:#398dc5
+#share li.share-twitter:hover {
+    background: #398dc5
 }
 
 #share li.share-facebook {
@@ -1381,11 +1439,17 @@ thead>tr>td {
     height: 27px;
     padding-top: 6px
 }
+
 /*!
  *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */@font-face {
-    font-family:'FontAwesome';src:url('/static/fonts/fontawesome-webfont.eot?v=4.2.0&2bfd01227ee4');src:url('/static/fonts/fontawesome-webfont.eot?&2bfd01227ee4#iefix&v=4.2.0') format('embedded-opentype'),url('/static/fonts/fontawesome-webfont.woff?v=4.2.0&2bfd01227ee4') format('woff'),url('/static/fonts/fontawesome-webfont.ttf?v=4.2.0&2bfd01227ee4') format('truetype'),url('/static/fonts/fontawesome-webfont.svg?v=4.2.0&2bfd01227ee4#fontawesomeregular') format('svg');font-weight:normal;font-style:normal
+ */
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('/static/fonts/fontawesome-webfont.eot?v=4.2.0&2bfd01227ee4');
+    src: url('/static/fonts/fontawesome-webfont.eot?&2bfd01227ee4#iefix&v=4.2.0') format('embedded-opentype'), url('/static/fonts/fontawesome-webfont.woff?v=4.2.0&2bfd01227ee4') format('woff'), url('/static/fonts/fontawesome-webfont.ttf?v=4.2.0&2bfd01227ee4') format('truetype'), url('/static/fonts/fontawesome-webfont.svg?v=4.2.0&2bfd01227ee4#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal
 }
 
 .fa {
@@ -1412,7 +1476,7 @@ thead>tr>td {
     vertical-align: middle
 }
 
-.fa-stack-1x,.fa-stack-2x {
+.fa-stack-1x, .fa-stack-2x {
     position: absolute;
     left: 0;
     width: 100%;
@@ -1444,57 +1508,118 @@ thead>tr>td {
 }
 
 @font-face {
-    font-family:'Lora';font-weight:400;font-style:normal;src:url('/static/fonts/Lora-regular/Lora-regular.eot?5ddec16961e4');src:url('/static/fonts/Lora-regular/Lora-regular.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Lora Regular'),local('Lora-regular'),url('/static/fonts/Lora-regular/Lora-regular.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Lora-regular/Lora-regular.woff?5ddec16961e4') format('woff'),url('/static/fonts/Lora-regular/Lora-regular.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Lora-regular/Lora-regular.svg?5ddec16961e4#Lora') format('svg')
+    font-family: 'Lora';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/static/fonts/Lora-regular/Lora-regular.eot?5ddec16961e4');
+    src: url('/static/fonts/Lora-regular/Lora-regular.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Lora Regular'), local('Lora-regular'), url('/static/fonts/Lora-regular/Lora-regular.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Lora-regular/Lora-regular.woff?5ddec16961e4') format('woff'), url('/static/fonts/Lora-regular/Lora-regular.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Lora-regular/Lora-regular.svg?5ddec16961e4#Lora') format('svg')
 }
 
 @font-face {
-    font-family:'Lora';font-weight:400;font-style:italic;src:url('/static/fonts/Lora-italic/Lora-italic.eot?5ddec16961e4');src:url('/static/fonts/Lora-italic/Lora-italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Lora Italic'),local('Lora-italic'),url('/static/fonts/Lora-italic/Lora-italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Lora-italic/Lora-italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Lora-italic/Lora-italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Lora-italic/Lora-italic.svg?5ddec16961e4#Lora') format('svg')
+    font-family: 'Lora';
+    font-weight: 400;
+    font-style: italic;
+    src: url('/static/fonts/Lora-italic/Lora-italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Lora-italic/Lora-italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Lora Italic'), local('Lora-italic'), url('/static/fonts/Lora-italic/Lora-italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Lora-italic/Lora-italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Lora-italic/Lora-italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Lora-italic/Lora-italic.svg?5ddec16961e4#Lora') format('svg')
 }
 
 @font-face {
-    font-family:'Lora';font-weight:700;font-style:italic;src:url('/static/fonts/Lora-700italic/Lora-700italic.eot?5ddec16961e4');src:url('/static/fonts/Lora-700italic/Lora-700italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Lora Bold Italic'),local('Lora-700italic'),url('/static/fonts/Lora-700italic/Lora-700italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Lora-700italic/Lora-700italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Lora-700italic/Lora-700italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Lora-700italic/Lora-700italic.svg?5ddec16961e4#Lora') format('svg')
+    font-family: 'Lora';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/static/fonts/Lora-700italic/Lora-700italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Lora-700italic/Lora-700italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Lora Bold Italic'), local('Lora-700italic'), url('/static/fonts/Lora-700italic/Lora-700italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Lora-700italic/Lora-700italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Lora-700italic/Lora-700italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Lora-700italic/Lora-700italic.svg?5ddec16961e4#Lora') format('svg')
 }
 
 @font-face {
-    font-family:'Lora';font-weight:700;font-style:normal;src:url('/static/fonts/Lora-700/Lora-700.eot?5ddec16961e4');src:url('/static/fonts/Lora-700/Lora-700.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Lora Bold'),local('Lora-700'),url('/static/fonts/Lora-700/Lora-700.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Lora-700/Lora-700.woff?5ddec16961e4') format('woff'),url('/static/fonts/Lora-700/Lora-700.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Lora-700/Lora-700.svg?5ddec16961e4#Lora') format('svg')
+    font-family: 'Lora';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/static/fonts/Lora-700/Lora-700.eot?5ddec16961e4');
+    src: url('/static/fonts/Lora-700/Lora-700.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Lora Bold'), local('Lora-700'), url('/static/fonts/Lora-700/Lora-700.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Lora-700/Lora-700.woff?5ddec16961e4') format('woff'), url('/static/fonts/Lora-700/Lora-700.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Lora-700/Lora-700.svg?5ddec16961e4#Lora') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:300;font-style:normal;src:url('/static/fonts/Open-Sans-300/Open-Sans-300.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-300/Open-Sans-300.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Light'),local('Open-Sans-300'),url('/static/fonts/Open-Sans-300/Open-Sans-300.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-300/Open-Sans-300.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-300/Open-Sans-300.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-300/Open-Sans-300.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/static/fonts/Open-Sans-300/Open-Sans-300.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-300/Open-Sans-300.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Light'), local('Open-Sans-300'), url('/static/fonts/Open-Sans-300/Open-Sans-300.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-300/Open-Sans-300.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-300/Open-Sans-300.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-300/Open-Sans-300.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:400;font-style:normal;src:url('/static/fonts/Open-Sans-regular/Open-Sans-regular.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-regular/Open-Sans-regular.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans'),local('Open-Sans-regular'),url('/static/fonts/Open-Sans-regular/Open-Sans-regular.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-regular/Open-Sans-regular.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-regular/Open-Sans-regular.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-regular/Open-Sans-regular.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/static/fonts/Open-Sans-regular/Open-Sans-regular.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-regular/Open-Sans-regular.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans'), local('Open-Sans-regular'), url('/static/fonts/Open-Sans-regular/Open-Sans-regular.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-regular/Open-Sans-regular.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-regular/Open-Sans-regular.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-regular/Open-Sans-regular.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:600;font-style:normal;src:url('/static/fonts/Open-Sans-600/Open-Sans-600.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-600/Open-Sans-600.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Semibold'),local('Open-Sans-600'),url('/static/fonts/Open-Sans-600/Open-Sans-600.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-600/Open-Sans-600.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-600/Open-Sans-600.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-600/Open-Sans-600.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/static/fonts/Open-Sans-600/Open-Sans-600.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-600/Open-Sans-600.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Semibold'), local('Open-Sans-600'), url('/static/fonts/Open-Sans-600/Open-Sans-600.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-600/Open-Sans-600.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-600/Open-Sans-600.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-600/Open-Sans-600.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:700;font-style:normal;src:url('/static/fonts/Open-Sans-700/Open-Sans-700.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-700/Open-Sans-700.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Bold'),local('Open-Sans-700'),url('/static/fonts/Open-Sans-700/Open-Sans-700.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-700/Open-Sans-700.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-700/Open-Sans-700.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-700/Open-Sans-700.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/static/fonts/Open-Sans-700/Open-Sans-700.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-700/Open-Sans-700.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Bold'), local('Open-Sans-700'), url('/static/fonts/Open-Sans-700/Open-Sans-700.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-700/Open-Sans-700.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-700/Open-Sans-700.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-700/Open-Sans-700.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:800;font-style:normal;src:url('/static/fonts/Open-Sans-800/Open-Sans-800.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-800/Open-Sans-800.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Extrabold'),local('Open-Sans-800'),url('/static/fonts/Open-Sans-800/Open-Sans-800.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-800/Open-Sans-800.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-800/Open-Sans-800.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-800/Open-Sans-800.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 800;
+    font-style: normal;
+    src: url('/static/fonts/Open-Sans-800/Open-Sans-800.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-800/Open-Sans-800.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Extrabold'), local('Open-Sans-800'), url('/static/fonts/Open-Sans-800/Open-Sans-800.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-800/Open-Sans-800.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-800/Open-Sans-800.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-800/Open-Sans-800.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:300;font-style:italic;src:url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Light Italic'),local('Open-Sans-300italic'),url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: italic;
+    src: url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Light Italic'), local('Open-Sans-300italic'), url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-300italic/Open-Sans-300italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:400;font-style:italic;src:url('/static/fonts/Open-Sans-italic/Open-Sans-italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-italic/Open-Sans-italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Italic'),local('Open-Sans-italic'),url('/static/fonts/Open-Sans-italic/Open-Sans-italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-italic/Open-Sans-italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-italic/Open-Sans-italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-italic/Open-Sans-italic.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-style: italic;
+    src: url('/static/fonts/Open-Sans-italic/Open-Sans-italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-italic/Open-Sans-italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Italic'), local('Open-Sans-italic'), url('/static/fonts/Open-Sans-italic/Open-Sans-italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-italic/Open-Sans-italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-italic/Open-Sans-italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-italic/Open-Sans-italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:600;font-style:italic;src:url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Semibold Italic'),local('Open-Sans-600italic'),url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Semibold Italic'), local('Open-Sans-600italic'), url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-600italic/Open-Sans-600italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:700;font-style:italic;src:url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Bold Italic'),local('Open-Sans-700italic'),url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Bold Italic'), local('Open-Sans-700italic'), url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-700italic/Open-Sans-700italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
 
 @font-face {
-    font-family:'Open Sans';font-weight:800;font-style:italic;src:url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?5ddec16961e4');src:url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'),local('Open Sans Extrabold Italic'),local('Open-Sans-800italic'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff2?5ddec16961e4') format('woff2'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff?5ddec16961e4') format('woff'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.ttf?5ddec16961e4') format('truetype'),url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.svg?5ddec16961e4#OpenSans') format('svg')
+    font-family: 'Open Sans';
+    font-weight: 800;
+    font-style: italic;
+    src: url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?5ddec16961e4');
+    src: url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Extrabold Italic'), local('Open-Sans-800italic'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.svg?5ddec16961e4#OpenSans') format('svg')
+}
+
+.glyphicon::before {
+    display: inline-block;
+    margin-right: .2em;
 }

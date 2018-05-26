@@ -2,36 +2,43 @@
 
 {% editable_loader %}
 <script>
-{% if settings.GOOGLE_ANALYTICS_ID and not request.user.is_staff %}
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
-ga('send', 'pageview');
-$(window).load(function () {                    
-    $("a").click(function(e) {   
-        var href = $(this).attr('href');
-        if ( !href || href == "") {
-            return;
-        }
-        var category = null;
-        if (href && href.indexOf('/') == 0) {
-            category = 'blog_post';
-        } else if (href != "") {
-            category = 'external_ref';
-        } else {
-            category = "unknown_link";
-            href = $(this).text();
-        }
-        var dataCategory = $(this).attr('data-ga-event-category');
-        if (dataCategory && dataCategory != "") {
-            category = dataCategory;
-        }
-        if(ga != null) {
-            ga('send', 'event', category, 'click', href, 0);
-        }
-    });
-});
-{% endif %}
+    {% if settings.GOOGLE_ANALYTICS_ID and not request.user.is_staff %}
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
+        ga('send', 'pageview');
+        $(window).load(function () {
+            $("a").click(function (e) {
+                var href = $(this).attr('href');
+                if (!href || href == "") {
+                    return;
+                }
+                var category = null;
+                if (href && href.indexOf('/') == 0) {
+                    category = 'blog_post';
+                } else if (href != "") {
+                    category = 'external_ref';
+                } else {
+                    category = "unknown_link";
+                    href = $(this).text();
+                }
+                var dataCategory = $(this).attr('data-ga-event-category');
+                if (dataCategory && dataCategory != "") {
+                    category = dataCategory;
+                }
+                if (ga != null) {
+                    ga('send', 'event', category, 'click', href, 0);
+                }
+            });
+        });
+    {% endif %}
 </script>

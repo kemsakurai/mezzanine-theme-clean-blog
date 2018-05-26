@@ -1,25 +1,26 @@
 {% load mezzanine_tags i18n %}
 <form action="{% url "search" %}" class="navbar-form navbar-right btn-group-sm" role="search">
 
-<div class="form-group">
-    <input class="form-control" placeholder="{% trans "Search" %}" type="text" name="q" value="{{ request.REQUEST.q }}">
-</div>
-{% if search_model_choices %}
-    {% if search_model_choices|length == 1 %}
-    <input type="hidden" name="type" value="{{ search_model_choices.0.1 }}">
-    {% else %}
     <div class="form-group">
-    <select class="form-control" name="type">
-        <option value="">{% trans "Everything" %}</option>
-        {% for verbose_name, model in search_model_choices %}
-        <option value="{{ model }}"
-            {% if model == request.REQUEST.type  %}selected{% endif %}>
-            {{ verbose_name }}
-        </option>
-        {% endfor %}
-    </select>
+        <input class="form-control" placeholder="{% trans "Search" %}" type="text" name="q"
+               value="{{ request.REQUEST.q }}">
     </div>
+    {% if search_model_choices %}
+        {% if search_model_choices|length == 1 %}
+            <input type="hidden" name="type" value="{{ search_model_choices.0.1 }}">
+        {% else %}
+            <div class="form-group">
+                <select class="form-control" name="type">
+                    <option value="">{% trans "Everything" %}</option>
+                    {% for verbose_name, model in search_model_choices %}
+                        <option value="{{ model }}"
+                                {% if model == request.REQUEST.type %}selected{% endif %}>
+                            {{ verbose_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% endif %}
     {% endif %}
-{% endif %}
-<input type="submit" class="btn" value="{% trans "Go" %}">
+    <input type="submit" class="btn" value="{% trans "Go" %}">
 </form>
