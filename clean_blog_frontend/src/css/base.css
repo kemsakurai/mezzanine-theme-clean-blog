@@ -1618,8 +1618,3 @@ thead > tr > td {
     src: url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?5ddec16961e4');
     src: url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.eot?&5ddec16961e4#iefix') format('embedded-opentype'), local('Open Sans Extrabold Italic'), local('Open-Sans-800italic'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff2?5ddec16961e4') format('woff2'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.woff?5ddec16961e4') format('woff'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.ttf?5ddec16961e4') format('truetype'), url('/static/fonts/Open-Sans-800italic/Open-Sans-800italic.svg?5ddec16961e4#OpenSans') format('svg')
 }
-
-.glyphicon::before {
-    display: inline-block;
-    margin-right: .2em;
-}
