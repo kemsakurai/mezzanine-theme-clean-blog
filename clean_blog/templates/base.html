@@ -48,8 +48,8 @@
         <!-- End Google Tag Manager -->
     {% endif %}
     <!--[if lt IE 9]>
-    <script src="{% static "js/html5shiv.js" %}" {% if settings.HTML5SHIV_SRI %}integrity="{{ settings.HTML5SHIV_SRI }}"{% endif %} ></script>
-    <script src="{% static "js/respond.min.js" %}" {% if settings.RESPOND_MIN_SRI %}integrity="{{ settings.RESPOND_MIN_SRI }}"{% endif %} ></script>
+    <script src="{% static "js/html5shiv.js" %}" {% if settings.HTML5SHIV_SRI %}integrity="{{ settings.HTML5SHIV_SRI }}" crossorigin="anonymous"{% endif %} ></script>
+    <script src="{% static "js/respond.min.js" %}" {% if settings.RESPOND_MIN_SRI %}integrity="{{ settings.RESPOND_MIN_SRI }}" crossorigin="anonymous"{% endif %} ></script>
     <![endif]-->
     {% block extra_head %}{% endblock %}
 </head>
