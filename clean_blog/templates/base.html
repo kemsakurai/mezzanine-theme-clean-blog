@@ -22,7 +22,12 @@
     {% endifinstalled %}
 
     {% critical %}
-        {% render_bundle 'bundle' 'css' %}
+        {% if settings.BUNDLE_CSS_SRI %}
+            {% 'integrity="' |add:settings.BUNDLE_CSS_SRI |add:'"' as attrs_str %}
+            {% render_bundle 'bundle' 'css' attrs=attrs_str %}
+        {% else %}
+            {% render_bundle 'bundle' 'css' %}
+        {% endif %}
     {% endcritical %}
     {% if request.user.is_staff %}
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
@@ -42,9 +47,9 @@
         <!-- End Google Tag Manager -->
     {% endif %}
     <!--[if lt IE 9]>
-        <script src="{% static "js/html5shiv.js" %}"></script>
-        <script src="{% static "js/respond.min.js" %}"></script>
-        <![endif]-->
+    <script src="{% static "js/html5shiv.js" %}" {% if settings.HTML5SHIV_SRI %}integrity="{{ settings.HTML5SHIV_SRI }}"{% endif %} ></script>
+    <script src="{% static "js/respond.min.js" %}" {% if settings.RESPOND_MIN_SRI %}integrity="{{ settings.RESPOND_MIN_SRI }}"{% endif %} ></script>
+    <![endif]-->
     {% block extra_head %}{% endblock %}
 </head>
 <body id="{% block body_id %}body{% endblock %}">
@@ -129,7 +134,13 @@
 {% block footer_js %}
     {% include "includes/footer_scripts.html" %}
 {% endblock %}
-{% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
+{% if settings.BUNDLE_JS_SRI %}
+    {% 'async defer chatset="UTF-8" integrity="' |add:settings.BUNDLE_JS_SRI |add:'"' as attrs_str %}
+    {% render_bundle 'bundle' 'js' attrs=attrs_str %}
+{% else %}
+    {% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
+{% endif %}
+
 {% autoescape off %}
 {% critical_async %}
 {% endautoescape %}

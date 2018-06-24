@@ -15,7 +15,8 @@ module.exports = {
     },
     output: {
         path: cleanBlogRoot + "/static/webpack_bundles",
-        filename: "[name]-[hash].js"
+        filename: "[name]-[hash].js",
+        crossOriginLoading: 'anonymous'
     },
     module: {
         loaders: [

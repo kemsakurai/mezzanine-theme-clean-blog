@@ -749,3 +749,7 @@ thead > tr > td {
         width: 280px;
     }
 }
+.glyphicon::before {
+    display: inline-block;
+    margin-right: .2em;
+}

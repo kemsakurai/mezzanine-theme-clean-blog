@@ -5,7 +5,7 @@ const workboxSW = new WorkboxSW();
 workboxSW.precache([
   {
     "url": "static/js/workbox-sw.prod.v2.1.3.js",
-    "revision": "dc211bcb9bb0cef0662ba4874ab77ed7"
+    "revision": "a8510ff32df85144ee72e03a02f263cd"
   },
   {
     "url": "static/webpack_bundles/41722cb225286442cf9d6f7cfbd7883d.svg",
@@ -24,11 +24,11 @@ workboxSW.precache([
     "revision": "7ced3229845a5f3c7c4f4cb27fd136d8"
   },
   {
-    "url": "static/webpack_bundles/bundle-3e7e43a825b3ce3f39c4.css",
-    "revision": "e00ca8d364b0f0f0fb805037eb3eb9b3"
+    "url": "static/webpack_bundles/bundle-3b0117f221f8e6c9302f.css",
+    "revision": "4b425bc500aa2665ee3e6e841a4ca6ca"
   },
   {
-    "url": "static/webpack_bundles/bundle-3e7e43a825b3ce3f39c4.js",
+    "url": "static/webpack_bundles/bundle-3b0117f221f8e6c9302f.js",
     "revision": "52734e0fb0fb4a686162f008cff6dd30"
   },
   {
