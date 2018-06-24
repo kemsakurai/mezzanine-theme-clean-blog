@@ -23,7 +23,7 @@
 
     {% critical %}
         {% if settings.BUNDLE_CSS_SRI %}
-            {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI |add:'"' as attrs_str %}
+            {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
                 {% render_bundle 'bundle' 'css' attrs=attrs_str %}
             {% endwith %}
         {% else %}
@@ -137,7 +137,7 @@
 {% endblock %}
 
 {% if settings.BUNDLE_JS_SRI %}
-    {% with 'async defer chatset="UTF-8" integrity="'|add:settings.BUNDLE_JS_SRI |add:'"' as attrs_str %}
+    {% with 'async defer chatset="UTF-8" integrity="'|add:settings.BUNDLE_JS_SRI|add:'"' as attrs_str %}
         {% render_bundle 'bundle' 'js' attrs=attrs_str %}
     {% endwith %}
 {% else %}

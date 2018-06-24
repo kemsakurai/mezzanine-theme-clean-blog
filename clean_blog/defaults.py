@@ -14,7 +14,11 @@ register_setting(
              "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID",
              "CLEAN_BLOG_GOOGLE_ADS_SLOT_ID",
              "CLEAN_BLOG_FACEBOOK_APP_ID",
-             "CLEAN_BLOG_IS_VISIBLE_DESCRIPTION"
+             "CLEAN_BLOG_IS_VISIBLE_DESCRIPTION",
+             "BUNDLE_JS_SRI",
+             "RESPOND_MIN_SRI",
+             "BUNDLE_CSS_SRI",
+             "HTML5SHIV_SRI"
              ),
     append=True,
 )
