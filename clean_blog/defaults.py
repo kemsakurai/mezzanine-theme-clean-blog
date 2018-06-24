@@ -73,3 +73,27 @@ register_setting(
     editable=True,
     default=False,
 )
+register_setting(
+    name="BUNDLE_JS_SRI",
+    description="",
+    editable=False,
+    default="",
+)
+register_setting(
+    name="RESPOND_MIN_SRI",
+    description="",
+    editable=False,
+    default="",
+)
+register_setting(
+    name="BUNDLE_CSS_SRI",
+    description="",
+    editable=False,
+    default="",
+)
+register_setting(
+    name="HTML5SHIV_SRI",
+    description="",
+    editable=False,
+    default="",
+)
