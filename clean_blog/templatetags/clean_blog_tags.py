@@ -58,7 +58,7 @@ def conv_blog_post_to_json_ld(blog=None):
                       "name": blog.user.first_name,
                       "logo": {"@type": "ImageObject",
                                "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOVE5pTEcyeE40WlE"}
-                      },
+        },
         "image": {"@type": "ImageObject",
                   "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOMDdhaDhHdXBVTHc", "height": 450,
                   "width": 800},
@@ -68,6 +68,7 @@ def conv_blog_post_to_json_ld(blog=None):
         },
         "genre": ' '.join(map(lambda n: n.title, blog.categories.all())),
         "wordcount": str(len(blog.content)),
+        "numberOfPunctuation": str(blog.content.count('、') + blog.content.count('。')),
         "datePublished": str(blog.publish_date),
         "dateCreated": str(blog.created),
         "dateModified": str(blog.updated),
