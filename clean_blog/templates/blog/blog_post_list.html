@@ -151,14 +151,14 @@
                                             {% endwith %}
                   </span>
                                         <span>
-                                            <time class="glyphicon glyphicon-calendar"
-                                                  datetime="
-
-
-
-
-                                                          {{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time> (
+                                            <span class="glyphicon glyphicon-calendar">投稿日:</span>
+                                            <time datetime="{{ blog_post.publish_date|date:"c"}}">{{ blog_post.publish_date|date:'Y-m-d' }}</time> (
                                             {% blocktrans with sometime=blog_post.publish_date|timesince %}
+                                                {{ sometime }} ago{% endblocktrans %})</span>
+                                        <span>
+                                            <span class="glyphicon glyphicon-calendar">更新日:</span>
+                                            <time datetime="{{ blog_post.updated|date:"c"}}">{{ blog_post.updated|date:'Y-m-d' }}</time> (
+                                            {% blocktrans with sometime=blog_post.updated|timesince %}
                                                 {{ sometime }} ago{% endblocktrans %})</span>
                                         <span>
                                             {% if blog_post.allow_comments %}
