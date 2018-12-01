@@ -18,6 +18,16 @@ function sendMessage2ServiceWorker(message) {
     });
 }
 
+function prefetch(url) {
+    console.log("prefetch=" + url);
+    var hint = document.createElement('link');
+    hint.rel = 'preconnect';
+    hint.href = url;
+    hint.as = 'html';
+    hint.crossorigin = 'use-credentials';
+    document.head.appendChild(hint);
+}
+
 function dispatchEvent(name) {
     var event;
     try {
@@ -30,11 +40,11 @@ function dispatchEvent(name) {
 }
 
 export default function configure() {
-
-     window.addEventListener("DOMContentLoaded", function(event) { 
-          console.log("guess call start");
-          console.log(guess());
-     });
+     
+     if (typeof window !== 'undefined') {
+         Object.keys(guess()).forEach(p => prefetch(p));
+     }
+     
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
          window.addEventListener('beforeinstallprompt', (e) => {
