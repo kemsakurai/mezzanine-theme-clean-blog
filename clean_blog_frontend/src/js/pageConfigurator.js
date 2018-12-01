@@ -40,11 +40,11 @@ function dispatchEvent(name) {
 }
 
 export default function configure() {
-     
      if (typeof window !== 'undefined') {
-         Object.keys(guess()).forEach(p => prefetch(p));
+         for (const url of Object.keys(guess())) {
+             prefetch(url);
+         }
      }
-     
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
          window.addEventListener('beforeinstallprompt', (e) => {
