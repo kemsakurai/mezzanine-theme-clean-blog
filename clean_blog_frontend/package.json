@@ -25,6 +25,7 @@
     "eslint-config-google": "^0.9.1",
     "file-loader": "^1.1.11",
     "font-awesome": "^4.7.0",
+    "guess-webpack": "^0.1.6",
     "mini-css-extract-plugin": "^0.4.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "uglify-loader": "^2.0.0",

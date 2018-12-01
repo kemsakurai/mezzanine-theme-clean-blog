@@ -1,3 +1,5 @@
+import guess from 'guess-webpack/api';
+
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
     return new Promise((resolve, reject) => {
@@ -28,6 +30,11 @@ function dispatchEvent(name) {
 }
 
 export default function configure() {
+
+     window.addEventListener("DOMContentLoaded", function(event) { 
+          console.log("guess call start");
+          console.log(guess());
+     });
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
          window.addEventListener('beforeinstallprompt', (e) => {

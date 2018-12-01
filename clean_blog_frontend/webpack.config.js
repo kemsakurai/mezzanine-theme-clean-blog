@@ -5,6 +5,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
+const { GuessPlugin } = require('guess-webpack');
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
 
@@ -51,6 +52,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
+        new GuessPlugin({ GA: '103185238' }),
         new OptimizeCSSAssetsPlugin({}),
         new CleanWebpackPlugin(["static/webpack_bundles"], {root: cleanBlogRoot, verbose: true}),
         new MiniCssExtractPlugin({
