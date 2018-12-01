@@ -1,6 +1,7 @@
 const Webpack = require("webpack");
 const BundleTracker = require("webpack-bundle-tracker");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
@@ -8,6 +9,7 @@ const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
 
 module.exports = {
+    mode : "development",
     context: __dirname + '/src',
     entry: {
         // ページごとに異なるエントリポイントを設ける
@@ -19,7 +21,7 @@ module.exports = {
         crossOriginLoading: 'anonymous'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -31,9 +33,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract({
-                    use: ['css-loader?minimize']
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -48,14 +51,9 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
+        new OptimizeCSSAssetsPlugin({}),
         new CleanWebpackPlugin(["static/webpack_bundles"], {root: cleanBlogRoot, verbose: true}),
-        new Webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    dead_code: false
-                }
-            }
-        ),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
         }),
         new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
