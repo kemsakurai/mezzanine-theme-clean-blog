@@ -21,7 +21,7 @@ function sendMessage2ServiceWorker(message) {
 function prefetch(url) {
     console.log("prefetch=" + url);
     var hint = document.createElement('link');
-    hint.rel = 'preconnect';
+    hint.rel = 'prefetch';
     hint.href = url;
     hint.as = 'html';
     hint.crossorigin = 'use-credentials';
