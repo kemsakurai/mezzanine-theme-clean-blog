@@ -1,4 +1,4 @@
-import guess from 'guess-webpack/api';
+import { guess } from 'guess-webpack/api';
 
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
