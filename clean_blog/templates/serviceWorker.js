@@ -24,12 +24,12 @@ workboxSW.precache([
     "revision": "7ced3229845a5f3c7c4f4cb27fd136d8"
   },
   {
-    "url": "static/webpack_bundles/bundle-258d6e78680a3c818e57.css",
+    "url": "static/webpack_bundles/bundle-552b0dde4928ca42ce99.css",
     "revision": "f33f28b2200736556dbfab41db74110d"
   },
   {
-    "url": "static/webpack_bundles/bundle-258d6e78680a3c818e57.js",
-    "revision": "6bfaf294ba67a8b3bf8cafcf147ce22a"
+    "url": "static/webpack_bundles/bundle-552b0dde4928ca42ce99.js",
+    "revision": "583edd2b79fab9653a4d00f2765434e5"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -50,6 +50,10 @@ workboxSW.precache([
   {
     "url": "static/webpack_bundles/fa2772327f55d8198301fdb8bcfc8158.woff",
     "revision": "fa2772327f55d8198301fdb8bcfc8158"
+  },
+  {
+    "url": "static/webpack_bundles/pjax-552b0dde4928ca42ce99.js",
+    "revision": "25daffeca57253312f07d112eb4b0b46"
   }
 ]);
 /* eslint-enable no-undef */

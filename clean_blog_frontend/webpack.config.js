@@ -13,6 +13,7 @@ module.exports = {
     mode : "development",
     context: __dirname + '/src',
     entry: {
+        pjax: ["./js/pjax.js"],
         // ページごとに異なるエントリポイントを設ける
         bundle: ["./js/index.js"]
     },

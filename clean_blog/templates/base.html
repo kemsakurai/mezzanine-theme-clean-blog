@@ -135,13 +135,19 @@
 {% block footer_js %}
     {% include "includes/footer_scripts.html" %}
 {% endblock %}
-
 {% if settings.BUNDLE_JS_SRI %}
     {% with 'async defer chatset="UTF-8" integrity="'|add:settings.BUNDLE_JS_SRI|add:'"' as attrs_str %}
         {% render_bundle 'bundle' 'js' attrs=attrs_str %}
     {% endwith %}
 {% else %}
     {% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
+{% endif %}
+{% if settings.PJAX_JS_SRI %}
+    {% with 'async defer chatset="UTF-8" integrity="'|add:settings.PJAX_JS_SRI|add:'"' as attrs_str %}
+        {% render_bundle 'pjax' 'js' attrs=attrs_str %}
+    {% endwith %}
+{% else %}
+    {% render_bundle 'pjax' 'js' attrs='async defer chatset="UTF-8"' %}
 {% endif %}
 {% autoescape off %}
 {% critical_async %}
