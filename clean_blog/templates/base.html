@@ -20,7 +20,6 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
     {% endifinstalled %}
-
     {% critical %}
         {% if settings.BUNDLE_CSS_SRI %}
             {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
@@ -34,6 +33,15 @@
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
     {% endif %}
     {% block extra_js %}{% endblock %}
+    {% if not request.user.is_staff %}
+        {% if settings.PJAX_JS_SRI %}
+            {% with 'async defer chatset="UTF-8" integrity="'|add:settings.PJAX_JS_SRI|add:'"' as attrs_str %}
+                {% render_bundle 'pjax' 'js' attrs=attrs_str %}
+            {% endwith %}
+        {% else %}
+            {% render_bundle 'pjax' 'js' attrs='async defer chatset="UTF-8"' %}
+        {% endif %}
+    {% endif %}
     {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff %}
         {% block gtn_dataLayer %}{% endblock %}
         <!-- Google Tag Manager -->
@@ -141,13 +149,6 @@
     {% endwith %}
 {% else %}
     {% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
-{% endif %}
-{% if settings.PJAX_JS_SRI %}
-    {% with 'async defer chatset="UTF-8" integrity="'|add:settings.PJAX_JS_SRI|add:'"' as attrs_str %}
-        {% render_bundle 'pjax' 'js' attrs=attrs_str %}
-    {% endwith %}
-{% else %}
-    {% render_bundle 'pjax' 'js' attrs='async defer chatset="UTF-8"' %}
 {% endif %}
 {% autoescape off %}
 {% critical_async %}
