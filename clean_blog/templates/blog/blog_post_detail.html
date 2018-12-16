@@ -38,6 +38,10 @@
         {{ blog_post.description }}
     {% endmetablock %}
 {% endblock %}
+{% block title %}
+    {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
+{% endblock %}
+
 {# dataLayerの設定 #}
 {% block gtn_dataLayer %}
 {% autoescape off %}
@@ -70,9 +74,7 @@
 {% endspaceless %}
 {% endautoescape %}
 {% endblock %}
-{% block title %}
-    {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
-{% endblock %}
+
 {# base.html のheading-textの処理を上書き #}
 {% block heading-text %}
     {% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
@@ -138,7 +140,7 @@
 {# ------#}
 {% block main %}
 <section id="blog" class="container">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" data-split-id="entry-wrap">
         <div class="blog">
             {% include "blog/includes/google_adsense.html" %}
             <div class="blog-item">

@@ -33,6 +33,12 @@
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
     {% endif %}
     {% block extra_js %}{% endblock %}
+    {% if settings.GOOGLE_TAG_MANAGER_ID and not request.user.is_staff and settings.USE_GOOGLE_OPTIMIZE %}
+        <!-- Page hiding snippet (recommended) -->
+        <style>.async-hide { opacity: 0 !important} </style>
+        <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y; h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,'async-hide','dataLayer',4000,{'{{ settings.GOOGLE_TAG_MANAGER_ID }}':true});
+        </script>
+    {% endif %}
     {% if not request.user.is_staff %}
         {% if settings.PJAX_JS_SRI %}
             {% with 'async defer chatset="UTF-8" integrity="'|add:settings.PJAX_JS_SRI|add:'"' as attrs_str %}
@@ -56,8 +62,8 @@
         <!-- End Google Tag Manager -->
     {% endif %}
     <!--[if lt IE 9]>
-    <script src="{% static "js/html5shiv.js" %}" {% if settings.HTML5SHIV_SRI %}integrity="{{ settings.HTML5SHIV_SRI }}" crossorigin="anonymous"{% endif %} ></script>
-    <script src="{% static "js/respond.min.js" %}" {% if settings.RESPOND_MIN_SRI %}integrity="{{ settings.RESPOND_MIN_SRI }}" crossorigin="anonymous"{% endif %} ></script>
+        <script src="{% static "js/html5shiv.js" %}" {% if settings.HTML5SHIV_SRI %}integrity="{{ settings.HTML5SHIV_SRI }}" crossorigin="anonymous"{% endif %} ></script>
+        <script src="{% static "js/respond.min.js" %}" {% if settings.RESPOND_MIN_SRI %}integrity="{{ settings.RESPOND_MIN_SRI }}" crossorigin="anonymous"{% endif %} ></script>
     <![endif]-->
     {% block extra_head %}{% endblock %}
 </head>
@@ -71,7 +77,7 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 {% endif %}
-
+{% block extra_head %}{% endblock %}
 <!-- Navigation -->
 <div class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
     <div class="container-fluid">

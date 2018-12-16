@@ -29,8 +29,6 @@ def pagination_prev_next_for(context, current_page, page_var="page", exclude_var
         "querystring": querystring,
         "page_var": page_var,
     }
-
-
 @register.as_tag
 def blog_categories_ex():
     """

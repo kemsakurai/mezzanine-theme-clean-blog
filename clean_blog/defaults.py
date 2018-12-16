@@ -18,7 +18,10 @@ register_setting(
              "BUNDLE_JS_SRI",
              "RESPOND_MIN_SRI",
              "BUNDLE_CSS_SRI",
-             "HTML5SHIV_SRI"
+             "HTML5SHIV_SRI",
+             "PJAX_JS_SRI",
+             "GOOGLE_TAG_MANAGER_ID",
+             "USE_GOOGLE_OPTIMIZE"
              ),
     append=True,
 )
@@ -100,4 +103,22 @@ register_setting(
     description="",
     editable=False,
     default="",
+)
+register_setting(
+    name="PJAX_JS_SRI",
+    description="",
+    editable=False,
+    default="",
+)
+register_setting(
+    name="GOOGLE_TAG_MANAGER_ID",
+    description="",
+    editable=True,
+    default="",
+)
+register_setting(
+    name="USE_GOOGLE_OPTIMIZE",
+    description="",
+    editable=True,
+    default=False,
 )
