@@ -13,7 +13,11 @@ Mezzanine                  4.3.0
 django-webpack-loader      0.5.0       
 
 * **optional**   
-
+When using the output function of critical css, install the following libraries.    
+[kemsakurai/django-critical: Inlines critical path CSS and defers loading full CSS asynchronously.](https://github.com/kemsakurai/django-critical) 
+```console
+pip install git+https://github.com/kemsakurai/django-critical    
+```
 
 ### 2. move work directory
 ```

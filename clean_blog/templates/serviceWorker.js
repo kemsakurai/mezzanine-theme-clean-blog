@@ -4,6 +4,10 @@ importScripts('static/js/localforage.min.js');
 const workboxSW = new WorkboxSW();
 workboxSW.precache([
   {
+    "url": "static/js/html5shiv.js",
+    "revision": "40bd440d29b3a9371b0c63fec41ee64f"
+  },
+  {
     "url": "static/js/workbox-sw.prod.v2.1.3.js",
     "revision": "a8510ff32df85144ee72e03a02f263cd"
   },
@@ -53,7 +57,7 @@ workboxSW.precache([
   },
   {
     "url": "static/webpack_bundles/pjax-552b0dde4928ca42ce99.js",
-    "revision": "25daffeca57253312f07d112eb4b0b46"
+    "revision": "3357c782661f4124ca04b67c83c77369"
   }
 ]);
 /* eslint-enable no-undef */
