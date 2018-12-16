@@ -20,15 +20,17 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
     {% endifinstalled %}
-    {% critical %}
-        {% if settings.BUNDLE_CSS_SRI %}
-            {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
-                {% render_bundle 'bundle' 'css' attrs=attrs_str %}
-            {% endwith %}
-        {% else %}
-            {% render_bundle 'bundle' 'css' %}
-        {% endif %}
-    {% endcritical %}
+    {% ifinstalled critical %}
+        {% critical %}
+            {% if settings.BUNDLE_CSS_SRI %}
+                {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
+                    {% render_bundle 'bundle' 'css' attrs=attrs_str %}
+                {% endwith %}
+            {% else %}
+                {% render_bundle 'bundle' 'css' %}
+            {% endif %}
+        {% endcritical %}
+    {% endifinstalled %}
     {% if request.user.is_staff %}
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
     {% endif %}
@@ -40,7 +42,7 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);
 })(window,document.documentElement,'async-hide','dataLayer',4000,{'{{ settings.GOOGLE_TAG_MANAGER_ID }}':true});
 </script>    
- {% endif %}
+{% endif %}
     {% if not request.user.is_staff %}
         {% if settings.PJAX_JS_SRI %}
             {% with 'async defer chatset="UTF-8" integrity="'|add:settings.PJAX_JS_SRI|add:'"' as attrs_str %}
@@ -158,7 +160,9 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
     {% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
 {% endif %}
 {% autoescape off %}
-{% critical_async %}
+{% ifinstalled critical %}
+    {% critical_async %}
+{% endifinstalled %}
 {% endautoescape %}
 </body>
 </html>
