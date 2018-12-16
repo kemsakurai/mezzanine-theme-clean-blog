@@ -54,6 +54,22 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "templates"),)
 ```
 
+### 7. Add SRI Settings, in settings.py    
+```python
+#####################
+# SRI SETTINGS #
+#####################
+try:                                                                                                                                                                                
+    from clean_blog.sri import *
+except ImportError:
+    pass
+
+```
+
+------------------------------------------------------------------------------
+## Config    
+//TODO...   
+
 ------------------------------------------------------------------------------
 ## Another Project
 [clean_blog_mezzanine](https://github.com/vskh/clean_blog_mezzanine#clean-blog-mezzanine)
