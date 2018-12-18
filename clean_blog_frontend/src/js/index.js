@@ -17,9 +17,3 @@ registerServiceWorker();
 import pageConfigurator from "./pageConfigurator.js";
 
 pageConfigurator();
-
-// Optimize.activate!!!
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'optimize.activate'
-});

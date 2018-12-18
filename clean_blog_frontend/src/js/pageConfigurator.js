@@ -39,6 +39,13 @@ function dispatchEvent(name) {
 }
 
 export default function configure() {
+
+      // Optimize.activate!!!
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+          'event': 'optimize.activate'
+      });
+      
      if (typeof window !== 'undefined') {
          for (const url of Object.keys(guess())) {
              prefetch(url);
