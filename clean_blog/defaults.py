@@ -7,8 +7,7 @@ register_setting(
     name="TEMPLATE_ACCESSIBLE_SETTINGS",
     description=("Sequence of setting names available within templates."),
     editable=False,
-    default=("CLEAN_BLOG_USE_BASE_CSS",
-             "TWITTER_ACCOUNT_NAME",
+    default=("TWITTER_ACCOUNT_NAME",
              "FACEBOOK_USER_NAME",
              "GITHUB_USER_NAME",
              "CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID",
@@ -24,13 +23,6 @@ register_setting(
              "USE_GOOGLE_OPTIMIZE"
              ),
     append=True,
-)
-
-register_setting(
-    name="CLEAN_BLOG_USE_BASE_CSS",
-    description="Use CSS cleaned up by uncss",
-    editable=False,
-    default=False,
 )
 
 register_setting(
