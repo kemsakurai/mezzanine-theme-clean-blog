@@ -19,6 +19,7 @@ register_setting(
              "BUNDLE_CSS_SRI",
              "HTML5SHIV_SRI",
              "PJAX_JS_SRI",
+             "VENDOR_JS_SRI",
              "GOOGLE_TAG_MANAGER_ID",
              "USE_GOOGLE_OPTIMIZE"
              ),
@@ -99,6 +100,12 @@ register_setting(
 register_setting(
     name="PJAX_JS_SRI",
     description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for pjax*.js",
+    editable=False,
+    default="",
+)
+register_setting(
+    name="VENDOR_JS_SRI",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for vendor*.js",
     editable=False,
     default="",
 )
