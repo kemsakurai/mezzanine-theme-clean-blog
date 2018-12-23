@@ -15,7 +15,6 @@ def to_amp_url(url):
     else:
         return url
 
-
 @register.inclusion_tag("includes/pagination_prev_next.html", takes_context=True)
 def pagination_prev_next_for(context, current_page, page_var="page", exclude_vars=""):
     querystring = context["request"].GET.copy()

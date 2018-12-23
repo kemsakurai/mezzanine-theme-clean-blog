@@ -68,49 +68,49 @@ register_setting(
 )
 register_setting(
     name="CLEAN_BLOG_IS_VISIBLE_DESCRIPTION",
-    description="flag for CLEAN_BLOG's blog list",
+    description="flag for CLEAN_BLOG's blog list and search result",
     editable=True,
     default=False,
 )
 register_setting(
     name="BUNDLE_JS_SRI",
-    description="",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.js",
     editable=False,
     default="",
 )
 register_setting(
     name="RESPOND_MIN_SRI",
-    description="",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for respond.js",
     editable=False,
     default="",
 )
 register_setting(
     name="BUNDLE_CSS_SRI",
-    description="",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.css",
     editable=False,
     default="",
 )
 register_setting(
     name="HTML5SHIV_SRI",
-    description="",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for html5shiv.js",
     editable=False,
     default="",
 )
 register_setting(
     name="PJAX_JS_SRI",
-    description="",
+    description="[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for pjax*.js",
     editable=False,
     default="",
 )
 register_setting(
     name="GOOGLE_TAG_MANAGER_ID",
-    description="",
+    description="When using Google Tag Manager, please set ID.",
     editable=True,
     default="",
 )
 register_setting(
     name="USE_GOOGLE_OPTIMIZE",
-    description="",
+    description="Set to True if you use Google Optimize. Output page non-display snippet.",
     editable=True,
     default=False,
 )

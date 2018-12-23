@@ -68,9 +68,36 @@ except ImportError:
 
 ------------------------------------------------------------------------------
 ## Config    
-//TODO...   
+
+### defaults.py    
+The following settings are defined in `defaults.py` and control is possible.
+[^1]:BUNDLE_JS_SRI, RESPOND_MIN_SRI, HTML5SHIV_SRI, PJAX_JS_SRI are defined in `sri.py`.    
+
+|key|description|editable|default|
+|:--|:--|:---|:----|
+|TWITTER_ACCOUNT_NAME|Twitter account name SNS link of footer|True|""|
+|FACEBOOK_USER_NAME|Facebook user name SNS link of footer|True|""|
+|GITHUB_USER_NAME|Github user name SNS link of footer|True|""|
+|CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID|GOOGLE ADS CLIENT ID for CLEAN_BLOG|True|""|
+|CLEAN_BLOG_GOOGLE_ADS_SLOT_ID|GOOGLE ADS SLOT ID for CLEAN_BLOG|True|""|
+|CLEAN_BLOG_FACEBOOK_APP_ID|FACEBOOK_APP_ID for CLEAN_BLOG|True|""|
+|CLEAN_BLOG_IS_VISIBLE_DESCRIPTION|flag for CLEAN_BLOG's blog list and search result|True|""|
+|BUNDLE_JS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.js|False|""|
+|RESPOND_MIN_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for respond.js|False|""|
+|BUNDLE_CSS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.css|False|""|
+|HTML5SHIV_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for html5shiv.js|False|""|
+|PJAX_JS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for pjax*.js|False|""|
+|GOOGLE_TAG_MANAGER_ID|When using Google Tag Manager, please set ID.|True|""|
+|USE_GOOGLE_OPTIMIZE|Set to True if you use Google Optimize. Output page non-display snippet.|True|False|
+
+### Self Build     
+// TODO...    
 
 ------------------------------------------------------------------------------
 ## Another Project
 [clean_blog_mezzanine](https://github.com/vskh/clean_blog_mezzanine#clean-blog-mezzanine)
 Clean Blog based Mezzanine theme
+
+------------------------------------------------------------------------------
+## AMP Theme     
+[kemsakurai/mezzanine-theme-amp-start-blog-post: mezzanine theme based by amp start](https://github.com/kemsakurai/mezzanine-theme-amp-start-blog-post)    
