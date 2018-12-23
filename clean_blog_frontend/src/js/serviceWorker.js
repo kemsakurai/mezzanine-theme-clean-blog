@@ -45,26 +45,26 @@ workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
 }), 'GET');
 const sendMessageToAllClients = function(msg) {
     clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
-        clients.forEach(client => {
-            sendMessageToClient(client, msg).then(m => console.log("SW Received Message: "+ m));
-        })
-    })
-}
+        clients.forEach((client) => {
+            sendMessageToClient(client, msg).then((m) => console.log('SW Received Message: '+ m));
+        });
+    });
+};
 
 const sendMessageToClient = function(client, message) {
     return new Promise(function(resolve, reject) {
-        var msgChan = new MessageChannel();
+        let msgChan = new MessageChannel();
 
         msgChan.port1.onmessage = function(event) {
-            if(event.data.error){
+            if (event.data.error) {
                 reject(event.data.error);
-            }else{
+            } else {
                 resolve(event.data);
             }
         };
         client.postMessage(message, [msgChan.port2]);
     });
-}
+};
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
 self.addEventListener('message', (e) => {
@@ -76,7 +76,7 @@ self.addEventListener('message', (e) => {
             break;
         case 'isRepeater':
             isRepeater().then((result) => {
-                e.ports[0].postMessage({'result' : result });
+                e.ports[0].postMessage({'result': result});
             });
             break;
         default:

@@ -155,6 +155,13 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 {% block footer_js %}
     {% include "includes/footer_scripts.html" %}
 {% endblock %}
+{% if settings.VENDOR_JS_SRI %}
+    {% with 'async defer chatset="UTF-8" integrity="'|add:settings.VENDOR_JS_SRI|add:'"' as attrs_str %}
+        {% render_bundle 'vendor' 'js' attrs=attrs_str %}
+    {% endwith %}
+{% else %}
+    {% render_bundle 'vendor' 'js' attrs='async defer chatset="UTF-8"' %}
+{% endif %}
 {% if settings.BUNDLE_JS_SRI %}
     {% with 'async defer chatset="UTF-8" integrity="'|add:settings.BUNDLE_JS_SRI|add:'"' as attrs_str %}
         {% render_bundle 'bundle' 'js' attrs=attrs_str %}

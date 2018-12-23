@@ -1,4 +1,4 @@
-import { guess } from 'guess-webpack/api';
+import {guess} from 'guess-webpack/api';
 
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
@@ -19,7 +19,7 @@ function sendMessage2ServiceWorker(message) {
 }
 
 function prefetch(url) {
-    var hint = document.createElement('link');
+    let hint = document.createElement('link');
     hint.rel = 'prefetch';
     hint.href = url;
     hint.as = 'html';
@@ -28,24 +28,23 @@ function prefetch(url) {
 }
 
 function dispatchEvent(name) {
-    var event;
+    let event;
     try {
         event = new CustomEvent(name);
     } catch (e) {
         event = document.createEvent('CustomEvent');
         event.initCustomEvent(name, false, false);
     }
-    window.dispatchEvent(event);  
+    window.dispatchEvent(event);
 }
 
 export default function configure() {
-
       // Optimize.activate!!!
       window.dataLayer = window.dataLayer || [];
       dataLayer.push({
-          'event': 'optimize.activate'
+          'event': 'optimize.activate',
       });
-      
+
      if (typeof window !== 'undefined') {
          for (const url of Object.keys(guess())) {
              prefetch(url);
@@ -57,18 +56,18 @@ export default function configure() {
           e.userChoice.then((choiceResult) => {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                event: "sendEvent",
-                eventName: "A2H",
-                eventData:{ category : "A2H", 
-                    action : choiceResult.outcome,
-                    label : document.title,
-                    value : "",
-                    nonInteraction : true
+                event: 'sendEvent',
+                eventName: 'A2H',
+                eventData: {category: 'A2H',
+                    action: choiceResult.outcome,
+                    label: document.title,
+                    value: '',
+                    nonInteraction: true,
                 },
-                eventCustomData : {
-                    documentTitle : document.title,
-                    outcome : choiceResult.outcome
-                }
+                eventCustomData: {
+                    documentTitle: document.title,
+                    outcome: choiceResult.outcome,
+                },
             });
           });
         });

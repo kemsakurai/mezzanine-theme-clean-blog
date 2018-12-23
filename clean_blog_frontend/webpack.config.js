@@ -48,6 +48,12 @@ module.exports = {
             {test: /\.(ttf|eot|svg)(\?#.+)$/, loader: ["file-loader"]}
         ]
     },
+    optimization: {
+      splitChunks: {
+        name: 'vendor',
+        chunks: 'initial',
+      }
+    },
     plugins: [
         new Webpack.ProvidePlugin({
             $: 'jquery',

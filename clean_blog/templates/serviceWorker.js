@@ -28,12 +28,12 @@ workboxSW.precache([
     "revision": "7ced3229845a5f3c7c4f4cb27fd136d8"
   },
   {
-    "url": "static/webpack_bundles/bundle-74c97fe0c3b5dbfd5cab.css",
+    "url": "static/webpack_bundles/bundle-e5498c8c096f66d18704.css",
     "revision": "f33f28b2200736556dbfab41db74110d"
   },
   {
-    "url": "static/webpack_bundles/bundle-74c97fe0c3b5dbfd5cab.js",
-    "revision": "c81ae5ef46b35d913253540670623124"
+    "url": "static/webpack_bundles/bundle-e5498c8c096f66d18704.js",
+    "revision": "f2664bf81486e2e6f0dae78e59fd907f"
   },
   {
     "url": "static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf",
@@ -56,8 +56,12 @@ workboxSW.precache([
     "revision": "fa2772327f55d8198301fdb8bcfc8158"
   },
   {
-    "url": "static/webpack_bundles/pjax-74c97fe0c3b5dbfd5cab.js",
-    "revision": "0c9da9d36833f90a3dbea4ab490fd288"
+    "url": "static/webpack_bundles/pjax-e5498c8c096f66d18704.js",
+    "revision": "5a8f1937d8f59b19e367fbe1c7fd50de"
+  },
+  {
+    "url": "static/webpack_bundles/vendor-e5498c8c096f66d18704.js",
+    "revision": "f92414e0da82238c588d7d109533159e"
   }
 ]);
 /* eslint-enable no-undef */
@@ -102,26 +106,26 @@ workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
 }), 'GET');
 const sendMessageToAllClients = function(msg) {
     clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
-        clients.forEach(client => {
-            sendMessageToClient(client, msg).then(m => console.log("SW Received Message: "+ m));
-        })
-    })
-}
+        clients.forEach((client) => {
+            sendMessageToClient(client, msg).then((m) => console.log('SW Received Message: '+ m));
+        });
+    });
+};
 
 const sendMessageToClient = function(client, message) {
     return new Promise(function(resolve, reject) {
-        var msgChan = new MessageChannel();
+        let msgChan = new MessageChannel();
 
         msgChan.port1.onmessage = function(event) {
-            if(event.data.error){
+            if (event.data.error) {
                 reject(event.data.error);
-            }else{
+            } else {
                 resolve(event.data);
             }
         };
         client.postMessage(message, [msgChan.port2]);
     });
-}
+};
 // -----------------------------------------------------
 // Messaging.. Browser側からServiceWorkerへメッセージを送信する
 self.addEventListener('message', (e) => {
@@ -133,7 +137,7 @@ self.addEventListener('message', (e) => {
             break;
         case 'isRepeater':
             isRepeater().then((result) => {
-                e.ports[0].postMessage({'result' : result });
+                e.ports[0].postMessage({'result': result});
             });
             break;
         default:

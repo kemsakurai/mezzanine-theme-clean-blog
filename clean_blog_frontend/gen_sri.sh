@@ -9,3 +9,4 @@ echo "RESPOND_MIN_SRI="'"'sha256-`cat $BLOG_ROOT/static/js/respond.min.js | open
 echo "BUNDLE_JS_SRI="'"'sha256-`cat $BLOG_ROOT/static/webpack_bundles/bundle-*.js  | openssl dgst -sha256 -binary | openssl enc -base64`'"' >> "$BLOG_ROOT"/sri.py 
 echo "BUNDLE_CSS_SRI="'"'sha256-`cat $BLOG_ROOT/static/webpack_bundles/bundle-*.css | openssl dgst -sha256 -binary | openssl enc -base64`'"' >> "$BLOG_ROOT"/sri.py
 echo "PJAX_JS_SRI="'"'sha256-`cat $BLOG_ROOT/static/webpack_bundles/pjax-*.js  | openssl dgst -sha256 -binary | openssl enc -base64`'"' >> "$BLOG_ROOT"/sri.py
+echo "VENDOR_JS_SRI="'"'sha256-`cat $BLOG_ROOT/static/webpack_bundles/vendor-*.js  | openssl dgst -sha256 -binary | openssl enc -base64`'"' >> "$BLOG_ROOT"/sri.py
