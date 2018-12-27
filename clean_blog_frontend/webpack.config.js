@@ -53,7 +53,7 @@ module.exports = {
         name: 'vendor',
         chunks (chunk) {
             // exclude `turbolinks`
-            return chunk.name !== 'turbolinks';
+            return chunk.name !== 'pjax';
         }
       }
     },
