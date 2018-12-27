@@ -51,7 +51,10 @@ module.exports = {
     optimization: {
       splitChunks: {
         name: 'vendor',
-        chunks: 'initial',
+        chunks (chunk) {
+            // exclude `turbolinks`
+            return chunk.name !== 'turbolinks';
+        }
       }
     },
     plugins: [
