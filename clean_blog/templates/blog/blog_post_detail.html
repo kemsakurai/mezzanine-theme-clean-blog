@@ -47,14 +47,16 @@
 {% autoescape off %}
 {% spaceless %}
     <script type="text/javascript">
-        Object.defineProperty(window, "Cookies", {
-            get: function () {
-                return document.cookie.split(';').reduce(function (cookies, cookie) {
-                    cookies[cookie.split("=")[0]] = unescape(cookie.split("=")[1]);
-                    return cookies;
-                }, {});
-            }
-        });
+        if (!window.hasOwnProperty('Cookies')) {
+            Object.defineProperty(window, "Cookies", {
+                get: function () {
+                    return document.cookie.split(';').reduce(function (cookies, cookie) {
+                        cookies[cookie.split("=")[0]] = unescape(cookie.split("=")[1]);
+                        return cookies;
+                    }, {});
+                }
+            });
+        }
         window.blogPostInfo = {
             'blogPostId': '{{ blog_post.id|escapejs }}',
             'gaId': Cookies._ga
