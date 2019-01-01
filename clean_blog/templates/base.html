@@ -115,11 +115,15 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 </div>
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" 
-        style="background-image: url('{% static "img/home-bg-1600.jpg" %}')
-               @media only screen and (min-width: 768px) {
-                   background-image: url('{% static "img/home-bg-800.jpg" %}')
-               }">
+<style>
+.header-bg {
+    background-image: url('{% static "img/home-bg-1600.jpg" %}')
+    @media only screen and (min-width: 768px) {
+        background-image: url('{% static "img/home-bg-800.jpg" %}')
+    }
+}
+</style>
+<header class="intro-header header-bg">
     <div class="container">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 site-heading">
             <h1>
