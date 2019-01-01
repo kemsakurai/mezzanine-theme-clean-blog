@@ -7,8 +7,6 @@ import '../css/fonts.css';
 import './jquery.js';
 import './bootstrap.js';
 import './clean-blog.js';
-import './jqBootstrapValidation.js';
-import './contact_me.js';
 
 import registerServiceWorker from './registerServiceWorker.js';
 

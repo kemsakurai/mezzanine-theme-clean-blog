@@ -14,7 +14,7 @@ module.exports = {
     context: __dirname + '/src',
     entry: {
         pjax: ["./js/pjax.js"],
-        // ページごとに異なるエントリポイントを設ける
+        contact: ["./js/contact.js"],
         bundle: ["./js/index.js"]
     },
     output: {
@@ -40,12 +40,8 @@ module.exports = {
                     "css-loader"
                 ]
             },
-            {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: ["url-loader?limit=10000&mimetype=application/font-woff", "file-loader"]
-            },
-            {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: ["file-loader"]},
-            {test: /\.(ttf|eot|svg)(\?#.+)$/, loader: ["file-loader"]}
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
         ]
     },
     optimization: {
