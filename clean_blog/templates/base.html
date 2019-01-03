@@ -14,7 +14,12 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <title>
         {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <meta http-equiv="x-dns-prefetch-control" content="on">
     <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect dns-prefetch" href="https://googleads.g.doubleclick.net">
+    <link rel="preconnect dns-prefetch" href="https://stats.g.doubleclick.net">
+    <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preconnect dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preload" href="{% static "img/home-bg-800.jpg" %}" as="image" media="(max-width: 767px)">
     <link rel="preload" href="{% static "img/home-bg-1600.jpg" %}" as="image" media="(min-width: 768px)">
     <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}"/>
