@@ -14,6 +14,9 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <title>
         {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preload" href="{% static "img/home-bg-800.jpg" %}" as="image" media="(max-width: 767px)">
+    <link rel="preload" href="{% static "img/home-bg-1600.jpg" %}" as="image" media="(min-width: 768px)">
     <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}"/>
     <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}"/>
     <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
