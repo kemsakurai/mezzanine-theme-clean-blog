@@ -126,5 +126,5 @@ register_setting(
     name="DNS_PREFETCH_URLS",
     description="Specify the target domain of dns-prefetch",     
     editable=True,
-    default=None,
+    default=[],
 )
