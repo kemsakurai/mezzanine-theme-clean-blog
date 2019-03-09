@@ -21,7 +21,8 @@ register_setting(
              "PJAX_JS_SRI",
              "VENDOR_JS_SRI",
              "GOOGLE_TAG_MANAGER_ID",
-             "USE_GOOGLE_OPTIMIZE"
+             "USE_GOOGLE_OPTIMIZE",
+             "DNS_PREFETCH_DOMAINS"
              ),
     append=True,
 )
@@ -118,6 +119,12 @@ register_setting(
 register_setting(
     name="USE_GOOGLE_OPTIMIZE",
     description="Set to True if you use Google Optimize. Output page non-display snippet.",
+    editable=True,
+    default=False,
+)
+register_setting(
+    name="DNS_PREFETCH_URLS",
+    description="Specify the target domain of dns-prefetch",     
     editable=True,
     default=False,
 )
