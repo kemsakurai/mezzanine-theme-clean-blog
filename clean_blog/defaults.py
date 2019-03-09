@@ -22,7 +22,7 @@ register_setting(
              "VENDOR_JS_SRI",
              "GOOGLE_TAG_MANAGER_ID",
              "USE_GOOGLE_OPTIMIZE",
-             "DNS_PREFETCH_DOMAINS"
+             "DNS_PREFETCH_URLS"
              ),
     append=True,
 )
@@ -126,5 +126,5 @@ register_setting(
     name="DNS_PREFETCH_URLS",
     description="Specify the target domain of dns-prefetch",     
     editable=True,
-    default=False,
+    default=None,
 )
