@@ -7,7 +7,6 @@
 local_settings.py
 /static
 clean_blog_frontend/node_modules
-
 .scannerwork/report-task.txt
-
 .scannerwork/.sonar_lock
+.venv
