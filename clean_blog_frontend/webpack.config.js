@@ -28,8 +28,8 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['es2015']
+                options: {
+                    presets: ['@babel/preset-env']
                 }
             },
             {
@@ -60,7 +60,7 @@ module.exports = {
         }),
         new GuessPlugin({ GA: '103185238' }),
         new OptimizeCSSAssetsPlugin({}),
-        new CleanWebpackPlugin(["static/webpack_bundles"], {root: cleanBlogRoot, verbose: true}),
+        new CleanWebpackPlugin({ verbose: true}),
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
         }),

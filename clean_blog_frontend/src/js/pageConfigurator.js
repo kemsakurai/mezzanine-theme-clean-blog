@@ -17,7 +17,6 @@ function sendMessage2ServiceWorker(message) {
         }
     });
 }
-
 function prefetch(url) {
     let hint = document.createElement('link');
     hint.rel = 'prefetch';
@@ -26,7 +25,6 @@ function prefetch(url) {
     hint.crossorigin = 'use-credentials';
     document.head.appendChild(hint);
 }
-
 function dispatchEvent(name) {
     let event;
     try {
@@ -71,7 +69,7 @@ export default function configure() {
             });
           });
         });
-         window.addEventListener('_isRepeater', () => {
+        window.addEventListener('_isRepeater', () => {
               console.log('_isRepeater fired..');
               // dataLayer変数が設定されていない場合、処理を中断する
               if ( typeof window.blogPostInfo === 'undefined') {
