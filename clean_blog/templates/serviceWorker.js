@@ -1,50 +1,47 @@
-importScripts("precache-manifest.293c0566777db17ad081086e7104766e.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("precache-manifest.610ca03541e2f008cacd3f1b49171d39.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
 
-importScripts('static/js/workbox-sw.prod.v2.1.3.js');
 importScripts('static/js/localforage.min.js');
-/* eslint-disable no-undef */
-const workboxSW = new WorkboxSW();
-workboxSW.precache([]);
-/* eslint-enable no-undef */
+workbox.precaching.precacheAndRoute([]);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workboxSW.router.registerRoute(/^\/$|^\/\?utm_source.+$/, workboxSW.strategies.networkFirst({
+workbox.router.registerRoute(/^\/$|^\/\?utm_source.+$/, workbox.strategies.networkFirst({
     'cacheName': 'root',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workboxSW.router.registerRoute(/^\/\?page=.+$/, workboxSW.strategies.networkFirst({
+workbox.router.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
     'cacheName': 'pages',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workboxSW.router.registerRoute(/^\/search\/\?q=.*$/, workboxSW.strategies.networkFirst({
+workbox.router.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFirst({
     'cacheName': 'search',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workboxSW.router.registerRoute(/^\/blog\/category\/.+$/, workboxSW.strategies.networkFirst({
+workbox.router.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.networkFirst({
     'cacheName': 'category',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workboxSW.router.registerRoute(/^\/blog\/.+$/, workboxSW.strategies.cacheFirst({
+workbox.router.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
     'cacheName': 'entry',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 30,
     },
 }), 'GET');
-workboxSW.router.registerRoute(/^\/about\/$/, workboxSW.strategies.cacheFirst({
+workbox.router.registerRoute(/^\/about\/$/, workbox.strategies.cacheFirst({
     'cacheName': 'about',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 1,
     },
 }), 'GET');
+
 const sendMessageToAllClients = function(msg) {
     clients.matchAll({includeUncontrolled: true, type: 'window'}).then(function(clients) {
         clients.forEach((client) => {
@@ -183,6 +180,7 @@ const storeAccessDate = function() {
         });
     });
 };
+
 // Repeaterユーザーか判定して返す。
 const isRepeater = function() {
   return accessDate.keys().then((keys) => {
