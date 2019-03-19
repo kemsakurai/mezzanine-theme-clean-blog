@@ -15,10 +15,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "pjax-26aeb9bbf287d80c74c1.js"
   },
   {
-    "url": "f4769f9bdb7466be65088239c12046d1.eot"
+    "url": "fa2772327f55d8198301fdb8bcfc8158.woff"
   },
   {
-    "url": "fa2772327f55d8198301fdb8bcfc8158.woff"
+    "url": "f4769f9bdb7466be65088239c12046d1.eot"
   },
   {
     "url": "448c34a56d699c29117adc64c43affeb.woff2"
