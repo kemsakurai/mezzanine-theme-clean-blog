@@ -67,10 +67,7 @@ module.exports = {
         }),
         new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
         new InjectManifest({
-            modifyURLPrefix: {
-                'webpack_bundles': 'static/webpack_bundles',
-                'js': 'static/js',
-            },
+            importsDirectory: cleanBlogRoot + '/static/webpack_bundles',
             swSrc: __dirname + '/src/js/serviceWorker.js',
             swDest: cleanBlogRoot + "/templates/serviceWorker.js"
         }),
