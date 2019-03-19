@@ -4,37 +4,37 @@ workbox.precaching.precacheAndRoute([]);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.router.registerRoute(/^\/$|^\/\?utm_source.+$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/$|^\/\?utm_source.+$/, workbox.strategies.networkFirst({
     'cacheName': 'root',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workbox.router.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
     'cacheName': 'pages',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workbox.router.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFirst({
     'cacheName': 'search',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workbox.router.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.networkFirst({
     'cacheName': 'category',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 10, 'maxEntries': 10,
     },
 }), 'GET');
-workbox.router.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
     'cacheName': 'entry',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 30,
     },
 }), 'GET');
-workbox.router.registerRoute(/^\/about\/$/, workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(/^\/about\/$/, workbox.strategies.cacheFirst({
     'cacheName': 'about',
     'cacheExpiration': {
         'maxAgeSeconds': 60 * 60 * 24 * 30, 'maxEntries': 1,
