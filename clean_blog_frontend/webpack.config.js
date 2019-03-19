@@ -67,10 +67,7 @@ module.exports = {
         }),
         new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
         new InjectManifest({
-            globDirectory: cleanBlogRoot + "/static",
-            globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2,woff}'],
-            globIgnores: ['**/*.min.{js,css}', "**/workbox*.{js}"],
-            modifyUrlPrefix: {
+            modifyURLPrefix: {
                 'webpack_bundles': 'static/webpack_bundles',
                 'js': 'static/js',
             },

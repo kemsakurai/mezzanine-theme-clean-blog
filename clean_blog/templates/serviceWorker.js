@@ -1,4 +1,4 @@
-importScripts("precache-manifest.2854ed57beb64306fc0666ede2540054.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("precache-manifest.293c0566777db17ad081086e7104766e.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
 
 importScripts('static/js/workbox-sw.prod.v2.1.3.js');
 importScripts('static/js/localforage.min.js');
