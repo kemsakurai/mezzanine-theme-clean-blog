@@ -2,7 +2,8 @@ const Webpack = require("webpack");
 const BundleTracker = require("webpack-bundle-tracker");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const {InjectManifest} = require('workbox-webpack-plugin');
+
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { GuessPlugin } = require('guess-webpack');
@@ -65,7 +66,7 @@ module.exports = {
             filename: '[name]-[hash].css',
         }),
         new BundleTracker({filename: "../clean_blog/static/webpack-stats.json"}),
-        new WorkboxPlugin({
+        new InjectManifest({
             globDirectory: cleanBlogRoot + "/static",
             globPatterns: ['**/*.{js,css,ttf,svg,eot,woff2,woff}'],
             globIgnores: ['**/*.min.{js,css}', "**/workbox*.{js}"],
