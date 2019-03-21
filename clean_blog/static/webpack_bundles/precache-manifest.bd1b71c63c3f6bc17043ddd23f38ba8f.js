@@ -18,7 +18,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static/webpack_bundles/f4769f9bdb7466be65088239c12046d1.eot"
   },
   {
-    "url": "448c34a56d699c29117adc64c43affeb.woff2"
+    "url": "static/webpack_bundles/448c34a56d699c29117adc64c43affeb.woff2"
   },
   {
     "url": "static/webpack_bundles/fa2772327f55d8198301fdb8bcfc8158.woff"
