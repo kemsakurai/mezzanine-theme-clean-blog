@@ -1,37 +1,37 @@
 {
   "icons": [
     {
-      "src": "static/webpack_bundles/icon_512x512.c44f2b4560dd0e13469b434ade87c307.png",
+      "src": "/static/webpack_bundles/icon_512x512.c44f2b4560dd0e13469b434ade87c307.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_384x384.06e5d4c2eea2b11fa044c2d4b38c642e.png",
+      "src": "/static/webpack_bundles/icon_384x384.06e5d4c2eea2b11fa044c2d4b38c642e.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_256x256.cb5edd5bfd66da792d068916237dc3de.png",
+      "src": "/static/webpack_bundles/icon_256x256.cb5edd5bfd66da792d068916237dc3de.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_192x192.cddc09360af8c16f56211fdb650708fc.png",
+      "src": "/static/webpack_bundles/icon_192x192.cddc09360af8c16f56211fdb650708fc.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_144x144.273a362e8cd42a0f070f94cba721fc70.png",
+      "src": "/static/webpack_bundles/icon_144x144.273a362e8cd42a0f070f94cba721fc70.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_128x128.3227749a9eea1fee93f8b240ca0d6e5f.png",
+      "src": "/static/webpack_bundles/icon_128x128.3227749a9eea1fee93f8b240ca0d6e5f.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "static/webpack_bundles/icon_96x96.df43e6ccbeb48ff71dc6bc509b5725ca.png",
+      "src": "/static/webpack_bundles/icon_96x96.df43e6ccbeb48ff71dc6bc509b5725ca.png",
       "sizes": "96x96",
       "type": "image/png"
     }

@@ -1,6 +1,6 @@
-importScripts("static/webpack_bundles/precache-manifest.97ecca366423430fb7af186796ae8517.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.73b7333f910e4d847d2108e83cfd1069.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
 
-importScripts('static/js/localforage.min.js');
+importScripts('/static/js/localforage.min.js');
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義

@@ -22,7 +22,7 @@ module.exports = {
         path: cleanBlogRoot + "/static/webpack_bundles",
         filename: "[name]-[hash].js",
         crossOriginLoading: 'anonymous',
-        publicPath: "static/webpack_bundles/"
+        publicPath: "/static/webpack_bundles/"
     },
     module: {
         rules: [
