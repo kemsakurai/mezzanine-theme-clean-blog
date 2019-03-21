@@ -1,6 +1,7 @@
-importScripts("static/webpack_bundles/precache-manifest.c8fbe3b8d6065422a95f9542633599ab.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("static/webpack_bundles/precache-manifest.c492dbda0cf8ac9a7a9239eb35dc2794.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+
 importScripts('static/js/localforage.min.js');
-workbox.precaching.precacheAndRoute([]);
+workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
@@ -179,7 +180,6 @@ const storeAccessDate = function() {
         });
     });
 };
-
 // Repeaterユーザーか判定して返す。
 const isRepeater = function() {
   return accessDate.keys().then((keys) => {

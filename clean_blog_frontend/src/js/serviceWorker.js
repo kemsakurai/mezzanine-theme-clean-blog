@@ -1,5 +1,5 @@
 importScripts('static/js/localforage.min.js');
-workbox.precaching.precacheAndRoute([]);
+workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
@@ -178,7 +178,6 @@ const storeAccessDate = function() {
         });
     });
 };
-
 // Repeaterユーザーか判定して返す。
 const isRepeater = function() {
   return accessDate.keys().then((keys) => {
