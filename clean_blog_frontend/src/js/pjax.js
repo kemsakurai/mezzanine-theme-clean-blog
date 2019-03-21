@@ -1,6 +1,5 @@
 // ES6
 import Turbolinks from 'turbolinks';
-
 // Turbolinksで遷移した場合の初期化処理
 document.addEventListener('turbolinks:load', function(event) {
   let url = event.data.url;

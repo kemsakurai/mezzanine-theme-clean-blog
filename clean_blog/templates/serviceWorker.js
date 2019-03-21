@@ -1,4 +1,5 @@
-importScripts("static/webpack_bundles/precache-manifest.cb3d490f69311cd41343c2fe82da33ab.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+importScripts("static/webpack_bundles/precache-manifest.bd1b71c63c3f6bc17043ddd23f38ba8f.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-sw.js");
+
 importScripts('static/js/localforage.min.js');
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
