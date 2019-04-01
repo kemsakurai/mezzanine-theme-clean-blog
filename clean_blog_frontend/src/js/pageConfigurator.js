@@ -72,24 +72,7 @@ export default function configure() {
             });
           });
         });
-        window.addEventListener('_isRepeater', () => {
-              console.log('_isRepeater fired..');
-              // dataLayer変数が設定されていない場合、処理を中断する
-              if ( typeof window.blogPostInfo === 'undefined') {
-                   return;
-              }
-              if ('Notification' in window) {
-                  sendMessage2ServiceWorker({'command': 'isRepeater', 'args': null}).then((data) => {
-                       if (data.result) {
-                          dispatchEvent('_sendRequestNotification');
-                       } else {
-                          console.log(' _sendRequestNotification event not fired..');
-                       }
-                  });
-              }
-         });
-
-          // 登録時は、activateしないため、controller は nullになる
+        // 登録時は、activateしないため、controller は nullになる
         if (navigator.serviceWorker.controller) {
                window.addEventListener('load', () => {
                       // アクセス時刻を記録
