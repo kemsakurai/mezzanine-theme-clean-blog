@@ -3,16 +3,11 @@ const BundleTracker = require("webpack-bundle-tracker");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const {InjectManifest} = require('workbox-webpack-plugin');
-const glob = require('glob')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { GuessPlugin } = require('guess-webpack');
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const PATHS = {
-    src: path.join(__dirname, 'src')
-  }
 module.exports = {
     mode : "development",
     context: __dirname + '/src',
@@ -109,9 +104,6 @@ module.exports = {
             gcm_sender_id_comment: "Do not change the GCM Sender ID",
             related_applications: [],
             prefer_related_applications: false
-        }),
-        new PurgecssPlugin({
-            paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
         })
     ]
 }
