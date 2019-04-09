@@ -30,10 +30,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/webpack_bundles/89889688147bd7575d6327160d64e760.svg"
   },
   {
-    "url": "/static/webpack_bundles/d95d6f5d5ab7cfefd09651800b69bd54.woff"
+    "url": "/static/webpack_bundles/7149833697a959306ec3012a8588dcfa.eot"
   },
   {
-    "url": "/static/webpack_bundles/7149833697a959306ec3012a8588dcfa.eot"
+    "url": "/static/webpack_bundles/d95d6f5d5ab7cfefd09651800b69bd54.woff"
   },
   {
     "url": "/static/webpack_bundles/c4668ed2440df82d3fd2f8be9d31d07d.ttf"
