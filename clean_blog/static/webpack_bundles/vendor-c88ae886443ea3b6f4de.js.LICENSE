@@ -1,0 +1,2751 @@
+/***/
+
+/*!
+ * jQuery JavaScript Library v2.2.4
+ * http://jquery.com/
+ *
+ * Includes Sizzle.js
+ * http://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2016-05-20T17:23Z
+ */
+
+// Support: Firefox 18+
+
+// Can't be in strict mode, several libs including ASP.NET trace
+
+// the stack via arguments.caller.callee and Firefox dies if
+
+// you try to trace through "use strict" call chains. (#13335)
+
+//"use strict";
+
+// Define a local copy of jQuery
+
+// The jQuery object is actually just the init constructor 'enhanced'
+
+// Need init if jQuery is called (just allow error to be thrown if not included)
+
+// Support: Android<4.1
+
+// Make sure we trim BOM and NBSP
+
+// Matches dashed string for camelizing
+
+// Used by jQuery.camelCase as callback to replace()
+
+// Support: iOS 8.2 (not reproducible in simulator)
+
+// `in` check used to prevent JIT error (gh-2145)
+
+// hasOwn isn't used here due to false negatives
+
+// regarding Nodelist length in IE
+
+// The current version of jQuery being used
+
+// Start with an empty selector
+
+// The default length of a jQuery object is 0
+
+// Get the Nth element in the matched element set OR
+
+// Get the whole matched element set as a clean array
+
+// Return just the one element from the set
+
+// Return all the elements in a clean array
+
+// Take an array of elements and push it onto the stack
+
+// (returning the new matched element set)
+
+// Build a new jQuery matched element set
+
+// Add the old object onto the stack (as a reference)
+
+// Return the newly-formed element set
+
+// Execute a callback for every element in the matched set.
+
+// For internal use only.
+
+// Behaves like an Array's method, not like a jQuery method.
+
+// Handle a deep copy situation
+
+// Skip the boolean and the target
+
+// Handle case when target is a string or something (possible in deep copy)
+
+// Extend jQuery itself if only one argument is passed
+
+// Only deal with non-null/undefined values
+
+// Extend the base object
+
+// Prevent never-ending loop
+
+// Recurse if we're merging plain objects or arrays
+
+// Never move original objects, clone them
+
+// Return the modified object
+
+// Unique for each copy of jQuery on the page
+
+// Assume jQuery is ready without the ready module
+
+// parseFloat NaNs numeric-cast false positives (null|true|false|"")
+
+// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+
+// subtraction forces infinities to NaN
+
+// adding 1 corrects loss of precision from parseFloat (#15100)
+
+// Not plain objects:
+
+// - Any object or value whose internal [[Class]] property is not "[object Object]"
+
+// - DOM nodes
+
+// - window
+
+// Not own constructor property must be Object
+
+// Own properties are enumerated firstly, so to speed up,
+
+// if last one is own, then all properties are own
+
+// Support: Android<4.0, iOS<6 (functionish RegExp)
+
+// Evaluates a script in a global context
+
+// If the code includes a valid, prologue position
+
+// strict mode pragma, execute code by injecting a
+
+// script tag into the document.
+
+// Otherwise, avoid the DOM node creation, insertion
+
+// and removal by using an indirect global eval
+
+// Convert dashed to camelCase; used by the css and data modules
+
+// Support: IE9-11+
+
+// Microsoft forgot to hump their vendor prefix (#9572)
+
+// results is for internal usage only
+
+// Go through the array, only saving the items
+
+// that pass the validator function
+
+// arg is for internal usage only
+
+// Go through the array, translating each of the items to their new values
+
+// Go through every key on the object,
+
+// Flatten any nested arrays
+
+// A global GUID counter for objects
+
+// Bind a function to a context, optionally partially applying any
+
+// arguments.
+
+// Quick check to determine if target is callable, in the spec
+
+// this throws a TypeError, but we will just return undefined.
+
+// Simulated bind
+
+// Set the guid of unique handler to the same of original handler, so it can be removed
+
+// jQuery.support is not used in Core but other projects attach their
+
+// properties to it so it needs to exist.
+
+// JSHint would error on this code due to the Symbol not being defined in ES5.
+
+// Defining this global in .jshintrc would create a danger of using the global
+
+// unguarded in another place, it seems safer to just disable JSHint for these
+
+// three lines.
+
+/* jshint ignore: start */
+
+/* jshint ignore: end */
+
+// Populate the class2type map
+
+/*!
+ * Sizzle CSS Selector Engine v2.2.1
+ * http://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2015-10-17
+ */
+
+// Local document vars
+
+// Instance-specific data
+
+// General-purpose constants
+
+// Instance methods
+
+// Use a stripped-down indexOf as it's faster than native
+
+// http://jsperf.com/thor-indexof-vs-for/5
+
+// Regular expressions
+
+// http://www.w3.org/TR/css3-selectors/#whitespace
+
+// http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+
+// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
+
+// Operator (capture 2)
+
+// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+
+// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
+
+// For use in libraries implementing .is()
+
+// We use this for POS matching in `select`
+
+// Easily-parseable/retrievable ID or TAG or CLASS selectors
+
+// CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+
+// NaN means non-codepoint
+
+// Support: Firefox<24
+
+// Workaround erroneous numeric interpretation of +"0x"
+
+// BMP codepoint
+
+// Supplemental Plane codepoint (surrogate pair)
+
+// Used for iframes
+
+// See setDocument()
+
+// Removing the function wrapper causes a "Permission Denied"
+
+// error in IE
+
+// Optimize for push.apply( _, NodeList )
+
+// Support: Android<4.0
+
+// Detect silently failing push.apply
+
+// Leverage slice if possible
+
+// Support: IE<9
+
+// Otherwise append directly
+
+// Can't trust NodeList.length
+
+// nodeType defaults to 9, since context defaults to document
+
+// Return early from calls with invalid selector or context
+
+// Try to shortcut find operations (as opposed to filters) in HTML documents
+
+// If the selector is sufficiently simple, try using a "get*By*" DOM method
+
+// (excepting DocumentFragment context, where the methods don't exist)
+
+// ID selector
+
+// Document context
+
+// Element context
+
+// Support: IE, Opera, Webkit
+
+// TODO: identify versions
+
+// getElementById can match elements by name instead of ID
+
+// Type selector
+
+// Class selector
+
+// Take advantage of querySelectorAll
+
+// Capture the context ID, setting it first if necessary
+
+// Prefix every selector in the list
+
+// Expand context for sibling selectors
+
+// All others
+
+/**
+ * Create key-value caches of limited size
+ * @returns {function(string, object)} Returns the Object data after storing it on itself with
+ *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	deleting the oldest entry
+ */
+
+// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+
+// Only keep the most recent entries
+
+/**
+ * Mark a function for special use by Sizzle
+ * @param {Function} fn The function to mark
+ */
+
+/**
+ * Support testing using an element
+ * @param {Function} fn Passed the created div and expects a boolean result
+ */
+
+// Remove from its parent by default
+
+// release memory in IE
+
+/**
+ * Adds the same handler for all of the specified attrs
+ * @param {String} attrs Pipe-separated list of attributes
+ * @param {Function} handler The method that will be applied
+ */
+
+/**
+ * Checks document order of two siblings
+ * @param {Element} a
+ * @param {Element} b
+ * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ */
+
+// Use IE sourceIndex if available on both nodes
+
+// Check if b follows a
+
+/**
+ * Returns a function to use in pseudos for input types
+ * @param {String} type
+ */
+
+/**
+ * Returns a function to use in pseudos for buttons
+ * @param {String} type
+ */
+
+/**
+ * Returns a function to use in pseudos for positionals
+ * @param {Function} fn
+ */
+
+// Match elements found at the specified indexes
+
+/**
+ * Checks a node for validity as a Sizzle context
+ * @param {Element|Object=} context
+ * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+ */
+
+// Expose support vars for convenience
+
+// Add button/input type pseudos
+
+/**
+ * Detects XML nodes
+ * @param {Element|Object} elem An element or a document
+ * @returns {Boolean} True iff elem is a non-HTML XML node
+ */
+
+// documentElement is verified for cases where it doesn't yet exist
+
+// (such as loading iframes in IE - #4833)
+
+/**
+ * Sets document-related variables once based on the current document
+ * @param {Element|Object} [doc] An element or document object to use to set the document
+ * @returns {Object} Returns the current document
+ */
+
+// Return early if doc is invalid or already selected
+
+// Update global variables
+
+// Support: IE 9-11, Edge
+
+// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
+
+// Support: IE 11
+
+/* Attributes
+	---------------------------------------------------------------------- */
+
+// Support: IE<8
+
+// Verify that getAttribute really returns attributes and not properties
+
+// (excepting IE8 booleans)
+
+/* getElement(s)By*
+	---------------------------------------------------------------------- */
+
+// Check if getElementsByTagName("*") returns only elements
+
+// Support: IE<10
+
+// Check if getElementById returns elements by name
+
+// The broken getElementById methods don't pick up programatically-set names,
+
+// so use a roundabout getElementsByName test
+
+// ID find and filter
+
+// Support: IE6/7
+
+// getElementById is not reliable as a find shortcut
+
+// Tag
+
+// By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
+
+// Filter out possible comments
+
+// Class
+
+/* QSA/matchesSelector
+	---------------------------------------------------------------------- */
+
+// QSA and matchesSelector support
+
+// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+
+// qSa(:focus) reports false when true (Chrome 21)
+
+// We allow this because of a bug in IE8/9 that throws an error
+
+// whenever `document.activeElement` is accessed on an iframe
+
+// So, we allow :focus to pass through QSA all the time to avoid the IE error
+
+// See http://bugs.jquery.com/ticket/13378
+
+// Build QSA regex
+
+// Regex strategy adopted from Diego Perini
+
+// Select is set to empty string on purpose
+
+// This is to test IE's treatment of not explicitly
+
+// setting a boolean content attribute,
+
+// since its presence should be enough
+
+// http://bugs.jquery.com/ticket/12359
+
+// Support: IE8, Opera 11-12.16
+
+// Nothing should be selected when empty strings follow ^= or $= or *=
+
+// The test attribute must be unknown in Opera but "safe" for WinRT
+
+// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
+
+// Support: IE8
+
+// Boolean attributes and "value" are not treated correctly
+
+// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
+
+// Webkit/Opera - :checked should return selected option elements
+
+// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+
+// IE8 throws error here and will not see later tests
+
+// Support: Safari 8+, iOS 8+
+
+// https://bugs.webkit.org/show_bug.cgi?id=136851
+
+// In-page `selector#id sibing-combinator selector` fails
+
+// Support: Windows 8 Native Apps
+
+// The type and name attributes are restricted during .innerHTML assignment
+
+// Enforce case-sensitivity of name attribute
+
+// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+
+// Opera 10-11 does not throw on post-comma invalid pseudos
+
+// Check to see if it's possible to do matchesSelector
+
+// on a disconnected node (IE 9)
+
+// This should fail with an exception
+
+// Gecko does not error, returns false instead
+
+/* Contains
+	---------------------------------------------------------------------- */
+
+// Element contains another
+
+// Purposefully self-exclusive
+
+// As in, an element does not contain itself
+
+/* Sorting
+	---------------------------------------------------------------------- */
+
+// Document order sorting
+
+// Flag for duplicate removal
+
+// Sort on method existence if only one input has compareDocumentPosition
+
+// Disconnected nodes
+
+// Calculate position if both inputs belong to the same document
+
+// Otherwise we know they are disconnected
+
+// Choose the first element that is related to our preferred document
+
+// Exit early if the nodes are identical
+
+// Parentless nodes are either documents or disconnected
+
+// If the nodes are siblings, we can do a quick check
+
+// Otherwise we need full lists of their ancestors for comparison
+
+// Walk down the tree looking for a discrepancy
+
+// Do a sibling check if the nodes have a common ancestor
+
+// Otherwise nodes in our document sort first
+
+// Set document vars if needed
+
+// Make sure that attribute selectors are quoted
+
+// IE 9's matchesSelector returns false on disconnected nodes
+
+// As well, disconnected nodes are said to be in a document
+
+// fragment in IE 9
+
+// Don't get fooled by Object.prototype properties (jQuery #13807)
+
+/**
+ * Document sorting and removing duplicates
+ * @param {ArrayLike} results
+ */
+
+// Unless we *know* we can detect duplicates, assume their presence
+
+// Clear input after sorting to release objects
+
+// See https://github.com/jquery/sizzle/pull/225
+
+/**
+ * Utility function for retrieving the text value of an array of DOM nodes
+ * @param {Array|Element} elem
+ */
+
+// Use textContent for elements
+
+// innerText usage removed for consistency of new lines (jQuery #11153)
+
+// Traverse its children
+
+// Do not include comment or processing instruction nodes
+
+// If no nodeType, this is expected to be an array
+
+// Do not traverse comment nodes
+
+// Can be adjusted by the user
+
+// Move the given value to match[3] whether quoted or unquoted
+
+/* matches from matchExpr["CHILD"]
+				1 type (only|nth|...)
+				2 what (child|of-type)
+				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
+				4 xn-component of xn+y argument ([+-]?\d*n|)
+				5 sign of xn-component
+				6 x of xn-component
+				7 sign of y-component
+				8 y of y-component
+			*/
+
+// nth-* requires argument
+
+// numeric x and y parameters for Expr.filter.CHILD
+
+// remember that false/true cast respectively to 0/1
+
+// Accept quoted arguments as-is
+
+// Get excess from tokenize (recursively)
+
+// advance to the next closing parenthesis
+
+// excess is a negative index
+
+// Shortcut for :nth-*(n)
+
+// :(first|last|only)-(child|of-type)
+
+// Reverse direction for :only-* (if we haven't yet done so)
+
+// non-xml :nth-child(...) stores cache data on `parent`
+
+// Seek `elem` from a previously-cached index
+
+// ...in a gzip-friendly way
+
+// Support: IE <9 only
+
+// Defend against cloned attroperties (jQuery gh-1709)
+
+// Fallback to seeking `elem` from the start
+
+// When found, cache indexes on `parent` and break
+
+// xml :nth-child(...)
+
+// or :nth-last-child(...) or :nth(-last)?-of-type(...)
+
+// Use previously-cached element index if available
+
+// Use the same loop as above to seek `elem` from the start
+
+// Cache the index of each encountered element
+
+// Incorporate the offset, then check against cycle size
+
+// pseudo-class names are case-insensitive
+
+// http://www.w3.org/TR/selectors/#pseudo-classes
+
+// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
+
+// Remember that setFilters inherits from pseudos
+
+// The user may use createPseudo to indicate that
+
+// arguments are needed to create the filter function
+
+// just as Sizzle does
+
+// But maintain support for old signatures
+
+// Potentially complex pseudos
+
+// Trim the selector passed to compile
+
+// to avoid treating leading and trailing
+
+// spaces as combinators
+
+// Match elements unmatched by `matcher`
+
+// Don't keep the element (issue #299)
+
+// "Whether an element is represented by a :lang() selector
+
+// is based solely on the element's language value
+
+// being equal to the identifier C,
+
+// or beginning with the identifier C immediately followed by "-".
+
+// The matching of C against the element's language value is performed case-insensitively.
+
+// The identifier C does not have to be a valid language name."
+
+// http://www.w3.org/TR/selectors/#lang-pseudo
+
+// lang value must be a valid identifier
+
+// Miscellaneous
+
+// Boolean properties
+
+// In CSS3, :checked should return both checked and selected elements
+
+// Accessing this property makes selected-by-default
+
+// options in Safari work properly
+
+// Contents
+
+// http://www.w3.org/TR/selectors/#empty-pseudo
+
+// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
+
+//   but not by others (comment: 8; processing instruction: 7; etc.)
+
+// nodeType < 6 works because attributes (2) do not appear as children
+
+// Element/input types
+
+// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
+
+// Position-in-collection
+
+// Easy API for creating new setFilters
+
+// Check against closest ancestor/preceding element
+
+// Check against all ancestor/preceding elements
+
+// We can't set arbitrary data on XML nodes, so they don't benefit from combinator caching
+
+// Assign to newCache so results back-propagate to previous elements
+
+// A match means we're done; a fail means we have to keep checking
+
+// Reuse newcache so results back-propagate to previous elements
+
+// Get initial elements from seed or context
+
+// Prefilter to get matcher input, preserving a map for seed-results synchronization
+
+// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
+
+// ...intermediate processing is necessary
+
+// ...otherwise use results directly
+
+// Find primary matches
+
+// Apply postFilter
+
+// Un-match failing elements by moving them back to matcherIn
+
+// Get the final matcherOut by condensing this intermediate into postFinder contexts
+
+// Restore matcherIn since elem is not yet a final match
+
+// Move matched elements from seed to results to keep them synchronized
+
+// Add elements to results, through postFinder if defined
+
+// The foundational matcher ensures that elements are reachable from top-level context(s)
+
+// Avoid hanging onto element (issue #299)
+
+// Return special upon seeing a positional matcher
+
+// Find the next relative operator (if any) for proper handling
+
+// If the preceding token was a descendant combinator, insert an implicit any-element `*`
+
+// Filters
+
+// Comma and first run
+
+// Don't consume trailing commas as valid
+
+// Combinators
+
+// Cast descendant combinators to space
+
+// Return the length of the invalid excess
+
+// if we're just parsing
+
+// Otherwise, throw an error or return tokens
+
+// Cache the tokens
+
+/* Internal Use Only */
+
+// Generate a function of recursive functions that can be used to check each element
+
+// Cache the compiled function
+
+// Save selector and tokenization
+
+// We must always have either seed elements or outermost context
+
+// Use integer dirruns iff this is the outermost matcher
+
+// Add elements passing elementMatchers directly to results
+
+// Support: IE<9, Safari
+
+// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+
+// Track unmatched elements for set filters
+
+// They will have gone through all possible matchers
+
+// Lengthen the array for every element, matched or not
+
+// `i` is now the count of elements visited above, and adding it to `matchedCount`
+
+// makes the latter nonnegative.
+
+// Apply set filters to unmatched elements
+
+// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+
+// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+
+// no element matchers and no seed.
+
+// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+
+// case, which will result in a "00" `matchedCount` that differs from `i` but is also
+
+// numerically zero.
+
+// Reintegrate element matches to eliminate the need for sorting
+
+// Discard index placeholder values to get only actual matches
+
+// Add matches to results
+
+// Seedless set matches succeeding multiple successful matchers stipulate sorting
+
+// Override manipulation of globals by nested matchers
+
+/**
+ * A low-level selection function that works with Sizzle's compiled
+ *  selector functions
+ * @param {String|Function} selector A selector or a pre-compiled
+ *  selector function built with Sizzle.compile
+ * @param {Element} context
+ * @param {Array} [results]
+ * @param {Array} [seed] A set of elements to match against
+ */
+
+// Try to minimize operations if there is only one selector in the list and no seed
+
+// (the latter of which guarantees us context)
+
+// Reduce context if the leading compound selector is an ID
+
+// Precompiled matchers will still verify ancestry, so step up a level
+
+// Fetch a seed set for right-to-left matching
+
+// If seed is empty or no tokens remain, we can return early
+
+// Compile and execute a filtering function if one is not provided
+
+// Provide `match` to avoid retokenization if we modified the selector above
+
+// One-time assignments
+
+// Sort stability
+
+// Support: Chrome 14-35+
+
+// Always assume duplicates if they aren't passed to the comparison function
+
+// Initialize against the default document
+
+// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
+
+// Detached nodes confoundingly follow *each other*
+
+// Should return 1, but returns 4 (following)
+
+// Prevent attribute/property "interpolation"
+
+// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+
+// Use defaultValue in place of getAttribute("value")
+
+// Use getAttributeNode to fetch booleans when getAttribute lies
+
+// Implement the identical functionality for filter and not
+
+/* jshint -W018 */
+
+// Needed because $( selector, context ) becomes $( context ).find( selector )
+
+// If this is a positional/relative selector, check membership in the returned set
+
+// so $("p:first").is("p:last") won't return true for a doc with two "p".
+
+// Initialize a jQuery object
+
+// A central reference to the root jQuery(document)
+
+// A simple way to check for HTML strings
+
+// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+
+// Strict HTML recognition (#11290: must start with <)
+
+// Give the init function the jQuery prototype for later instantiation
+
+// HANDLE: $(""), $(null), $(undefined), $(false)
+
+// Method init() accepts an alternate rootjQuery
+
+// so migrate can support jQuery.sub (gh-2101)
+
+// Handle HTML strings
+
+// Match html or make sure no context is specified for #id
+
+// Assume that strings that start and end with <> are HTML and skip the regex check
+
+// HANDLE: $(DOMElement)
+
+// HANDLE: $(html) -> $(array)
+
+// HANDLE: $(html, props)
+
+// Option to run scripts is true for back-compat
+
+// Intentionally let the error be thrown if parseHTML is not present
+
+// Properties of context are called as methods if possible
+
+// HANDLE: $(#id)
+
+// HANDLE: $(expr, $(...))
+
+// Support: Blackberry 4.6
+
+// gEBID returns nodes no longer in the document (#6963)
+
+// Inject the element directly into the jQuery object
+
+// Execute immediately if ready is not present
+
+// Initialize central reference
+
+// Methods guaranteed to produce a unique set when starting from a unique set
+
+// Always skip document fragments
+
+// Don't pass non-elements to Sizzle
+
+// Determine the position of an element within the set
+
+// No argument, return index in parent
+
+// Index in selector
+
+// If it receives a jQuery object, the first element is used
+
+// Remove duplicates
+
+// Reverse order for parents* and prev-derivatives
+
+// Convert String-formatted options into Object-formatted ones
+
+/**
+ * The ready event handler and self cleanup method
+ */
+
+/*
+ * Create a callback list using the following parameters:
+ *
+ *	options: an optional list of space-separated options that will change how
+ *			the callback list behaves or a more traditional option object
+ *
+ * By default a callback list will act like an event callback list and can be
+ * "fired" multiple times.
+ *
+ * Possible options:
+ *
+ *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *
+ *	memory:			will keep track of previous values and will call any callback added
+ *					after the list has been fired right away with the latest "memorized"
+ *					values (like a Deferred)
+ *
+ *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *
+ *	stopOnFalse:	interrupt callings when a callback returns false
+ *
+ */
+
+// Convert options from String-formatted to Object-formatted if needed
+
+// (we check in cache first)
+
+// Flag to know if list is currently firing
+
+// Last fire value for non-forgettable lists
+
+// Flag to know if list was already fired
+
+// Flag to prevent firing
+
+// Actual callback list
+
+// Queue of execution data for repeatable lists
+
+// Index of currently firing callback (modified by add/remove as needed)
+
+// Fire callbacks
+
+// Enforce single-firing
+
+// Execute callbacks for all pending executions,
+
+// respecting firingIndex overrides and runtime changes
+
+// Run callback and check for early termination
+
+// Jump to end and forget the data so .add doesn't re-fire
+
+// Forget the data if we're done with it
+
+// Clean up if we're done firing for good
+
+// Keep an empty list if we have data for future add calls
+
+// Actual Callbacks object
+
+// Add a callback or a collection of callbacks to the list
+
+// If we have memory from a past run, we should fire after adding
+
+// Inspect recursively
+
+// Remove a callback from the list
+
+// Handle firing indexes
+
+// Check if a given callback is in the list.
+
+// If no argument is given, return whether or not list has callbacks attached.
+
+// Remove all callbacks from the list
+
+// Disable .fire and .add
+
+// Abort any current/pending executions
+
+// Clear all callbacks and values
+
+// Disable .fire
+
+// Also disable .add unless we have memory (since it would have no effect)
+
+// Abort any pending executions
+
+// Call all callbacks with the given context and arguments
+
+// Call all the callbacks with the given arguments
+
+// To know if the callbacks have already been called at least once
+
+// action, add listener, listener list, final state
+
+// deferred[ done | fail | progress ] for forwarding actions to newDefer
+
+// Get a promise for this deferred
+
+// If obj is provided, the promise aspect is added to the object
+
+// Keep pipe for back-compat
+
+// All done!
+
+// Add list-specific methods
+
+// promise[ done | fail | progress ] = list.add
+
+// Handle state
+
+// state = [ resolved | rejected ]
+
+// [ reject_list | resolve_list ].disable; progress_list.lock
+
+// deferred[ resolve | reject | notify ]
+
+// Make the deferred a promise
+
+// Call given func if any
+
+// Deferred helper
+
+/* , ..., subordinateN */
+
+// the count of uncompleted subordinates
+
+// the master Deferred.
+
+// If resolveValues consist of only a single Deferred, just use that.
+
+// Update function for both resolve and progress values
+
+// Add listeners to Deferred subordinates; treat others as resolved
+
+// If we're not waiting on anything, resolve the master
+
+// Add the callback
+
+// Is the DOM ready to be used? Set to true once it occurs.
+
+// A counter to track how many items to wait for before
+
+// the ready event fires. See #6781
+
+// Hold (or release) the ready event
+
+// Handle when the DOM is ready
+
+// Abort if there are pending holds or we're already ready
+
+// Remember that the DOM is ready
+
+// If a normal DOM Ready event fired, decrement, and wait if need be
+
+// If there are functions bound, to execute
+
+// Trigger any bound ready events
+
+// Catch cases where $(document).ready() is called
+
+// after the browser event has already occurred.
+
+// Support: IE9-10 only
+
+// Older IE sometimes signals "interactive" too soon
+
+// Handle it asynchronously to allow scripts the opportunity to delay ready
+
+// Use the handy event callback
+
+// A fallback to window.onload, that will always work
+
+// Kick off the DOM ready check even if the user does not
+
+// Multifunctional method to get and set values of a collection
+
+// The value/s can optionally be executed if it's a function
+
+// Sets many values
+
+// Sets one value
+
+// Bulk operations run against the entire set
+
+// Gets
+
+// Accepts only:
+
+//  - Node
+
+//    - Node.ELEMENT_NODE
+
+//    - Node.DOCUMENT_NODE
+
+//  - Object
+
+//    - Any
+
+// If it is a node unlikely to be stringify-ed or looped over
+
+// use plain assignment
+
+// We can accept data for non-element nodes in modern browsers,
+
+// but we should not, see #8335.
+
+// Always return an empty object.
+
+// Check if the owner object already has a cache
+
+// If not, create one
+
+// Handle: [ owner, key, value ] args
+
+// Handle: [ owner, { properties } ] args
+
+// Copy the properties one-by-one to the cache object
+
+// In cases where either:
+
+//
+
+//   1. No key was specified
+
+//   2. A string key was specified, but no value provided
+
+// Take the "read" path and allow the get method to determine
+
+// which value to return, respectively either:
+
+//   1. The entire cache object
+
+//   2. The data stored at the key
+
+// When the key is not a string, or both a key and value
+
+// are specified, set or extend (existing objects) with either:
+
+//   1. An object of properties
+
+//   2. A key and value
+
+// Support array or space separated string of keys
+
+// If "name" is an array of keys...
+
+// When data is initially created, via ("key", "val") signature,
+
+// keys will be converted to camelCase.
+
+// Since there is no way to tell _how_ a key was added, remove
+
+// both plain key and camelCase key. #12786
+
+// This will only penalize the array argument path.
+
+// Try the string as a key before any manipulation
+
+// If a key with the spaces exists, use it.
+
+// Otherwise, create an array by matching non-whitespace
+
+// Remove the expando if there's no more data
+
+// Support: Chrome <= 35-45+
+
+// Webkit & Blink performance suffers when deleting properties
+
+// from DOM nodes, so set to undefined instead
+
+// https://code.google.com/p/chromium/issues/detail?id=378607
+
+// If nothing was found internally, try to fetch any
+
+// data from the HTML5 data-* attribute
+
+// Only convert to a number if it doesn't change the string
+
+// Make sure we set the data so it isn't changed later
+
+// TODO: Now that all calls to _data and _removeData have been replaced
+
+// with direct calls to dataPriv methods, these can be deprecated.
+
+// Gets all values
+
+// Support: IE11+
+
+// The attrs elements can be null (#14894)
+
+// Sets multiple values
+
+// The calling jQuery object (element matches) is not empty
+
+// (and therefore has an element appears at this[ 0 ]) and the
+
+// `value` parameter was not undefined. An empty jQuery object
+
+// will result in `undefined` for elem = this[ 0 ] which will
+
+// throw an exception if an attempt to read a data cache is made.
+
+// Attempt to get data from the cache
+
+// with the key as-is
+
+// Try to find dashed key if it exists (gh-2779)
+
+// This is for 2.2.x only
+
+// with the key camelized
+
+// Attempt to "discover" the data in
+
+// HTML5 custom data-* attrs
+
+// We tried really hard, but the data doesn't exist.
+
+// Set the data...
+
+// First, attempt to store a copy or reference of any
+
+// data that might've been store with a camelCased key.
+
+// For HTML5 data-* attribute interop, we have to
+
+// store property names with dashes in a camelCase form.
+
+// This might not apply to all properties...*
+
+// *... In the case of properties that might _actually_
+
+// have dashes, we need to also store a copy of that
+
+// unchanged property.
+
+// Speed up dequeue by getting out quickly if this is just a lookup
+
+// If the fx queue is dequeued, always remove the progress sentinel
+
+// Add a progress sentinel to prevent the fx queue from being
+
+// automatically dequeued
+
+// Clear up the last queue stop function
+
+// Not public - generate a queueHooks object, or return the current one
+
+// Ensure a hooks for this queue
+
+// Get a promise resolved when queues of a certain type
+
+// are emptied (fx is the type by default)
+
+// isHidden might be called from jQuery#filter function;
+
+// in that case, element will be second argument
+
+// Starting value computation is required for potential unit mismatches
+
+// Trust units reported by jQuery.css
+
+// Make sure we update the tween properties later on
+
+// Iteratively approximate from a nonzero starting point
+
+// If previous iteration zeroed out, double until we get *something*.
+
+// Use string for doubling so we don't accidentally see scale as unchanged below
+
+// Adjust and apply
+
+// Apply relative offset (+=/-=) if specified
+
+// Support: IE9
+
+// XHTML parsers do not magically insert elements in the
+
+// same way that tag soup parsers do. So we cannot shorten
+
+// this by omitting <tbody> or other required elements.
+
+// Use typeof to avoid zero-argument method invocation on host objects (#15151)
+
+// Mark scripts as having already been evaluated
+
+// Add nodes directly
+
+// Support: Android<4.1, PhantomJS<2
+
+// push.apply(_, arraylike) throws on ancient WebKit
+
+// Convert non-html into a text node
+
+// Deserialize a standard representation
+
+// Descend through wrappers to the right content
+
+// Ensure the created nodes are orphaned (#12392)
+
+// Remember the top-level container
+
+// Convert html into DOM nodes
+
+// Remove wrapper from fragment
+
+// Skip elements already in the context collection (trac-4087)
+
+// Capture executables
+
+// Append to fragment
+
+// Preserve script evaluation history
+
+// Support: Android 4.0-4.3, Safari<=5.1
+
+// Check state lost if the name is set (#11217)
+
+// Support: Windows Web Apps (WWA)
+
+// `name` and `type` must use .setAttribute for WWA (#14901)
+
+// Support: Safari<=5.1, Android<4.2
+
+// Older WebKit doesn't clone checked state correctly in fragments
+
+// Support: IE<=11+
+
+// Make sure textarea (and checkbox) defaultValue is properly cloned
+
+// See #13393 for more info
+
+// Types can be a map of types/handlers
+
+// ( types-Object, selector, data )
+
+// ( types-Object, data )
+
+// ( types, fn )
+
+// ( types, selector, fn )
+
+// ( types, data, fn )
+
+// Use same guid so caller can remove using origFn
+
+// Can use an empty set, since event contains the info
+
+/*
+ * Helper functions for managing events -- not part of the public interface.
+ * Props to Dean Edwards' addEvent library for many of the ideas.
+ */
+
+// Don't attach events to noData or text/comment nodes (but allow plain objects)
+
+// Caller can pass in an object of custom data in lieu of the handler
+
+// Make sure that the handler has a unique ID, used to find/remove it later
+
+// Init the element's event structure and main handler, if this is the first
+
+// Discard the second event of a jQuery.event.trigger() and
+
+// when an event is called after a page has unloaded
+
+// Handle multiple events separated by a space
+
+// There *must* be a type, no attaching namespace-only handlers
+
+// If event changes its type, use the special event handlers for the changed type
+
+// If selector defined, determine special event api type, otherwise given type
+
+// Update special based on newly reset type
+
+// handleObj is passed to all event handlers
+
+// Init the event handler queue if we're the first
+
+// Only use addEventListener if the special events handler returns false
+
+// Add to the element's handler list, delegates in front
+
+// Keep track of which events have ever been used, for event optimization
+
+// Detach an event or set of events from an element
+
+// Once for each type.namespace in types; type may be omitted
+
+// Unbind all events (on this namespace, if provided) for the element
+
+// Remove matching events
+
+// Remove generic event handler if we removed something and no more handlers exist
+
+// (avoids potential for endless recursion during removal of special event handlers)
+
+// Remove data and the expando if it's no longer used
+
+// Make a writable jQuery.Event from the native event object
+
+// Use the fix-ed jQuery.Event rather than the (read-only) native event
+
+// Call the preDispatch hook for the mapped type, and let it bail if desired
+
+// Determine handlers
+
+// Run delegates first; they may want to stop propagation beneath us
+
+// Triggered event must either 1) have no namespace, or 2) have namespace(s)
+
+// a subset or equal to those in the bound event (both can have no namespace).
+
+// Call the postDispatch hook for the mapped type
+
+// Support (at least): Chrome, IE9
+
+// Find delegate handlers
+
+// Black-hole SVG <use> instance trees (#13180)
+
+// Support: Firefox<=42+
+
+// Avoid non-left-click in FF but don't block IE radio events (#3861, gh-2343)
+
+// Don't check non-elements (#13208)
+
+// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+
+// Don't conflict with Object.prototype properties (#13203)
+
+// Add the remaining (directly-bound) handlers
+
+// Includes some event props shared by KeyEvent and MouseEvent
+
+// Add which for key events
+
+// Calculate pageX/Y if missing and clientX/Y available
+
+// Add which for click: 1 === left; 2 === middle; 3 === right
+
+// Note: button is not normalized, so don't use it
+
+// Create a writable copy of the event object and normalize some properties
+
+// Support: Cordova 2.5 (WebKit) (#13255)
+
+// All events should have a target; Cordova deviceready doesn't
+
+// Support: Safari 6.0+, Chrome<28
+
+// Target should not be a text node (#504, #13143)
+
+// Prevent triggered image.load events from bubbling to window.load
+
+// Fire native event if possible so blur/focus sequence is correct
+
+// For checkbox, fire native event so checked state will be right
+
+// For cross-browser consistency, don't fire native .click() on links
+
+// Support: Firefox 20+
+
+// Firefox doesn't alert if the returnValue field is not set.
+
+// This "if" is needed for plain objects
+
+// Allow instantiation without the 'new' keyword
+
+// Event object
+
+// Events bubbling up the document may have been marked as prevented
+
+// by a handler lower down the tree; reflect the correct value.
+
+// Put explicitly provided properties onto the event object
+
+// Create a timestamp if incoming event doesn't have one
+
+// Mark it as fixed
+
+// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+
+// http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+
+// Create mouseenter/leave events using mouseover/out and event-time checks
+
+// so that event delegation works in jQuery.
+
+// Do the same for pointerenter/pointerleave and pointerover/pointerout
+
+// Support: Safari 7 only
+
+// Safari sends mouseenter too often; see:
+
+// https://code.google.com/p/chromium/issues/detail?id=470258
+
+// for the description of the bug (it existed in older Chrome versions as well).
+
+// For mouseenter/leave call the handler if related is outside the target.
+
+// NB: No relatedTarget if the mouse left/entered the browser window
+
+// ( event )  dispatched jQuery.Event
+
+// ( types-object [, selector] )
+
+// ( types [, fn] )
+
+// Support: IE 10-11, Edge 10240+
+
+// In IE/Edge using regex groups here causes severe slowdowns.
+
+// See https://connect.microsoft.com/IE/feedback/details/1736512/
+
+// checked="checked" or checked
+
+// Manipulating tables requires a tbody
+
+// Replace/restore the type attribute of script elements for safe DOM manipulation
+
+// 1. Copy private data: events, handlers, etc.
+
+// 2. Copy user data
+
+// Fix IE bugs, see support tests
+
+// We can't cloneNode fragments that contain checked, in WebKit
+
+// Use the original fragment for the last item
+
+// instead of the first because it can end up
+
+// being emptied incorrectly in certain situations (#8070).
+
+// Keep references to cloned scripts for later restoration
+
+// Evaluate executable scripts on first document insertion
+
+// Reenable scripts
+
+// Optional AJAX dependency, but won't run scripts if not present
+
+// Fix IE cloning issues
+
+// We eschew Sizzle here for performance reasons: http://jsperf.com/getall-vs-sizzle/2
+
+// Fails to persist the checked state of a cloned checkbox or radio button.
+
+// Copy the events from the original to the clone
+
+// Return the cloned set
+
+// Assign undefined instead of using delete, see Data#remove
+
+// Keep domManip exposed until 3.0 (gh-2225)
+
+// Prevent memory leaks
+
+// Remove any remaining nodes
+
+// See if we can take a shortcut and just use innerHTML
+
+// Remove element nodes and prevent memory leaks
+
+// Make the changes, replacing each non-ignored context element with the new content
+
+// Force callback invocation
+
+// Support: QtWebKit
+
+// .get() because push.apply(_, arraylike) throws
+
+// Support: Firefox
+
+// We have to pre-define these values for FF (#10227)
+
+/**
+ * Retrieve the actual display of a element
+ * @param {String} name nodeName of the element
+ * @param {Object} doc Document object
+ */
+
+// Called only from within defaultDisplay
+
+// We don't have any data stored on the element,
+
+// so use "detach" method as fast way to get rid of the element
+
+/**
+ * Try to determine the default display value of an element
+ * @param {String} nodeName
+ */
+
+// If the simple way fails, read from inside an iframe
+
+// Use the already-created iframe if possible
+
+// Support: IE
+
+// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
+
+// Store the correct default display
+
+// Support: IE<=11+, Firefox<=30+ (#15098, #14150)
+
+// IE throws on elements created in popups
+
+// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+
+// Remember the old values, and insert the new ones
+
+// Revert the old values
+
+// Support: Opera 12.1x only
+
+// Fall back to style even without computed
+
+// computed is undefined for elems on document fragments
+
+// getPropertyValue is only needed for .css('filter') (#12537)
+
+// Remember the original values
+
+// Put in the new values to get a computed value out
+
+// Revert the changed values
+
+// IE returns zIndex value as an integer.
+
+// Define the hook, we'll check on the first run if it's really needed.
+
+// Hook needed; redefine it so that the support test is not executed again.
+
+// Hook not needed (or it's not possible to use it due
+
+// to missing dependency), remove it.
+
+// Finish early in limited (non-browser) environments
+
+// Executing both pixelPosition & boxSizingReliable tests require only one layout
+
+// so they're executed at the same time to save the second computation.
+
+// Support: Firefox<29, Android 2.3
+
+// Vendor-prefix box-sizing
+
+// Support: Android 4.0 - 4.3 only
+
+// Some styles come back with percentage values, even though they shouldn't
+
+// Style of cloned element affects source element cloned (#8908)
+
+// This test is executed only once but we still do memoizing
+
+// since we can use the boxSizingReliable pre-computing.
+
+// No need to check if the test was already performed, though.
+
+// Support: Android 4.0-4.3
+
+// We're checking for boxSizingReliableVal here instead of pixelMarginRightVal
+
+// since that compresses better and they're computed together anyway.
+
+// Support: IE <=8 only, Android 4.0 - 4.3 only, Firefox <=3 - 37
+
+// Support: Android 2.3
+
+// Check if div with explicit width and no margin-right incorrectly
+
+// gets computed margin-right based on width of container. (#3333)
+
+// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+
+// This support function is only executed once so no memoizing is needed.
+
+// Reset CSS: box-sizing; display; margin; border; padding
+
+// Swappable if display is none or starts with table
+
+// except "table", "table-cell", or "table-caption"
+
+// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+
+// Return a css property mapped to a potentially vendor prefixed property
+
+// Shortcut for names that are not vendor prefixed
+
+// Check for vendor prefixed names
+
+// Any relative (+/-) values have already been
+
+// normalized at this point
+
+// Guard against undefined "subtract", e.g., when used as in cssHooks
+
+// If we already have the right measurement, avoid augmentation
+
+// Otherwise initialize for horizontal or vertical properties
+
+// Both box models exclude margin, so add it if we want it
+
+// border-box includes padding, so remove it if we want content
+
+// At this point, extra isn't border nor margin, so remove border
+
+// At this point, extra isn't content, so add padding
+
+// At this point, extra isn't content nor padding, so add border
+
+// Start with offset property, which is equivalent to the border-box value
+
+// Some non-html elements return undefined for offsetWidth, so check for null/undefined
+
+// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
+
+// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
+
+// Computed unit is not pixels. Stop here and return.
+
+// Fall back to computed then uncomputed css if necessary
+
+// Check for style in case a browser which returns unreliable values
+
+// for getComputedStyle silently falls back to the reliable elem.style
+
+// Normalize "", auto, and prepare for extra
+
+// Use the active box-sizing model to add/subtract irrelevant styles
+
+// Reset the inline display of this element to learn if it is
+
+// being hidden by cascaded rules or not
+
+// Set elements which have been overridden with display: none
+
+// in a stylesheet to whatever the default browser style is
+
+// for such an element
+
+// Set the display of most of the elements in a second loop
+
+// to avoid the constant reflow
+
+// Add in style property hooks for overriding the default
+
+// behavior of getting and setting a style property
+
+// We should always get a number back from opacity
+
+// Don't automatically add "px" to these possibly-unitless properties
+
+// Add in properties whose names you wish to fix before
+
+// setting or getting the value
+
+// Get and set the style property on a DOM Node
+
+// Don't set styles on text and comment nodes
+
+// Make sure that we're working with the right name
+
+// Check if we're setting a value
+
+// Gets hook for the prefixed version, then unprefixed version
+
+// If a hook was provided get the non-computed value from there
+
+// Otherwise just get the value from the style object
+
+// Convert "+=" or "-=" to relative numbers (#7345)
+
+// Fixes bug #9237
+
+// Make sure that null and NaN values aren't set (#7116)
+
+// If a number was passed in, add the unit (except for certain CSS properties)
+
+// background-* props affect original clone's values
+
+// If a hook was provided, use that value, otherwise just set the specified value
+
+// Make numeric if forced or a qualifier was provided and val looks numeric
+
+// If a hook was provided get the computed value from there
+
+// Try prefixed name followed by the unprefixed name
+
+// Otherwise, if a way to get the computed value exists, use that
+
+// Convert "normal" to computed value
+
+// Certain elements can have dimension info if we invisibly show them
+
+// but it must have a current display style that would benefit
+
+// Convert to pixels if value adjustment is needed
+
+// These hooks are used by animate to expand properties
+
+// Assumes a single number if not a string
+
+// Use a property on the element directly when it is not a DOM element,
+
+// or when there is no matching style property that exists.
+
+// Passing an empty string as a 3rd parameter to .css will automatically
+
+// attempt a parseFloat and fallback to a string if the parse fails.
+
+// Simple values such as "10px" are parsed to Float;
+
+// complex values such as "rotate(1rad)" are returned as-is.
+
+// Use step hook for back compat.
+
+// Use cssHook if its there.
+
+// Use .style if available and use plain properties where available.
+
+// Panic based approach to setting things on disconnected nodes
+
+// Back Compat <1.8 extension point
+
+// Animations created synchronously will run synchronously
+
+// Generate parameters to create a standard animation
+
+// If we include width, step value is 1 to do all cssExpand values,
+
+// otherwise step value is 2 to skip over Left and Right
+
+// We're done with this property
+
+// Don't match elem in the :animated selector
+
+// If we are going to the end, we want to run all the tweens
+
+// otherwise we skip this part
+
+// Resolve when we played the last frame; otherwise, reject
+
+// camelCase, specialEasing and expand cssHook pass
+
+// Not quite $.extend, this won't overwrite existing keys.
+
+// Reusing 'index' because we have the correct "name"
+
+// attach callbacks from options
+
+/* jshint validthis: true */
+
+// Handle queue: false promises
+
+// show/hide pass
+
+// Ensure the complete handler is called before this completes
+
+// Height/width overflow pass
+
+// Make sure that nothing sneaks out
+
+// Record all 3 overflow attributes because IE9-10 do not
+
+// change the overflow attribute when overflowX and
+
+// overflowY are set to the same value
+
+// Set display property to inline-block for height/width
+
+// animations on inline elements that are having width/height animated
+
+// If there is dataShow left over from a stopped hide or show
+
+// and we are going to proceed with show, we should pretend to be hidden
+
+// Store state if its toggle - enables .stop().toggle() to "reverse"
+
+// If this is a noop like .hide().hide(), restore an overwritten display value
+
+// Normalize opt.queue - true/undefined/null -> "fx"
+
+// Queueing
+
+// Show any hidden elements after setting opacity to 0
+
+// Operate on a copy of prop so per-property easing won't be lost
+
+// Empty animations, or finishing resolves immediately
+
+// Start the next in the queue if the last step wasn't forced.
+
+// Timers currently will call their complete callbacks, which
+
+// will dequeue but only if they were gotoEnd.
+
+// Enable finishing flag on private data
+
+// Look for any active animations, and finish them
+
+// Empty the queue first
+
+// Look for any animations in the old queue and finish them
+
+// Turn off finishing flag
+
+// Generate shortcuts for custom animations
+
+// Checks the timer has not already been removed
+
+// Default speed
+
+// Based off of the plugin by Clint Helfers, with permission.
+
+// http://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
+
+// Support: iOS<=5.1, Android<=4.2+
+
+// Default value for a checkbox should be "on"
+
+// Must access selectedIndex to make default options select
+
+// Support: Android<=2.3
+
+// Options inside disabled selects are incorrectly marked as disabled
+
+// An input loses its value after becoming a radio
+
+// Don't get/set attributes on text, comment and attribute nodes
+
+// Fallback to prop when attributes are not supported
+
+// All attributes are lowercase
+
+// Grab necessary hook if one is defined
+
+// Boolean attributes get special treatment (#10870)
+
+// Set corresponding property to false
+
+// Hooks for boolean attributes
+
+// Remove boolean attributes when set to false
+
+// Avoid an infinite loop by temporarily removing this function from the getter
+
+// Don't get/set properties on text, comment and attribute nodes
+
+// Fix name and attach hooks
+
+// elem.tabIndex doesn't always return the
+
+// correct value when it hasn't been explicitly set
+
+// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+
+// Use proper attribute retrieval(#12072)
+
+// Support: IE <=11 only
+
+// Accessing the selectedIndex property
+
+// forces the browser to respect setting selected
+
+// on the option
+
+// The getter ensures a default option is selected
+
+// when in an optgroup
+
+// Only assign if different to avoid unneeded rendering.
+
+// This expression is here for better compressibility (see addClass)
+
+// Remove *all* instances
+
+// Toggle individual class names
+
+// Check each className given, space separated list
+
+// Toggle whole class name
+
+// Store className if set
+
+// If the element has a class name or if we're passed `false`,
+
+// then remove the whole classname (if there was one, the above saved it).
+
+// Otherwise bring back whatever was previously saved (if anything),
+
+// falling back to the empty string if nothing was stored.
+
+// Treat null/undefined as ""; convert numbers to string
+
+// If set returns undefined, fall back to normal setting
+
+// Handle most common string cases
+
+// Handle cases where value is null/undef or number
+
+// Support: IE10-11+
+
+// option.text throws exceptions (#14686, #14858)
+
+// Strip and collapse whitespace
+
+// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
+
+// Loop through all the selected options
+
+// IE8-9 doesn't update selected after form reset (#2551)
+
+// Don't return options that are disabled or in a disabled optgroup
+
+// We don't need an array for one selects
+
+// Get the specific value for the option
+
+// Multi-Selects return an array
+
+// Force browsers to behave consistently when non-matching value is set
+
+// Radios and checkboxes getter/setter
+
+// Return jQuery for attributes-only inclusion
+
+// Don't do events on text and comment nodes
+
+// Namespaced trigger; create a regexp to match event type in handle()
+
+// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
+
+// Caller can pass in a jQuery.Event object, Object, or just an event type string
+
+// Clean up the event in case it is being reused
+
+// Clone any incoming data and prepend the event, creating the handler arg list
+
+// Allow special events to draw outside the lines
+
+// Determine event propagation path in advance, per W3C events spec (#9951)
+
+// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+
+// Only add window if we got to document (e.g., not plain obj or detached DOM)
+
+// Fire handlers on the event path
+
+// jQuery handler
+
+// Native handler
+
+// If nobody prevented the default action, do it now
+
+// Call a native DOM method on the target with the same name name as the event.
+
+// Don't do default actions on window, that's where global variables be (#6170)
+
+// Don't re-trigger an onFOO event when we call its FOO() method
+
+// Prevent re-triggering of the same event, since we already bubbled it above
+
+// focus/blur morphs to focusin/out; ensure we're not firing them right now
+
+// Piggyback on a donor event to simulate a different one
+
+// Used only for `focus(in | out)` events
+
+// Handle event binding
+
+// Firefox doesn't have focus(in | out) events
+
+// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+
+// Support: Chrome, Safari
+
+// focus(in | out) events fire after focus & blur events,
+
+// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+
+// Related ticket - https://code.google.com/p/chromium/issues/detail?id=449857
+
+// Attach a single capturing handler on the document while someone wants focusin/focusout
+
+// Workaround failure to string-cast null input
+
+// Cross-browser xml parsing
+
+/* Prefilters
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 2) These are called:
+	 *    - BEFORE asking for a transport
+	 *    - AFTER param serialization (s.data is a string if s.processData is true)
+	 * 3) key is the dataType
+	 * 4) the catchall symbol "*" can be used
+	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 */
+
+/* Transports bindings
+	 * 1) key is the dataType
+	 * 2) the catchall symbol "*" can be used
+	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	 */
+
+// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+
+// Anchor tag for parsing the document origin
+
+// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+
+// dataTypeExpression is optional and defaults to "*"
+
+// For each dataType in the dataTypeExpression
+
+// Prepend if requested
+
+// Base inspection function for prefilters and transports
+
+// A special extend for ajax options
+
+// that takes "flat" options (not to be deep extended)
+
+// Fixes #9887
+
+/* Handles responses to an ajax request:
+ * - finds the right dataType (mediates between content-type and expected dataType)
+ * - returns the corresponding response
+ */
+
+// Counter for holding the number of active queries
+
+// Last-Modified header cache for next request
+
+/*
+		timeout: 0,
+		data: null,
+		dataType: null,
+		username: null,
+		password: null,
+		cache: null,
+		throws: false,
+		traditional: false,
+		headers: {},
+		*/
+
+// Data converters
+
+// Keys separate source (or catchall "*") and destination types with a single space
+
+// Convert anything to text
+
+// Text to html (true = no transformation)
+
+// Evaluate text as a json expression
+
+// Parse text as xml
+
+// For options that shouldn't be deep extended:
+
+// you can add your own custom options here if
+
+// and when you create one that shouldn't be
+
+// deep extended (see ajaxExtend)
+
+// Creates a full fledged settings object into target
+
+// with both ajaxSettings and settings fields.
+
+// If target is omitted, writes into ajaxSettings.
+
+// Building a settings object
+
+// Extending ajaxSettings
+
+// Main method
+
+// If url is an object, simulate pre-1.5 signature
+
+// Force options to be an object
+
+// URL without anti-cache param
+
+// Response headers
+
+// timeout handle
+
+// Url cleanup var
+
+// To know if global events are to be dispatched
+
+// Loop variable
+
+// Create the final options object
+
+// Callbacks context
+
+// Context for global events is callbackContext if it is a DOM node or jQuery collection
+
+// Deferreds
+
+// Status-dependent callbacks
+
+// Headers (they are sent all at once)
+
+// The jqXHR state
+
+// Default abort message
+
+// Fake xhr
+
+// Builds headers hashtable if needed
+
+// Raw string
+
+// Caches the header
+
+// Overrides response content-type header
+
+// Lazy-add the new callback in a way that preserves old ones
+
+// Execute the appropriate callbacks
+
+// Cancel the request
+
+// Attach deferreds
+
+// A cross-domain request is in order when the origin doesn't match the current origin.
+
+// Remove hash character (#7531: and string promotion)
+
+// Add protocol if not provided (prefilters might expect it)
+
+// Handle falsy url in the settings object (#10093: consistency with old signature)
+
+// We also use the url parameter if available
+
+// Alias method option to type as per ticket #12004
+
+// Extract dataTypes list
+
+// Support: IE8-11+
+
+// IE throws exception if url is malformed, e.g. http://example.com:80x/
+
+// Anchor's host property isn't correctly set when s.url is relative
+
+// If there is an error parsing the URL, assume it is crossDomain,
+
+// it can be rejected by the transport if it is invalid
+
+// Convert data if not already a string
+
+// If request was aborted inside a prefilter, stop there
+
+// Apply prefilters
+
+// We can fire global events as of now if asked to
+
+// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+
+// Check for headers option
+
+// Watch for a new set of requests
+
+// Uppercase the type
+
+// Determine if request has content
+
+// Save the URL in case we're toying with the If-Modified-Since
+
+// and/or If-None-Match header later on
+
+// More options handling for requests with no content
+
+// If data is available, append data to url
+
+// #9682: remove data so that it's not used in an eventual retry
+
+// Add anti-cache in url if needed
+
+// If there is already a '_' parameter, set its value
+
+// Otherwise add one to the end
+
+// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+
+// Set the correct header, if data is being sent
+
+// Set the Accepts header for the server, depending on the dataType
+
+// Allow custom headers/mimetypes and early abort
+
+// Abort if not done already and return
+
+// Aborting is no longer a cancellation
+
+// Install callbacks on deferreds
+
+// Get transport
+
+// If no transport, we auto-abort
+
+// If request was aborted inside ajaxSend, stop there
+
+// Send global event
+
+// Timeout
+
+// Propagate exception as error if not done
+
+// Callback for when everything is done
+
+// Called once
+
+// State is "done" now
+
+// Clear timeout if it exists
+
+// Dereference transport for early garbage collection
+
+// (no matter how long the jqXHR object will be used)
+
+// Cache response headers
+
+// Set readyState
+
+// Determine if successful
+
+// Get response data
+
+// Remove auto dataType and get content-type in the process
+
+// Check if we're dealing with a known content-type
+
+// Check to see if we have a response for the expected dataType
+
+// Try convertible dataTypes
+
+// Or just use first one
+
+// If we found a dataType
+
+// We add the dataType to the list if needed
+
+// and return the corresponding response
+
+/* Chain conversions given the request and the original response
+ * Also sets the responseXXX fields on the jqXHR instance
+ */
+
+// Convert no matter what (that way responseXXX fields are always set)
+
+// Work with a copy of dataTypes in case we need to modify it for conversion
+
+// Create converters map with lowercased keys
+
+// Convert to each sequential dataType
+
+// Apply the dataFilter if provided
+
+// There's only work to do if current dataType is non-auto
+
+// Convert response if prev dataType is non-auto and differs from current
+
+// If none found, seek a pair
+
+// Seek a direct converter
+
+// If conv2 outputs current
+
+// If prev can be converted to accepted input
+
+// Condense equivalence converters
+
+// Apply converter (if not an equivalence)
+
+// Unless errors are allowed to bubble, catch and return them
+
+// If successful, handle type chaining
+
+// if no content
+
+// Extract error from statusText and normalize for non-aborts
+
+// Set data for the fake xhr object
+
+// Success/Error
+
+// Complete
+
+// Handle the global AJAX counter
+
+// The url can be an options object (which then must have .url)
+
+// Shift arguments if data argument was omitted
+
+// Make this explicit, since user can override this through ajaxSetup (#11264)
+
+// The elements to wrap the target around
+
+// Support: Opera <= 12.12
+
+// Opera reports offsetWidths and offsetHeights less than zero on some elements
+
+// Use OR instead of AND as the element is not visible if either is true
+
+// See tickets #10406 and #13132
+
+// Serialize array item.
+
+// Treat each array item as a scalar.
+
+// Item is non-scalar (array or object), encode its numeric index.
+
+// Serialize scalar item.
+
+// Serialize object item.
+
+// Serialize an array of form elements or a set of
+
+// key/values into a query string
+
+// If value is a function, invoke it and return its value
+
+// Set traditional to true for jQuery <= 1.3.2 behavior.
+
+// If an array was passed in, assume that it is an array of form elements.
+
+// Serialize the form elements
+
+// If traditional, encode the "old" way (the way 1.3.2 or older
+
+// did it), otherwise encode params recursively.
+
+// Return the resulting serialization
+
+// Can add propHook for "elements" to filter or add form elements
+
+// Use .is( ":disabled" ) so that fieldset[disabled] works
+
+// File protocol always yields status code 0, assume 200
+
+// #1450: sometimes IE returns 1223 when it should be 204
+
+// Cross domain only allowed if supported through XMLHttpRequest
+
+// Apply custom fields if provided
+
+// Override mime type if needed
+
+// Set headers
+
+// X-Requested-With header
+
+// For cross-domain requests, seeing as conditions for a preflight are
+
+// akin to a jigsaw puzzle, we simply never set it to be sure.
+
+// (it can always be set on a per-request basis or even using ajaxSetup)
+
+// For same-domain requests, won't change header if already provided.
+
+// Callback
+
+// On a manual native abort, IE9 throws
+
+// errors on any property access that is not readyState
+
+// File: protocol always yields status 0; see #8605, #14207
+
+// Support: IE9 only
+
+// IE9 has no XHR2 but throws on binary (trac-11426)
+
+// For XHR2 non-text, let the caller handle it (gh-2498)
+
+// Listen to events
+
+// Use onreadystatechange to replace onabort
+
+// to handle uncaught aborts
+
+// Check readyState before timeout as it changes
+
+// Allow onerror to be called first,
+
+// but that will not handle a native abort
+
+// Also, save errorCallback to a variable
+
+// as xhr.onerror cannot be accessed
+
+// Create the abort callback
+
+// Do send the request (this may raise an exception)
+
+// #14683: Only rethrow if this hasn't been notified as an error yet
+
+// Install script dataType
+
+// Handle cache's special case and crossDomain
+
+// Bind script tag hack transport
+
+// This transport only deals with cross domain requests
+
+// Use native DOM manipulation to avoid our domManip AJAX trickery
+
+// Default jsonp settings
+
+// Detect, normalize options and install callbacks for jsonp requests
+
+// Handle iff the expected data type is "jsonp" or we have a parameter to set
+
+// Delegate to script
+
+// Get callback name, remembering preexisting value associated with it
+
+// Insert callback into url or form data
+
+// Use data converter to retrieve json after script execution
+
+// Force json dataType
+
+// Install callback
+
+// Clean-up function (fires after converters)
+
+// If previous value didn't exist - remove it
+
+// Save back as free
+
+// Make sure that re-using the options doesn't screw things around
+
+// Save the callback name for future use
+
+// Call if it was a function and we have a response
+
+// Argument "data" should be string of html
+
+// context (optional): If specified, the fragment will be created in this context,
+
+// defaults to document
+
+// keepScripts (optional): If true, will include scripts passed in the html string
+
+// Single tag
+
+// Keep a copy of the old load method
+
+/**
+ * Load a url into a page
+ */
+
+/**
+ * Gets a window from an element
+ */
+
+// If it's a function
+
+// We assume that it's the callback
+
+// If we have elements to modify, make the request
+
+// If "type" variable is undefined, then "GET" method will be used.
+
+// Make value of this field explicit since
+
+// user can override it through ajaxSetup method
+
+// Save response for use in complete callback
+
+// If a selector was specified, locate the right elements in a dummy div
+
+// Exclude scripts to avoid IE 'Permission Denied' errors
+
+// Otherwise use the full result
+
+// Attach a bunch of functions for handling common AJAX events
+
+// Set position first, in-case top/left are set even on static elem
+
+// Need to be able to calculate position if either
+
+// top or left is auto and position is either absolute or fixed
+
+// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
+
+// Make sure it's not a disconnected DOM node
+
+// Fixed elements are offset from window (parentOffset = {top:0, left: 0},
+
+// because it is its only offset parent
+
+// Subtract parent offsets and element margins
+
+// Assume getBoundingClientRect is there when computed position is fixed
+
+// Get *real* offsetParent
+
+// Get correct offsets
+
+// Add offsetParent borders
+
+// This method will return documentElement in the following cases:
+
+// 1) For the element inside the iframe without offsetParent, this method will return
+
+//    documentElement of the parent window
+
+// 2) For the hidden or detached element
+
+// 3) For body or html element, i.e. in case of the html node - it will return itself
+
+// but those exceptions were never presented as a real life use-cases
+
+// and might be considered as more preferable results.
+
+// This logic, however, is not guaranteed and can change at any point in the future
+
+// Create scrollLeft and scrollTop methods
+
+// Support: Safari<7-8+, Chrome<37-44+
+
+// Add the top/left cssHooks using jQuery.fn.position
+
+// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+
+// Blink bug: https://code.google.com/p/chromium/issues/detail?id=229280
+
+// getComputedStyle returns percent when specified for top/left/bottom/right;
+
+// rather than make the css module depend on the offset module, just check for it here
+
+// If curCSS returns percentage, fallback to offset
+
+// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
+
+// Margin is only for outerHeight, outerWidth
+
+// Get document width or height
+
+// Get width or height on the element, requesting but not forcing parseFloat
+
+// Set width or height on the element
+
+// ( namespace ) or ( selector, types [, fn] )
+
+// Map over jQuery in case of overwrite
+
+// Map over the $ in case of overwrite
+
+// Expose jQuery and $ identifiers, even in AMD
+
+// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+
+// and CommonJS for browser emulators (#13566)
+
+// For CommonJS and CommonJS-like environments where a proper `window`
+
+// is present, execute the factory and get jQuery.
+
+// For environments that do not have a `window` with a `document`
+
+// (such as Node.js), expose a factory as module.exports.
+
+// This accentuates the need for the creation of a real `window`.
+
+// e.g. var jQuery = require("jquery")(window);
+
+// See ticket #14549 for more info.
+
+// module.parent = undefined by default

@@ -8,6 +8,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { GuessPlugin } = require('guess-webpack');
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
+
 module.exports = {
     mode : "development",
     context: __dirname + '/src',

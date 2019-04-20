@@ -1,0 +1,72 @@
+/******/
+
+// webpackBootstrap
+
+// The module cache
+
+// The require function
+
+// Check if module is in cache
+
+// Create a new module (and put it into the cache)
+
+// Execute the module function
+
+// Return the exports of the module
+
+// Flag the module as loaded
+
+// expose the modules object (__webpack_modules__)
+
+// Load entry module and return exports
+
+// expose the module cache
+
+// define getter function for harmony exports
+
+// define __esModule on exports
+
+// create a fake namespace object
+
+// mode & 1: value is a module id, require it
+
+// mode & 2: merge all properties of value into the ns
+
+// mode & 4: return value when already ns object
+
+// mode & 8|1: behave like require
+
+// getDefaultExport function for compatibility with non-harmony modules
+
+// Object.prototype.hasOwnProperty.call
+
+// __webpack_public_path__
+
+/************************************************************************/
+
+/* 0 */
+
+/* 1 */
+
+/***/
+
+/*
+Turbolinks 5.2.0
+Copyright © 2018 Basecamp, LLC
+ */
+
+/* 2 */
+
+/* 3 */
+
+/* 4 */
+
+/* harmony import */
+
+/*#__PURE__*/
+
+// ES6
+
+// Turbolinksで遷移した場合の初期化処理
+
+// Turbolinks処理開始
