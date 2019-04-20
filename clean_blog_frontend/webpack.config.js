@@ -41,7 +41,24 @@ module.exports = {
                 ]
             },
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+            { test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+            { test: /\.svg(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: [
+                  {loader: 'file-loader'},
+                  {
+                    loader: 'svgo-loader',
+                    options: {
+                      plugins: [
+                        {removeXMLNS: true},
+                        {removeOffCanvasPaths: true},
+                        {removeDimensions: true},
+                        {removeAttrs: true},
+                        {removeOffCanvasPaths: true},
+                        {reusePaths: true}
+                      ]
+                    }
+                  }
+                ]}
         ]
     },
     optimization: {
