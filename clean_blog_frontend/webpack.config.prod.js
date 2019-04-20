@@ -1,6 +1,7 @@
 const Merge = require("webpack-merge");
 const BaseConfig = require("./webpack.config.js");
 const TerserPlugin = require('terser-webpack-plugin');   
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");      
 
 module.exports = Merge(BaseConfig, {
     plugins: [],        
@@ -14,6 +15,21 @@ module.exports = Merge(BaseConfig, {
                 },
             },            
         }),
+        new OptimizeCSSAssetsPlugin({
+            cssProcessorPluginOptions: {
+              preset: ['advanced', 
+                    { 
+                      autoprefixer: {
+                         add: true,
+                         browsers: ["last 2 versions", "ie >= 11", "Android >= 4"]
+                      },
+                      discardComments: { removeAll: true }, 
+                      cssDeclarationSorter : { order: 'smacss' }
+                }
+              ],
+            },
+            canPrint: true
+          })
         ],
     },
 });

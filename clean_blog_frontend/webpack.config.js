@@ -1,7 +1,6 @@
 const Webpack = require("webpack");
 const BundleTracker = require("webpack-bundle-tracker");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const {InjectManifest} = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
@@ -76,7 +75,6 @@ module.exports = {
             jQuery: 'jquery'
         }),
         new GuessPlugin({ GA: '103185238' }),
-        new OptimizeCSSAssetsPlugin({}),
         new CleanWebpackPlugin({ verbose: true}),
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
