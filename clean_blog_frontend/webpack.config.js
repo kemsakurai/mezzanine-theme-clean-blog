@@ -52,13 +52,11 @@ module.exports = {
                         {removeXMLNS: true},
                         {removeOffCanvasPaths: true},
                         {removeDimensions: true},
-                        {removeAttrs: true},
-                        {removeOffCanvasPaths: true},
                         {reusePaths: true}
                       ]
                     }
                   }
-                ]}
+            ]}
         ]
     },
     optimization: {
