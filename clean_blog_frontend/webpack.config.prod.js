@@ -23,7 +23,7 @@ module.exports = Merge(BaseConfig, {
                          add: true,
                          browsers: ["last 2 versions", "ie >= 11", "Android >= 4"]
                       },
-                      discardComments: { removeAll: false }, 
+                      discardComments: { removeAll: true }, 
                       cssDeclarationSorter : { order: 'smacss' }
                 }
               ],
