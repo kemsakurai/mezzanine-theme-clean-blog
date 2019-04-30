@@ -2,12 +2,17 @@ const Merge = require("webpack-merge");
 const BaseConfig = require("./webpack.config.js");
 const TerserPlugin = require('terser-webpack-plugin');   
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");      
+const FontminPlugin = require('fontmin-webpack')
 
 module.exports = Merge(BaseConfig, {
-    plugins: [],        
+    plugins: [
+      new FontminPlugin({
+        autodetect: true // automatically pull unicode characters from CSS
+      }),
+    ],        
     optimization: {
         minimizer: [
-        new TerserPlugin({
+          new TerserPlugin({
             extractComments: 'all',
             terserOptions: {
                 compress: {
