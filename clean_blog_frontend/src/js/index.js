@@ -1,8 +1,8 @@
 import '../css/normalize.css';
-import '../css/bootstrap.css';
+import '../css/bootstrap.optimized.css';
 import '../css/clean-blog.css';
 import '../css/codehilite.css';
-import '../css/font-awesome.css';
+import '../css/font-awesome.optimized.css';
 import '../css/fonts.css';
 import './jquery.js';
 import './bootstrap.js';
