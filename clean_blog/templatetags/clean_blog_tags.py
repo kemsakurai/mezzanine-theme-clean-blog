@@ -51,7 +51,10 @@ def conv_blog_post_to_json_ld(context, blog=None):
     request = context['request']
     domain_root = _get_request_root_url(request)
     featured_image = blog.featured_image
-    print(featured_image.__dict__)
+    if featured_image:
+        featured_image_url = featured_image.url
+    else:
+        featured_image_url = django_settings.SITE_LOGO_IMG_URL
     result_dict = {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -64,7 +67,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
                                "url": django_settings.SITE_LOGO_IMG_URL}
         },
         "image": {"@type": "ImageObject",
-                  "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOMDdhaDhHdXBVTHc", "height": 450,
+                  "url": featured_image_url, "height": 450,
                   "width": 800},
         "mainEntityOfPage": {
             "@type": "WebPage",
