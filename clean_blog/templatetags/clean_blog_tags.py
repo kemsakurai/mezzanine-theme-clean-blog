@@ -5,6 +5,7 @@ from mezzanine.blog.models import BlogPost, BlogCategory
 from django.conf import settings as django_settings
 from django.contrib.sites.shortcuts import get_current_site
 
+
 import json
 
 register = template.Library()
@@ -48,7 +49,9 @@ def conv_blog_post_to_json_ld(context, blog=None):
     Get blogpost JSON-LD
     """
     request = context['request']
-    domain_root = get_request_root_url(request)
+    domain_root = _get_request_root_url(request)
+    featured_image = blog.featured_image
+    print(featured_image.__dict__)
     result_dict = {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -58,7 +61,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
                       "url": domain_root,
                       "name": blog.user.first_name,
                       "logo": {"@type": "ImageObject",
-                               "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOVE5pTEcyeE40WlE"}
+                               "url": django_settings.SITE_LOGO_IMG_URL}
         },
         "image": {"@type": "ImageObject",
                   "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOMDdhaDhHdXBVTHc", "height": 450,
@@ -78,7 +81,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
     json_o = json.dumps(result_dict, ensure_ascii=False)
     return json_o
 
-def get_request_root_url(request):
+def _get_request_root_url(request):
     scheme = 'https' if request.is_secure() else 'http'
     site = get_current_site(request)
     return '%s://%s' % (scheme, site)
