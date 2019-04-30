@@ -28,6 +28,7 @@ def pagination_prev_next_for(context, current_page, page_var="page", exclude_var
         "querystring": querystring,
         "page_var": page_var,
     }
+
 @register.as_tag
 def blog_categories_ex():
     """
@@ -39,19 +40,20 @@ def blog_categories_ex():
     counter = Counter(categories)
     return counter.most_common()
 
-
-@register.as_tag
-def conv_blog_post_to_json_ld(blog=None):
+@register.as_tag(takes_context=True)
+def conv_blog_post_to_json_ld(context, blog=None):
     """
     Get blogpost JSON-LD
     """
+    request = context['request']
+    domain_root = request.build_absolute_uri()
     result_dict = {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
         "headline": blog.title,
         "author": {"@type": "Person", "name": blog.user.first_name},
         "publisher": {"@type": "Organization",
-                      "url": "https://www.monotalk.xyz",
+                      "url": domain_root,
                       "name": blog.user.first_name,
                       "logo": {"@type": "ImageObject",
                                "url": "https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOVE5pTEcyeE40WlE"}
