@@ -33,6 +33,15 @@ h1 {
   margin: .67em 0;
   font-size: 2em;
 }
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -.5em;
+}
 img {
   border: 0;
 }
@@ -277,11 +286,13 @@ p {
 .text-danger {
   color: #a94442;
 }
-ul {
+ul,
+ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
-ul ul {
+ul ul,
+ul ol {
   margin-bottom: 0;
 }
 .list-inline {
