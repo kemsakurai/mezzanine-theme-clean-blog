@@ -3,6 +3,8 @@ from __future__ import absolute_import, division, unicode_literals
 from mezzanine import template
 from mezzanine.blog.models import BlogPost, BlogCategory
 from django.conf import settings as django_settings
+from django.contrib.sites.shortcuts import get_current_site
+
 import json
 
 register = template.Library()
@@ -46,7 +48,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
     Get blogpost JSON-LD
     """
     request = context['request']
-    domain_root = request.build_absolute_uri()
+    domain_root = get_request_root_url(request)
     result_dict = {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -75,3 +77,8 @@ def conv_blog_post_to_json_ld(context, blog=None):
     }
     json_o = json.dumps(result_dict, ensure_ascii=False)
     return json_o
+
+def get_request_root_url(request):
+    scheme = 'https' if request.is_secure() else 'http'
+    site = get_current_site(request)
+    return '%s://%s' % (scheme, site)
