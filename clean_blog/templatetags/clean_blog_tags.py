@@ -40,7 +40,7 @@ def blog_categories_ex():
     counter = Counter(categories)
     return counter.most_common()
 
-@register.as_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def conv_blog_post_to_json_ld(context, blog=None):
     """
     Get blogpost JSON-LD
