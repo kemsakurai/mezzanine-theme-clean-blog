@@ -1,4 +1,4 @@
-importScripts("/static/webpack_bundles/precache-manifest.65814227c2b18a7a4935ee3c2351d3e9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.5c5dd7ddbf2540cf30427046ee808867.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
@@ -15,6 +15,11 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', event => {
     event.waitUntil(self.clients.claim());
 });
+
+self.addEventListener('fetch', function(event) {
+    console.log(event);
+});
+
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------

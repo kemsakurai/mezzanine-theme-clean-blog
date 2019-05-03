@@ -13,6 +13,11 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', event => {
     event.waitUntil(self.clients.claim());
 });
+
+self.addEventListener('fetch', function(event) {
+    console.log(event);
+});
+
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
