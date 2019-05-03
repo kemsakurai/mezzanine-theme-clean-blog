@@ -16,7 +16,7 @@ self.addEventListener('activate', event => {
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.routing.registerRoute(new RegExp('(/$|^/\?utm_source.+$)'), workbox.strategies.networkFirst({
+workbox.routing.registerRoute(new RegExp('(/$|/\?utm_source.+$)'), workbox.strategies.networkFirst({
     cacheName: 'root',
     plugins: [
         new workbox.expiration.Plugin({
