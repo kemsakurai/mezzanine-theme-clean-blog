@@ -1,4 +1,4 @@
-importScripts("/static/webpack_bundles/precache-manifest.5c5dd7ddbf2540cf30427046ee808867.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.370580eed34376c60fdb5bb02f39557b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
@@ -15,15 +15,10 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', event => {
     event.waitUntil(self.clients.claim());
 });
-
-self.addEventListener('fetch', function(event) {
-    console.log(event);
-});
-
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.routing.registerRoute(/(^\/$|^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(new RegExp('(/$|^/\?utm_source.+$)'), workbox.strategies.networkFirst({
     cacheName: 'root',
     plugins: [
         new workbox.expiration.Plugin({
@@ -32,7 +27,8 @@ workbox.routing.registerRoute(/(^\/$|^\/\?utm_source.+$)/, workbox.strategies.ne
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
+
+workbox.routing.registerRoute(new RegExp('/\?page=.+$'), workbox.strategies.networkFirst({
     cacheName: 'pages',
     plugins: [
         new workbox.expiration.Plugin({
@@ -41,7 +37,7 @@ workbox.routing.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(new RegExp('/search\?q=.*$'), workbox.strategies.networkFirst({
     cacheName: 'search',
     plugins: [
         new workbox.expiration.Plugin({
@@ -50,7 +46,7 @@ workbox.routing.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFi
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(new RegExp('/blog/category/.+$'), workbox.strategies.networkFirst({
     cacheName: 'category',
     plugins: [
         new workbox.expiration.Plugin({
@@ -59,7 +55,7 @@ workbox.routing.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.netwo
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(new RegExp('/blog/.+$'), workbox.strategies.cacheFirst({
     cacheName: 'entry',
     plugins: [
         new workbox.expiration.Plugin({
@@ -68,7 +64,7 @@ workbox.routing.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/about\/$/, workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(new RegExp('/about.*'), workbox.strategies.cacheFirst({
     cacheName: 'about',
     plugins: [
         new workbox.expiration.Plugin({
