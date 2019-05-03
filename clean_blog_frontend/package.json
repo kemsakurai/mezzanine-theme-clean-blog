@@ -52,7 +52,7 @@
     "jquery": "^2.2.4",
     "sshpk": "^1.16.1",
     "turbolinks": "^5.2.0",
-    "workbox-broadcast-update": "^4.3.0",
-    "workbox-webpack-plugin": "^4.3.0"
+    "workbox-broadcast-update": "^4.3.1",
+    "workbox-webpack-plugin": "^4.3.1"
   }
 }
