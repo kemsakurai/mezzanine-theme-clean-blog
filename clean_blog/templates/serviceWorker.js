@@ -1,4 +1,4 @@
-importScripts("/static/webpack_bundles/precache-manifest.08fca90b29054be1c8c1e51935bc6c7e.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.65814227c2b18a7a4935ee3c2351d3e9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
@@ -12,17 +12,6 @@ self.addEventListener('install', e => {
        })
      )
 });
-self.addEventListener('install', e => {
-    e.waitUntil(
-       caches.open('root').then(cache => {
-           return cache.addAll([
-               '/',
-               '/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa'
-           ]).then(() => self.skipWaiting());
-       })
-     )
-});
-
 self.addEventListener('activate', event => {
     event.waitUntil(self.clients.claim());
 });
