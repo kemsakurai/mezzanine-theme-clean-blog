@@ -2,7 +2,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.routing.registerRoute(/(^\/$)|(^\/\?utm_source.+$)/, new workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/(^\/$)|(^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
     cacheName: 'root',
     plugins: [
         new workbox.expiration.Plugin({
@@ -11,7 +11,7 @@ workbox.routing.registerRoute(/(^\/$)|(^\/\?utm_source.+$)/, new workbox.strateg
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/\?page=.+$/, new workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/\?page=.+$/, workbox.strategies.networkFirst({
     cacheName: 'pages',
     plugins: [
         new workbox.expiration.Plugin({
@@ -20,7 +20,7 @@ workbox.routing.registerRoute(/^\/\?page=.+$/, new workbox.strategies.networkFir
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/search\/\?q=.*$/, new workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/search\/\?q=.*$/, workbox.strategies.networkFirst({
     cacheName: 'search',
     plugins: [
         new workbox.expiration.Plugin({
@@ -29,7 +29,7 @@ workbox.routing.registerRoute(/^\/search\/\?q=.*$/, new workbox.strategies.netwo
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/blog\/category\/.+$/, new workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/^\/blog\/category\/.+$/, workbox.strategies.networkFirst({
     cacheName: 'category',
     plugins: [
         new workbox.expiration.Plugin({
@@ -38,7 +38,7 @@ workbox.routing.registerRoute(/^\/blog\/category\/.+$/, new workbox.strategies.n
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/blog\/.+$/, new workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(/^\/blog\/.+$/, workbox.strategies.cacheFirst({
     cacheName: 'entry',
     plugins: [
         new workbox.expiration.Plugin({
@@ -47,7 +47,7 @@ workbox.routing.registerRoute(/^\/blog\/.+$/, new workbox.strategies.cacheFirst(
         }),
     ],
 }), 'GET');
-workbox.routing.registerRoute(/^\/about\/$/, new workbox.strategies.cacheFirst({
+workbox.routing.registerRoute(/^\/about\/$/, workbox.strategies.cacheFirst({
     cacheName: 'about',
     plugins: [
         new workbox.expiration.Plugin({
