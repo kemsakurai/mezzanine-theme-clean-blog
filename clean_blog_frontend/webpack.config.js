@@ -7,6 +7,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { GuessPlugin } = require('guess-webpack');
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
+const config = require("./site-config");
 
 module.exports = {
     mode : "development",
@@ -89,7 +90,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new GuessPlugin({ GA: '103185238' }),
+        new GuessPlugin({ GA: config.gaViewId }),
         new CleanWebpackPlugin({ verbose: true}),
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
@@ -101,13 +102,13 @@ module.exports = {
         }),
         new WebpackPwaManifest({
             filename: "manifest.json",
-            name: 'www.monotalk.xyz',
-            short_name: 'monotalk',
-            description: '日々の書き込み',
-            background_color: '#ffffff',
-            start_url: "https://www.monotalk.xyz/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa",
-            display: "standalone",
-            theme_color: "#808080",
+            name: config.pwaManifest.name,
+            short_name: config.pwaManifest.shortName,
+            description: config.pwaManifest.description,
+            background_color: config.pwaManifest.backgroundColor,
+            start_url: config.pwaManifest.startUrl,
+            display: config.pwaManifest.display,
+            theme_color: config.pwaManifest.themeColor,
             icons: [
                 {
                     src: path.resolve('src/icon/icon.png'),
@@ -116,8 +117,8 @@ module.exports = {
             ],
             gcm_sender_id: "482941778795",
             gcm_sender_id_comment: "Do not change the GCM Sender ID",
-            related_applications: [],
-            prefer_related_applications: false
+            related_applications: config.pwaManifest.relatedApplications,
+            prefer_related_applications: config.pwaManifest.preferRelatedApplications
         })
     ]
 }

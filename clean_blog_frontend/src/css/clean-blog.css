@@ -747,3 +747,7 @@ thead > tr > td {
     display: inline-block;
     margin-right: .2em;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
