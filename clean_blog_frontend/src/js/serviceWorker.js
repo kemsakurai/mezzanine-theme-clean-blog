@@ -2,7 +2,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.routing.registerRoute(/(^\/$)|(^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/(^\/$|^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
     cacheName: 'root',
     plugins: [
         new workbox.expiration.Plugin({

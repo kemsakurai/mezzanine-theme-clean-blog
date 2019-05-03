@@ -1,10 +1,10 @@
-importScripts("/static/webpack_bundles/precache-manifest.a4dfa5d78265c399910dcac6c8ffad4b.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.11b09a83ca3b3e2009bab786ae254090.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
-workbox.routing.registerRoute(/(^\/$)|(^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
+workbox.routing.registerRoute(/(^\/$|^\/\?utm_source.+$)/, workbox.strategies.networkFirst({
     cacheName: 'root',
     plugins: [
         new workbox.expiration.Plugin({
