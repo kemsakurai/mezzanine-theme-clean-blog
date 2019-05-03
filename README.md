@@ -82,13 +82,14 @@ The following settings are defined in `defaults.py` and control is possible.
 |CLEAN_BLOG_GOOGLE_ADS_SLOT_ID|GOOGLE ADS SLOT ID for CLEAN_BLOG|True|""|
 |CLEAN_BLOG_FACEBOOK_APP_ID|FACEBOOK_APP_ID for CLEAN_BLOG|True|""|
 |CLEAN_BLOG_IS_VISIBLE_DESCRIPTION|flag for CLEAN_BLOG's blog list and search result|True|""|
-|BUNDLE_JS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.js|False|""|
-|RESPOND_MIN_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for respond.js|False|""|
-|BUNDLE_CSS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.css|False|""|
-|HTML5SHIV_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for html5shiv.js|False|""|
-|PJAX_JS_SRI|[Subresource Integrity | MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for pjax*.js|False|""|
+|BUNDLE_JS_SRI|[Subresource Integrity MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.js|False|""|
+|RESPOND_MIN_SRI|[Subresource Integrity MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for respond.js|False|""|
+|BUNDLE_CSS_SRI|[Subresource Integrity MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for bundle*.css|False|""|
+|HTML5SHIV_SRI|[Subresource Integrity MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for html5shiv.js|False|""|
+|PJAX_JS_SRI|[Subresource Integrity MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) hash for pjax*.js|False|""|
 |GOOGLE_TAG_MANAGER_ID|When using Google Tag Manager, please set ID.|True|""|
 |USE_GOOGLE_OPTIMIZE|Set to True if you use Google Optimize. Output page non-display snippet.|True|False|
+
 
 ### Self Build     
 // TODO...    

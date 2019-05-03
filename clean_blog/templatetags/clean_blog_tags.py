@@ -1,8 +1,9 @@
 from __future__ import absolute_import, division, unicode_literals
 
 from mezzanine import template
+
 from mezzanine.blog.models import BlogPost, BlogCategory
-from django.conf import settings as django_settings
+from mezzanine.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 
 
@@ -13,7 +14,7 @@ register = template.Library()
 
 @register.filter
 def to_amp_url(url):
-    if django_settings.USE_AMP:
+    if settings.USE_AMP:
         return url.replace("/blog/", "/amp/blog/")
     else:
         return url
@@ -54,7 +55,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
     if featured_image:
         featured_image_url = featured_image.url
     else:
-        featured_image_url = django_settings.SITE_LOGO_IMG_URL
+        featured_image_url = settings.SITE_LOGO_IMG_URL
     result_dict = {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -64,7 +65,7 @@ def conv_blog_post_to_json_ld(context, blog=None):
                       "url": domain_root,
                       "name": blog.user.first_name,
                       "logo": {"@type": "ImageObject",
-                               "url": django_settings.SITE_LOGO_IMG_URL}
+                               "url": settings.SITE_LOGO_IMG_URL}
         },
         "image": {"@type": "ImageObject",
                   "url": featured_image_url, "height": 450,

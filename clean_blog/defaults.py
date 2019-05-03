@@ -22,7 +22,9 @@ register_setting(
              "VENDOR_JS_SRI",
              "GOOGLE_TAG_MANAGER_ID",
              "USE_GOOGLE_OPTIMIZE",
-             "DNS_PREFETCH_URLS"
+             "DNS_PREFETCH_URLS",
+             "USE_AMP",
+             "SITE_LOGO_IMG_URL"
              ),
     append=True,
 )
@@ -127,4 +129,16 @@ register_setting(
     description="Specify the target domain of dns-prefetch",     
     editable=True,
     default=[],
+)
+register_setting(
+    name="USE_AMP",
+    description="Set to True if using [kemsakurai/mezzanine-theme-amp-start-blog-post: mezzanine theme based by amp start](https://github.com/kemsakurai/mezzanine-theme-amp-start-blog-post)",     
+    editable=True,
+    default=False,
+)
+register_setting(
+    name="SITE_LOGO_IMG_URL",
+    description="Set the image URL of the site logo. This is used with JSON-LD.",     
+    editable=True,
+    default="https://drive.google.com/uc?export=view&id=0By5O5w7iwOMOVE5pTEcyeE40WlE",
 )
