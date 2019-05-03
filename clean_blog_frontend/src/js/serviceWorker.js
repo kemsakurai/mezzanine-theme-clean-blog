@@ -1,4 +1,29 @@
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+
+self.addEventListener('install', e => {
+    e.waitUntil(
+       caches.open('root').then(cache => {
+           return cache.addAll([
+               '/',
+               '/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa'
+           ]).then(() => self.skipWaiting());
+       })
+     )
+});
+self.addEventListener('install', e => {
+    e.waitUntil(
+       caches.open('root').then(cache => {
+           return cache.addAll([
+               '/',
+               '/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa'
+           ]).then(() => self.skipWaiting());
+       })
+     )
+});
+
+self.addEventListener('activate', event => {
+    event.waitUntil(self.clients.claim());
+});
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
