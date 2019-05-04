@@ -1,7 +1,20 @@
-importScripts("/static/webpack_bundles/precache-manifest.d81595519fa24e6fc2e11bacccecb2b0.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.bf6ec2c1ffa04a7cacd7a882d89dbc40.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
+self.__precacheManifest = (self.__precacheManifest || []).concat([
+    {
+      "url": "/static/js/html5shiv.js"
+    },
+    {
+      "url": "/static/js/respond.min.js"
+    },
+    {
+      "url": "/static/img/home-bg-800.jpg"
+    },
+    {
+      "url": "/static/img/home-bg-1600.jpg"
+    }
+  ]);
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
-
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------

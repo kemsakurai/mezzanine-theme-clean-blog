@@ -1,5 +1,18 @@
+self.__precacheManifest = (self.__precacheManifest || []).concat([
+    {
+      "url": "/static/js/html5shiv.js"
+    },
+    {
+      "url": "/static/js/respond.min.js"
+    },
+    {
+      "url": "/static/img/home-bg-800.jpg"
+    },
+    {
+      "url": "/static/img/home-bg-1600.jpg"
+    }
+  ]);
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
-
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
