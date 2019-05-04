@@ -9,7 +9,7 @@ To use this as a theme for your Mezzanine-based site:
 ### 1. Theme's dependencies      
 
 * **required**     
-Mezzanine                  4.3.1
+Mezzanine                  4.3.1      
 Django                     1.11.20        
 django-webpack-loader      0.5.0       
 

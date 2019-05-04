@@ -10,7 +10,7 @@
 ### 1. テーマの依存モジュール      
 
 * **必須**     
-Mezzanine                  4.3.1
+Mezzanine                  4.3.1      
 Django                     1.11.20        
 django-webpack-loader      0.5.0       
 
