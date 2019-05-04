@@ -1,20 +1,7 @@
-importScripts("/static/webpack_bundles/precache-manifest.d1db99a812b17b97e7bdf2094fb421eb.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.d81595519fa24e6fc2e11bacccecb2b0.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
-self.addEventListener('install', e => {
-    e.waitUntil(
-       caches.open('root').then(cache => {
-           return cache.addAll([
-               '/',
-               '/?utm_source=home_screen&utm_campaign=VisitFrom-home_screen&utm_medium=pwa'
-           ]).then(() => self.skipWaiting());
-       })
-     )
-});
-self.addEventListener('activate', event => {
-    event.waitUntil(self.clients.claim());
-});
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
