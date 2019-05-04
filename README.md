@@ -154,5 +154,5 @@ Clean Blog based Mezzanine theme
 ------------------------------------------------------------------------------
 ## AMP Theme     
 
-* [kemsakurai/mezzanine-theme-amp-start-blog-post: mezzanine theme based by amp start](https://github.com/kemsakurai/mezzanine-theme-amp-start-blog-post)       
-
+* [kemsakurai/mezzanine-theme-amp-start-blog-post: mezzanine theme based by amp start](https://github.com/kemsakurai/mezzanine-theme-amp-start-blog-post)            
+The theme of AMP used in [Blog | Monotalk](https://www.monotalk.xyz/).
