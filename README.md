@@ -137,7 +137,7 @@ module.exports = {
 }
 ```
 
-* **ビルド**      
+* **Build**      
 Build Frontend and regenerate `sri.py` based on the post-build resources.     
 ```console
 npm run build:gen      
