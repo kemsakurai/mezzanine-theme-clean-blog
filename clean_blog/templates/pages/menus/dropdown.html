@@ -18,12 +18,10 @@
         "url": "{{ request.scheme }}://{{ request.get_host }}",
         "potentialAction": {
         "@type": "SearchAction",
-        "target": "{{ request.scheme }}://{{ request.get_host }}{% url "search" %}?q={search_term}"
+        "target": "{{ request.scheme }}://{{ request.get_host }}{% url "search" %}?q={search_term}",
         "query-input": "required name=search_term"
         }
     }
-
-
                             </script>
                         {% endif %}
                     {% endif %}

@@ -143,6 +143,7 @@ module.exports = {
 ```console
 npm run build:gen      
 ```
+
 ビルド後は、clean_blog ディレクトリ配下に静的コンテンツが配置されます。       
 再度サーバーに配布してください。     
 
