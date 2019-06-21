@@ -90,7 +90,18 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new GuessPlugin({ GA: config.gaViewId }),
+        new GuessPlugin({ GA: config.gaViewId ,
+            runtime: {
+              basePath: '',
+              delegate: true,
+              prefetchConfig: {
+                  '4g': 0.15,
+                  '3g': 0.25,
+                  '2g': 0.45,
+                  'slow-2g': 0.6
+              }
+            }        
+        }),
         new CleanWebpackPlugin({ verbose: true}),
         new MiniCssExtractPlugin({
             filename: '[name]-[hash].css',
