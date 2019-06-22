@@ -92,7 +92,6 @@ module.exports = {
         }),
         new GuessPlugin({ GA: config.gaViewId ,
             runtime: {
-              basePath: '',
               delegate: true,
               prefetchConfig: {
                   '4g': 0.15,

@@ -25,6 +25,7 @@ function prefetch(url) {
     hint.crossorigin = 'use-credentials';
     document.head.appendChild(hint);
 }
+
 function dispatchEvent(name) {
     let event;
     try {
