@@ -9,9 +9,7 @@ import './bootstrap.js';
 import './clean-blog.js';
 
 import registerServiceWorker from './registerServiceWorker.js';
-
 registerServiceWorker();
 
 import pageConfigurator from './pageConfigurator.js';
-
 pageConfigurator();
