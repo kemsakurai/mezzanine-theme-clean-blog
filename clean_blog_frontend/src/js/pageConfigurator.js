@@ -1,3 +1,4 @@
+import {guess} from 'guess-webpack/api';
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
     return new Promise((resolve, reject) => {
@@ -14,6 +15,14 @@ function sendMessage2ServiceWorker(message) {
              navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
         }
     });
+}
+function prefetch(url) {
+    let hint = document.createElement('link');
+    hint.rel = 'prefetch';
+    hint.href = url;
+    hint.as = 'html';
+    hint.crossorigin = 'use-credentials';
+    document.head.appendChild(hint);
 }
 function dispatchEvent(name) {
     let event;
@@ -62,4 +71,9 @@ export default function configure() {
               });
         }
      }
+     if (typeof window !== 'undefined') {
+        for (const url of Object.keys(guess())) {
+          prefetch(url);
+        }
+     }    
 }
