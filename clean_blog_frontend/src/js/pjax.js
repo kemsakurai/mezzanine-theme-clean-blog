@@ -1,6 +1,5 @@
 // ES6
 import Turbolinks from 'turbolinks';
-import {guess} from 'guess-webpack/api';
 
 // Turbolinksで遷移した場合の初期化処理
 document.addEventListener('turbolinks:load', function(event) {
@@ -9,7 +8,6 @@ document.addEventListener('turbolinks:load', function(event) {
     'event': 'turbolinks_load_pageView',
     'virtualUrl': url,
   });
-
   dataLayer.push({
     'event': 'optimize.activate',
     'virtualUrl': url,
