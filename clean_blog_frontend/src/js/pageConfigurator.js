@@ -75,5 +75,5 @@ export default function configure() {
         for (const url of Object.keys(guess())) {
           prefetch(url);
         }
-     }  
+     }
 }
