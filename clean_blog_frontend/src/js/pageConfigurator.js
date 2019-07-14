@@ -1,5 +1,3 @@
-import {guess} from 'guess-webpack/api';
-
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
     return new Promise((resolve, reject) => {
@@ -17,15 +15,6 @@ function sendMessage2ServiceWorker(message) {
         }
     });
 }
-function prefetch(url) {
-    let hint = document.createElement('link');
-    hint.rel = 'prefetch';
-    hint.href = url;
-    hint.as = 'html';
-    hint.crossorigin = 'use-credentials';
-    document.head.appendChild(hint);
-}
-
 function dispatchEvent(name) {
     let event;
     try {
@@ -43,15 +32,7 @@ export default function configure() {
      dataLayer.push({
           'event': 'optimize.activate',
      });
-     
-     window.addEventListener('load', () => {
-        if (typeof window !== 'undefined') {
-            for (const url of Object.keys(guess())) {
-                prefetch(url);
-            }
-        }            
-     });
-     
+
      if ('serviceWorker' in navigator) {
          // Setup a listener to track Add to Homescreen events.
          window.addEventListener('beforeinstallprompt', (e) => {
