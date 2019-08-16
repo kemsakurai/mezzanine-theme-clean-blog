@@ -6,12 +6,11 @@ function prefetch(url) {
     hint.crossorigin = 'use-credentials';
     document.head.appendChild(hint);
 }
-
 function getConnection() {
     if (!window || !window.navigator || !window.navigator.connection) {
       return '3g';
     }
-    return global.navigator.connection.effectiveType || '3g';
+    return window.navigator.connection.effectiveType || '3g';
 }
 
 function guessNextPages() {

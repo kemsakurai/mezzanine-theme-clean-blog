@@ -2749,15 +2749,3 @@
 // See ticket #14549 for more info.
 
 // module.parent = undefined by default
-
-// This works in non-strict mode
-
-// This works if eval is allowed (see CSP)
-
-// This works if the window reference is available
-
-// g can still be undefined, but nothing to do about it...
-
-// We return undefined, instead of nothing here, so it's
-
-// easier to handle this case. if(!global) { ...}
