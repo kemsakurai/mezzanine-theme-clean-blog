@@ -1,5 +1,4 @@
 function prefetch(url) {
-    console.log(url);
     let hint = document.createElement('link');
     hint.rel = 'prefetch';
     hint.href = url;
