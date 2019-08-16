@@ -1,4 +1,5 @@
 function prefetch(url) {
+    console.log(url);
     let hint = document.createElement('link');
     hint.rel = 'prefetch';
     hint.href = url;
@@ -14,6 +15,7 @@ function getConnection() {
 }
 
 function guessNextPages() {
+    console.log("next Page");
     var xhr = new XMLHttpRequest();
     // ハンドラの登録.
     xhr.onreadystatechange = function() {
@@ -31,6 +33,7 @@ function guessNextPages() {
                     // responseXML もあり
                     var data = xhr.responseText;
                     var jsonData = JSON.parse(data);
+                    console.log(jsonData);
                     for (var i = 0; i < jsonData; i++) {
                         prefetch(location.origin + jsonData[i]['page_path']);
                     }
