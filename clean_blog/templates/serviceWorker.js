@@ -1,4 +1,4 @@
-importScripts("/static/webpack_bundles/precache-manifest.31cab3358fa2bad513887cec141cd898.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/static/webpack_bundles/precache-manifest.c0146b29fa6782a90dd3d37ec368267a.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 self.__precacheManifest = (self.__precacheManifest || []).concat([
     {
@@ -96,17 +96,4 @@ const sendMessageToClient = function(client, message) {
         client.postMessage(message, [msgChan.port2]);
     });
 };
-// -----------------------------------------------------
-// Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener('message', (e) => {
-    let command = e.data.command;
-    switch (command) {
-        case 'storeAccessDate':
-            break;
-        case 'isRepeater':
-            break;
-        default:
-            return Promise.resolve();
-    }
-});
 

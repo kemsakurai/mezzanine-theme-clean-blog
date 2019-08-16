@@ -1,20 +1,3 @@
-// メッセージ送信用
-function sendMessage2ServiceWorker(message) {
-    return new Promise((resolve, reject) => {
-        const channel = new MessageChannel();
-        channel.port1.onmessage = (e) => {
-            if (e.data.error) {
-                reject(e.data.error);
-            } else {
-                resolve(e.data);
-            }
-        };
-        // 登録時は、activateしないため、controller は nullになる
-        if (navigator.serviceWorker.controller) {
-             navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
-        }
-    });
-}
 function prefetch(url) {
     let hint = document.createElement('link');
     hint.rel = 'prefetch';
@@ -23,17 +6,47 @@ function prefetch(url) {
     hint.crossorigin = 'use-credentials';
     document.head.appendChild(hint);
 }
-function dispatchEvent(name) {
-    let event;
-    try {
-        event = new CustomEvent(name);
-    } catch (e) {
-        event = document.createEvent('CustomEvent');
-        event.initCustomEvent(name, false, false);
+
+function getConnection() {
+    if (!window || !window.navigator || !window.navigator.connection) {
+      return '3g';
     }
-    window.dispatchEvent(event);
+    return global.navigator.connection.effectiveType || '3g';
 }
 
+function guessNextPages() {
+    var xhr = new XMLHttpRequest();
+    // ハンドラの登録.
+    xhr.onreadystatechange = function() {
+        switch ( xhr.readyState ) {
+            case 0: // 未初期化状態.
+                break;
+            case 1: // データ送信中.
+                break;
+            case 2: // 応答待ち.
+                break;
+            case 3: // データ受信中.
+                break;
+            case 4: // データ受信完了.
+                if( xhr.status == 200 ) {
+                    // responseXML もあり
+                    var data = xhr.responseText;
+                    var jsonData = JSON.parse(data);
+                    for (var i = 0; i < jsonData; i++) {
+                        prefetch(location.origin + jsonData[i]['page_path']);
+                    }
+                } else {
+                    console.log("Response error! status=" + xhr.status);
+                }
+                break;
+        }
+    };
+    var urlParam = encodeURIComponent(location.pathname);
+    xhr.open( 'GET', '/xyz_monotalk_api/guessresult/' + urlParam + '/' + getConnection() + '/' + '?format=json', true );
+    // POST 送信の場合は Content-Type は固定.
+    xhr.setRequestHeader( 'Content-Type', 'application/json' );
+    xhr.send(null);
+}
 export default function configure() {
      // Optimize.activate!!!
      window.dataLayer = window.dataLayer || [];
@@ -62,12 +75,6 @@ export default function configure() {
             });
           });
         });
-        // 登録時は、activateしないため、controller は nullになる
-        if (navigator.serviceWorker.controller) {
-               window.addEventListener('load', () => {
-                      // アクセス時刻を記録
-                    sendMessage2ServiceWorker({'command': 'storeAccessDate', 'args': null});
-              });
-        }
      }
+     guessNextPages();   
 }

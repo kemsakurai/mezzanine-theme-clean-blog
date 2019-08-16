@@ -94,16 +94,3 @@ const sendMessageToClient = function(client, message) {
         client.postMessage(message, [msgChan.port2]);
     });
 };
-// -----------------------------------------------------
-// Messaging.. Browser側からServiceWorkerへメッセージを送信する
-self.addEventListener('message', (e) => {
-    let command = e.data.command;
-    switch (command) {
-        case 'storeAccessDate':
-            break;
-        case 'isRepeater':
-            break;
-        default:
-            return Promise.resolve();
-    }
-});
