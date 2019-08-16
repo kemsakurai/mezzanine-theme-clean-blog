@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {InjectManifest} = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const { GuessPlugin } = require('guess-webpack');
 const path = require("path");
 const cleanBlogRoot = path.normalize(__dirname + "/../clean_blog");
 const config = require("./site-config");
@@ -89,17 +88,6 @@ module.exports = {
         new Webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        }),
-        new GuessPlugin({ GA: config.gaViewId ,
-            runtime: {
-              delegate: true,
-              prefetchConfig: {
-                  '4g': 0.15,
-                  '3g': 0.25,
-                  '2g': 0.45,
-                  'slow-2g': 0.6
-              }
-            }        
         }),
         new CleanWebpackPlugin({ verbose: true}),
         new MiniCssExtractPlugin({

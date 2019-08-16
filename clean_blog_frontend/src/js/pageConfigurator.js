@@ -1,4 +1,3 @@
-import {guess} from 'guess-webpack/api';
 // メッセージ送信用
 function sendMessage2ServiceWorker(message) {
     return new Promise((resolve, reject) => {
@@ -69,11 +68,6 @@ export default function configure() {
                       // アクセス時刻を記録
                     sendMessage2ServiceWorker({'command': 'storeAccessDate', 'args': null});
               });
-        }
-     }
-     if (typeof window !== 'undefined') {
-        for (const url of Object.keys(guess())) {
-          prefetch(url);
         }
      }
 }
