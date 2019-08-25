@@ -60,29 +60,24 @@ module.exports = {
         ]
     },
     optimization: {
-      splitChunks: {
-        chunks (chunk) {
-            // exclude `turbolinks`
-            return chunk.name !== 'pjax';
-        },        
-        cacheGroups: {    
-            default: false,
-            vendor: {
-              test(mod/* , chunk */) {
-                    // Only node_modules are needed
-                    if (!mod.context.includes('node_modules')) {
-                      return false;
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                test(mod/* , chunk */) {
+                    if (mod.context.includes('node_modules')) {
+                        if (['turbolinks'].some(str => mod.context.includes(str))) {
+                            return false;
+                        }    
+                        return true;
                     }
-                    // But not node modules that contain these key words in the path
-                    if (['guess'].some(str => mod.context.includes(str))) {
-                      return false;
-                    }
-                    return true;
-              },
-              name: 'vendor'
+                    return false;
+                },
+                name: 'vendor',
+                chunks: 'initial',
+                enforce: true
+              }
             }
           }
-      }
     },
     plugins: [
         new Webpack.ProvidePlugin({

@@ -4,7 +4,6 @@ import '../css/clean-blog.css';
 import '../css/codehilite.css';
 import '../css/font-awesome.optimized.css';
 import '../css/fonts.css';
-import './jquery.js';
 import './bootstrap.js';
 import './clean-blog.js';
 
