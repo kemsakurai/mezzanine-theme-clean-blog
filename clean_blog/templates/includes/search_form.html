@@ -2,7 +2,7 @@
 <form action="{% url "search" %}" class="navbar-form navbar-right btn-group-sm" role="search">
 
     <div class="form-group">
-        <input class="form-control" placeholder="{% trans "Search" %}" type="text" name="q"
+        <input class="form-control" aria-label="{% trans "Search" %}" placeholder="{% trans "Search" %}" type="text" name="q"
                value="{{ request.REQUEST.q }}">
     </div>
     {% if search_model_choices %}
