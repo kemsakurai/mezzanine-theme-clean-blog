@@ -10,7 +10,7 @@
             <input type="hidden" name="type" value="{{ search_model_choices.0.1 }}">
         {% else %}
             <div class="form-group">
-                <select class="form-control" name="type">
+                <select class="form-control" name="type" aria-label="{% trans "Search target" %}">
                     <option value="">{% trans "Everything" %}</option>
                     {% for verbose_name, model in search_model_choices %}
                         <option value="{{ model }}"
