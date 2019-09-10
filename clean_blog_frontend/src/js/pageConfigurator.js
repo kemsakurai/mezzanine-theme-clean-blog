@@ -75,40 +75,35 @@ export default function configure() {
           });
         });
      }
-     guessNextPages();   
+    // codeハイライトのの折り返し箇所に、     
+    function wrap() {
+        this.querySelector('pre').setAttribute("style", "overflow-x:visible; white-space:pre-wrap");
+        this.querySelector('a').textContent = '［コードを折り返さないで表示］';
+        this.onclick = unWrap.bind(this);
+        return false;
+    }
 
-     // codeハイライトのの折り返し箇所に、
-     document.addEventListener("load", function(event) {
-          function wrap() {
-            this.querySelector('pre').setAttribute("style", "overflow-x:visible; white-space:pre-wrap");
-            this.querySelector('a').textContent = '［コードを折り返さないで表示］';
-            this.onclick = unWrap.bind(this);
-            return false;
-          }
-      
-          function unWrap() {
-            this.querySelector('pre').setAttribute("style", 'overflow-x:auto; white-space:pre');
-            this.querySelector('a').textContent = '［コードを折り返して表示］';
-            this.onclick = wrap.bind(this);
-            return false;
-          }
-      
-          var elems = document.querySelectorAll('pre');
-          for (var i = 0; i < elems.length; i++) {
-              var elem = elems[i];
-              // 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
-              console.log(elem.clientWidth, "elem.clientWidth");
-              console.log(elem.scrollWidth, "elem.scrollWidth");
-              if(elem.clientWidth < elem.scrollWidth) {
-                  var parentDiv = document.createElement('div');
-                  parentDiv.className = "codeWrap";
-                  var childHref = document.createElement('a');
-                  childHref.href = "javascript:void(0)";
-                  childHref.textContent = "［コードを折り返して表示］";
-                  parentDiv.appendChild(childHref);
-                  elem.parentNode.insertBefore(parentDiv, elem);
-                  elem.parentNode.onclick = wrap.bind(elem.parentNode);
-              }
-          }      
-     });
+    function unWrap() {
+        this.querySelector('pre').setAttribute("style", 'overflow-x:auto; white-space:pre');
+        this.querySelector('a').textContent = '［コードを折り返して表示］';
+        this.onclick = wrap.bind(this);
+        return false;
+    }
+
+    var elems = document.querySelectorAll('pre');
+    for (var i = 0; i < elems.length; i++) {
+        var elem = elems[i];
+        // 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
+        if(elem.clientWidth < elem.scrollWidth) {
+            var parentDiv = document.createElement('div');
+            parentDiv.className = "codeWrap";
+            var childHref = document.createElement('a');
+            childHref.href = "javascript:void(0)";
+            childHref.textContent = "［コードを折り返して表示］";
+            parentDiv.appendChild(childHref);
+            elem.parentNode.insertBefore(parentDiv, elem);
+            elem.parentNode.onclick = wrap.bind(elem.parentNode);
+        }
+    }      
+    guessNextPages();
 }
