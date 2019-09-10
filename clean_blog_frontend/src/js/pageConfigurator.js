@@ -78,8 +78,8 @@ export default function configure() {
      guessNextPages();   
 
      // codeハイライトのの折り返し箇所に、
-     document.addEventListener("DOMContentLoaded", function(event) {
-        function wrap() {
+     document.addEventListener("load", function(event) {
+          function wrap() {
             this.querySelector('pre').setAttribute("style", "overflow-x:visible; white-space:pre-wrap");
             this.querySelector('a').textContent = '［コードを折り返さないで表示］';
             this.onclick = unWrap.bind(this);
