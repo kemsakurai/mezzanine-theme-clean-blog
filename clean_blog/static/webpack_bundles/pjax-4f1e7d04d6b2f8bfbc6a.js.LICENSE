@@ -63,8 +63,6 @@ Copyright © 2018 Basecamp, LLC
 
 /*#__PURE__*/
 
-// ES6
-
 // Turbolinksで遷移した場合の初期化処理
 
 // Turbolinks処理開始
