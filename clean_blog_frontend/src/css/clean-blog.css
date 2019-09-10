@@ -751,3 +751,9 @@ img {
     max-width: 100%;
     height: auto;
 }
+.codeWrap {
+    margin-top: -0.5em;
+    font-size: 81.25%;
+    text-align: right;
+    background: #fff;
+}
