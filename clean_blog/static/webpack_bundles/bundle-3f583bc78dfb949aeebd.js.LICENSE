@@ -481,6 +481,10 @@
 
 // POST 送信の場合は Content-Type は固定.
 
+// codeハイライトのの折り返し箇所に、     
+
+// 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
+
 // CONCATENATED MODULE: ./js/index.js
 
 // Our service worker won't work if PUBLIC_URL is on a different origin
@@ -501,10 +505,6 @@
 
 // Is not local host. Just register service worker
 
-// codeハイライトのの折り返し箇所に、     
-
 // Optimize.activate!!!
 
 // Setup a listener to track Add to Homescreen events.
-
-// 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)

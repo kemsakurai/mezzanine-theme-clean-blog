@@ -68,6 +68,7 @@ function wrapCodeHighlight () {
         var elem = elems[i];
         // 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
         if(elem.clientWidth < elem.scrollWidth) {
+            elem.tabIndex = 0;
             var parentDiv = document.createElement('div');
             parentDiv.className = "codeWrap";
             var childHref = document.createElement('a');
@@ -76,6 +77,7 @@ function wrapCodeHighlight () {
             parentDiv.appendChild(childHref);
             elem.parentNode.insertBefore(parentDiv, elem);
             elem.parentNode.onclick = wrap.bind(elem.parentNode);
+            
         }
     }
 }
