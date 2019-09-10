@@ -97,6 +97,8 @@ export default function configure() {
           for (var i = 0; i < elems.length; i++) {
               var elem = elems[i];
               // 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
+              console.log(elem.clientWidth, "elem.clientWidth");
+              console.log(elem.scrollWidth, "elem.scrollWidth");
               if(elem.clientWidth < elem.scrollWidth) {
                   var parentDiv = document.createElement('div');
                   parentDiv.className = "codeWrap";
