@@ -1,7 +1,8 @@
 import Turbolinks from 'turbolinks';
 
-let previousUrl;
-
+function currentScrollPercentage() {
+    return ((document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100);
+}
 function pushPageExit(url) {
   performance.mark('pageExit');
   let timeOnPage = performance.measure('timeOnPage', 'pageStart', 'pageExit').duration / 1000;
@@ -9,9 +10,11 @@ function pushPageExit(url) {
   dataLayer.push({
     event: 'pageExit',
     exitUrl: url,
-    timeOnPage: timeOnPage
+    timeOnPage: timeOnPage,
+    scrollPercentage: currentScrollPercentage()
   });
 }
+let previousUrl;
 // Turbolinksで遷移した場合の初期化処理
 document.addEventListener('turbolinks:load', function(event) {
   let url = event.data.url;
@@ -36,8 +39,8 @@ document.addEventListener('beforeunload', function() {
     pushPageExit(url);
 });
 document.addEventListener('popstate', function(e){
-    if (previusUrl) {
-      pushPageExit(previusUrl);
+    if (previousUrl) {
+      pushPageExit(previousUrl);
     }
 });
 // Turbolinks処理開始
