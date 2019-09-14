@@ -15,6 +15,10 @@ function pushPageExit(url) {
   });
 }
 let previousUrl;
+document.addEventListener('DOMContentLoaded', function() {
+  previousUrl = event.data.url;
+  performance.mark('pageStart');
+});
 // Turbolinksで遷移した場合の初期化処理
 document.addEventListener('turbolinks:load', function(event) {
   let url = event.data.url;
@@ -29,7 +33,6 @@ document.addEventListener('turbolinks:load', function(event) {
   previousUrl = event.data.url;
   performance.mark('pageStart');
 });
-
 document.addEventListener("turbolinks:visit", function(event){
     var url = event.data.url;
     pushPageExit(url);
