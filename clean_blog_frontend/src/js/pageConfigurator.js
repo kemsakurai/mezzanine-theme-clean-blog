@@ -62,7 +62,6 @@ function wrapCodeHighlight () {
         this.onclick = wrap.bind(this);
         return false;
     }
-
     var elems = document.querySelectorAll('pre');
     for (var i = 0; i < elems.length; i++) {
         var elem = elems[i];
@@ -75,9 +74,10 @@ function wrapCodeHighlight () {
             childHref.href = "javascript:void(0)";
             childHref.textContent = "［コードを折り返して表示］";
             parentDiv.appendChild(childHref);
-            elem.parentNode.insertBefore(parentDiv, elem);
-            elem.parentNode.onclick = wrap.bind(elem.parentNode);
-            
+            if(elem.parentNode) {
+                elem.parentNode.insertBefore(parentDiv, elem);
+                elem.parentNode.onclick = wrap.bind(elem.parentNode);
+            }
         }
     }
 }
