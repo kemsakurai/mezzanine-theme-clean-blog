@@ -16,7 +16,7 @@ function pushPageExit(url) {
 }
 let previousUrl;
 document.addEventListener('DOMContentLoaded', function() {
-  previousUrl = event.data.url;
+  previousUrl = location.href;
   performance.mark('pageStart');
 });
 // Turbolinksで遷移した場合の初期化処理
