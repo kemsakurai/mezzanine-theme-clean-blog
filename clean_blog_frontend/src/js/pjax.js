@@ -5,14 +5,20 @@ function currentScrollPercentage() {
 }
 function pushPageExit(url) {
   performance.mark('pageExit');
-  let timeOnPage = performance.measure('timeOnPage', 'pageStart', 'pageExit').duration / 1000;
-  performance.clearMarks('timeOnPage');
+  let timeOnPage;
+  try {
+    timeOnPage = performance.measure('timeOnPage', 'pageStart', 'pageExit').duration / 1000;
+  } catch (e) {
+    timeOnPage = performance.measure('timeOnPage', undefined, 'pageExit').duration / 1000;
+  }
   dataLayer.push({
     event: 'pageExit',
     exitUrl: url,
     timeOnPage: timeOnPage,
     scrollPercentage: currentScrollPercentage()
   });
+  performance.clearMarks();
+  performance.clearMeasures();  
 }
 let previousUrl;
 document.addEventListener('DOMContentLoaded', function() {
