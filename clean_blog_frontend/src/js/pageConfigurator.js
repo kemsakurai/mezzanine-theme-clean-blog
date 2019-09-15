@@ -62,6 +62,7 @@ function wrapCodeHighlight () {
         this.onclick = wrap.bind(this);
         return false;
     }
+
     var elems = document.querySelectorAll('pre');
     for (var i = 0; i < elems.length; i++) {
         var elem = elems[i];
