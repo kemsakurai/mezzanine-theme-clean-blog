@@ -4,10 +4,6 @@ from mezzanine.blog.models import BlogCategory
 from mezzanine.blog.models import BlogPost
 from django import template
 
-register = template.Library()
-
-
-
 # Create your views here.
 class CategoriesView(TemplateView):
     template_name = "pages/categories.html"
