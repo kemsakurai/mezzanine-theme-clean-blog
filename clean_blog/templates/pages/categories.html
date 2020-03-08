@@ -18,7 +18,7 @@
                     <ul>
                         {% for post in posts %}
                             <li>
-                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> - {{ post.publish_date|date:'Y-m-d' }}
                             </li>
                         {% endfor %}
                     </ul>
