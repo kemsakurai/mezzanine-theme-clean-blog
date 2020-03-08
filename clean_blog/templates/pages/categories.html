@@ -1,0 +1,32 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags %}
+
+{% block extra_head %}
+    {% include "blog/includes/google_adsense_script.html" %}
+{% endblock %}
+
+{% block main %}{{ block.super }}
+    <section class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% for category, posts in category_posts_rel %}
+                <details>
+                    <summary>
+                        <a href="{{ category.get_absolute_url }}">{{ category }} ({{ posts|length }})</a>
+                    </summary>
+                    <ul>
+                        {% for post in posts %}
+                            <li>
+                                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            {% empty %}
+                カテゴリーが登録されていません。     
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
