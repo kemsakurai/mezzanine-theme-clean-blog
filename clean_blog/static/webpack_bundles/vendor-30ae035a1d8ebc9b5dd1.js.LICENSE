@@ -205,8 +205,6 @@
 
 // Instance-specific data
 
-// General-purpose constants
-
 // Instance methods
 
 // Use a stripped-down indexOf as it's faster than native
