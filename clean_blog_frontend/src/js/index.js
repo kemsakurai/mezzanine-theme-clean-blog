@@ -6,6 +6,7 @@ import '../css/font-awesome.optimized.css';
 import '../css/fonts.css';
 import './bootstrap.js';
 import './clean-blog.js';
+import 'details-polyfill-es6';
 
 import registerServiceWorker from './registerServiceWorker.js';
 registerServiceWorker();
