@@ -18,7 +18,7 @@
                     <ul>
                         {% for post in posts %}
                             <li>
-                                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>
