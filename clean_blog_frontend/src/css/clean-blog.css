@@ -762,3 +762,7 @@ summary {
     font-weight: 800;
     font-size: 20px
 }
+
+.blog-content > ul > li {
+    line-height: 250%;
+}
