@@ -763,6 +763,6 @@ summary {
     font-size: 20px
 }
 
-.blog-content > ul > li {
-    line-height: 250%;
+.blog-item ul > li {
+    line-height: 220%;
 }
