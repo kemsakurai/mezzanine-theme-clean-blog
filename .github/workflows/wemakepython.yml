@@ -1,0 +1,10 @@
+name: wemakepython
+on: push
+jobs:
+  wemake:
+      runs-on: ubuntu-latest
+      steps:
+        - name: wemake-python-styleguide
+          uses: wemake-services/wemake-python-styleguide@0.14.0
+          with:
+            path: './clean_blog'
