@@ -7,4 +7,4 @@ jobs:
         - name: wemake-python-styleguide
           uses: wemake-services/wemake-python-styleguide@0.14.0
           with:
-            path: './clean_blog'
+            path: './clean_blog/'
