@@ -1,9 +1,3 @@
 {% if settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID and settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID %}
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID}}",
-            enable_page_level_ads: true
-        });
-    </script>
+    <script data-ad-client="{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID}}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 {% endif %}

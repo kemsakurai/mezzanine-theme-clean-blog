@@ -104,13 +104,13 @@
 
 // Get references to everything we're interested in
 
-// create message container if not exists
-
 // =============================================================
 
 //                                     SNIFF HTML FOR VALIDATORS
 
 // *snort sniff snuffle*
+
+// create message container if not exists
 
 // ---------------------------------------------------------
 
@@ -193,13 +193,13 @@
 // remove all elements we created
 
 /**
-   * Thanks to Jason Bunting via StackOverflow.com
-   *
-   * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
-   * Short link: http://tinyurl.com/executeFunctionByName
-   **/
+     * Thanks to Jason Bunting via StackOverflow.com
+     *
+     * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
+     * Short link: http://tinyurl.com/executeFunctionByName
+     **/
 
-/*, args*/
+/* , args*/
 
 // Timeout is set to avoid problems with the events being considered 'already fired'
 
@@ -221,8 +221,8 @@
 
 // Success message
 
-//clear all fields
+// clear all fields
 
 // Fail message
 
-/*When clicking on Full hide fail/success boxes */
+/* When clicking on Full hide fail/success boxes */

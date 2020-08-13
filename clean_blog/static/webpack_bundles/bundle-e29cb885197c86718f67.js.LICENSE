@@ -96,7 +96,7 @@
 
 /* WEBPACK VAR INJECTION */
 
-/*!
+/* !
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under the MIT license
@@ -290,7 +290,7 @@
 
 /* 16 */
 
-/*!
+/* !
  * Clean Blog v1.0.0 (http://startbootstrap.com)
  * Copyright 2014 Start Bootstrap
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
@@ -310,11 +310,11 @@
 
 // Success message
 
-//clear all fields
+// clear all fields
 
 // Fail message
 
-/*When clicking on Full hide fail/success boxes */
+/* When clicking on Full hide fail/success boxes */
 
 // jqBootstrapValidation
 
@@ -344,13 +344,13 @@
 
 // Get references to everything we're interested in
 
-// create message container if not exists
-
 // =============================================================
 
 //                                     SNIFF HTML FOR VALIDATORS
 
 // *snort sniff snuffle*
+
+// create message container if not exists
 
 // ---------------------------------------------------------
 
@@ -433,13 +433,13 @@
 // remove all elements we created
 
 /**
-   * Thanks to Jason Bunting via StackOverflow.com
-   *
-   * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
-   * Short link: http://tinyurl.com/executeFunctionByName
-   **/
+     * Thanks to Jason Bunting via StackOverflow.com
+     *
+     * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
+     * Short link: http://tinyurl.com/executeFunctionByName
+     **/
 
-/*, args*/
+/* , args*/
 
 // Timeout is set to avoid problems with the events being considered 'already fired'
 
@@ -449,13 +449,13 @@
 
 // Navigation Scripts to Show Header on Scroll-Up
 
-//primary navigation slide-in effect
+// primary navigation slide-in effect
 
-//check if user is scrolling up
+// check if user is scrolling up
 
-//if scrolling up...
+// if scrolling up...
 
-//if scrolling down...
+// if scrolling down...
 
 /* 17 */
 
@@ -485,7 +485,7 @@
 
 // POST 送信の場合は Content-Type は固定.
 
-// codeハイライトのの折り返し箇所に、     
+// codeハイライトのの折り返し箇所に、
 
 // 実際のコンテンツが表示幅よりも大きい場合(スクロールバーが表示される場合)
 

@@ -1,7 +1,7 @@
 import Turbolinks from 'turbolinks';
 
 function currentScrollPercentage() {
-    return ((document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100);
+  return ((document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100);
 }
 function pushPageExit(url) {
   performance.mark('pageExit');
@@ -15,10 +15,10 @@ function pushPageExit(url) {
     event: 'pageExit',
     exitUrl: url,
     timeOnPage: timeOnPage,
-    scrollPercentage: currentScrollPercentage()
+    scrollPercentage: currentScrollPercentage(),
   });
   performance.clearMarks();
-  performance.clearMeasures();  
+  performance.clearMeasures();
 }
 let previousUrl;
 document.addEventListener('DOMContentLoaded', function() {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Turbolinksで遷移した場合の初期化処理
 document.addEventListener('turbolinks:load', function(event) {
-  let url = event.data.url;
+  const url = event.data.url;
   dataLayer.push({
     'event': 'turbolinks_load_pageView',
     'virtualUrl': url,
@@ -39,18 +39,18 @@ document.addEventListener('turbolinks:load', function(event) {
   previousUrl = event.data.url;
   performance.mark('pageStart');
 });
-document.addEventListener("turbolinks:visit", function(event){
-    var url = event.data.url;
-    pushPageExit(url);
-})
-document.addEventListener('beforeunload', function() {
-    let url = location.href;
-    pushPageExit(url);
+document.addEventListener('turbolinks:visit', function(event) {
+  const url = event.data.url;
+  pushPageExit(url);
 });
-document.addEventListener('popstate', function(e){
-    if (previousUrl) {
-      pushPageExit(previousUrl);
-    }
+document.addEventListener('beforeunload', function() {
+  const url = location.href;
+  pushPageExit(url);
+});
+document.addEventListener('popstate', function(e) {
+  if (previousUrl) {
+    pushPageExit(previousUrl);
+  }
 });
 // Turbolinks処理開始
 Turbolinks.start();
