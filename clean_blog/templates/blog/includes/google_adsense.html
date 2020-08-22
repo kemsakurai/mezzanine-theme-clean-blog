@@ -1,4 +1,7 @@
+{% load mezzanine_tags %}
+{% nevercache %}
 {% if settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID and settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID %}
+    {% if request.geo_data is None or request.geo_data == "JP" %}
     <div class="blog-item">
         <!-- blog本文下の広告 -->
         <ins class="adsbygoogle"
@@ -11,4 +14,6 @@
         </script>
         <hr>
     </div>
+    {% endif %}
 {% endif %}
+{% endnevercache %}

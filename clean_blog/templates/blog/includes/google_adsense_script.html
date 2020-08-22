@@ -1,3 +1,8 @@
+{% load mezzanine_tags %}
+{% nevercache %}
 {% if settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID and settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID %}
-    <script data-ad-client="{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID}}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {% if request.geo_data is None or request.geo_data == "JP" %}
+        <script data-ad-client="{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID}}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    {% endif %}
 {% endif %}
+{% endnevercache %}
