@@ -55,14 +55,12 @@ function wrapCodeHighlight() {
     this.onclick = unWrap.bind(this);
     return false;
   }
-
   function unWrap() {
     this.querySelector('pre').setAttribute('style', 'overflow-x:auto; white-space:pre');
     this.querySelector('a').textContent = '［コードを折り返して表示］';
     this.onclick = wrap.bind(this);
     return false;
   }
-
   const elems = document.querySelectorAll('pre');
   for (let i = 0; i < elems.length; i++) {
     const elem = elems[i];
