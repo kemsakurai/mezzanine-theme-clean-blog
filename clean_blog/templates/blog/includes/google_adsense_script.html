@@ -1,7 +1,7 @@
 {% load mezzanine_tags %}
 {% nevercache %}
 {% if settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID and settings.CLEAN_BLOG_GOOGLE_ADS_SLOT_ID %}
-    {% if request.geo_data is None or request.geo_data == "JP" %}
+    {% if request.geo_data is None or request.geo_data.country_code == "JP" %}
         <script data-ad-client="{{settings.CLEAN_BLOG_GOOGLE_ADS_CLIENT_ID}}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-turbolinks-eval="false"></script>
     {% endif %}
 {% endif %}
