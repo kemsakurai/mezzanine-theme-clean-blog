@@ -13,7 +13,6 @@ module.exports = {
   context: __dirname + '/src',
   entry: {
     pjax: ['./js/pjax.js'],
-    contact: ['./js/contact.js'],
     bundle: ['./js/index.js'],
   },
   output: {

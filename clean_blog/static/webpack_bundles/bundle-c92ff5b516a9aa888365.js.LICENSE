@@ -68,7 +68,11 @@
 
 /* 4 */
 
+/***/
+
 /* 5 */
+
+// extracted by mini-css-extract-plugin
 
 /* 6 */
 
@@ -76,23 +80,11 @@
 
 /* 8 */
 
-/***/
-
 /* 9 */
-
-// extracted by mini-css-extract-plugin
 
 /* 10 */
 
 /* 11 */
-
-/* 12 */
-
-/* 13 */
-
-/* 14 */
-
-/* 15 */
 
 /* WEBPACK VAR INJECTION */
 
@@ -288,164 +280,13 @@
 
 // AFFIX DATA-API
 
-/* 16 */
+/* 12 */
 
 /* !
  * Clean Blog v1.0.0 (http://startbootstrap.com)
  * Copyright 2014 Start Bootstrap
  * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
  */
-
-// Contact Form Scripts
-
-// additional error messages or events
-
-// prevent default submit behaviour
-
-// get values from FORM
-
-// For Success/Failure Message
-
-// Check for white space in name for Success/Fail message
-
-// Success message
-
-// clear all fields
-
-// Fail message
-
-/* When clicking on Full hide fail/success boxes */
-
-// jqBootstrapValidation
-
-// * A plugin for automating validation on Twitter Bootstrap formatted forms.
-
-// *
-
-// * v1.3.6
-
-// * License: MIT <http://opensource.org/licenses/mit-license.php> - see LICENSE file
-
-// * http://ReactiveRaven.github.com/jqBootstrapValidation/
-
-// sniff for 'required', 'maxlength', etc
-
-// stop the form submit event from firing if validation fails
-
-// function called if there is an error when trying to submit
-
-// function called just before a successful submit event is sent to the server
-
-// set to true to tidy up generated HTML output
-
-// return $(this).is(":visible"); // only validate elements you can see
-
-// validate everything
-
-// Get references to everything we're interested in
-
-// =============================================================
-
-//                                     SNIFF HTML FOR VALIDATORS
-
-// *snort sniff snuffle*
-
-// create message container if not exists
-
-// ---------------------------------------------------------
-
-//                                                   PATTERN
-
-//                                                       MAX
-
-//                                                       MIN
-
-//                                                 MAXLENGTH
-
-//                                                 MINLENGTH
-
-//                                                  REQUIRED
-
-//                                                    NUMBER
-
-//                                                     EMAIL
-
-//                                                MINCHECKED
-
-//                                                MAXCHECKED
-
-//                                       COLLECT VALIDATOR NAMES
-
-// Get named validators
-
-// Get extra ones defined on the element's data attributes
-
-//                                     NORMALISE VALIDATOR NAMES
-
-// Uppercase only the first letter of each name
-
-// Remove duplicate validator names
-
-// Pull out the new validator names from each shortcut
-
-// Are these custom validators?
-
-// Pull them out!
-
-// Is this a recognised built-in?
-
-// Pull it out!
-
-//                                       SET UP VALIDATOR ARRAYS
-
-// Set up the 'override' message
-
-//                                         STORE FALLBACK VALUES
-
-//                                                    VALIDATION
-
-// Get a list of the errors to apply
-
-//                                             WATCH FOR CHANGES
-
-// Were there any errors?
-
-// Better flag it up as a warning.
-
-// How many errors did we find?
-
-// Only one? Being strict? Just output it.
-
-// Multiple? Being sloppy? Glue them together into an UL.
-
-// remove our events
-
-// events are namespaced.
-
-// reset help text
-
-// reset classes
-
-// reset aria
-
-// reset role
-
-// remove all elements we created
-
-/**
-     * Thanks to Jason Bunting via StackOverflow.com
-     *
-     * http://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string#answer-359910
-     * Short link: http://tinyurl.com/executeFunctionByName
-     **/
-
-/* , args*/
-
-// Timeout is set to avoid problems with the events being considered 'already fired'
-
-// Extract the value we're talking about
-
-// Floating label headings for the contact form
 
 // Navigation Scripts to Show Header on Scroll-Up
 
@@ -457,9 +298,9 @@
 
 // if scrolling down...
 
-/* 17 */
+/* 13 */
 
-/* 18 */
+/* 14 */
 
 // ESM COMPAT FLAG
 
