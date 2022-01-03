@@ -24,7 +24,9 @@
     <link rel="preload" href="{% static "img/home-bg-1600.jpg" %}" as="image" media="(min-width: 768px)">
     <link rel="manifest" href="{% static "webpack_bundles/manifest.json" %}"/>
     <link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}"/>
-    <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
+    {% if settings.USE_AMP %}
+        <link rel="amphtml" href="{{ request.get_full_path |to_amp_url }}">
+    {% else %}
     <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
     {% block extra_ogp %}{% endblock %}
     {% ifinstalled mezzanine.blog %}
