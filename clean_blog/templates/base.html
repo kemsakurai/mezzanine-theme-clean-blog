@@ -2,7 +2,7 @@
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n static clean_blog_tags %}
 {% ifinstalled critical %}
-{% load critical %}
+    {% load critical %}
 {% endifinstalled %}
 {% load render_bundle from webpack_loader %}
 <head>
@@ -35,13 +35,15 @@
     {% endifinstalled %}
     {% ifinstalled critical %}
         {% critical %}
-            {% if settings.BUNDLE_CSS_SRI %}
-                {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
-                    {% render_bundle 'bundle' 'css' attrs=attrs_str %}
-                {% endwith %}
-            {% else %}
-                {% render_bundle 'bundle' 'css' %}
-            {% endif %}
+    {% endifinstalled %}
+    {% if settings.BUNDLE_CSS_SRI %}
+        {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
+            {% render_bundle 'bundle' 'css' attrs=attrs_str %}
+        {% endwith %}
+    {% else %}
+        {% render_bundle 'bundle' 'css' %}
+    {% endif %}
+    {% ifinstalled critical %}
         {% endcritical %}
     {% endifinstalled %}
     {% if request.user.is_staff %}
