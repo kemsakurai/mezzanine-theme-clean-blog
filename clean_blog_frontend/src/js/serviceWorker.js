@@ -13,6 +13,7 @@ self.__precacheManifest = (self.__precacheManifest || self.__WB_MANIFEST).concat
     'url': '/static/img/home-bg-1600.jpg',
   },
 ]);
+
 precacheAndRoute(__precacheManifest);
 
 // -------------------------------------------------------

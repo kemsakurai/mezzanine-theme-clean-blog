@@ -44,7 +44,7 @@
     "webpack-cli": "^4.10.0",
     "webpack-merge": "^5.8.0",
     "webpack-pwa-manifest": "^4.3.0",
-    "webpack-stats-plugin": "^1.1.0",
+    "webpack-stats-plugin": "^0.3.2",
     "webpack-subresource-integrity": "^5.1.0"
   },
   "dependencies": {
