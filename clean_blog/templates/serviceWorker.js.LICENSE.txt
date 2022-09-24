@@ -1,0 +1,1308 @@
+/*
+  Copyright 2018 Google LLC
+
+  Use of this source code is governed by an MIT-style
+  license that can be found in the LICENSE file or at
+  https://opensource.org/licenses/MIT.
+*/
+
+/*
+  Copyright 2019 Google LLC
+
+  Use of this source code is governed by an MIT-style
+  license that can be found in the LICENSE file or at
+  https://opensource.org/licenses/MIT.
+*/
+
+/*
+  Copyright 2019 Google LLC
+  Use of this source code is governed by an MIT-style
+  license that can be found in the LICENSE file or at
+  https://opensource.org/licenses/MIT.
+*/
+
+/*
+  Copyright 2020 Google LLC
+
+  Use of this source code is governed by an MIT-style
+  license that can be found in the LICENSE file or at
+  https://opensource.org/licenses/MIT.
+*/
+
+/*
+  Copyright 2020 Google LLC
+  Use of this source code is governed by an MIT-style
+  license that can be found in the LICENSE file or at
+  https://opensource.org/licenses/MIT.
+*/
+
+/*
+ * This method throws if the supplied value is not an array.
+ * The destructed values are required to produce a meaningful error for users.
+ * The destructed and restructured object is so it's clear what is
+ * needed.
+ */
+
+/* eslint-disable */
+
+/* eslint-enable */
+
+/**
+         * Cache name to store and retrieve
+         * requests. Defaults to the cache names provided by
+         * {@link workbox-core.cacheNames}.
+         *
+         * @type {string}
+         */
+
+/**
+         * The
+         * [`CacheQueryOptions`]{@link https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions}
+         * for any `cache.match()` or `cache.put()` calls made by this strategy.
+         *
+         * @type {Object}
+         */
+
+/**
+         * The list
+         * [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
+         * used by this strategy.
+         *
+         * @type {Array<Object>}
+         */
+
+/**
+         * Values passed along to the
+         * [`init`]{@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters}
+         * of all fetch() requests made by this strategy.
+         *
+         * @type {Object}
+         */
+
+/**
+     *
+     * @param {Object} [options]
+     * @param {string} [options.cacheName] Cache name to store and retrieve
+     * requests. Defaults to the cache names provided by
+     * {@link workbox-core.cacheNames}.
+     * @param {Array<Object>} [options.plugins] {@link https://developers.google.com/web/tools/workbox/guides/using-plugins|Plugins}
+     * to use in conjunction with this caching strategy.
+     * @param {Object} [options.fetchOptions] Values passed along to the
+     * {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters|init}
+     * of all fetch() requests made by this strategy.
+     * @param {Object} [options.matchOptions] The
+     * {@link https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions|CacheQueryOptions}
+     * for any `cache.match()` or `cache.put()` calls made by this strategy.
+     * @param {boolean} [options.fallbackToNetwork=true] Whether to attempt to
+     * get the response from the network if there's a precache miss.
+     */
+
+/**
+     *
+     * @param {string} errorCode The error code that
+     * identifies this particular error.
+     * @param {Object=} details Any relevant arguments
+     * that will help developers identify issues should
+     * be added as a key on the context object.
+     */
+
+/**
+     *
+     * @param {workbox-routing-handlerCallback} handler A callback
+     * function that returns a Promise resolving to a Response
+     */
+
+/**
+     * @param {PrecacheController} precacheController A `PrecacheController`
+     * instance used to both match requests and respond to fetch events.
+     * @param {Object} [options] Options to control how requests are matched
+     * against the list of precached URLs.
+     * @param {string} [options.directoryIndex=index.html] The `directoryIndex` will
+     * check cache entries for a URLs ending with '/' to see if there is a hit when
+     * appending the `directoryIndex` value.
+     * @param {Array<RegExp>} [options.ignoreURLParametersMatching=[/^utm_/, /^fbclid$/]] An
+     * array of regex's to remove search params when looking for a cache match.
+     * @param {boolean} [options.cleanURLs=true] The `cleanURLs` option will
+     * check the cache for the URL with a `.html` added to the end of the end.
+     * @param {workbox-precaching~urlManipulation} [options.urlManipulation]
+     * This is a function that should take a URL and return an array of
+     * alternative URLs that should be checked for precache matches.
+     */
+
+/**
+     * @param {string} url A cache key whose SRI you want to look up.
+     * @return {string} The subresource integrity associated with the cache key,
+     * or undefined if it's not set.
+     */
+
+/**
+     * @private
+     * @param {Request|string} request A request to run this strategy for.
+     * @param {workbox-strategies.StrategyHandler} handler The event that
+     *     triggered the request.
+     * @return {Promise<Response>}
+     */
+
+/**
+     * @return {Map<string, Array<workbox-routing.Route>>} routes A `Map` of HTTP
+     * method name ('GET', etc.) to an array of all the corresponding `Route`
+     * instances that are registered.
+     */
+
+/**
+     * @type {workbox-precaching.PrecacheStrategy} The strategy created by this controller and
+     * used to cache assets and respond to fetch events.
+     */
+
+/**
+     * Accepts a callback and returns an iterable of matching plugin callbacks,
+     * where each callback is wrapped with the current handler state (i.e. when
+     * you call each callback, whatever object parameter you pass it will
+     * be merged with the plugin's current state).
+     *
+     * @param {string} name The name fo the callback to run
+     * @return {Array<Function>}
+     */
+
+/**
+     * Adds a fetch event listener to respond to events when a route matches
+     * the event's request.
+     */
+
+/**
+     * Adds a message event listener for URLs to cache from the window.
+     * This is useful to cache resources loaded on the page prior to when the
+     * service worker started controlling it.
+     *
+     * The format of the message data sent from the window should be as follows.
+     * Where the `urlsToCache` array may consist of URL strings or an array of
+     * URL string + `requestInit` object (the same as you'd pass to `fetch()`).
+     *
+     * ```
+     * {
+     *   type: 'CACHE_URLS',
+     *   payload: {
+     *     urlsToCache: [
+     *       './script1.js',
+     *       './script2.js',
+     *       ['./script3.js', {mode: 'no-cors'}],
+     *     ],
+     *   },
+     * }
+     * ```
+     */
+
+/**
+     * Adds a promise to the
+     * [extend lifetime promises]{@link https://w3c.github.io/ServiceWorker/#extendableevent-extend-lifetime-promises}
+     * of the event event associated with the request being handled (usually a
+     * `FetchEvent`).
+     *
+     * Note: you can await
+     * {@link workbox-strategies.StrategyHandler~doneWaiting}
+     * to know when all added promises have settled.
+     *
+     * @param {Promise} promise A promise to add to the extend lifetime promises
+     *     of the event that triggered the request.
+     */
+
+/**
+     * Adds items to the precache list, removing any duplicates and
+     * stores the files in the
+     * {@link workbox-core.cacheNames|"precache cache"} when the service
+     * worker installs.
+     *
+     * This method can be called multiple times.
+     *
+     * @param {Array<Object|string>} [entries=[]] Array of entries to precache.
+     */
+
+/**
+     * Apply the routing rules to a FetchEvent object to get a Response from an
+     * appropriate Route's handler.
+     *
+     * @param {Object} options
+     * @param {Request} options.request The request to handle.
+     * @param {ExtendableEvent} options.event The event that triggered the
+     *     request.
+     * @return {Promise<Response>|undefined} A promise is returned if a
+     *     registered route can handle the request. If there is no matching
+     *     route and there's no `defaultHandler`, `undefined` is returned.
+     */
+
+/**
+     * Calls `this.fetch()` and (in the background) runs `this.cachePut()` on
+     * the response generated by `this.fetch()`.
+     *
+     * The call to `this.cachePut()` automatically invokes `this.waitUntil()`,
+     * so you do not have to manually call `waitUntil()` on the event.
+     *
+     * @param {Request|string} input The request or URL to fetch and cache.
+     * @return {Promise<Response>}
+     */
+
+/**
+     * Checks a request and URL (and optionally an event) against the list of
+     * registered routes, and if there's a match, returns the corresponding
+     * route along with any params generated by the match.
+     *
+     * @param {Object} options
+     * @param {URL} options.url
+     * @param {boolean} options.sameOrigin The result of comparing `url.origin`
+     *     against the current origin.
+     * @param {Request} options.request The request to match.
+     * @param {Event} options.event The corresponding event.
+     * @return {Object} An object with `route` and `params` properties.
+     *     They are populated if a matching route was found or `undefined`
+     *     otherwise.
+     */
+
+/**
+     * Checks the list of plugins for the `cacheKeyWillBeUsed` callback, and
+     * executes any of those callbacks found in sequence. The final `Request`
+     * object returned by the last plugin is treated as the cache key for cache
+     * reads and/or writes. If no `cacheKeyWillBeUsed` plugin callbacks have
+     * been registered, the passed request is returned unmodified
+     *
+     * @param {Request} request
+     * @param {string} mode
+     * @return {Promise<Request>}
+     */
+
+/**
+     * Constructor for Route class.
+     *
+     * @param {workbox-routing~matchCallback} match
+     * A callback function that determines whether the route matches a given
+     * `fetch` event by returning a non-falsy value.
+     * @param {workbox-routing~handlerCallback} handler A callback
+     * function that returns a Promise resolving to a Response.
+     * @param {string} [method='GET'] The HTTP method to match the Route
+     * against.
+     */
+
+/**
+     * Create a new PrecacheController.
+     *
+     * @param {Object} [options]
+     * @param {string} [options.cacheName] The cache to use for precaching.
+     * @param {string} [options.plugins] Plugins to use when precaching as well
+     * as responding to fetch events for precached assets.
+     * @param {boolean} [options.fallbackToNetwork=true] Whether to attempt to
+     * get the response from the network if there's a precache miss.
+     */
+
+/**
+     * Creates a new instance associated with the passed strategy and event
+     * that's handling the request.
+     *
+     * The constructor also initializes the state that will be passed to each of
+     * the plugins handling this request.
+     *
+     * @param {workbox-strategies.Strategy} strategy
+     * @param {Object} options
+     * @param {Request|string} options.request A request to run this strategy for.
+     * @param {ExtendableEvent} options.event The event associated with the
+     *     request.
+     * @param {URL} [options.url]
+     * @param {*} [options.params] The return value from the
+     *     {@link workbox-routing~matchCallback} (if applicable).
+     */
+
+/**
+     * Creates a new instance of the strategy and sets all documented option
+     * properties as public instance properties.
+     *
+     * Note: if a custom strategy class extends the base Strategy class and does
+     * not need more than these properties, it does not need to define its own
+     * constructor.
+     *
+     * @param {Object} [options]
+     * @param {string} [options.cacheName] Cache name to store and retrieve
+     * requests. Defaults to the cache names provided by
+     * {@link workbox-core.cacheNames}.
+     * @param {Array<Object>} [options.plugins] [Plugins]{@link https://developers.google.com/web/tools/workbox/guides/using-plugins}
+     * to use in conjunction with this caching strategy.
+     * @param {Object} [options.fetchOptions] Values passed along to the
+     * [`init`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters)
+     * of [non-navigation](https://github.com/GoogleChrome/workbox/issues/1796)
+     * `fetch()` requests made by this strategy.
+     * @param {Object} [options.matchOptions] The
+     * [`CacheQueryOptions`]{@link https://w3c.github.io/ServiceWorker/#dictdef-cachequeryoptions}
+     * for any `cache.match()` or `cache.put()` calls made by this strategy.
+     */
+
+/**
+     * Creates a promise and exposes its resolve and reject functions as methods.
+     */
+
+/**
+     * Define a default `handler` that's called when no routes explicitly
+     * match the incoming request.
+     *
+     * Each HTTP method ('GET', 'POST', etc.) gets its own default handler.
+     *
+     * Without a default handler, unmatched requests will go against the
+     * network as if there were no service worker present.
+     *
+     * @param {workbox-routing~handlerCallback} handler A callback
+     * function that returns a Promise resulting in a Response.
+     * @param {string} [method='GET'] The HTTP method to associate with this
+     * default handler. Each method has its own default.
+     */
+
+/**
+     * Deletes assets that are no longer present in the current precache manifest.
+     * Call this method from the service worker activate event.
+     *
+     * Note: this method calls `event.waitUntil()` for you, so you do not need
+     * to call it yourself in your event handlers.
+     *
+     * @param {ExtendableEvent} event
+     * @return {Promise<workbox-precaching.CleanupResult>}
+     */
+
+/**
+     * Fetches a given request (and invokes any applicable plugin callback
+     * methods) using the `fetchOptions` (for non-navigation requests) and
+     * `plugins` defined on the `Strategy` object.
+     *
+     * The following plugin lifecycle methods are invoked when using this method:
+     * - `requestWillFetch()`
+     * - `fetchDidSucceed()`
+     * - `fetchDidFail()`
+     *
+     * @param {Request|string} input The URL or request to fetch.
+     * @return {Promise<Response>}
+     */
+
+/**
+     * If a Route throws an error while handling a request, this `handler`
+     * will be called and given a chance to provide a response.
+     *
+     * @param {workbox-routing~handlerCallback} handler A callback
+     * function that returns a Promise resulting in a Response.
+     */
+
+/**
+     * If the regular expression contains
+     * [capture groups]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#grouping-back-references},
+     * the captured values will be passed to the
+     * {@link workbox-routing~handlerCallback} `params`
+     * argument.
+     *
+     * @param {RegExp} regExp The regular expression to match against URLs.
+     * @param {workbox-routing~handlerCallback} handler A callback
+     * function that returns a Promise resulting in a Response.
+     * @param {string} [method='GET'] The HTTP method to match the Route
+     * against.
+     */
+
+/**
+     * Initializes a new Router.
+     */
+
+/**
+     * Matches a request from the cache (and invokes any applicable plugin
+     * callback methods) using the `cacheName`, `matchOptions`, and `plugins`
+     * defined on the strategy object.
+     *
+     * The following plugin lifecycle methods are invoked when using this method:
+     * - cacheKeyWillByUsed()
+     * - cachedResponseWillByUsed()
+     *
+     * @param {Request|string} key The Request or URL to use as the cache key.
+     * @return {Promise<Response|undefined>} A matching response, if found.
+     */
+
+/**
+     * Perform a request strategy and returns a `Promise` that will resolve with
+     * a `Response`, invoking all relevant plugin callbacks.
+     *
+     * When a strategy instance is registered with a Workbox
+     * {@link workbox-routing.Route}, this method is automatically
+     * called when the route matches.
+     *
+     * Alternatively, this method can be used in a standalone `FetchEvent`
+     * listener by passing it to `event.respondWith()`.
+     *
+     * @param {FetchEvent|Object} options A `FetchEvent` or an object with the
+     *     properties listed below.
+     * @param {Request|string} options.request A request to run this strategy for.
+     * @param {ExtendableEvent} options.event The event associated with the
+     *     request.
+     * @param {URL} [options.url]
+     * @param {*} [options.params]
+     */
+
+/**
+     * Precaches new and updated assets. Call this method from the service worker
+     * install event.
+     *
+     * Note: this method calls `event.waitUntil()` for you, so you do not need
+     * to call it yourself in your event handlers.
+     *
+     * @param {ExtendableEvent} event
+     * @return {Promise<workbox-precaching.InstallResult>}
+     */
+
+/**
+     * Puts a request/response pair in the cache (and invokes any applicable
+     * plugin callback methods) using the `cacheName` and `plugins` defined on
+     * the strategy object.
+     *
+     * The following plugin lifecycle methods are invoked when using this method:
+     * - cacheKeyWillByUsed()
+     * - cacheWillUpdate()
+     * - cacheDidUpdate()
+     *
+     * @param {Request|string} key The request or URL to use as the cache key.
+     * @param {Response} response The response to cache.
+     * @return {Promise<boolean>} `false` if a cacheWillUpdate caused the response
+     * not be cached, and `true` otherwise.
+     */
+
+/**
+     * Registers a route with the router.
+     *
+     * @param {workbox-routing.Route} route The route to register.
+     */
+
+/**
+     * Returns a function that looks up `url` in the precache (taking into
+     * account revision information), and returns the corresponding `Response`.
+     *
+     * @param {string} url The precached URL which will be used to lookup the
+     * `Response`.
+     * @return {workbox-routing~handlerCallback}
+     */
+
+/**
+     * Returns a list of all the URLs that have been precached by the current
+     * service worker.
+     *
+     * @return {Array<string>} The precached URLs.
+     */
+
+/**
+     * Returns a mapping of a precached URL to the corresponding cache key, taking
+     * into account the revision information for the URL.
+     *
+     * @return {Map<string, string>} A URL to cache key mapping.
+     */
+
+/**
+     * Returns a promise that resolves once all promises passed to
+     * {@link workbox-strategies.StrategyHandler~waitUntil}
+     * have settled.
+     *
+     * Note: any work done after `doneWaiting()` settles should be manually
+     * passed to an event's `waitUntil()` method (not this handler's
+     * `waitUntil()` method), otherwise the service worker thread my be killed
+     * prior to your work completing.
+     */
+
+/**
+     * Returns the cache key used for storing a given URL. If that URL is
+     * unversioned, like `/index.html', then the cache key will be the original
+     * URL with a search parameter appended to it.
+     *
+     * @param {string} url A URL whose cache key you want to look up.
+     * @return {string} The versioned URL that corresponds to a cache key
+     * for the original URL, or undefined if that URL isn't precached.
+     */
+
+/**
+     * Returns true if the strategy has at least one plugin with the given
+     * callback.
+     *
+     * @param {string} name The name of the callback to check for.
+     * @return {boolean}
+     */
+
+/**
+     * Runs all plugin callbacks matching the given name, in order, passing the
+     * given param object (merged ith the current plugin state) as the only
+     * argument.
+     *
+     * Note: since this method runs all plugins, it's not suitable for cases
+     * where the return value of a callback needs to be applied prior to calling
+     * the next callback. See
+     * {@link workbox-strategies.StrategyHandler#iterateCallbacks}
+     * below for how to handle that case.
+     *
+     * @param {string} name The name of the callback to run within each plugin.
+     * @param {Object} param The object to pass as the first (and only) param
+     *     when executing each callback. This object will be merged with the
+     *     current plugin state prior to callback execution.
+     */
+
+/**
+     * Similar to {@link workbox-strategies.Strategy~handle}, but
+     * instead of just returning a `Promise` that resolves to a `Response` it
+     * it will return an tuple of `[response, done]` promises, where the former
+     * (`response`) is equivalent to what `handle()` returns, and the latter is a
+     * Promise that will resolve once any promises that were added to
+     * `event.waitUntil()` as part of performing the strategy have completed.
+     *
+     * You can await the `done` promise to ensure any extra work performed by
+     * the strategy (usually caching responses) completes successfully.
+     *
+     * @param {FetchEvent|Object} options A `FetchEvent` or an object with the
+     *     properties listed below.
+     * @param {Request|string} options.request A request to run this strategy for.
+     * @param {ExtendableEvent} options.event The event associated with the
+     *     request.
+     * @param {URL} [options.url]
+     * @param {*} [options.params]
+     * @return {Array<Promise>} A tuple of [response, done]
+     *     promises that can be used to determine when the response resolves as
+     *     well as when the handler has completed all its work.
+     */
+
+/**
+     * Stops running the strategy and immediately resolves any pending
+     * `waitUntil()` promises.
+     */
+
+/**
+     * This acts as a drop-in replacement for
+     * [`cache.match()`](https://developer.mozilla.org/en-US/docs/Web/API/Cache/match)
+     * with the following differences:
+     *
+     * - It knows what the name of the precache is, and only checks in that cache.
+     * - It allows you to pass in an "original" URL without versioning parameters,
+     * and it will automatically look up the correct cache key for the currently
+     * active revision of that URL.
+     *
+     * E.g., `matchPrecache('index.html')` will find the correct precached
+     * response for the currently active service worker, even if the actual cache
+     * key is `'/index.html?__WB_REVISION__=1234abcd'`.
+     *
+     * @param {string|Request} request The key (without revisioning parameters)
+     * to look up in the precache.
+     * @return {Promise<Response|undefined>}
+     */
+
+/**
+     * This method is complex, as there a number of things to account for:
+     *
+     * The `plugins` array can be set at construction, and/or it might be added to
+     * to at any time before the strategy is used.
+     *
+     * At the time the strategy is used (i.e. during an `install` event), there
+     * needs to be at least one plugin that implements `cacheWillUpdate` in the
+     * array, other than `copyRedirectedCacheableResponsesPlugin`.
+     *
+     * - If this method is called and there are no suitable `cacheWillUpdate`
+     * plugins, we need to add `defaultPrecacheCacheabilityPlugin`.
+     *
+     * - If this method is called and there is exactly one `cacheWillUpdate`, then
+     * we don't have to do anything (this might be a previously added
+     * `defaultPrecacheCacheabilityPlugin`, or it might be a custom plugin).
+     *
+     * - If this method is called and there is more than one `cacheWillUpdate`,
+     * then we need to check if one is `defaultPrecacheCacheabilityPlugin`. If so,
+     * we need to remove it. (This situation is unlikely, but it could happen if
+     * the strategy is used multiple times, the first without a `cacheWillUpdate`,
+     * and then later on after manually adding a custom `cacheWillUpdate`.)
+     *
+     * See https://github.com/GoogleChrome/workbox/issues/2737 for more context.
+     *
+     * @private
+     */
+
+/**
+     * This method will add items to the precache list, removing duplicates
+     * and ensuring the information is valid.
+     *
+     * @param {Array<workbox-precaching.PrecacheController.PrecacheEntry|string>} entries
+     *     Array of entries to precache.
+     */
+
+/**
+     * This method will call cacheWillUpdate on the available plugins (or use
+     * status === 200) to determine if the Response is safe and valid to cache.
+     *
+     * @param {Request} options.request
+     * @param {Response} options.response
+     * @return {Promise<Response|undefined>}
+     *
+     * @private
+     */
+
+/**
+     * Unregisters a route with the router.
+     *
+     * @param {workbox-routing.Route} route The route to unregister.
+     */
+
+/**
+ * @return {PrecacheController}
+ * @private
+ */
+
+/**
+ * A `Route` consists of a pair of callback functions, "match" and "handler".
+ * The "match" callback determine if a route should be used to "handle" a
+ * request by returning a non-falsy value if it can. The "handler" callback
+ * is called when there is a match and should return a Promise that resolves
+ * to a `Response`.
+ *
+ * @memberof workbox-routing
+ */
+
+/**
+ * A class created every time a Strategy instance instance calls
+ * {@link workbox-strategies.Strategy~handle} or
+ * {@link workbox-strategies.Strategy~handleAll} that wraps all fetch and
+ * cache actions around plugin callbacks and keeps track of when the strategy
+ * is "done" (i.e. all added `event.waitUntil()` promises have resolved).
+ *
+ * @memberof workbox-strategies
+ */
+
+/**
+ * A plugin, designed to be used with PrecacheController, to determine the
+ * of assets that were updated (or not updated) during the install event.
+ *
+ * @private
+ */
+
+/**
+ * A plugin, designed to be used with PrecacheController, to translate URLs into
+ * the corresponding cache key, based on the current revision info.
+ *
+ * @private
+ */
+
+/**
+ * A subclass of {@link workbox-routing.Route} that takes a
+ * {@link workbox-precaching.PrecacheController}
+ * instance and uses it to match incoming requests and handle fetching
+ * responses from the precache.
+ *
+ * @memberof workbox-precaching
+ * @extends workbox-routing.Route
+ */
+
+/**
+ * A utility function that determines whether the current browser supports
+ * constructing a new `Response` from a `response.body` stream.
+ *
+ * @return {boolean} `true`, if the current browser can successfully
+ *     construct a `Response` from a `response.body` stream, `false` otherwise.
+ *
+ * @private
+ */
+
+/**
+ * A utility method that makes it easier to use `event.waitUntil` with
+ * async functions and return the result.
+ *
+ * @param {ExtendableEvent} event
+ * @param {Function} asyncFn
+ * @return {Function}
+ * @private
+ */
+
+/**
+ * A {@link workbox-strategies.Strategy} implementation
+ * specifically designed to work with
+ * {@link workbox-precaching.PrecacheController}
+ * to both cache and fetch precached assets.
+ *
+ * Note: an instance of this class is created automatically when creating a
+ * `PrecacheController`; it's generally not necessary to create this yourself.
+ *
+ * @extends workbox-strategies.Strategy
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Add a `fetch` listener to the service worker that will
+ * respond to
+ * [network requests]{@link https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers#Custom_responses_to_requests}
+ * with precached assets.
+ *
+ * Requests for assets that aren't precached, the `FetchEvent` will not be
+ * responded to, allowing the event to fall through to other `fetch` event
+ * listeners.
+ *
+ * @param {Object} [options] See the {@link workbox-precaching.PrecacheRoute}
+ * options.
+ *
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Adds items to the precache list, removing any duplicates and
+ * stores the files in the
+ * {@link workbox-core.cacheNames|"precache cache"} when the service
+ * worker installs.
+ *
+ * This method can be called multiple times.
+ *
+ * Please note: This method **will not** serve any of the cached files for you.
+ * It only precaches files. To respond to a network request you call
+ * {@link workbox-precaching.addRoute}.
+ *
+ * If you have a single array of files to precache, you can just call
+ * {@link workbox-precaching.precacheAndRoute}.
+ *
+ * @param {Array<Object|string>} [entries=[]] Array of entries to precache.
+ *
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Allows developers to copy a response and modify its `headers`, `status`,
+ * or `statusText` values (the values settable via a
+ * [`ResponseInit`]{@link https://developer.mozilla.org/en-US/docs/Web/API/Response/Response#Syntax}
+ * object in the constructor).
+ * To modify these values, pass a function as the second argument. That
+ * function will be invoked with a single object with the response properties
+ * `{headers, status, statusText}`. The return value of this function will
+ * be used as the `ResponseInit` for the new `Response`. To change the values
+ * either modify the passed parameter(s) and return it, or return a totally
+ * new object.
+ *
+ * This method is intentionally limited to same-origin responses, regardless of
+ * whether CORS was used or not.
+ *
+ * @param {Response} response
+ * @param {Function} modifier
+ * @memberof workbox-core
+ */
+
+/**
+ * An abstract base class that all other strategy classes must extend from:
+ *
+ * @memberof workbox-strategies
+ */
+
+/**
+ * Classes extending the `Strategy` based class should implement this method,
+ * and leverage the {@link workbox-strategies.StrategyHandler}
+ * arg to perform all fetching and cache logic, which will ensure all relevant
+ * cache, cache options, fetch options and plugins are used (per the current
+ * strategy instance).
+ *
+ * @name _handle
+ * @instance
+ * @abstract
+ * @function
+ * @param {Request} request
+ * @param {workbox-strategies.StrategyHandler} handler
+ * @return {Promise<Response>}
+ *
+ * @memberof workbox-strategies.Strategy
+ */
+
+/**
+ * Converts a manifest entry into a versioned URL suitable for precaching.
+ *
+ * @param {Object|string} entry
+ * @return {string} A URL with versioning info.
+ *
+ * @private
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Creates a new, singleton Router instance if one does not exist. If one
+ * does already exist, that instance is returned.
+ *
+ * @private
+ * @return {Router}
+ */
+
+/**
+ * Easily register a RegExp, string, or function with a caching
+ * strategy to a singleton Router instance.
+ *
+ * This method will generate a Route for you if needed and
+ * call {@link workbox-routing.Router#registerRoute}.
+ *
+ * @param {RegExp|string|workbox-routing.Route~matchCallback|workbox-routing.Route} capture
+ * If the capture param is a `Route`, all other arguments will be ignored.
+ * @param {workbox-routing~handlerCallback} [handler] A callback
+ * function that returns a Promise resulting in a Response. This parameter
+ * is required if `capture` is not a `Route` object.
+ * @param {string} [method='GET'] The HTTP method to match the Route
+ * against.
+ * @return {workbox-routing.Route} The generated `Route`.
+ *
+ * @memberof workbox-routing
+ */
+
+/**
+ * Generator function that yields possible variations on the original URL to
+ * check, one at a time.
+ *
+ * @param {string} url
+ * @param {Object} options
+ *
+ * @private
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Matches an item in the cache, ignoring specific URL params. This is similar
+ * to the `ignoreSearch` option, but it allows you to ignore just specific
+ * params (while continuing to match on the others).
+ *
+ * @private
+ * @param {Cache} cache
+ * @param {Request} request
+ * @param {Object} matchOptions
+ * @param {Array<string>} ignoreParams
+ * @return {Promise<Response|undefined>}
+ */
+
+/**
+ * Performs efficient precaching of assets.
+ *
+ * @memberof workbox-precaching
+ */
+
+/**
+ * RegExpRoute makes it easy to create a regular expression based
+ * {@link workbox-routing.Route}.
+ *
+ * For same-origin requests the RegExp only needs to match part of the URL. For
+ * requests against third-party servers, you must define a RegExp that matches
+ * the start of the URL.
+ *
+ * @memberof workbox-routing
+ * @extends workbox-routing.Route
+ */
+
+/**
+ * Removes any URL search parameters that should be ignored.
+ *
+ * @param {URL} urlObject The original URL.
+ * @param {Array<RegExp>} ignoreURLParametersMatching RegExps to test against
+ * each search parameter name. Matches mean that the search parameter should be
+ * ignored.
+ * @return {URL} The URL with any ignored search parameters removed.
+ *
+ * @private
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Returns a promise that resolves and the passed number of milliseconds.
+ * This utility is an async/await-friendly version of `setTimeout`.
+ *
+ * @param {number} ms
+ * @return {Promise}
+ * @private
+ */
+
+/**
+ * Runs all of the callback functions, one at a time sequentially, in the order
+ * in which they were registered.
+ *
+ * @memberof workbox-core
+ * @private
+ */
+
+/**
+ * The Deferred class composes Promises in a way that allows for them to be
+ * resolved or rejected from outside the constructor. In most cases promises
+ * should be used directly, but Deferreds can be necessary when the logic to
+ * resolve a promise must be separate.
+ *
+ * @private
+ */
+
+/**
+ * The Router can be used to process a `FetchEvent` using one or more
+ * {@link workbox-routing.Route}, responding with a `Response` if
+ * a matching route exists.
+ *
+ * If no route matches a given a request, the Router will use a "default"
+ * handler if one is defined.
+ *
+ * Should the matching Route throw an error, the Router will use a "catch"
+ * handler if one is defined to gracefully deal with issues and respond with a
+ * Request.
+ *
+ * If a request matches multiple routes, the **earliest** registered route will
+ * be used to respond to the request.
+ *
+ * @memberof workbox-routing
+ */
+
+/**
+ * The default HTTP method, 'GET', used when there's no specific method
+ * configured for a route.
+ *
+ * @type {string}
+ *
+ * @private
+ */
+
+/**
+ * The list of valid HTTP methods associated with requests that could be routed.
+ *
+ * @type {Array<string>}
+ *
+ * @private
+ */
+
+/**
+ * This method will add entries to the precache list and add a route to
+ * respond to fetch events.
+ *
+ * This is a convenience method that will call
+ * {@link workbox-precaching.precache} and
+ * {@link workbox-precaching.addRoute} in a single call.
+ *
+ * @param {Array<Object|string>} entries Array of entries to precache.
+ * @param {Object} [options] See the
+ * {@link workbox-precaching.PrecacheRoute} options.
+ *
+ * @memberof workbox-precaching
+ */
+
+/**
+ * Workbox errors should be thrown with this class.
+ * This allows use to ensure the type easily in tests,
+ * helps developers identify errors from workbox
+ * easily and allows use to optimise error
+ * messages correctly.
+ *
+ * @private
+ */
+
+/************************************************************************/
+
+/******/
+
+/***/
+
+// -------------------------------
+
+// -------------------------------------------------------
+
+// @ts-ignore
+
+// Allow for flexible options to be passed.
+
+// Also if the original request users no-cors we don't use integrity.
+
+// Bind the install and activate methods to the instance.
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/Deferred.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/WorkboxError.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/assert.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/cacheMatchIgnoreParams.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/canConstructResponseFromBodyStream.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/executeQuotaErrorCallbacks.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/timeout.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/_private/waitUntil.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/copyResponse.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/models/messages/messages.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-core/models/quotaErrorCallbacks.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheController.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheRoute.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheStrategy.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/addRoute.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/precache.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/precacheAndRoute.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/PrecacheCacheKeyPlugin.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/PrecacheInstallReportPlugin.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/generateURLVariations.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/getOrCreatePrecacheController.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/removeIgnoredSearchParams.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/RegExpRoute.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/Route.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/Router.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/registerRoute.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/utils/constants.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-routing/utils/getOrCreateDefaultRouter.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-strategies/Strategy.js
+
+// CONCATENATED MODULE: ../node_modules/workbox-strategies/StrategyHandler.js
+
+// CONCATENATED MODULE: ./js/serviceWorker.js
+
+// Cache entries one at a time.
+
+// Callbacks to be executed whenever there's a quota error.
+
+// Can't change Function type right now.
+
+// Check if module is in cache
+
+// Convert the iterable into an array at the start of the loop to make sure
+
+// Copy the plugins list (since it's mutable on the strategy),
+
+// Create a fresh `ResponseInit` object by cloning the headers.
+
+// Create a new module (and put it into the cache)
+
+// Do not add integrity if the original request is no-cors
+
+// EXTERNAL MODULE: ../node_modules/workbox-core/_version.js
+
+// EXTERNAL MODULE: ../node_modules/workbox-precaching/_version.js
+
+// EXTERNAL MODULE: ../node_modules/workbox-routing/_version.js
+
+// EXTERNAL MODULE: ../node_modules/workbox-strategies/_version.js
+
+// Execute the module function
+
+// Fall back to the network if we're configured to do so.
+
+// Get route's catch handler, if it exists
+
+// Give precedence to all of the earlier routes by adding this additional
+
+// If `capture` is a `RegExp` then `handler` and `method` must be present.
+
+// If `capture` is a function then `handler` and `method` must be present.
+
+// If `capture` is a string then `handler` and `method` must be present.
+
+// If a MessageChannel was used, reply to the message on success.
+
+// If a precache manifest entry is a string, it's assumed to be a versioned
+
+// If no match was found above, return and empty object.
+
+// If response.url isn't set, assume it's cross-origin and keep origin null.
+
+// If the request doesn't include any ignored params, match as normal.
+
+// If the route matches, but there aren't any capture groups defined, then
+
+// If there are capture groups, then it will return their values.
+
+// If there is a fetchDidFail plugin, we need to save a clone of the
+
+// If there's a route catch handler, process that first
+
+// If there's just a URL and no revision, then it's also assumed to be a
+
+// If this is an `install` event for an entry that isn't already cached,
+
+// If we don't have a handler because there was no matching route, then
+
+// Ignore errors, as response errors should be caught via the `response`
+
+// Ignore the copy redirected plugin when determining what to do.
+
+// Instead of passing an empty array in as params, use undefined.
+
+// It's only "safe" to repair the cache if we're using SRI to guarantee
+
+// Make sure we defer cachePut() until after we know the response
+
+// Nothing needs to be done if cacheWillUpdatePluginCount is 1
+
+// Only remove the default plugin; multiple custom plugins are allowed.
+
+// Otherwise, construct a properly versioned URL using the custom Workbox
+
+// Otherwise, match by comparing keys
+
+// Params is type any, can't change right now.
+
+// Redirected responses cannot be used to satisfy a navigation request, so
+
+// Require that the match start at the first character in the URL string
+
+// Return an array of promises, suitable for use with Promise.all().
+
+// Return early if have a match.
+
+// Return immediately if there's no match.
+
+// Return the exports of the module
+
+// Run in the next task to avoid blocking other cache reads.
+
+// Save the default plugin's index, in case it needs to be removed.
+
+// See https://developer.mozilla.org/en-US/docs/Web/API/DOMException#exception-QuotaExceededError
+
+// See https://github.com/GoogleChrome/workbox/issues/1796
+
+// See https://github.com/GoogleChrome/workbox/issues/2079
+
+// See https://github.com/GoogleChrome/workbox/issues/2259
+
+// See https://github.com/GoogleChrome/workbox/issues/2528
+
+// See https://github.com/GoogleChrome/workbox/issues/281 for the context
+
+// See https://github.com/GoogleChrome/workbox/issues/2858
+
+// See https://github.com/GoogleChrome/workbox/issues/3096
+
+// See https://github.com/Microsoft/TypeScript/issues/28357#issuecomment-436484705
+
+// TODO(philipwalton): TypeScript errors without this typecast for
+
+// TODO(philipwalton): not sure why `any` is needed. It seems like
+
+// TODO(philipwalton): the `__WB_REVISION__` param is a precaching
+
+// TODO: `state` should never be undefined...
+
+// The "official" Strategy subclasses all throw this error automatically,
+
+// The helpers that use the default Router assume these listeners exist.
+
+// The module cache
+
+// The request can be altered by plugins with `requestWillFetch` making
+
+// The require function
+
+// These values are referenced directly by Router so cannot be
+
+// This shouldn't normally happen, but there are edge cases:
+
+// Throwing here will lead to the `install` handler failing, which
+
+// TypeScript
+
+// URL, like '/app.abcd1234.js'. Return as-is.
+
+// Wrap in try and catch in case the handle method throws a synchronous
+
+// `originalRequest` will only exist if a `fetchDidFail` callback
+
+// altered by minificaton.
+
+// and there's either a) no integrity property in the incoming request
+
+// any redirected response must be "copied" rather than cloned, so the new
+
+// behind this behavior.
+
+// but in case a third-party Strategy doesn't, ensure that we have a
+
+// consistent failure when there's no response or an error response.
+
+// deletion doesn't mess up iteration.
+
+// doesn't: `Array<Promise<Response> | undefined>`.
+
+// error. It should still callback to the catch handler.
+
+// eslint-disable-line
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
+// event.data is type 'any'
+
+// fall back to defaultHandler if that's defined.
+
+// feature. Consider into ways to only add this behavior if using
+
+// from the Request we make. Pass both to `fetchDidFail` to aid debugging.
+
+// https://bugs.chromium.org/p/chromium/issues/detail?id=669363&desc=2#c1
+
+// https://github.com/GoogleChrome/workbox/issues/1441
+
+// https://github.com/w3c/ServiceWorker/issues/1397
+
+// if it's a cross-origin request.
+
+// indicate a match.
+
+// is being used (see above).
+
+// no module.id needed
+
+// no module.loaded needed
+
+// or b) there is an integrity, and it matches the precache manifest.
+
+// original request before it's either modified by a requestWillFetch
+
+// params has a type any can't change right now.
+
+// plugin or before the original request's body is consumed via fetch().
+
+// precaching.
+
+// promise above. The `done` promise will only throw for errors in
+
+// promises passed to `handler.waitUntil()`.
+
+// response doesn't contain the `redirected` flag. See:
+
+// route to the end of the array.
+
+// route.match returns type any, not possible to change right now.
+
+// runtime cache の定義
+
+// search parameter along with the revision info.
+
+// should be cached; see https://github.com/GoogleChrome/workbox/issues/2737
+
+// so any mutations don't affect this handler instance.
+
+// some reason (probably a bug). The real type here should work but
+
+// that the response matches the precache manifest's expectations,
+
+// the original request (most likely from a `fetch` event) different
+
+// then populate the cache.
+
+// this should work with `as WorkboxPluginCallbackParam[C]`.
+
+// this will return [], which is truthy and therefore sufficient to
+
+// versioned URL.
+
+// waitUntil returns Promise<any>
+
+// we want to do if *any* of the responses aren't safe to cache.
+
+// webpackBootstrap

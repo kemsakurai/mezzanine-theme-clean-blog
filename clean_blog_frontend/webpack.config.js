@@ -1,3 +1,4 @@
+process.traceDeprecation = true;
 const Webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,6 +8,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const cleanBlogRoot = path.normalize(__dirname + '/../clean_blog');
 const config = require('./site-config');
+const miniSVGDataURI = require('mini-svg-data-uri');
 
 module.exports = {
   mode: 'development',
@@ -28,43 +30,38 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env'],
+          presets: [
+            ['@babel/preset-env', { targets: "defaults" }] 
+          ]
         },
       },
       {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          MiniCssExtractPlugin.loader, 'css-loader',
         ],
       },
-      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&minetype=application/font-woff'},
-      {test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader'},
-      {test: /\.svg(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {loader: 'file-loader'},
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                {removeXMLNS: true},
-                {removeOffCanvasPaths: true},
-                {removeDimensions: true},
-                {reusePaths: true},
-              ],
-            },
-          },
-        ]},
-    ],
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,  type: 'asset/resource' },
+      {test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, type: 'asset/resource' },
+      {test: /\.svg(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+      type: 'asset/inline',
+      use: 'svgo-loader',
+      generator: {
+        dataUrl(content) {
+            content = content.toString();
+            return miniSVGDataURI(content);
+          }
+      }  
+    }]
   },
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
           test(mod/* , chunk */) {
-            if (mod.context.includes('node_modules')) {
-              if (['turbolinks'].some((str) => mod.context.includes(str))) {
+            if (mod.context?.includes('node_modules')) {
+              if (['turbolinks'].some((str) => mod.context?.includes(str))) {
                 return false;
               }
               return true;

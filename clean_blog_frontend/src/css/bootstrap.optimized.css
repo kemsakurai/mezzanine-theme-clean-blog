@@ -17,27 +17,27 @@ footer,
 header,
 nav,
 section {
-  display: block;
+  display: block
 }
 a {
-  background-color: transparent;
+  background-color: transparent
 }
 a:active,
 a:hover {
-  outline: 0;
+  outline: 0
 }
 strong {
-  font-weight: bold;
+  font-weight: bold
 }
 h1 {
   margin: .67em 0;
-  font-size: 2em;
+  font-size: 2em
 }
 sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
-  vertical-align: baseline;
+  vertical-align: baseline
 }
 sup {
   top: -.5em;

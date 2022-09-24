@@ -1,4 +1,5 @@
-self.__precacheManifest = (self.__precacheManifest || []).concat([
+import {precacheAndRoute} from 'workbox-precaching';
+self.__precacheManifest = (self.__precacheManifest || self.__WB_MANIFEST).concat([
   {
     'url': '/static/js/html5shiv.js',
   },
@@ -12,7 +13,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     'url': '/static/img/home-bg-1600.jpg',
   },
 ]);
-workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+precacheAndRoute(__precacheManifest);
+
 // -------------------------------------------------------
 // runtime cache の定義
 // -------------------------------
