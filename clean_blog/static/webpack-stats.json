@@ -140,7 +140,10 @@
       "vendor-ef6b0a3b7cb1a7df3418.js",
       "bundle-ef6b0a3b7cb1a7df3418.css",
       "bundle-ef6b0a3b7cb1a7df3418.js"
-    ]
+    ],
+    "vendor": [
+      "vendor-ef6b0a3b7cb1a7df3418.js"
+    ]    
   },
   "publicPath": "/static/webpack_bundles/"
 }
