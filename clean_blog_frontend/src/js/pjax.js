@@ -1,4 +1,4 @@
-import Turbolinks from 'turbolinks';
+import Turbo from "@hotwired/turbo"
 
 function currentScrollPercentage() {
   return ((document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100);
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
   performance.mark('pageStart');
 });
 
-// Turbolinksで遷移した場合の初期化処理
-document.addEventListener('turbolinks:load', function(event) {
+// Turboで遷移した場合の初期化処理
+document.addEventListener('turbo:load', function(event) {
   const url = event.data.url;
   dataLayer.push({
     'event': 'turbolinks_load_pageView',
@@ -52,7 +52,7 @@ document.addEventListener('turbolinks:load', function(event) {
     });
   }
 });
-document.addEventListener('turbolinks:visit', function(event) {
+document.addEventListener('turbo:visit', function(event) {
   const url = event.data.url;
   pushPageExit(url);
 });
@@ -65,5 +65,5 @@ document.addEventListener('popstate', function(e) {
     pushPageExit(previousUrl);
   }
 });
-// Turbolinks処理開始
-Turbolinks.start();
+// Turbo処理開始
+Turbo.start();

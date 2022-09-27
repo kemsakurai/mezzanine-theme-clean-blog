@@ -224,6 +224,8 @@
 
 // codeハイライトのの折り返し箇所に、
 
+// define getter functions for harmony exports
+
 // detach from parent, fire event then clean up data
 
 // down

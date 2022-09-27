@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n static clean_blog_tags %}
-{% ifinstalled critical %}
-    {% load critical %}
-{% endifinstalled %}
 {% load render_bundle from webpack_loader %}
 <head>
     <meta charset="utf-8">
@@ -33,9 +30,6 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
     {% endifinstalled %}
-    {% ifinstalled critical %}
-        {% critical %}
-    {% endifinstalled %}
     {% if settings.BUNDLE_CSS_SRI %}
         {% with 'integrity="'|add:settings.BUNDLE_CSS_SRI|add:'"' as attrs_str %}
             {% render_bundle 'bundle' 'css' attrs=attrs_str %}
@@ -43,9 +37,6 @@
     {% else %}
         {% render_bundle 'bundle' 'css' %}
     {% endif %}
-    {% ifinstalled critical %}
-        {% endcritical %}
-    {% endifinstalled %}
     {% if request.user.is_staff %}
         <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
     {% endif %}
@@ -192,9 +183,6 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
     {% render_bundle 'bundle' 'js' attrs='async defer chatset="UTF-8"' %}
 {% endif %}
 {% autoescape off %}
-{% ifinstalled critical %}
-    {% critical_async %}
-{% endifinstalled %}
 {% endautoescape %}
 </body>
 </html>
