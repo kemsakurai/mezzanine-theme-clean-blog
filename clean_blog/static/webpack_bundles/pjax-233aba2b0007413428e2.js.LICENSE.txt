@@ -24,8 +24,6 @@
 
 // Turboで遷移した場合の初期化処理
 
-// Turbo処理開始
-
 // [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 
 // define getter functions for harmony exports
