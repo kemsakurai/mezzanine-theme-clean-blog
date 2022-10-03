@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Turboで遷移した場合の初期化処理
 document.addEventListener('turbo:load', function(event) {
-  const url = event.data.url;
+  const url = event.detail.url;
   dataLayer.push({
     'event': 'turbolinks_load_pageView',
     'virtualUrl': url,
@@ -39,7 +39,7 @@ document.addEventListener('turbo:load', function(event) {
     'event': 'optimize.activate',
     'virtualUrl': url,
   });
-  previousUrl = event.data.url;
+  previousUrl = event.detail.url;
   performance.mark('pageStart');
   const ads = document.querySelectorAll('.adsbygoogle');
   if (ads.length > 0) {
@@ -53,7 +53,7 @@ document.addEventListener('turbo:load', function(event) {
   }
 });
 document.addEventListener('turbo:visit', function(event) {
-  const url = event.data.url;
+  const url = event.detail.url;
   pushPageExit(url);
 });
 document.addEventListener('beforeunload', function() {
