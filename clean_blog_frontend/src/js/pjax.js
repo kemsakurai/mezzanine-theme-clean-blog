@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Turboで遷移した場合の初期化処理
-document.addEventListener('turbo:load', function(event) {
+document.addEventListener('turbo:render', function(event) {
   const url = event.data.url;
   dataLayer.push({
     'event': 'turbolinks_load_pageView',
