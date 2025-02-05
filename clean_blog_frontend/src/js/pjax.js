@@ -12,6 +12,7 @@ function pushPageExit(url) {
   } catch (e) {
     timeOnPage = performance.measure('timeOnPage', undefined, 'pageExit').duration / 1000;
   }
+  window.dataLayer = window.dataLayer || [];
   dataLayer.push({
     event: 'pageExit',
     exitUrl: url,
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Turboで遷移した場合の初期化処理
 document.addEventListener('turbo:load', function(event) {
   const url = event.detail.url;
+  window.dataLayer = window.dataLayer || [];
   dataLayer.push({
     'event': 'turbolinks_load_pageView',
     'virtualUrl': url,
