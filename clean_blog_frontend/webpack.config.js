@@ -16,6 +16,7 @@ module.exports = {
   entry: {
     pjax: ['./js/pjax.js'],
     bundle: ['./js/index.js'],
+    vendor: ['jquery','@hotwired/turbo'],
   },
   output: {
     path: path.join(cleanBlogRoot, 'static', 'webpack_bundles'),
@@ -55,26 +56,27 @@ module.exports = {
       }  
     }]
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test(mod/* , chunk */) {
-            if (mod.context?.includes('node_modules')) {
-              if (['turbolinks'].some((str) => mod.context?.includes(str))) {
-                return false;
-              }
-              return true;
-            }
-            return false;
-          },
-          name: 'vendor',
-          chunks: 'initial',
-          enforce: true,
-        },
-      },
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test(mod/* , chunk */) {
+  //           if (mod.context?.includes('node_modules')) {
+  //             console.log()
+  //             if (['@hotwired/turbo'].some((str) => mod.context?.includes(str))) {
+  //               return false;
+  //             }
+  //             return true;
+  //           }
+  //           return false;
+  //         },
+  //         name: 'vendor',
+  //         chunks: 'initial',
+  //         enforce: true,
+  //       },
+  //     },
+  //   },
+  // },
   plugins: [
     new Webpack.ProvidePlugin({
       $: 'jquery',

@@ -43,8 +43,6 @@ Turbo 7.2.0
 Copyright © 2022 37signals LLC
  */
 
-/* 0 */
-
 /* Attributes
 	---------------------------------------------------------------------- */
 
@@ -118,6 +116,8 @@ Copyright © 2022 37signals LLC
 
 /* unused harmony exports FrameElement, FrameLoadingStyle, FrameRenderer, PageRenderer, PageSnapshot, StreamActions, StreamElement, StreamSourceElement, cache, clearCache, connectStreamSource, disconnectStreamSource, navigator, registerAdapter, renderStreamMessage, session, setConfirmMethod, setFormMode, setProgressBarDelay, start, visit */
 
+/* webpack/runtime/define property getters */
+
 /*!
  * Sizzle CSS Selector Engine v2.3.6
  * https://sizzlejs.com/
@@ -144,12 +144,6 @@ Copyright © 2022 37signals LLC
  */
 
 /*#__PURE__*/
-
-/**
-	 * Add support for details element for browsers which require it
-	 *
-	 * @author Graham Martin <graham@pixely.co.uk>
-	 */
 
 /**
  * A low-level selection function that works with Sizzle's compiled
@@ -471,8 +465,6 @@ Copyright © 2022 37signals LLC
 
 // Add button/input type pseudos
 
-// Add class to <html> element to hook our styles too
-
 // Add elements passing elementMatchers directly to results
 
 // Add elements to results, through postFinder if defined
@@ -667,8 +659,6 @@ Copyright © 2022 37signals LLC
 
 // CSS string/identifier serialization
 
-// CSS used a lightly modified version of work by @jordanaustin
-
 // Cache response headers
 
 // Cache the compiled function
@@ -736,8 +726,6 @@ Copyright © 2022 37signals LLC
 // Check attachment across shadow DOM boundaries when possible (gh-3504)
 
 // Check each className given, space separated list
-
-// Check for details element support
 
 // Check for headers option
 
@@ -1145,8 +1133,6 @@ Copyright © 2022 37signals LLC
 
 // Flag for duplicate removal
 
-// Flag the module as loaded
-
 // Flag to know if list is currently firing
 
 // Flag to know if list was already fired
@@ -1262,8 +1248,6 @@ Copyright © 2022 37signals LLC
 // Go to the end state if fx are off
 
 // Grab necessary hook if one is defined
-
-// Grab references to the detail DOM elements
 
 // Guard against undefined "subtract", e.g., when used as in cssHooks
 
@@ -1529,8 +1513,6 @@ Copyright © 2022 37signals LLC
 
 // Initialize central reference
 
-// Inject basic details styling
-
 // Inject the element directly into the jQuery object
 
 // Inline style trumps all
@@ -1560,8 +1542,6 @@ Copyright © 2022 37signals LLC
 // Is the DOM ready to be used? Set to true once it occurs.
 
 // Item is non-scalar (array or object), encode its numeric index.
-
-// Iterate over all summary elements, set accessibility focused attributes and
 
 // Iteratively approximate from a nonzero starting point
 
@@ -1682,8 +1662,6 @@ Copyright © 2022 37signals LLC
 // Multiple arguments are aggregated like Promise.all array elements
 
 // Must access selectedIndex to make default options select
-
-// Must be the first stylesheet so it does not override user css
 
 // NB: No relatedTarget if the mouse left/entered the browser window
 
@@ -2487,6 +2465,8 @@ Copyright © 2022 37signals LLC
 
 // This corresponds to the behavior of CSS absolute positioning
 
+// This entry module is referenced by other modules so it can't be inlined
+
 // This expression is here for better compressibility (see addClass)
 
 // This happens for inline elements with no explicit setting (gh-3571)
@@ -2713,8 +2693,6 @@ Copyright © 2022 37signals LLC
 
 // XHTML parsers do not magically insert elements in the
 
-// __webpack_public_path__
-
 // `contentDocument` with a `null` prototype.
 
 // `i` is now the count of elements visited above, and adding it to `matchedCount`
@@ -2865,6 +2843,8 @@ Copyright © 2022 37signals LLC
 
 // deferred.resolveWith = list.fireWith
 
+// define getter functions for harmony exports
+
 // descendant combinators, which is not what we want.
 
 // did it), otherwise encode params recursively.
@@ -2883,8 +2863,6 @@ Copyright © 2022 37signals LLC
 
 // enough that all such attempts are guarded in a try block.
 
-// enter or space keys
-
 // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
 
 // error in IE
@@ -2900,10 +2878,6 @@ Copyright © 2022 37signals LLC
 // except "table", "table-cell", or "table-caption"
 
 // excess is a negative index
-
-// expose the module cache
-
-// expose the modules object (__webpack_modules__)
 
 // faking a content-box to get border and padding (gh-3699)
 
@@ -2984,8 +2958,6 @@ Copyright © 2022 37signals LLC
 // https://drafts.csswg.org/cssom/#common-serializing-idioms
 
 // https://drafts.csswg.org/cssom/#resolved-values
-
-// https://github.com/jordanaustin/Details-Expander/blob/master/src/css/main.css
 
 // https://html.spec.whatwg.org/#strip-and-collapse-whitespace
 
@@ -3093,6 +3065,10 @@ Copyright © 2022 37signals LLC
 
 // no element matchers and no seed.
 
+// no module.id needed
+
+// no module.loaded needed
+
 // nodeType < 6 works because attributes (2) do not appear as children
 
 // nodeType defaults to 9, since context defaults to document
@@ -3191,8 +3167,6 @@ Copyright © 2022 37signals LLC
 
 // same way that tag soup parsers do. So we cannot shorten
 
-// set event listeners for clicks or keypresses
-
 // set in CSS while `offset*` properties report correct values.
 
 // setting a boolean content attribute,
@@ -3224,6 +3198,8 @@ Copyright © 2022 37signals LLC
 // spaces as combinators
 
 // specially universal or its namespaces are a superset of the event's.
+
+// startup
 
 // state = "rejected"
 
@@ -3346,5 +3322,3 @@ Copyright © 2022 37signals LLC
 // xml :nth-child(...)
 
 // you can add your own custom options here if
-
-//# sourceMappingURL=details-polyfill.js.map
