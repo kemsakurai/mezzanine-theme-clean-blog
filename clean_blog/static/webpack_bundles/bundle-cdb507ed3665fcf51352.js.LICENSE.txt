@@ -14,6 +14,10 @@
 
 /* provided dependency */
 
+/* webpack/runtime/chunk loaded */
+
+/* webpack/runtime/jsonp chunk loading */
+
 /************************************************************************/
 
 /******/
@@ -21,6 +25,12 @@
 /***/
 
 // $.fn.offset doesn't round pixel values
+
+// ./js/index.js
+
+// ./js/pageConfigurator.js
+
+// ./js/registerServiceWorker.js
 
 // 127.0.0.1/8 is considered localhost for IPv4.
 
@@ -103,12 +113,6 @@
 // COLLAPSE PLUGIN DEFINITION
 
 // COLLAPSE PUBLIC CLASS DEFINITION
-
-// CONCATENATED MODULE: ./js/index.js
-
-// CONCATENATED MODULE: ./js/pageConfigurator.js
-
-// CONCATENATED MODULE: ./js/registerServiceWorker.js
 
 // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
 
@@ -214,6 +218,8 @@
 
 // [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 
+// add "moreModules" to the modules object,
+
 // bottom overflow
 
 // cached resources are updated in the background.
@@ -297,6 +303,8 @@
 // startup
 
 // strip for ie7
+
+// then flag all "chunkIds" as loaded and fire callback
 
 // these following methods are used to handle overflowing modals
 

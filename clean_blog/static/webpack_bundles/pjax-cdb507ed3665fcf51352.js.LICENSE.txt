@@ -1,5 +1,9 @@
 /* harmony import */
 
+/* webpack/runtime/chunk loaded */
+
+/* webpack/runtime/jsonp chunk loading */
+
 /************************************************************************/
 
 /******/
@@ -26,6 +30,8 @@
 
 // [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 
+// add "moreModules" to the modules object,
+
 // define getter functions for harmony exports
 
 // expose the modules object (__webpack_modules__)
@@ -51,6 +57,8 @@
 // object to store loaded and loading chunks
 
 // startup
+
+// then flag all "chunkIds" as loaded and fire callback
 
 // undefined = chunk not loaded, null = chunk preloaded/prefetched
 

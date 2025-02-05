@@ -5,11 +5,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FontminPlugin = require('fontmin-webpack');
 
 module.exports = merge(BaseConfig, {
-  // plugins: [
-  //   new FontminPlugin({
-  //     autodetect: true, // automatically pull unicode characters from CSS
-  //   }),
-  // ],
   optimization: {
     minimizer: [
       new TerserPlugin({

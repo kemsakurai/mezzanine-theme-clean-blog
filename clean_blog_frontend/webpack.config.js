@@ -18,7 +18,7 @@ module.exports = {
     bundle: ['./js/index.js'],
   },
   output: {
-    path: cleanBlogRoot + '/static/webpack_bundles',
+    path: path.join(cleanBlogRoot, 'static', 'webpack_bundles'),
     filename: '[name]-[hash].js',
     crossOriginLoading: 'anonymous',
     publicPath: '/static/webpack_bundles/',
@@ -84,7 +84,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
     }),
-    new BundleTracker({filename: '../clean_blog/static/webpack-stats.json'}),
+    new BundleTracker({
+      path: path.join(cleanBlogRoot, 'static'),
+      filename: 'webpack-stats.json'
+    }),
     new InjectManifest({
       swSrc: __dirname + '/src/js/serviceWorker.js',
       swDest: cleanBlogRoot + '/templates/serviceWorker.js',

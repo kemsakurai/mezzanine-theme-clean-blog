@@ -1,6 +1,6 @@
 {
   "name": "clean_blog_frontend",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Clean Blog of Mezzanine Theme's frontend module",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
-    "webpack-bundle-tracker": "^0.4.3",
+    "webpack-bundle-tracker": "^3.1.1",
     "webpack-cli": "^4.10.0",
     "webpack-merge": "^5.8.0",
     "webpack-pwa-manifest": "^4.3.0",

@@ -987,6 +987,68 @@
 
 // -------------------------------------------------------
 
+// ../node_modules/workbox-core/_private/Deferred.js
+
+// ../node_modules/workbox-core/_private/WorkboxError.js
+
+// ../node_modules/workbox-core/_private/assert.js
+
+// ../node_modules/workbox-core/_private/cacheMatchIgnoreParams.js
+
+// ../node_modules/workbox-core/_private/canConstructResponseFromBodyStream.js
+
+// ../node_modules/workbox-core/_private/executeQuotaErrorCallbacks.js
+
+// ../node_modules/workbox-core/_private/timeout.js
+
+// ../node_modules/workbox-core/_private/waitUntil.js
+
+// ../node_modules/workbox-core/copyResponse.js
+
+// ../node_modules/workbox-core/models/messages/messages.js
+
+// ../node_modules/workbox-core/models/quotaErrorCallbacks.js
+
+// ../node_modules/workbox-precaching/PrecacheController.js
+
+// ../node_modules/workbox-precaching/PrecacheRoute.js
+
+// ../node_modules/workbox-precaching/PrecacheStrategy.js
+
+// ../node_modules/workbox-precaching/addRoute.js
+
+// ../node_modules/workbox-precaching/precache.js
+
+// ../node_modules/workbox-precaching/precacheAndRoute.js
+
+// ../node_modules/workbox-precaching/utils/PrecacheCacheKeyPlugin.js
+
+// ../node_modules/workbox-precaching/utils/PrecacheInstallReportPlugin.js
+
+// ../node_modules/workbox-precaching/utils/generateURLVariations.js
+
+// ../node_modules/workbox-precaching/utils/getOrCreatePrecacheController.js
+
+// ../node_modules/workbox-precaching/utils/removeIgnoredSearchParams.js
+
+// ../node_modules/workbox-routing/RegExpRoute.js
+
+// ../node_modules/workbox-routing/Route.js
+
+// ../node_modules/workbox-routing/Router.js
+
+// ../node_modules/workbox-routing/registerRoute.js
+
+// ../node_modules/workbox-routing/utils/constants.js
+
+// ../node_modules/workbox-routing/utils/getOrCreateDefaultRouter.js
+
+// ../node_modules/workbox-strategies/Strategy.js
+
+// ../node_modules/workbox-strategies/StrategyHandler.js
+
+// ./js/serviceWorker.js
+
 // @ts-ignore
 
 // Allow for flexible options to be passed.
@@ -994,68 +1056,6 @@
 // Also if the original request users no-cors we don't use integrity.
 
 // Bind the install and activate methods to the instance.
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/Deferred.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/WorkboxError.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/assert.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/cacheMatchIgnoreParams.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/canConstructResponseFromBodyStream.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/executeQuotaErrorCallbacks.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/timeout.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/_private/waitUntil.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/copyResponse.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/models/messages/messages.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-core/models/quotaErrorCallbacks.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheController.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheRoute.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/PrecacheStrategy.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/addRoute.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/precache.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/precacheAndRoute.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/PrecacheCacheKeyPlugin.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/PrecacheInstallReportPlugin.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/generateURLVariations.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/getOrCreatePrecacheController.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-precaching/utils/removeIgnoredSearchParams.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/RegExpRoute.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/Route.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/Router.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/registerRoute.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/utils/constants.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-routing/utils/getOrCreateDefaultRouter.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-strategies/Strategy.js
-
-// CONCATENATED MODULE: ../node_modules/workbox-strategies/StrategyHandler.js
-
-// CONCATENATED MODULE: ./js/serviceWorker.js
 
 // Cache entries one at a time.
 
